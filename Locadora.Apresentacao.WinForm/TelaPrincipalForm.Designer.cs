@@ -1,0 +1,307 @@
+﻿namespace Locadora.Apresentacao.WinForm
+{
+    partial class TelaPrincipalForm
+    {
+        /// <summary>
+        ///  Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        ///  Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        ///  Required method for Designer support - do not modify
+        ///  the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cadastrosToolStripMenuItem = new System.Windows.Forms.MenuStrip();
+            this.taxaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.taxaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.grupoVeiculosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.funcionarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolbox = new System.Windows.Forms.ToolStrip();
+            this.btnInserir = new System.Windows.Forms.ToolStripButton();
+            this.btnEditar = new System.Windows.Forms.ToolStripButton();
+            this.btnExcluir = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnVisualizar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnGerarPdf = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnFiltrar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.labelTipoCadastro = new System.Windows.Forms.ToolStripLabel();
+            this.panelRegistros = new System.Windows.Forms.Panel();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
+            this.cadastrosToolStripMenuItem.SuspendLayout();
+            this.toolbox.SuspendLayout();
+            this.panelRegistros.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
+            // 
+            // cadastrosToolStripMenuItem
+            // 
+            this.cadastrosToolStripMenuItem.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.taxaToolStripMenuItem});
+            this.cadastrosToolStripMenuItem.Location = new System.Drawing.Point(0, 0);
+            this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
+            this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(800, 24);
+            this.cadastrosToolStripMenuItem.TabIndex = 2;
+            this.cadastrosToolStripMenuItem.Text = "cadastrosToolStripMenuItem";
+            // 
+            // taxaToolStripMenuItem
+            // 
+            this.taxaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.taxaToolStripMenuItem1,
+            this.grupoVeiculosToolStripMenuItem,
+            this.clienteToolStripMenuItem,
+            this.funcionarioToolStripMenuItem});
+            this.taxaToolStripMenuItem.Name = "taxaToolStripMenuItem";
+            this.taxaToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.taxaToolStripMenuItem.Text = "Cadastro";
+            // 
+            // taxaToolStripMenuItem1
+            // 
+            this.taxaToolStripMenuItem1.Name = "taxaToolStripMenuItem1";
+            this.taxaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.taxaToolStripMenuItem1.Text = "Taxa";
+            this.taxaToolStripMenuItem1.Click += new System.EventHandler(this.taxaToolStripMenuItem1_Click);
+            // 
+            // grupoVeiculosToolStripMenuItem
+            // 
+            this.grupoVeiculosToolStripMenuItem.Name = "grupoVeiculosToolStripMenuItem";
+            this.grupoVeiculosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.grupoVeiculosToolStripMenuItem.Text = "Grupo Veículos";
+            this.grupoVeiculosToolStripMenuItem.Click += new System.EventHandler(this.grupoVeiculosToolStripMenuItem_Click);
+            // 
+            // clienteToolStripMenuItem
+            // 
+            this.clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
+            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clienteToolStripMenuItem.Text = "Cliente";
+            this.clienteToolStripMenuItem.Click += new System.EventHandler(this.clienteToolStripMenuItem_Click);
+            // 
+            // funcionarioToolStripMenuItem
+            // 
+            this.funcionarioToolStripMenuItem.Name = "funcionarioToolStripMenuItem";
+            this.funcionarioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.funcionarioToolStripMenuItem.Text = "Funcionário";
+            this.funcionarioToolStripMenuItem.Click += new System.EventHandler(this.funcionarioToolStripMenuItem_Click);
+            // 
+            // toolbox
+            // 
+            this.toolbox.Enabled = false;
+            this.toolbox.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolbox.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnInserir,
+            this.btnEditar,
+            this.btnExcluir,
+            this.toolStripSeparator2,
+            this.btnVisualizar,
+            this.toolStripSeparator3,
+            this.btnGerarPdf,
+            this.toolStripSeparator1,
+            this.btnFiltrar,
+            this.toolStripSeparator4,
+            this.labelTipoCadastro});
+            this.toolbox.Location = new System.Drawing.Point(0, 24);
+            this.toolbox.Name = "toolbox";
+            this.toolbox.Size = new System.Drawing.Size(800, 41);
+            this.toolbox.TabIndex = 3;
+            this.toolbox.Text = "toolStrip1";
+            // 
+            // btnInserir
+            // 
+            this.btnInserir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnInserir.Image = global::Locadora.Apresentacao.WinForm.Properties.Resources.add;
+            this.btnInserir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnInserir.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnInserir.Name = "btnInserir";
+            this.btnInserir.Padding = new System.Windows.Forms.Padding(5);
+            this.btnInserir.Size = new System.Drawing.Size(38, 38);
+            this.btnInserir.Text = "Inserir";
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnEditar.Image = global::Locadora.Apresentacao.WinForm.Properties.Resources.edit;
+            this.btnEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Padding = new System.Windows.Forms.Padding(5);
+            this.btnEditar.Size = new System.Drawing.Size(38, 38);
+            this.btnEditar.Text = "Editar";
+            // 
+            // btnExcluir
+            // 
+            this.btnExcluir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnExcluir.Image = global::Locadora.Apresentacao.WinForm.Properties.Resources.trash;
+            this.btnExcluir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnExcluir.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Padding = new System.Windows.Forms.Padding(5);
+            this.btnExcluir.Size = new System.Drawing.Size(38, 38);
+            this.btnExcluir.Text = "Excluir";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 41);
+            // 
+            // btnVisualizar
+            // 
+            this.btnVisualizar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnVisualizar.Image = global::Locadora.Apresentacao.WinForm.Properties.Resources.verify;
+            this.btnVisualizar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnVisualizar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnVisualizar.Name = "btnVisualizar";
+            this.btnVisualizar.Padding = new System.Windows.Forms.Padding(5);
+            this.btnVisualizar.Size = new System.Drawing.Size(38, 38);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 41);
+            // 
+            // btnGerarPdf
+            // 
+            this.btnGerarPdf.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnGerarPdf.Image = global::Locadora.Apresentacao.WinForm.Properties.Resources.icon_pdf;
+            this.btnGerarPdf.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnGerarPdf.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnGerarPdf.Name = "btnGerarPdf";
+            this.btnGerarPdf.Padding = new System.Windows.Forms.Padding(5);
+            this.btnGerarPdf.Size = new System.Drawing.Size(38, 38);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 41);
+            // 
+            // btnFiltrar
+            // 
+            this.btnFiltrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnFiltrar.Image = global::Locadora.Apresentacao.WinForm.Properties.Resources.filter;
+            this.btnFiltrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnFiltrar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnFiltrar.Name = "btnFiltrar";
+            this.btnFiltrar.Padding = new System.Windows.Forms.Padding(5);
+            this.btnFiltrar.Size = new System.Drawing.Size(38, 38);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 41);
+            // 
+            // labelTipoCadastro
+            // 
+            this.labelTipoCadastro.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.labelTipoCadastro.Name = "labelTipoCadastro";
+            this.labelTipoCadastro.Size = new System.Drawing.Size(90, 38);
+            this.labelTipoCadastro.Text = "[tipoCadastro]";
+            // 
+            // panelRegistros
+            // 
+            this.panelRegistros.Controls.Add(this.statusStrip1);
+            this.panelRegistros.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelRegistros.Location = new System.Drawing.Point(0, 65);
+            this.panelRegistros.Name = "panelRegistros";
+            this.panelRegistros.Size = new System.Drawing.Size(800, 385);
+            this.panelRegistros.TabIndex = 4;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.labelRodape});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 363);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // labelRodape
+            // 
+            this.labelRodape.Name = "labelRodape";
+            this.labelRodape.Size = new System.Drawing.Size(52, 17);
+            this.labelRodape.Text = "[rodapé]";
+            // 
+            // TelaPrincipalForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.panelRegistros);
+            this.Controls.Add(this.toolbox);
+            this.Controls.Add(this.cadastrosToolStripMenuItem);
+            this.Name = "TelaPrincipalForm";
+            this.Text = "Locadora de Veículos Rech";
+            this.cadastrosToolStripMenuItem.ResumeLayout(false);
+            this.cadastrosToolStripMenuItem.PerformLayout();
+            this.toolbox.ResumeLayout(false);
+            this.toolbox.PerformLayout();
+            this.panelRegistros.ResumeLayout(false);
+            this.panelRegistros.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+        private System.Windows.Forms.MenuStrip cadastrosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem taxaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem taxaToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem grupoVeiculosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clienteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem funcionarioToolStripMenuItem;
+        private System.Windows.Forms.ToolStrip toolbox;
+        private System.Windows.Forms.ToolStripButton btnInserir;
+        private System.Windows.Forms.ToolStripButton btnEditar;
+        private System.Windows.Forms.ToolStripButton btnExcluir;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton btnVisualizar;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton btnGerarPdf;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton btnFiltrar;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripLabel labelTipoCadastro;
+        private System.Windows.Forms.Panel panelRegistros;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel labelRodape;
+    }
+}
