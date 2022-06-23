@@ -15,7 +15,7 @@ namespace Locadora.Infra.BancoDados.Compartilhado
     {
         protected string enderecoBanco =
             @"Data Source=(LOCALDB)\MSSQLLOCALDB;
-              Initial Catalog= Nome_banco;
+              Initial Catalog=LocadoraVeiculosDB;
               Integrated Security=True";
 
         protected abstract string sqlInserir { get; }

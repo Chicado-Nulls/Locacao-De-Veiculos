@@ -1,4 +1,7 @@
 ﻿using Locadora.Apresentacao.WinForm.Compartilhado;
+using Locadora.Apresentacao.WinForm.ModuloTaxa;
+using Locadora.Dominio.ModuloTaxa;
+using Locadora.Infra.BancoDados.ModuloTaxa;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -105,11 +108,15 @@ namespace Locadora.Apresentacao.WinForm
             //EXEMPLO ABAIXO
 
             //IRepositorioDisciplina repositorioDisciplina = new RepositorioDisciplinaEmBancoDados();
-            
-            //controladores = new Dictionary<string, ControladorBase>();
+
+            controladores = new Dictionary<string, ControladorBase>();
 
             //controladores.Add("Disciplinas", new ControladorDisciplina(repositorioDisciplina));
-            
+
+            IRepositorioTaxa repositorioTaxa = new RepositorioTaxa();
+
+            controladores.Add("Taxa", new ControladorTaxa(repositorioTaxa));
+
         }
 
         private void taxaToolStripMenuItem1_Click(object sender, EventArgs e)
