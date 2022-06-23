@@ -8,6 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Locadora.Dominio.ModuloCliente;
+using Locadora.Apresentacao.WinForm.ModuloCliente;
+using Locadora.Infra.BancoDados.ModuloCliente;
 
 namespace Locadora.Apresentacao.WinForm
 {
@@ -105,11 +108,18 @@ namespace Locadora.Apresentacao.WinForm
             //EXEMPLO ABAIXO
 
             //IRepositorioDisciplina repositorioDisciplina = new RepositorioDisciplinaEmBancoDados();
-            
+
             //controladores = new Dictionary<string, ControladorBase>();
 
             //controladores.Add("Disciplinas", new ControladorDisciplina(repositorioDisciplina));
-            
+
+            IRepositorioCliente repositorioCliente = new RepositorioClienteEmBancoDeDados();
+
+            controladores = new Dictionary<string, ControladorBase>();
+
+            controladores.Add("Cliente", new ControladorCliente(repositorioCliente));
+
+
         }
 
         private void taxaToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -132,6 +142,33 @@ namespace Locadora.Apresentacao.WinForm
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }
 
-        
+        private void cadastrosToolStripMenuItem_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void btnInserir_Click(object sender, EventArgs e)
+        {
+                if (controlador == null)
+                {
+                    MessageBox.Show("Selecione uma tela de cadastro primeiro",
+                    "Menu Principal", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+
+                controlador.Inserir();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (controlador == null)
+            {
+                MessageBox.Show("Selecione uma tela de cadastro primeiro",
+                "Menu Principal", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            controlador.Editar();
+        }
     }
 }

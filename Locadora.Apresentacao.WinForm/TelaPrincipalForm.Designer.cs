@@ -77,6 +77,7 @@
             this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(800, 24);
             this.cadastrosToolStripMenuItem.TabIndex = 2;
             this.cadastrosToolStripMenuItem.Text = "cadastrosToolStripMenuItem";
+            this.cadastrosToolStripMenuItem.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.cadastrosToolStripMenuItem_ItemClicked);
             // 
             // taxaToolStripMenuItem
             // 
@@ -92,28 +93,28 @@
             // taxaToolStripMenuItem1
             // 
             this.taxaToolStripMenuItem1.Name = "taxaToolStripMenuItem1";
-            this.taxaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.taxaToolStripMenuItem1.Size = new System.Drawing.Size(153, 22);
             this.taxaToolStripMenuItem1.Text = "Taxa";
             this.taxaToolStripMenuItem1.Click += new System.EventHandler(this.taxaToolStripMenuItem1_Click);
             // 
             // grupoVeiculosToolStripMenuItem
             // 
             this.grupoVeiculosToolStripMenuItem.Name = "grupoVeiculosToolStripMenuItem";
-            this.grupoVeiculosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.grupoVeiculosToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.grupoVeiculosToolStripMenuItem.Text = "Grupo Veículos";
             this.grupoVeiculosToolStripMenuItem.Click += new System.EventHandler(this.grupoVeiculosToolStripMenuItem_Click);
             // 
             // clienteToolStripMenuItem
             // 
             this.clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
-            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.clienteToolStripMenuItem.Text = "Cliente";
             this.clienteToolStripMenuItem.Click += new System.EventHandler(this.clienteToolStripMenuItem_Click);
             // 
             // funcionarioToolStripMenuItem
             // 
             this.funcionarioToolStripMenuItem.Name = "funcionarioToolStripMenuItem";
-            this.funcionarioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.funcionarioToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.funcionarioToolStripMenuItem.Text = "Funcionário";
             this.funcionarioToolStripMenuItem.Click += new System.EventHandler(this.funcionarioToolStripMenuItem_Click);
             // 
@@ -149,6 +150,7 @@
             this.btnInserir.Padding = new System.Windows.Forms.Padding(5);
             this.btnInserir.Size = new System.Drawing.Size(38, 38);
             this.btnInserir.Text = "Inserir";
+            this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
             // 
             // btnEditar
             // 
@@ -160,6 +162,7 @@
             this.btnEditar.Padding = new System.Windows.Forms.Padding(5);
             this.btnEditar.Size = new System.Drawing.Size(38, 38);
             this.btnEditar.Text = "Editar";
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnExcluir
             // 
