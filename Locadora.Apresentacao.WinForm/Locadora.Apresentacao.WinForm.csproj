@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Dominio.Locadora\Locadora.Dominio.csproj" />
+    <ProjectReference Include="..\Infra.Locadora.BancoDados\Locadora.Infra.BancoDados.csproj" />
   </ItemGroup>
 
   <ItemGroup>

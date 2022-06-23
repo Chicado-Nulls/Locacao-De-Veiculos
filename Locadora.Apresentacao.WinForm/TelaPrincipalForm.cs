@@ -1,12 +1,10 @@
 ﻿using Locadora.Apresentacao.WinForm.Compartilhado;
+using Locadora.Apresentacao.WinForm.ModuloFuncionario;
+using Locadora.Dominio.ModuloFuncionario;
+using Locadora.Infra.BancoDados.ModuloFuncionario;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows.Forms;
 
 namespace Locadora.Apresentacao.WinForm
@@ -22,10 +20,10 @@ namespace Locadora.Apresentacao.WinForm
 
             Instancia = this;
 
+            labelRodape.Text = "Teste";
+            
             labelRodape.Text = string.Empty;
             labelTipoCadastro.Text = string.Empty;
-
-
             InicializarControladores();
         }
 
@@ -37,7 +35,8 @@ namespace Locadora.Apresentacao.WinForm
 
         public void AtualizarRodape(string mensagem)
         {
-            labelRodape.Text = mensagem;
+            statusStripMensagem.Items.Clear();
+            statusStripMensagem.Items.Add(mensagem);
         }
 
         private void ConfigurarBotoes(ConfigurarToolboxBase configuracao)
@@ -78,7 +77,7 @@ namespace Locadora.Apresentacao.WinForm
 
         private void ConfigurarListagem()
         {
-            AtualizarRodape("");
+            AtualizarRodape("-");
 
             var listagemControl = controlador.ObtemListagem();
 
@@ -91,7 +90,7 @@ namespace Locadora.Apresentacao.WinForm
 
         private void ConfigurarTelaPrincipal(ToolStripMenuItem opcaoSelecionada)
         {
-            var tipo = opcaoSelecionada.Text;
+            var tipo = removerAcentos(opcaoSelecionada.Text);
 
             controlador = controladores[tipo];
 
@@ -105,11 +104,18 @@ namespace Locadora.Apresentacao.WinForm
             //EXEMPLO ABAIXO
 
             //IRepositorioDisciplina repositorioDisciplina = new RepositorioDisciplinaEmBancoDados();
-            
+
             //controladores = new Dictionary<string, ControladorBase>();
 
             //controladores.Add("Disciplinas", new ControladorDisciplina(repositorioDisciplina));
+
+
+            IRepositorioFuncionario repositorioFuncionario = new RepositorioFuncionarioBancoDados();
             
+            controladores = new Dictionary<string, ControladorBase>();
+
+            controladores.Add("Funcionario", new ControladorFuncionario(repositorioFuncionario));
+
         }
 
         private void taxaToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -131,7 +137,31 @@ namespace Locadora.Apresentacao.WinForm
         {
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }
+        public static string removerAcentos(string texto)
+        {
+            string comAcentos = "ÄÅÁÂÀÃäáâàãÉÊËÈéêëèÍÎÏÌíîïìÖÓÔÒÕöóôòõÜÚÛüúûùÇç";
+            string semAcentos = "AAAAAAaaaaaEEEEeeeeIIIIiiiiOOOOOoooooUUUuuuuCc";
 
-        
+            for (int i = 0; i < comAcentos.Length; i++)
+            {
+                texto = texto.Replace(comAcentos[i].ToString(), semAcentos[i].ToString());
+            }
+            return texto;
+        }
+
+        private void btnInserir_Click(object sender, EventArgs e)
+        {
+            controlador.Inserir();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            controlador.Editar();
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            controlador.Excluir();
+        }
     }
 }

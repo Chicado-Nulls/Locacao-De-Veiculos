@@ -15,7 +15,7 @@ namespace Locadora.Infra.BancoDados.Compartilhado
     {
         protected string enderecoBanco =
             @"Data Source=(LOCALDB)\MSSQLLOCALDB;
-              Initial Catalog= Nome_banco;
+              Initial Catalog=LocadoraVeiculosDB;
               Integrated Security=True";
 
         protected abstract string sqlInserir { get; }
@@ -103,7 +103,9 @@ namespace Locadora.Infra.BancoDados.Compartilhado
             SqlDataReader leitorRegistro = comandoSelecao.ExecuteReader();
 
             var mapeador = new TMapeador();
+
             T registro = null;
+
             if (leitorRegistro.Read())
                 registro = mapeador.ConverterRegistro(leitorRegistro);
 
