@@ -1,0 +1,69 @@
+﻿using FluentValidation.Results;
+using Locadora.Dominio.Compartilhado;
+using Locadora.Dominio.ModuloFuncionario;
+using Locadora.Infra.BancoDados.Compartilhado;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Locadora.Infra.BancoDados.ModuloFuncionario
+{
+    public class RepositorioFuncionarioBancoDados : RepositorioBase<Funcionario, ValidadorFuncionario, MapeadorFuncionario>, IRepositorioFuncionario
+    {
+        protected override string sqlInserir =>
+             @"INSERT INTO [TBFUNCIONARIO]
+                        (
+                            [NOME],       
+                            [LOGIN], 
+                            [SENHA],
+                            [DATAENTRADA]
+                        )
+                    VALUES
+                        (
+                            @NOME,
+                            @LOGIN,
+                            @SENHA,
+                            @DATAENTRADA
+                        ); SELECT SCOPE_IDENTITY();";
+
+        protected override string sqlEditar =>
+            @"UPDATE [TBFUNCIONARIO]	
+                SET
+	                [NOME] = @NOME,
+                    [LOGIN] = @LOGIN,
+                    [SENHA] = @SENHA,
+                    [DATAENTRADA] = @DATAENTRADA
+                WHERE
+	                [ID] = @ID;";
+
+        protected override string sqlExcluir =>
+            @"DELETE FROM[TBFUNCIONARIO]
+                WHERE
+                    [ID] = @ID";
+
+        protected override string sqlSelecionarPorId =>
+            @"SELECT 
+	                FUNCIONARIO.ID FUNCIONARIO_ID,
+	                FUNCIONARIO.NOME FUNCIONARIO_NOME,
+	                FUNCIONARIO.LOGIN FUNCIONARIO_LOGIN,
+	                FUNCIONARIO.SENHA FUNCIONARIO_SENHA,
+	                FUNCIONARIO.DATAENTRADA FUNCIONARIO_DATAENTRADA
+
+                FROM TBFUNCIONARIO AS FUNCIONARIO
+
+                WHERE FUNCIONARIO.ID = @ID";
+
+        protected override string sqlSelecionarTodos =>
+            @"SELECT 
+	                FUNCIONARIO.ID FUNCIONARIO_ID,
+	                FUNCIONARIO.NOME FUNCIONARIO_NOME,
+	                FUNCIONARIO.LOGIN FUNCIONARIO_LOGIN,
+	                FUNCIONARIO.SENHA FUNCIONARIO_SENHA,
+	                FUNCIONARIO.DATAENTRADA FUNCIONARIO_DATAENTRADA
+
+                FROM TBFUNCIONARIO AS FUNCIONARIO";
+
+    }
+}

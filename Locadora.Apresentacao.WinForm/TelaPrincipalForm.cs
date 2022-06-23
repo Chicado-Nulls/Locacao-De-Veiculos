@@ -1,12 +1,10 @@
 ﻿using Locadora.Apresentacao.WinForm.Compartilhado;
+using Locadora.Apresentacao.WinForm.ModuloFuncionario;
+using Locadora.Dominio.ModuloFuncionario;
+using Locadora.Infra.BancoDados.ModuloFuncionario;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows.Forms;
 using Locadora.Dominio.ModuloCliente;
 using Locadora.Apresentacao.WinForm.ModuloCliente;
@@ -27,8 +25,6 @@ namespace Locadora.Apresentacao.WinForm
 
             labelRodape.Text = string.Empty;
             labelTipoCadastro.Text = string.Empty;
-
-
             InicializarControladores();
         }
 
@@ -40,7 +36,8 @@ namespace Locadora.Apresentacao.WinForm
 
         public void AtualizarRodape(string mensagem)
         {
-            labelRodape.Text = mensagem;
+            statusStripMensagem.Items.Clear();
+            statusStripMensagem.Items.Add(mensagem);
         }
 
         private void ConfigurarBotoes(ConfigurarToolboxBase configuracao)
@@ -94,7 +91,7 @@ namespace Locadora.Apresentacao.WinForm
 
         private void ConfigurarTelaPrincipal(ToolStripMenuItem opcaoSelecionada)
         {
-            var tipo = opcaoSelecionada.Text;
+            var tipo = removerAcentos(opcaoSelecionada.Text);
 
             controlador = controladores[tipo];
 
@@ -120,6 +117,14 @@ namespace Locadora.Apresentacao.WinForm
             controladores.Add("Cliente", new ControladorCliente(repositorioCliente));
 
 
+
+
+            IRepositorioFuncionario repositorioFuncionario = new RepositorioFuncionarioBancoDados();
+            
+            controladores = new Dictionary<string, ControladorBase>();
+
+            controladores.Add("Funcionario", new ControladorFuncionario(repositorioFuncionario));
+
         }
 
         private void taxaToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -141,34 +146,18 @@ namespace Locadora.Apresentacao.WinForm
         {
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }
-
-        private void cadastrosToolStripMenuItem_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        public static string removerAcentos(string texto)
         {
+            string comAcentos = "ÄÅÁÂÀÃäáâàãÉÊËÈéêëèÍÎÏÌíîïìÖÓÔÒÕöóôòõÜÚÛüúûùÇç";
+            string semAcentos = "AAAAAAaaaaaEEEEeeeeIIIIiiiiOOOOOoooooUUUuuuuCc";
 
-        }
-
-        private void btnInserir_Click(object sender, EventArgs e)
-        {
-                if (controlador == null)
-                {
-                    MessageBox.Show("Selecione uma tela de cadastro primeiro",
-                    "Menu Principal", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-
-
-                controlador.Inserir();
-        }
-
-        private void btnEditar_Click(object sender, EventArgs e)
-        {
-            if (controlador == null)
+            for (int i = 0; i < comAcentos.Length; i++)
             {
-                MessageBox.Show("Selecione uma tela de cadastro primeiro",
-                "Menu Principal", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
+                texto = texto.Replace(comAcentos[i].ToString(), semAcentos[i].ToString());
             }
-            controlador.Editar();
+            return texto;
         }
+
+        
     }
 }

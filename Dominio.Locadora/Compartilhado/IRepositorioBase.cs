@@ -13,6 +13,6 @@ namespace Locadora.Dominio.Compartilhado
 
         List<T> SelecionarTodos();
 
-        T SelecionarPorId(int Id);
+        T SelecionarPorId(int numero);
     }
 }
