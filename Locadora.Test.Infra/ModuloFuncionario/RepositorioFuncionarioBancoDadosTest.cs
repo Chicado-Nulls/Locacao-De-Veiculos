@@ -3,6 +3,7 @@ using FluentAssertions;
 using Locadora.Infra.BancoDados.ModuloFuncionario;
 using Locadora.Dominio.ModuloFuncionario;
 using System;
+using Locadora.Infra.BancoDados.Compartilhado;
 
 namespace Locadora.Test.Infra.ModuloFuncionario
 {

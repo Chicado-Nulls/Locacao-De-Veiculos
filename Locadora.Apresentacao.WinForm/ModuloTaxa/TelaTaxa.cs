@@ -14,51 +14,64 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
 {
     public partial class TelaTaxa : Form
     {
+        private Taxa _taxa;
         TipoDeCalculo tipo = new TipoDeCalculo();
         public TelaTaxa()
         {
             InitializeComponent();
         }
-        public Taxa taxa
+        public Taxa Taxa
         {
             get
             {
-                return taxa;
+                return _taxa;
             }
             set
             {
-                taxa = value;
+                _taxa = value;
 
             }
         }
         public Func<Taxa, ValidationResult> GravarRegistro { get; set; }
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            taxa.Descricao=textDescricao.Text;
-            taxa.Valor = ValorNumeric.Value;
+            Taxa.Descricao=textDescricao.Text;
+            Taxa.Valor = ValorNumerico.Value;
 
             InserirTipoDeCalculo();
 
-            var resultadoValidacao = GravarRegistro(taxa);
+            var resultadoValidacao = GravarRegistro(Taxa);
 
             if (resultadoValidacao.IsValid == false)
             {
                 string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                
+
+                TelaPrincipalForm.Instancia.AtualizarRodape(erro);
+
+
                 DialogResult = DialogResult.None;
             }
         }
+
+        
 
         private void InserirTipoDeCalculo()
         {
             if (checkFixo.Checked)
             {
-                taxa.TipoDeCalculo = TipoDeCalculo.CalculoFixo;                
+                Taxa.TipoDeCalculo = TipoDeCalculo.CalculoFixo;                
             }
-            else
+            else if (checkDiario.Checked)
             {
-                taxa.TipoDeCalculo = TipoDeCalculo.CalculoDiario;
+                Taxa.TipoDeCalculo=TipoDeCalculo.CalculoDiario;
             }
+
+            Taxa.TipoDeCalculo = null;
+            
             
         }
+
+        
     }
 }

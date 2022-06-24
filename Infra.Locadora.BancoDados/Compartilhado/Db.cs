@@ -1,7 +1,7 @@
 ﻿
 using System.Data.SqlClient;
 
-namespace Locadora.Infra.BancoDados.ModuloFuncionario
+namespace Locadora.Infra.BancoDados.Compartilhado
 {
     public static class Db
     {

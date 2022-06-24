@@ -31,7 +31,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
             }
             TelaTaxa telaTaxa = new TelaTaxa();
 
-            telaTaxa.taxa = taxa;
+            telaTaxa.Taxa = taxa;
             telaTaxa.GravarRegistro = RepositorioTaxa.Editar;
 
             DialogResult dialogResult = telaTaxa.ShowDialog();
@@ -61,7 +61,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
         {
             TelaTaxa telaTaxa=  new TelaTaxa();
 
-            telaTaxa.taxa= new Taxa();
+            telaTaxa.Taxa= new Taxa();
 
             telaTaxa.GravarRegistro = RepositorioTaxa.Inserir;
 

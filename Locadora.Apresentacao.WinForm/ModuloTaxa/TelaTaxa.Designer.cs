@@ -28,36 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.checkFixo = new System.Windows.Forms.CheckBox();
-            this.checkDiario = new System.Windows.Forms.CheckBox();
             this.btnGravar = new System.Windows.Forms.Button();
             this.BtnCancelar = new System.Windows.Forms.Button();
             this.textDescricao = new System.Windows.Forms.TextBox();
-            this.ValorNumeric = new System.Windows.Forms.NumericUpDown();
+            this.ValorNumerico = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.Descrição = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.ValorNumeric)).BeginInit();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkFixo = new System.Windows.Forms.RadioButton();
+            this.checkDiario = new System.Windows.Forms.RadioButton();
+            ((System.ComponentModel.ISupportInitialize)(this.ValorNumerico)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // checkFixo
-            // 
-            this.checkFixo.AutoSize = true;
-            this.checkFixo.Location = new System.Drawing.Point(28, 178);
-            this.checkFixo.Name = "checkFixo";
-            this.checkFixo.Size = new System.Drawing.Size(91, 19);
-            this.checkFixo.TabIndex = 0;
-            this.checkFixo.Text = "Calculo Fixo";
-            this.checkFixo.UseVisualStyleBackColor = true;
-            // 
-            // checkDiario
-            // 
-            this.checkDiario.AutoSize = true;
-            this.checkDiario.Location = new System.Drawing.Point(28, 153);
-            this.checkDiario.Name = "checkDiario";
-            this.checkDiario.Size = new System.Drawing.Size(100, 19);
-            this.checkDiario.TabIndex = 1;
-            this.checkDiario.Text = "Calculo Diario";
-            this.checkDiario.UseVisualStyleBackColor = true;
             // 
             // btnGravar
             // 
@@ -87,12 +69,17 @@
             this.textDescricao.Size = new System.Drawing.Size(293, 23);
             this.textDescricao.TabIndex = 4;
             // 
-            // ValorNumeric
+            // ValorNumerico
             // 
-            this.ValorNumeric.Location = new System.Drawing.Point(28, 42);
-            this.ValorNumeric.Name = "ValorNumeric";
-            this.ValorNumeric.Size = new System.Drawing.Size(150, 23);
-            this.ValorNumeric.TabIndex = 5;
+            this.ValorNumerico.Location = new System.Drawing.Point(28, 42);
+            this.ValorNumerico.Maximum = new decimal(new int[] {
+            20000,
+            0,
+            0,
+            0});
+            this.ValorNumerico.Name = "ValorNumerico";
+            this.ValorNumerico.Size = new System.Drawing.Size(150, 23);
+            this.ValorNumerico.TabIndex = 5;
             // 
             // label1
             // 
@@ -112,38 +99,72 @@
             this.Descrição.TabIndex = 7;
             this.Descrição.Text = "Descrição";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.checkFixo);
+            this.groupBox1.Controls.Add(this.checkDiario);
+            this.groupBox1.Location = new System.Drawing.Point(28, 167);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(208, 83);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Tipo de calculo";
+            // 
+            // checkFixo
+            // 
+            this.checkFixo.AutoSize = true;
+            this.checkFixo.Location = new System.Drawing.Point(6, 47);
+            this.checkFixo.Name = "checkFixo";
+            this.checkFixo.Size = new System.Drawing.Size(90, 19);
+            this.checkFixo.TabIndex = 1;
+            this.checkFixo.TabStop = true;
+            this.checkFixo.Text = "Calculo Fixo";
+            this.checkFixo.UseVisualStyleBackColor = true;
+            // 
+            // checkDiario
+            // 
+            this.checkDiario.AutoSize = true;
+            this.checkDiario.Location = new System.Drawing.Point(6, 22);
+            this.checkDiario.Name = "checkDiario";
+            this.checkDiario.Size = new System.Drawing.Size(99, 19);
+            this.checkDiario.TabIndex = 0;
+            this.checkDiario.TabStop = true;
+            this.checkDiario.Text = "Calculo Diario";
+            this.checkDiario.UseVisualStyleBackColor = true;
+            // 
             // TelaTaxa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(346, 361);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Descrição);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.ValorNumeric);
+            this.Controls.Add(this.ValorNumerico);
             this.Controls.Add(this.textDescricao);
             this.Controls.Add(this.BtnCancelar);
             this.Controls.Add(this.btnGravar);
-            this.Controls.Add(this.checkDiario);
-            this.Controls.Add(this.checkFixo);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TelaTaxa";
             this.Text = "Cadastro de Taxa";
-            ((System.ComponentModel.ISupportInitialize)(this.ValorNumeric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ValorNumerico)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.CheckBox checkFixo;
-        private System.Windows.Forms.CheckBox checkDiario;
         private System.Windows.Forms.Button btnGravar;
         private System.Windows.Forms.Button BtnCancelar;
         private System.Windows.Forms.TextBox textDescricao;
-        private System.Windows.Forms.NumericUpDown ValorNumeric;
+        private System.Windows.Forms.NumericUpDown ValorNumerico;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label Descrição;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton checkFixo;
+        private System.Windows.Forms.RadioButton checkDiario;
     }
 }
