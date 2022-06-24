@@ -103,7 +103,9 @@ namespace Locadora.Infra.BancoDados.Compartilhado
             SqlDataReader leitorRegistro = comandoSelecao.ExecuteReader();
 
             var mapeador = new TMapeador();
+
             T registro = null;
+
             if (leitorRegistro.Read())
                 registro = mapeador.ConverterRegistro(leitorRegistro);
 

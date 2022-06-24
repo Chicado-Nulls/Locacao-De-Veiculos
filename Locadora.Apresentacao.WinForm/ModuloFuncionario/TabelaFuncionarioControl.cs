@@ -21,12 +21,15 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
             var colunas = new DataGridViewColumn[]
             {
                 new DataGridViewTextBoxColumn { DataPropertyName = "ID", HeaderText = "Id", FillWeight=15F },
+                new DataGridViewTextBoxColumn { DataPropertyName = "NOME", HeaderText = "Nome", FillWeight=15F },
+                new DataGridViewTextBoxColumn { DataPropertyName = "LOGIN", HeaderText = "Login", FillWeight=15F },
+                new DataGridViewTextBoxColumn { DataPropertyName = "DATAENTRADA", HeaderText = "Data Entrada", FillWeight=15F },
             };
             
             return colunas;
         }
 
-        internal int ObtemNumeroMateriaSelecionado()
+        internal int ObtemNumeroRegistroSelecionado()
         {
             return grid.SelecionarNumero<int>();
         }
@@ -35,10 +38,10 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
         {
             grid.Rows.Clear();
 
-            foreach (var materia in funcionarios)
+            foreach (var funcionario in funcionarios)
             {
                 //exemplo
-                //grid.Rows.Add(materia.Numero, materia.Nome, materia.Disciplina.Nome, materia.Serie.GetDescription());
+                grid.Rows.Add(funcionario.Id, funcionario.Nome, funcionario.Login, funcionario.DataEntrada);
             }
         }
     }
