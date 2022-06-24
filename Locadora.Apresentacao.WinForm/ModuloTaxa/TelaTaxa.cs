@@ -15,7 +15,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
     public partial class TelaTaxa : Form
     {
         private Taxa _taxa;
-        TipoDeCalculo tipo = new TipoDeCalculo();
+        
         public TelaTaxa()
         {
             InitializeComponent();
@@ -60,18 +60,15 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
         {
             if (checkFixo.Checked)
             {
-                Taxa.TipoDeCalculo = TipoDeCalculo.CalculoFixo;                
+                Taxa.TipoDeCalculo = TipoDeCalculo.CalculoFixo;
+                return;
             }
-            else if (checkDiario.Checked)
+            else if(checkDiario.Checked)
             {
                 Taxa.TipoDeCalculo=TipoDeCalculo.CalculoDiario;
-            }
-
-            Taxa.TipoDeCalculo = null;
-            
-            
-        }
-
-        
+                return;
+            }            
+                Taxa.TipoDeCalculo = null;                                              
+        }        
     }
 }
