@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 
 using System.Windows.Forms;
+using Locadora.Dominio.ModuloGrupoDeVeiculos;
 
 namespace Locadora.Apresentacao.WinForm
 {
@@ -123,6 +124,9 @@ namespace Locadora.Apresentacao.WinForm
             IRepositorioTaxa repositorioTaxa = new RepositorioTaxa();
 
             controladores.Add("Taxa", new ControladorTaxa(repositorioTaxa));
+
+
+            
 
         }
 

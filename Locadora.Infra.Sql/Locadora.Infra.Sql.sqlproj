@@ -60,6 +60,7 @@
   <ItemGroup>
     <Build Include="TbFuncionario.sql" />
     <Build Include="TbTaxa.sql" />
+    <Build Include="TbGrupoDeVeiculos.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Locadora.Infra.Sql.refactorlog" />

@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[TbGrupoDeVeiculos]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Nome] VARCHAR(60) NOT NULL
+)
