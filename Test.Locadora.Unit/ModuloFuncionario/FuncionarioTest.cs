@@ -17,14 +17,16 @@ namespace Locadora.Test.Unit.ModuloFuncionario
                 Nome = "usuario master",
                 Login = "admin1",
                 Senha = "admin1",
-                DataEntrada = new DateTime(2022, 01, 01)
+                DataEntrada = new DateTime(2022, 01, 01),
+                Administrador = true,
+                Salario = 50.00m
             };
         }
         [TestMethod]
         public void Cria_objeto_funcionario_com_campos_contrutor()
         {
             // arrange - action
-            var FuncionarioCriar = new Funcionario("Usuario teste", "login", "login", new DateTime(2022,01,01));
+            var FuncionarioCriar = new Funcionario("Usuario teste", "login", "login", new DateTime(2022,01,01), false, 50.00m);
 
             // Asset
             Assert.AreEqual("Usuario teste", FuncionarioCriar.Nome);
@@ -34,6 +36,15 @@ namespace Locadora.Test.Unit.ModuloFuncionario
 
             // Asset
             Assert.AreEqual("login", FuncionarioCriar.Senha);
+
+            // Asset
+            Assert.AreEqual(new DateTime(2022, 01, 01), FuncionarioCriar.DataEntrada);
+
+            // Asset
+            Assert.AreEqual(false, FuncionarioCriar.Administrador);
+
+            // Asset
+            Assert.AreEqual(50.00m, FuncionarioCriar.Salario);
         }
 
         [TestMethod]
@@ -50,6 +61,15 @@ namespace Locadora.Test.Unit.ModuloFuncionario
 
             // Asset
             Assert.AreEqual(null, FuncionarioCriar.Senha);
+
+            // Asset
+            Assert.AreEqual(default, FuncionarioCriar.DataEntrada);
+
+            // Asset
+            Assert.AreEqual(false, FuncionarioCriar.Administrador);
+
+            // Asset
+            Assert.AreEqual(default, FuncionarioCriar.Salario);
 
         }
         [TestMethod]
@@ -70,6 +90,15 @@ namespace Locadora.Test.Unit.ModuloFuncionario
 
             // Asset
             Assert.AreEqual(funcionario.Senha, FuncionarioCriar.Senha);
+
+            // Asset
+            Assert.AreEqual(funcionario.DataEntrada, FuncionarioCriar.DataEntrada);
+
+            // Asset
+            Assert.AreEqual(funcionario.Administrador, FuncionarioCriar.Administrador);
+            
+            // Asset
+            Assert.AreEqual(funcionario.Salario, FuncionarioCriar.Salario);
 
         }
     }

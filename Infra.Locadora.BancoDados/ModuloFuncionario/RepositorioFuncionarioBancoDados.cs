@@ -18,14 +18,18 @@ namespace Locadora.Infra.BancoDados.ModuloFuncionario
                             [NOME],       
                             [LOGIN], 
                             [SENHA],
-                            [DATAENTRADA]
+                            [DATAENTRADA],
+                            [ADMINISTRADOR],
+                            [SALARIO]
                         )
                     VALUES
                         (
                             @NOME,
                             @LOGIN,
                             @SENHA,
-                            @DATAENTRADA
+                            @DATAENTRADA,
+                            @ADMINISTRADOR,
+                            @SALARIO
                         ); SELECT SCOPE_IDENTITY();";
 
         protected override string sqlEditar =>
@@ -34,7 +38,9 @@ namespace Locadora.Infra.BancoDados.ModuloFuncionario
 	                [NOME] = @NOME,
                     [LOGIN] = @LOGIN,
                     [SENHA] = @SENHA,
-                    [DATAENTRADA] = @DATAENTRADA
+                    [DATAENTRADA] = @DATAENTRADA,
+                    [ADMINISTRADOR] = @ADMINISTRADOR,
+                    [SALARIO] = @SALARIO
                 WHERE
 	                [ID] = @ID;";
 
@@ -49,7 +55,9 @@ namespace Locadora.Infra.BancoDados.ModuloFuncionario
 	                FUNCIONARIO.NOME FUNCIONARIO_NOME,
 	                FUNCIONARIO.LOGIN FUNCIONARIO_LOGIN,
 	                FUNCIONARIO.SENHA FUNCIONARIO_SENHA,
-	                FUNCIONARIO.DATAENTRADA FUNCIONARIO_DATAENTRADA
+	                FUNCIONARIO.DATAENTRADA FUNCIONARIO_DATAENTRADA,
+	                FUNCIONARIO.ADMINISTRADOR FUNCIONARIO_ADMINISTRADOR,
+	                FUNCIONARIO.SALARIO FUNCIONARIO_SALARIO
 
                 FROM TBFUNCIONARIO AS FUNCIONARIO
 
@@ -61,9 +69,15 @@ namespace Locadora.Infra.BancoDados.ModuloFuncionario
 	                FUNCIONARIO.NOME FUNCIONARIO_NOME,
 	                FUNCIONARIO.LOGIN FUNCIONARIO_LOGIN,
 	                FUNCIONARIO.SENHA FUNCIONARIO_SENHA,
-	                FUNCIONARIO.DATAENTRADA FUNCIONARIO_DATAENTRADA
+	                FUNCIONARIO.DATAENTRADA FUNCIONARIO_DATAENTRADA,
+                    FUNCIONARIO.ADMINISTRADOR FUNCIONARIO_ADMINISTRADOR,
+                    FUNCIONARIO.SALARIO FUNCIONARIO_SALARIO
 
                 FROM TBFUNCIONARIO AS FUNCIONARIO";
 
+        public bool FuncionarioAdministrador(Funcionario funcionario)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

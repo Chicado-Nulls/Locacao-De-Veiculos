@@ -12,17 +12,21 @@ namespace Locadora.Dominio.ModuloFuncionario
         public string Nome { get; set; }
         public string Login { get; set; }
         public string Senha { get; set; }
+        public bool Administrador { get; set; }
+        public decimal Salario { get; set; }
         
         public DateTime DataEntrada { get; set; }
 
         public Funcionario() { }
 
-        public Funcionario(string nome, string login, string senha, DateTime data)
+        public Funcionario(string nome, string login, string senha, DateTime data, bool administrador, decimal salario)
         {
             Nome=nome;
             Login=login;
             Senha=senha;
             DataEntrada=data;
+            Administrador=administrador;
+            Salario=salario;
         }
 
         public override void Atualizar(Funcionario registro)
@@ -31,6 +35,8 @@ namespace Locadora.Dominio.ModuloFuncionario
             Login = registro.Login;
             Senha = registro.Senha;
             DataEntrada = registro.DataEntrada;
+            Administrador = registro.Administrador;
+            Salario = registro.Salario;
         }
 
         public override bool Equals(object obj)
@@ -39,6 +45,8 @@ namespace Locadora.Dominio.ModuloFuncionario
                    Nome == Funcionario.Nome  &&
                    Login == Funcionario.Login  &&
                    Senha == Funcionario.Senha  &&
+                   Administrador == Funcionario.Administrador  &&
+                   Salario == Funcionario.Salario  &&
                    DataEntrada == Funcionario.DataEntrada;
         }
 

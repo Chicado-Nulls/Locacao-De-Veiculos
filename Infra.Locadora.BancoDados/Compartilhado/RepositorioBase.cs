@@ -8,7 +8,8 @@ using System.Data.SqlClient;
 
 namespace Locadora.Infra.BancoDados.Compartilhado
 {
-    public abstract class RepositorioBase<T, TValidador, TMapeador>
+    public abstract class 
+        RepositorioBase<T, TValidador, TMapeador>
         where T : EntidadeBase<T>
         where TValidador : AbstractValidator<T>, new ()
         where TMapeador : MapeadorBase<T>, new ()

@@ -16,10 +16,12 @@ namespace Locadora.Test.Unit.ModuloFuncionario
             funcionario = new()
             {
                 Id = 1,
-                Nome = "usuario master",
+                Nome = "Marcos Adriano Lima",
                 Login = "admin1",
                 Senha = "admin1",
-                DataEntrada = new DateTime(2022, 01, 01)
+                DataEntrada = new DateTime(2022, 01, 01),
+                Administrador = false,
+                Salario = 50.00m
             };
 
             validador = new ValidadorFuncionario();
@@ -101,6 +103,20 @@ namespace Locadora.Test.Unit.ModuloFuncionario
 
             // assert
             resultado.ShouldHaveValidationErrorFor(f => f.Senha);
+        }
+
+        [TestMethod]
+        public void Deta_entrada_nao_deve_Ser_menor_data_atual()
+        {
+
+            // arrange
+            funcionario.DataEntrada = DateTime.Now.AddDays(1);
+
+            // action
+            var resultado = validador.TestValidate(funcionario);
+
+            // assert
+            resultado.ShouldHaveValidationErrorFor(f => f.DataEntrada);
         }
     }
 }
