@@ -44,5 +44,10 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
                 grid.Rows.Add(funcionario.Id, funcionario.Nome, funcionario.Login, funcionario.DataEntrada);
             }
         }
+
+        private void grid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

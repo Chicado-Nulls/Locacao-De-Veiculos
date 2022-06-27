@@ -109,20 +109,12 @@ namespace Locadora.Apresentacao.WinForm
             //controladores = new Dictionary<string, ControladorBase>();
 
             //controladores.Add("Disciplinas", new ControladorDisciplina(repositorioDisciplina));
+            controladores = new Dictionary<string, ControladorBase>();
 
             IRepositorioCliente repositorioCliente = new RepositorioClienteEmBancoDeDados();
-
-            controladores = new Dictionary<string, ControladorBase>();
-
             controladores.Add("Cliente", new ControladorCliente(repositorioCliente));
 
-
-
-
             IRepositorioFuncionario repositorioFuncionario = new RepositorioFuncionarioBancoDados();
-            
-            controladores = new Dictionary<string, ControladorBase>();
-
             controladores.Add("Funcionario", new ControladorFuncionario(repositorioFuncionario));
 
         }
@@ -158,6 +150,19 @@ namespace Locadora.Apresentacao.WinForm
             return texto;
         }
 
-        
+        private void btnInserir_Click(object sender, EventArgs e)
+        {
+            controlador.Inserir();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            controlador.Editar();
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            controlador.Excluir();
+        }
     }
 }

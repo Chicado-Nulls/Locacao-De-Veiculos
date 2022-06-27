@@ -13,48 +13,52 @@ namespace Locadora.Infra.BancoDados.ModuloCliente
     public class RepositorioClienteEmBancoDeDados : RepositorioBase<Cliente, ValidadorCliente, MapeadorCliente>, IRepositorioCliente
     {
         protected override string sqlInserir =>
-            @"INSERT INTO [TBCliente] 
+            @"INSERT INTO [TBCLIENTE] 
                 (
-                    [ID],
                     [NOME],
                     [CPF],
                     [CNPJ],
-                    [ENDERECO],
                     [CNH],
+                    [ENDERECO],
                     [EMAIL],
                     [TELEFONE],
                     [TIPOCADASTRO]
+                    
+                    
 	            )
 	            VALUES
                 (   
-                    @ID,
                     @NOME,
                     @CPF, 
                     @CNPJ,
-                    @ENDERECO,
                     @CNH,
+                    @ENDERECO,
                     @EMAIL,
                     @TELEFONE,
                     @TIPOCADASTRO
+                    
 
-                );SELECT SCOPE_IDENTITY();";
+                );SELECT SCOPE_IDENTITY()";
 
         protected override string sqlEditar =>
              @" UPDATE [TBCLIENTE]
                     SET 
-                        [ID] = @ID,
+                        
                         [NOME] = @NOME, 
                         [CPF] = @CPF, 
                         [CNPJ] = @CNPJ,
-                        [ENDERECO] = @ENERECO,
+                        [ENDERECO] = @ENDERECO,
                         [CNH] = @CNH,
                         [EMAIL] = @EMAIL,
-                        [TELEFONE] = @TELEFONE,    
+                        [TELEFONE] = @TELEFONE,
                         [TIPOCADASTRO] = @TIPOCADASTRO
 
                     WHERE [ID] = @ID";
 
-        protected override string sqlExcluir => throw new NotImplementedException();
+        protected override string sqlExcluir =>
+             @"DELETE FROM[TBCLIENTE]
+                WHERE
+                    [ID] = @ID";
 
         protected override string sqlSelecionarPorId =>
             @"SELECT 
@@ -83,6 +87,7 @@ namespace Locadora.Infra.BancoDados.ModuloCliente
                 [EMAIL],
                 [TELEFONE],
                 [TIPOCADASTRO]
+                
                 
             FROM
                 [TBCLIENTE]";

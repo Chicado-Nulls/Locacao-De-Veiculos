@@ -25,23 +25,23 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
         {
             var colunas = new DataGridViewColumn[]
            {
-                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "ID", HeaderText = "Id"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "NOME", HeaderText = "Nome"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Cpf", HeaderText = "CPF"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "CPF", HeaderText = "CPF"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Cnpj", HeaderText = "CNPJ"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "CNPJ", HeaderText = "CNPJ"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Endereco", HeaderText = "Endereço"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "CNH", HeaderText = "Cnh"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Cnh", HeaderText = "Cnh"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "ENDERECO", HeaderText = "Endereço"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Email", HeaderText = "Email"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "EMAIL", HeaderText = "Email"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Telefone", HeaderText = "Telefone"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "TELEFONE", HeaderText = "Telefone"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "TipoCadastro", HeaderText = "Tipo cadastro"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "TIPOCADASTRO", HeaderText = "Tipo cadastro"}
 
 
 
@@ -57,7 +57,8 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
 
             foreach (Cliente cliente in clientes)
             {
-                grid.Rows.Add(cliente.Nome);
+                string Cliente = cliente.TipoCadastro == true ? "Pessoa Física" : "Pessoa Jurídica"; 
+                grid.Rows.Add(cliente.Id, cliente.Nome, cliente.Cpf, cliente.Cnpj, cliente.Cnh, cliente.Endereco, cliente.Email, cliente.Telefone, Cliente);
             }
         }
         internal int ObtemIdClienteSelecionado()

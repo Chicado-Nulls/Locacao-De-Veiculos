@@ -45,10 +45,10 @@
             this.textTelefone = new System.Windows.Forms.TextBox();
             this.labelTelefone = new System.Windows.Forms.Label();
             this.labelId = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textId = new System.Windows.Forms.TextBox();
             this.groupBoxTipoCadastro = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioPessoaJuridica = new System.Windows.Forms.RadioButton();
+            this.radioPessoaFisica = new System.Windows.Forms.RadioButton();
             this.groupBoxTipoCadastro.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,6 +61,7 @@
             this.btnInserir.TabIndex = 0;
             this.btnInserir.Text = "Inserir";
             this.btnInserir.UseVisualStyleBackColor = true;
+            this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
             // 
             // btnCancelar
             // 
@@ -123,7 +124,7 @@
             // 
             // textEndereco
             // 
-            this.textEndereco.Location = new System.Drawing.Point(12, 208);
+            this.textEndereco.Location = new System.Drawing.Point(12, 252);
             this.textEndereco.Name = "textEndereco";
             this.textEndereco.Size = new System.Drawing.Size(324, 23);
             this.textEndereco.TabIndex = 9;
@@ -131,7 +132,7 @@
             // labelEndereco
             // 
             this.labelEndereco.AutoSize = true;
-            this.labelEndereco.Location = new System.Drawing.Point(12, 190);
+            this.labelEndereco.Location = new System.Drawing.Point(12, 234);
             this.labelEndereco.Name = "labelEndereco";
             this.labelEndereco.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.labelEndereco.Size = new System.Drawing.Size(56, 15);
@@ -140,7 +141,7 @@
             // 
             // textCNH
             // 
-            this.textCNH.Location = new System.Drawing.Point(12, 252);
+            this.textCNH.Location = new System.Drawing.Point(12, 208);
             this.textCNH.Name = "textCNH";
             this.textCNH.Size = new System.Drawing.Size(324, 23);
             this.textCNH.TabIndex = 11;
@@ -148,7 +149,7 @@
             // labelCNH
             // 
             this.labelCNH.AutoSize = true;
-            this.labelCNH.Location = new System.Drawing.Point(12, 234);
+            this.labelCNH.Location = new System.Drawing.Point(12, 190);
             this.labelCNH.Name = "labelCNH";
             this.labelCNH.Size = new System.Drawing.Size(33, 15);
             this.labelCNH.TabIndex = 10;
@@ -195,18 +196,19 @@
             this.labelId.TabIndex = 18;
             this.labelId.Text = "Id";
             // 
-            // textBox1
+            // textId
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(12, 25);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(46, 23);
-            this.textBox1.TabIndex = 19;
+            this.textId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textId.Enabled = false;
+            this.textId.Location = new System.Drawing.Point(12, 22);
+            this.textId.Name = "textId";
+            this.textId.Size = new System.Drawing.Size(46, 23);
+            this.textId.TabIndex = 19;
             // 
             // groupBoxTipoCadastro
             // 
-            this.groupBoxTipoCadastro.Controls.Add(this.radioButton2);
-            this.groupBoxTipoCadastro.Controls.Add(this.radioButton1);
+            this.groupBoxTipoCadastro.Controls.Add(this.radioPessoaJuridica);
+            this.groupBoxTipoCadastro.Controls.Add(this.radioPessoaFisica);
             this.groupBoxTipoCadastro.Location = new System.Drawing.Point(99, 7);
             this.groupBoxTipoCadastro.Name = "groupBoxTipoCadastro";
             this.groupBoxTipoCadastro.Size = new System.Drawing.Size(237, 42);
@@ -214,27 +216,29 @@
             this.groupBoxTipoCadastro.TabStop = false;
             this.groupBoxTipoCadastro.Text = "Tipo Cadastro";
             // 
-            // radioButton1
+            // radioPessoaJuridica
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(3, 19);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(94, 19);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "radioButton1";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioPessoaJuridica.AutoSize = true;
+            this.radioPessoaJuridica.Location = new System.Drawing.Point(127, 19);
+            this.radioPessoaJuridica.Name = "radioPessoaJuridica";
+            this.radioPessoaJuridica.Size = new System.Drawing.Size(104, 19);
+            this.radioPessoaJuridica.TabIndex = 1;
+            this.radioPessoaJuridica.TabStop = true;
+            this.radioPessoaJuridica.Text = "Pessoa Jurídica";
+            this.radioPessoaJuridica.UseVisualStyleBackColor = true;
+            this.radioPessoaJuridica.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
-            // radioButton2
+            // radioPessoaFisica
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(137, 19);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(94, 19);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "radioButton2";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioPessoaFisica.AutoSize = true;
+            this.radioPessoaFisica.Location = new System.Drawing.Point(6, 19);
+            this.radioPessoaFisica.Name = "radioPessoaFisica";
+            this.radioPessoaFisica.Size = new System.Drawing.Size(93, 19);
+            this.radioPessoaFisica.TabIndex = 0;
+            this.radioPessoaFisica.TabStop = true;
+            this.radioPessoaFisica.Text = "Pessoa Física";
+            this.radioPessoaFisica.UseVisualStyleBackColor = true;
+            this.radioPessoaFisica.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // TelaCadastroCliente
             // 
@@ -242,7 +246,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(641, 385);
             this.Controls.Add(this.groupBoxTipoCadastro);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textId);
             this.Controls.Add(this.labelId);
             this.Controls.Add(this.textTelefone);
             this.Controls.Add(this.labelTelefone);
@@ -292,9 +296,11 @@
         private System.Windows.Forms.TextBox textTelefone;
         private System.Windows.Forms.Label labelTelefone;
         private System.Windows.Forms.Label labelId;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textId;
         private System.Windows.Forms.GroupBox groupBoxTipoCadastro;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioPessoaJuridica;
+        private System.Windows.Forms.RadioButton radioPessoaFisica;
     }
 }

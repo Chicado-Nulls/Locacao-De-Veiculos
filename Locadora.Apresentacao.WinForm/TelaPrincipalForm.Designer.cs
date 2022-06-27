@@ -63,7 +63,6 @@
             this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(800, 24);
             this.cadastrosToolStripMenuItem.TabIndex = 2;
             this.cadastrosToolStripMenuItem.Text = "cadastrosToolStripMenuItem";
-            this.cadastrosToolStripMenuItem.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.cadastrosToolStripMenuItem_ItemClicked);
             // 
             // taxaToolStripMenuItem
             // 

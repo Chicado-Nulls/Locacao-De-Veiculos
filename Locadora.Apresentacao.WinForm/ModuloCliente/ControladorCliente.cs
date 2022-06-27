@@ -21,8 +21,9 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
 
         public override void Editar()
         {
-            Cliente clienteSelecionado = ObtemClienteSelecionado();
-
+            var numero = tabelaClientes.ObtemIdClienteSelecionado();
+            var clienteSelecionado = repositorioCliente.SelecionarPorId(numero);
+         
             if (clienteSelecionado == null)
             {
                 MessageBox.Show("Selecione um cliente primeiro",
@@ -30,9 +31,9 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
                 return;
             }
 
-            TelaCadastroCliente tela = new TelaCadastroCliente();
+            TelaCadastroCliente tela = new TelaCadastroCliente("EditarCliente");
 
-            tela.Cliente = clienteSelecionado;
+            tela.Cliente = clienteSelecionado.Clone();
 
             tela.GravarRegistro = repositorioCliente.Editar;
 
@@ -47,12 +48,31 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
 
         public override void Excluir()
         {
-            throw new NotImplementedException();
+            var numero = tabelaClientes.ObtemIdClienteSelecionado();
+
+            Cliente clienteSelecionado = repositorioCliente.SelecionarPorId(numero);
+
+            if (clienteSelecionado == null)
+            {
+                MessageBox.Show("Selecione um cliente primeiro",
+                "Exclusão de Cliente(s)", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            DialogResult resultado = MessageBox.Show($"Deseja realmente excluir o cliente '{clienteSelecionado.Nome}'?",
+               "Exclusão de Cliente(s)", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            if (resultado == DialogResult.OK)
+            {
+                repositorioCliente.Excluir(clienteSelecionado);
+                CarregarClientes();
+            }
         }
 
         public override void Inserir()
         {
-            TelaCadastroCliente tela = new TelaCadastroCliente();
+            TelaCadastroCliente tela = new TelaCadastroCliente("Cadastrar Cliente");
+
             tela.Cliente = new Cliente();
 
             tela.GravarRegistro = repositorioCliente.Inserir;
@@ -77,6 +97,8 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
             List<Cliente> clientes = repositorioCliente.SelecionarTodos();
 
             tabelaClientes.AtualizarRegistros(clientes);
+
+            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {clientes.Count} cliente(s)");
         }
 
         public override ConfigurarToolboxBase ObtemConfiguracaoToolbox()
@@ -87,7 +109,8 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
         public override UserControl ObtemListagem()
         {
 
-            tabelaClientes = new TabelaClientesControl();
+            if (tabelaClientes == null)
+                tabelaClientes = new TabelaClientesControl();
 
             CarregarClientes();
 
