@@ -10,6 +10,8 @@ using System.Collections.Generic;
 
 using System.Windows.Forms;
 using Locadora.Dominio.ModuloGrupoDeVeiculos;
+using Locadora.Infra.BancoDados.ModuloGrupoDeVeiculo;
+using Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos;
 
 namespace Locadora.Apresentacao.WinForm
 {
@@ -125,7 +127,9 @@ namespace Locadora.Apresentacao.WinForm
 
             controladores.Add("Taxa", new ControladorTaxa(repositorioTaxa));
 
+            IrepositorioGrupoDeVeiculos repositorioGrupoDeVeiculos = new RepositorioGrupoDeVeiculo();
 
+            controladores.Add("Grupo Veiculos", new ControladorGrupoDeVeiculos(repositorioGrupoDeVeiculos));
             
 
         }
