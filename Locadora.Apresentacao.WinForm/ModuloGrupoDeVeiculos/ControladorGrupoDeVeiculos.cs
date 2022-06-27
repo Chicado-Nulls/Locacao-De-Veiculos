@@ -11,10 +11,10 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
 {
     public class ControladorGrupoDeVeiculos : ControladorBase
     {
-        IrepositorioGrupoDeVeiculos repositorio;
+        IRepositorioGrupoDeVeiculos repositorio;
         TabelaGrupoDeVeiculosControl tabela; 
 
-        public ControladorGrupoDeVeiculos(IrepositorioGrupoDeVeiculos repositorio)
+        public ControladorGrupoDeVeiculos(IRepositorioGrupoDeVeiculos repositorio)
         {
             this.repositorio = repositorio;
         }
@@ -27,7 +27,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
             if (grupo == null)
             {
                 MessageBox.Show("Selecione um Grupo de veiculo primeiro",
-                "Edição de Grupo de Veiculos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                "Edição de Grupo de Veiculos", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -56,14 +56,12 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
                 return;
             }
 
-            DialogResult resultado = MessageBox.Show($"Deseja realmente excluir o Grupo de Veiculo '{grupo.Nome}'?",
-             "Exclusão de Grupo de Veiculos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (MessageBox.Show($"Deseja realmente excluir o Grupo de Veiculo '{grupo.Nome}'?",
+             "Exclusão de Grupo de Veiculos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
+                return;
 
-            if (resultado == DialogResult.OK)
-            {
-                repositorio.Excluir(grupo);
-                CarregarGrupoDeVeiculos();
-            }
+            repositorio.Excluir(grupo);
+            CarregarGrupoDeVeiculos();
         }
 
         public override void Inserir()
@@ -86,7 +84,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
 
             tabela.AtualizarRegistros(grupos);
 
-            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {grupos.Count} funcionarios(s)");
+            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {grupos.Count} Grupo de Veiculos(s)");
 
         }
 

@@ -9,12 +9,12 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
 {
     public class ConfigurarToolboxGrupoDeVeiculos : ConfigurarToolboxBase
     {
-        public override string TipoCadastro => "Cadastro Grupo De Veiculos";
+        public override string TipoCadastro => "Grupo De Veiculos";
 
-        public override string TooltipInserir =>"Inserir Um Grupo De Veiculos";
+        public override string TooltipInserir =>"Inserir Grupo De Veiculos";
 
-        public override string TooltipEditar => "Editar Um Grupo De Veiculos";
+        public override string TooltipEditar => "Editar Grupo De Veiculos";
 
-        public override string TooltipExcluir => "Excluir Um Grupo De Veiculos";
+        public override string TooltipExcluir => "Excluir Grupo De Veiculos";
     }
 }

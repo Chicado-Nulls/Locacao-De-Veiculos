@@ -33,6 +33,7 @@ namespace Locadora.Test.Infra.ModuloTaxa
             taxaInserida.Should().NotBeNull();           
             taxaInserida.Should().Be(NovaTaxa);
         }
+
         [TestMethod]
         public void Deve_Editar_Taxa()
         {
@@ -52,16 +53,15 @@ namespace Locadora.Test.Infra.ModuloTaxa
             taxaEditada.Should().Be(novaTaxa);
            
         }
+
         [TestMethod]
         public void Deve_Excluir_Taxa()
         {
             var novaTaxa =gerarTaxa();
 
-            repositorio.Inserir(novaTaxa);
             repositorio.Inserir(novaTaxa);                      
             repositorio.Excluir(novaTaxa);
 
-            
             repositorio.SelecionarPorId(novaTaxa.Id)
                 .Should().BeNull();
         }
@@ -72,9 +72,11 @@ namespace Locadora.Test.Infra.ModuloTaxa
             var novaTaxa = gerarTaxa();
 
             repositorio.Inserir(novaTaxa);
+
             repositorio.SelecionarPorId(novaTaxa.Id)
                 .Should().NotBeNull();
         }
+        
         [TestMethod]
         public void Deve_Selecionar_Todas_Taxas()
         {

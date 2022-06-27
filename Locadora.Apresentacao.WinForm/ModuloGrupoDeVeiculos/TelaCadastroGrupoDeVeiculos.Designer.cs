@@ -32,6 +32,8 @@
             this.gravarBtn = new System.Windows.Forms.Button();
             this.TextNomeDoGrupo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtBoxId = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnCancelar
@@ -71,18 +73,40 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Nome Do Grupo";
             // 
+            // txtBoxId
+            // 
+            this.txtBoxId.Enabled = false;
+            this.txtBoxId.Location = new System.Drawing.Point(12, 43);
+            this.txtBoxId.Name = "txtBoxId";
+            this.txtBoxId.Size = new System.Drawing.Size(56, 23);
+            this.txtBoxId.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(18, 15);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "ID";
+            // 
             // TelaCadastroGrupoDeVeiculos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(272, 249);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtBoxId);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.TextNomeDoGrupo);
             this.Controls.Add(this.gravarBtn);
             this.Controls.Add(this.btnCancelar);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(288, 288);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(288, 288);
             this.Name = "TelaCadastroGrupoDeVeiculos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro Grupo De Veiculos";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -95,5 +119,7 @@
         private System.Windows.Forms.Button gravarBtn;
         private System.Windows.Forms.TextBox TextNomeDoGrupo;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtBoxId;
+        private System.Windows.Forms.Label label2;
     }
 }

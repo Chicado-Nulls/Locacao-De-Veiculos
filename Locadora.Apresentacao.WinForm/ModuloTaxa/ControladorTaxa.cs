@@ -23,10 +23,11 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
         public override void Editar()
         {
             Taxa taxa = SelecionarTaxaPorNumero();
+
             if (taxa == null)
             {
                 MessageBox.Show("Selecione uma taxa primeiro",
-                "Edição de taxa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                "Edição de taxa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             TelaTaxa telaTaxa = new TelaTaxa();
@@ -45,13 +46,16 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
         public override void Excluir()
         {
             var taxa =  SelecionarTaxaPorNumero();
+
             if (taxa == null)
             {
                 MessageBox.Show("Selecione uma taxa primeiro",
                 "Exclusão de taxa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-
+            if (MessageBox.Show($"Deseja realmente excluir a taxa '{taxa.Descricao}'?", "Exclusão de taxa", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+                return;
+            
             RepositorioTaxa.Excluir(taxa);
 
             CarregarTaxas();
@@ -90,10 +94,13 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
 
         private void CarregarTaxas()
         {
-            List<Taxa> taxas = RepositorioTaxa.SelecionarTodos();
+            List<Taxa> grupos = RepositorioTaxa.SelecionarTodos();
 
-            tabelaTaxa.AtualizarRegistros(taxas);
+            tabelaTaxa.AtualizarRegistros(grupos);
+
+            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {grupos.Count} Taxa(s)");
         }
+
         private Taxa SelecionarTaxaPorNumero()
         {
             var numero = tabelaTaxa.ObtemNumeroMateriaSelecionado();

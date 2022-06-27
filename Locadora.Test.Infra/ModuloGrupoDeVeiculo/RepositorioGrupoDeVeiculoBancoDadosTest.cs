@@ -23,7 +23,6 @@ namespace Locadora.Test.Infra.ModuloGrupoDeVeiculo
         }
 
         [TestMethod]
-
         public void Deve_inserir_novo_GrupoDeVeiculo()
         {
             var grupo = GerandoGrupoDeVeiculo();
@@ -38,7 +37,6 @@ namespace Locadora.Test.Infra.ModuloGrupoDeVeiculo
         }
 
         [TestMethod]
-
         public void Deve_Editar_GrupoDeVeiculo()
         {
             var grupo = GerandoGrupoDeVeiculo();
@@ -57,7 +55,6 @@ namespace Locadora.Test.Infra.ModuloGrupoDeVeiculo
         }
 
         [TestMethod]
-
         public void Deve_Excluir_GrupoDeVeiculo()
         {
             var grupo = GerandoGrupoDeVeiculo();
@@ -73,7 +70,6 @@ namespace Locadora.Test.Infra.ModuloGrupoDeVeiculo
         }
 
         [TestMethod]
-
         public void Deve_Selecionar_Todos_GrupoDeVeiculo()
         {
             var grupoUm = GerandoGrupoDeVeiculo();

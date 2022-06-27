@@ -30,21 +30,22 @@
         {
             this.btnGravar = new System.Windows.Forms.Button();
             this.BtnCancelar = new System.Windows.Forms.Button();
-            this.textDescricao = new System.Windows.Forms.TextBox();
-            this.ValorNumerico = new System.Windows.Forms.NumericUpDown();
+            this.txtBoxDescricao = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.Descrição = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.checkFixo = new System.Windows.Forms.RadioButton();
             this.checkDiario = new System.Windows.Forms.RadioButton();
-            ((System.ComponentModel.ISupportInitialize)(this.ValorNumerico)).BeginInit();
+            this.txtBoxValor = new System.Windows.Forms.TextBox();
+            this.txtBoxId = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGravar
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnGravar.Location = new System.Drawing.Point(174, 307);
+            this.btnGravar.Location = new System.Drawing.Point(58, 307);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(75, 32);
             this.btnGravar.TabIndex = 2;
@@ -55,36 +56,24 @@
             // BtnCancelar
             // 
             this.BtnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.BtnCancelar.Location = new System.Drawing.Point(255, 307);
+            this.BtnCancelar.Location = new System.Drawing.Point(205, 307);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Size = new System.Drawing.Size(75, 32);
             this.BtnCancelar.TabIndex = 3;
             this.BtnCancelar.Text = "Cancelar";
             this.BtnCancelar.UseVisualStyleBackColor = true;
             // 
-            // textDescricao
+            // txtBoxDescricao
             // 
-            this.textDescricao.Location = new System.Drawing.Point(28, 103);
-            this.textDescricao.Name = "textDescricao";
-            this.textDescricao.Size = new System.Drawing.Size(293, 23);
-            this.textDescricao.TabIndex = 4;
-            // 
-            // ValorNumerico
-            // 
-            this.ValorNumerico.Location = new System.Drawing.Point(28, 42);
-            this.ValorNumerico.Maximum = new decimal(new int[] {
-            20000,
-            0,
-            0,
-            0});
-            this.ValorNumerico.Name = "ValorNumerico";
-            this.ValorNumerico.Size = new System.Drawing.Size(150, 23);
-            this.ValorNumerico.TabIndex = 5;
+            this.txtBoxDescricao.Location = new System.Drawing.Point(28, 133);
+            this.txtBoxDescricao.Name = "txtBoxDescricao";
+            this.txtBoxDescricao.Size = new System.Drawing.Size(293, 23);
+            this.txtBoxDescricao.TabIndex = 4;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 24);
+            this.label1.Location = new System.Drawing.Point(28, 63);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(33, 15);
             this.label1.TabIndex = 6;
@@ -93,7 +82,7 @@
             // Descrição
             // 
             this.Descrição.AutoSize = true;
-            this.Descrição.Location = new System.Drawing.Point(28, 85);
+            this.Descrição.Location = new System.Drawing.Point(28, 115);
             this.Descrição.Name = "Descrição";
             this.Descrição.Size = new System.Drawing.Size(58, 15);
             this.Descrição.TabIndex = 7;
@@ -117,13 +106,13 @@
             this.checkFixo.Name = "checkFixo";
             this.checkFixo.Size = new System.Drawing.Size(90, 19);
             this.checkFixo.TabIndex = 1;
-            this.checkFixo.TabStop = true;
             this.checkFixo.Text = "Calculo Fixo";
             this.checkFixo.UseVisualStyleBackColor = true;
             // 
             // checkDiario
             // 
             this.checkDiario.AutoSize = true;
+            this.checkDiario.Checked = true;
             this.checkDiario.Location = new System.Drawing.Point(6, 22);
             this.checkDiario.Name = "checkDiario";
             this.checkDiario.Size = new System.Drawing.Size(99, 19);
@@ -132,23 +121,52 @@
             this.checkDiario.Text = "Calculo Diario";
             this.checkDiario.UseVisualStyleBackColor = true;
             // 
+            // txtBoxValor
+            // 
+            this.txtBoxValor.Location = new System.Drawing.Point(28, 81);
+            this.txtBoxValor.Name = "txtBoxValor";
+            this.txtBoxValor.Size = new System.Drawing.Size(86, 23);
+            this.txtBoxValor.TabIndex = 9;
+            this.txtBoxValor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxValor_KeyPress);
+            // 
+            // txtBoxId
+            // 
+            this.txtBoxId.Enabled = false;
+            this.txtBoxId.Location = new System.Drawing.Point(28, 28);
+            this.txtBoxId.Name = "txtBoxId";
+            this.txtBoxId.Size = new System.Drawing.Size(86, 23);
+            this.txtBoxId.TabIndex = 11;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(28, 10);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(18, 15);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "ID";
+            // 
             // TelaTaxa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(346, 361);
+            this.Controls.Add(this.txtBoxId);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtBoxValor);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Descrição);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.ValorNumerico);
-            this.Controls.Add(this.textDescricao);
+            this.Controls.Add(this.txtBoxDescricao);
             this.Controls.Add(this.BtnCancelar);
             this.Controls.Add(this.btnGravar);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(362, 400);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(362, 400);
             this.Name = "TelaTaxa";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Taxa";
-            ((System.ComponentModel.ISupportInitialize)(this.ValorNumerico)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -159,12 +177,14 @@
         #endregion
         private System.Windows.Forms.Button btnGravar;
         private System.Windows.Forms.Button BtnCancelar;
-        private System.Windows.Forms.TextBox textDescricao;
-        private System.Windows.Forms.NumericUpDown ValorNumerico;
+        private System.Windows.Forms.TextBox txtBoxDescricao;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label Descrição;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton checkFixo;
         private System.Windows.Forms.RadioButton checkDiario;
+        private System.Windows.Forms.TextBox txtBoxValor;
+        private System.Windows.Forms.TextBox txtBoxId;
+        private System.Windows.Forms.Label label2;
     }
 }

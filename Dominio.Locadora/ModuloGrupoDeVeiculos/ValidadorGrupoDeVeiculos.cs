@@ -15,6 +15,7 @@ namespace Locadora.Dominio.ModuloGrupoDeVeiculos
             RuleFor(x => x.Nome)
                .NotNull()
                .MaximumLength(60)
+               .MinimumLength(2)
                .Matches(new Regex(@"^([^0-9]*)$"))
                .NotEmpty();
         }

@@ -35,6 +35,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
         public Func<GrupoDeVeiculo, ValidationResult> GravarRegistro { get; set; }
         private void ConfigurarTela()
         {
+            txtBoxId.Text = _grupoDeVeiculos.Id != null ? _grupoDeVeiculos.Id.ToString() : "0";
             TextNomeDoGrupo.Text = _grupoDeVeiculos.Nome != null ? _grupoDeVeiculos.Nome : "";
 
         }
@@ -56,6 +57,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
 
         private void ConfigurarObjeto()
         {
+            _grupoDeVeiculos.Id = Convert.ToInt32(txtBoxId.Text);
             _grupoDeVeiculos.Nome = TextNomeDoGrupo.Text;
         }
     }

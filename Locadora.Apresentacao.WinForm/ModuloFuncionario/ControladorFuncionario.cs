@@ -27,7 +27,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
             if (funcionarioSelecionado == null)
             {
                 MessageBox.Show("Selecione um funcionário primeiro",
-                "Edição de funcionário", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                "Edição de funcionário", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -58,14 +58,13 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
                 return;
             }
 
-            DialogResult resultado = MessageBox.Show($"Deseja realmente excluir o funcionário '{materiaSelecionada.Nome}'?",
-               "Exclusão de Funcionário", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (MessageBox.Show($"Deseja realmente excluir o funcionário '{materiaSelecionada.Nome}'?",
+               "Exclusão de Funcionário", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
+                return;
 
-            if (resultado == DialogResult.OK)
-            {
-                repositorio.Excluir(materiaSelecionada);
-                CarregarFuncionarios();
-            }
+
+            repositorio.Excluir(materiaSelecionada);
+            CarregarFuncionarios();
         }
 
         public override void Inserir()

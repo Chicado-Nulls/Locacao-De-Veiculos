@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Locadora.Dominio.ModuloGrupoDeVeiculos
 {
-    public  interface IrepositorioGrupoDeVeiculos:IRepositorioBase<GrupoDeVeiculo>
+    public  interface IRepositorioGrupoDeVeiculos:IRepositorioBase<GrupoDeVeiculo>
     {
     }
 }

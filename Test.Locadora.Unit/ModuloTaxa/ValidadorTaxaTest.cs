@@ -38,6 +38,7 @@ namespace Locadora.Test.Unit.ModuloTaxa
 
             resultado.ShouldHaveValidationErrorFor(x => x.Descricao);
         }
+
         [TestMethod]
         public void Tipo_Calculo_Nao_Pode_Ser_Nulo()
         {
@@ -47,6 +48,7 @@ namespace Locadora.Test.Unit.ModuloTaxa
 
             resultado.ShouldHaveValidationErrorFor(x => x.TipoDeCalculo);
         }
+
         [TestMethod]
         public void Valor_Nao_Poder_Ser_Null()
         {
@@ -56,6 +58,7 @@ namespace Locadora.Test.Unit.ModuloTaxa
 
             resultado.ShouldHaveValidationErrorFor(x => x.Valor);
         }
+
         [TestMethod]
         public void Valor_Nao_Poder_Ser_0()
         {
@@ -66,6 +69,7 @@ namespace Locadora.Test.Unit.ModuloTaxa
             resultado.ShouldHaveValidationErrorFor(x => x.Valor);
 
         }
+
         [TestMethod]
         public void Valor_Nao_Poder_Ser_Menor_0()
         {
@@ -75,8 +79,9 @@ namespace Locadora.Test.Unit.ModuloTaxa
 
             resultado.ShouldHaveValidationErrorFor(x => x.Valor);
         }
+
         [TestMethod]
-        public void Valor_Nao_Poder_Ser_Menor_10000()
+        public void Valor_Nao_Poder_Ser_Maior_10000()
         {
             taxa.Valor = 10001;
 

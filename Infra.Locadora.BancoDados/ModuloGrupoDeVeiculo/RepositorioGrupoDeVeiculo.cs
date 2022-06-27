@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Locadora.Infra.BancoDados.ModuloGrupoDeVeiculo
 {
-    public class RepositorioGrupoDeVeiculo : RepositorioBase<GrupoDeVeiculo, ValidadorGrupoDeVeiculos, MapaeadorGrupoDeVeiculo>, IrepositorioGrupoDeVeiculos
+    public class RepositorioGrupoDeVeiculo : RepositorioBase<GrupoDeVeiculo, ValidadorGrupoDeVeiculos, MapaeadorGrupoDeVeiculo>, IRepositorioGrupoDeVeiculos
     {
         protected override string sqlInserir => @"INSERT INTO [TBGRUPODEVEICULOS]
                                                     (

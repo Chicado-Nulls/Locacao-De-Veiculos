@@ -81,7 +81,7 @@ namespace Locadora.Apresentacao.WinForm
 
         private void ConfigurarListagem()
         {
-            AtualizarRodape("-");
+            AtualizarRodape("");
 
             var listagemControl = controlador.ObtemListagem();
 
@@ -125,7 +125,7 @@ namespace Locadora.Apresentacao.WinForm
 
             controladores.Add("Taxa", new ControladorTaxa(repositorioTaxa));
 
-            IrepositorioGrupoDeVeiculos repositorioGrupoDeVeiculos = new RepositorioGrupoDeVeiculo();
+            IRepositorioGrupoDeVeiculos repositorioGrupoDeVeiculos = new RepositorioGrupoDeVeiculo();
 
             controladores.Add("Grupo Veiculos", new ControladorGrupoDeVeiculos(repositorioGrupoDeVeiculos));
             
