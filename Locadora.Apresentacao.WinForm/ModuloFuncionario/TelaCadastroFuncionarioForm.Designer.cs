@@ -45,13 +45,14 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtBoxSalario = new System.Windows.Forms.TextBox();
             this.txtBoxDataCadastro = new System.Windows.Forms.MaskedTextBox();
+            this.checkBoxMostrarSenha = new System.Windows.Forms.CheckBox();
             this.groupBoxTipoFuncionario.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtBoxID
             // 
             this.txtBoxID.Enabled = false;
-            this.txtBoxID.Location = new System.Drawing.Point(178, 43);
+            this.txtBoxID.Location = new System.Drawing.Point(177, 28);
             this.txtBoxID.Name = "txtBoxID";
             this.txtBoxID.Size = new System.Drawing.Size(33, 23);
             this.txtBoxID.TabIndex = 0;
@@ -59,7 +60,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(154, 46);
+            this.label1.Location = new System.Drawing.Point(153, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(18, 15);
             this.label1.TabIndex = 1;
@@ -68,15 +69,15 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(132, 85);
+            this.label2.Location = new System.Drawing.Point(122, 70);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 15);
+            this.label2.Size = new System.Drawing.Size(48, 15);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Nome";
+            this.label2.Text = "Nome *";
             // 
             // txtBoxNome
             // 
-            this.txtBoxNome.Location = new System.Drawing.Point(177, 82);
+            this.txtBoxNome.Location = new System.Drawing.Point(176, 67);
             this.txtBoxNome.Name = "txtBoxNome";
             this.txtBoxNome.Size = new System.Drawing.Size(175, 23);
             this.txtBoxNome.TabIndex = 1;
@@ -84,15 +85,15 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(135, 124);
+            this.label3.Location = new System.Drawing.Point(125, 109);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 15);
+            this.label3.Size = new System.Drawing.Size(45, 15);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Login";
+            this.label3.Text = "Login *";
             // 
             // txtBoxLogin
             // 
-            this.txtBoxLogin.Location = new System.Drawing.Point(177, 121);
+            this.txtBoxLogin.Location = new System.Drawing.Point(176, 106);
             this.txtBoxLogin.Name = "txtBoxLogin";
             this.txtBoxLogin.Size = new System.Drawing.Size(175, 23);
             this.txtBoxLogin.TabIndex = 2;
@@ -100,7 +101,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(133, 166);
+            this.label4.Location = new System.Drawing.Point(132, 151);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(39, 15);
             this.label4.TabIndex = 7;
@@ -108,7 +109,7 @@
             // 
             // txtBoxSenha
             // 
-            this.txtBoxSenha.Location = new System.Drawing.Point(177, 163);
+            this.txtBoxSenha.Location = new System.Drawing.Point(176, 148);
             this.txtBoxSenha.Name = "txtBoxSenha";
             this.txtBoxSenha.Size = new System.Drawing.Size(175, 23);
             this.txtBoxSenha.TabIndex = 3;
@@ -116,7 +117,7 @@
             // btnSalvar
             // 
             this.btnSalvar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnSalvar.Location = new System.Drawing.Point(121, 359);
+            this.btnSalvar.Location = new System.Drawing.Point(121, 370);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(90, 36);
             this.btnSalvar.TabIndex = 8;
@@ -127,7 +128,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(286, 359);
+            this.btnCancelar.Location = new System.Drawing.Point(286, 370);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(90, 36);
             this.btnCancelar.TabIndex = 9;
@@ -137,7 +138,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(91, 208);
+            this.label5.Location = new System.Drawing.Point(91, 219);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(81, 15);
             this.label5.TabIndex = 11;
@@ -147,7 +148,7 @@
             // 
             this.groupBoxTipoFuncionario.Controls.Add(this.rBtnAdministrador);
             this.groupBoxTipoFuncionario.Controls.Add(this.rBtnComum);
-            this.groupBoxTipoFuncionario.Location = new System.Drawing.Point(103, 287);
+            this.groupBoxTipoFuncionario.Location = new System.Drawing.Point(103, 298);
             this.groupBoxTipoFuncionario.Name = "groupBoxTipoFuncionario";
             this.groupBoxTipoFuncionario.Size = new System.Drawing.Size(249, 52);
             this.groupBoxTipoFuncionario.TabIndex = 12;
@@ -180,7 +181,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(130, 247);
+            this.label6.Location = new System.Drawing.Point(130, 258);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(42, 15);
             this.label6.TabIndex = 14;
@@ -188,7 +189,7 @@
             // 
             // txtBoxSalario
             // 
-            this.txtBoxSalario.Location = new System.Drawing.Point(177, 244);
+            this.txtBoxSalario.Location = new System.Drawing.Point(177, 255);
             this.txtBoxSalario.Name = "txtBoxSalario";
             this.txtBoxSalario.Size = new System.Drawing.Size(101, 23);
             this.txtBoxSalario.TabIndex = 5;
@@ -196,12 +197,23 @@
             // 
             // txtBoxDataCadastro
             // 
-            this.txtBoxDataCadastro.Location = new System.Drawing.Point(178, 205);
+            this.txtBoxDataCadastro.Location = new System.Drawing.Point(178, 216);
             this.txtBoxDataCadastro.Mask = "00/00/0000";
             this.txtBoxDataCadastro.Name = "txtBoxDataCadastro";
             this.txtBoxDataCadastro.Size = new System.Drawing.Size(100, 23);
             this.txtBoxDataCadastro.TabIndex = 4;
             this.txtBoxDataCadastro.ValidatingType = typeof(System.DateTime);
+            // 
+            // checkBoxMostrarSenha
+            // 
+            this.checkBoxMostrarSenha.AutoSize = true;
+            this.checkBoxMostrarSenha.Location = new System.Drawing.Point(176, 177);
+            this.checkBoxMostrarSenha.Name = "checkBoxMostrarSenha";
+            this.checkBoxMostrarSenha.Size = new System.Drawing.Size(101, 19);
+            this.checkBoxMostrarSenha.TabIndex = 16;
+            this.checkBoxMostrarSenha.Text = "Mostrar senha";
+            this.checkBoxMostrarSenha.UseVisualStyleBackColor = true;
+            this.checkBoxMostrarSenha.CheckedChanged += new System.EventHandler(this.checkBoxMostrarSenha_CheckedChanged);
             // 
             // TelaCadastroFuncionarioForm
             // 
@@ -209,6 +221,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(484, 417);
+            this.Controls.Add(this.checkBoxMostrarSenha);
             this.Controls.Add(this.txtBoxDataCadastro);
             this.Controls.Add(this.txtBoxSalario);
             this.Controls.Add(this.label6);
@@ -257,5 +270,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtBoxSalario;
         private System.Windows.Forms.MaskedTextBox txtBoxDataCadastro;
+        private System.Windows.Forms.CheckBox checkBoxMostrarSenha;
     }
 }

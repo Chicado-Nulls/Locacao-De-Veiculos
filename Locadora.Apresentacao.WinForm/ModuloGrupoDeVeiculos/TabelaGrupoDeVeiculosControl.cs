@@ -36,7 +36,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
 
         internal int ObtemNumeroRegistroSelecionado()
         {
-            return grid.SelecionarNumero<int>();
+            return grid.SelecionarId<int>();
         }
 
         public void AtualizarRegistros(List<GrupoDeVeiculo> grupoDeVeiculos)

@@ -108,13 +108,6 @@ namespace Locadora.Apresentacao.WinForm
 
         private void InicializarControladores()
         {
-            //EXEMPLO ABAIXO
-
-            //IRepositorioDisciplina repositorioDisciplina = new RepositorioDisciplinaEmBancoDados();
-
-            //controladores = new Dictionary<string, ControladorBase>();
-
-            //controladores.Add("Disciplinas", new ControladorDisciplina(repositorioDisciplina));
             controladores = new Dictionary<string, ControladorBase>();
 
             IRepositorioCliente repositorioCliente = new RepositorioClienteEmBancoDeDados();
@@ -122,10 +115,7 @@ namespace Locadora.Apresentacao.WinForm
 
             IRepositorioFuncionario repositorioFuncionario = new RepositorioFuncionarioBancoDados();
             
-            controladores = new Dictionary<string, ControladorBase>();
-
             controladores.Add("Funcionario", new ControladorFuncionario(repositorioFuncionario));
-
 
             IRepositorioTaxa repositorioTaxa = new RepositorioTaxa();
 

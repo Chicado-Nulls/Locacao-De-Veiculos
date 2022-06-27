@@ -43,7 +43,7 @@ namespace Locadora.Test.Infra.ModuloTaxa
 
             novaTaxa.Descricao = "Sense of time are running low";
             novaTaxa.TipoDeCalculo = 0;
-            novaTaxa.Valor = 2000;
+            novaTaxa.Valor = 2000.00m;
 
             repositorio.Editar(novaTaxa);
 
@@ -105,7 +105,43 @@ namespace Locadora.Test.Infra.ModuloTaxa
             listTaxa[1].Descricao.Should().Be(novaTaxaDois.Descricao);
             listTaxa[2].Descricao.Should().Be(novaTaxaTres.Descricao);
         }
-        
+
+        [TestMethod]
+        public void Nao_deve_Inserir_Taxa_com_descricao_duplicada()
+        {
+            //range
+            var NovaTaxa = gerarTaxa();
+            var taxa2 = gerarTaxa();
+
+            //action
+            repositorio.Inserir(NovaTaxa);
+            repositorio.Inserir(taxa2);
+
+            var taxaInserida = repositorio.SelecionarTodos();
+
+            //Assert
+            Assert.AreEqual(1, taxaInserida.Count);
+        }
+
+        [TestMethod]
+        public void Nao_deve_editar_Taxa_com_descricao_duplicada()
+        {
+            //range
+            var taxa1 = new Taxa(10.00m, "cadeirinha", TipoDeCalculo.CalculoDiario);
+            var taxa2 = new Taxa(15.00m, "GPS", TipoDeCalculo.CalculoFixo);
+
+            //action
+            repositorio.Inserir(taxa1);
+            repositorio.Inserir(taxa2);
+
+            taxa1.Descricao = "GPS";
+
+            var taxaInserida = repositorio.Editar(taxa1);
+
+            //Assert
+            Assert.AreEqual(false, taxaInserida.IsValid);
+        }
+
         private Taxa gerarTaxa()
         {
            Taxa taxa = new Taxa();

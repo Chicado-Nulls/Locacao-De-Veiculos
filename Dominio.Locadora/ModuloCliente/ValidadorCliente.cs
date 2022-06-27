@@ -6,10 +6,6 @@ namespace Locadora.Dominio.ModuloCliente
     {
         public ValidadorCliente()
         {
-            //RuleFor(x => x.TipoCadastro)
-            //  .NotNull()
-            //  .NotEmpty();
-            
             RuleFor(x => x.Nome)
               .NotNull()
               .NotEmpty();
@@ -24,7 +20,21 @@ namespace Locadora.Dominio.ModuloCliente
 
             RuleFor(x => x.Email)
               .NotNull()
-              .NotEmpty();
+              .NotEmpty()
+              .EmailAddress();
+
+            RuleFor(x => x.Cpf)
+                .NotNull()
+                .NotEmpty()
+                .IsValidCPF()
+                .When(x => x.TipoCadastro==true);
+
+            RuleFor(x => x.Cnpj)
+                .NotEmpty()
+                .NotNull()
+                .IsValidCNPJ()
+                .When(x => x.TipoCadastro==false);
+
         }
 
     }

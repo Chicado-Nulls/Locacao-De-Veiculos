@@ -78,28 +78,32 @@
             // taxaToolStripMenuItem1
             // 
             this.taxaToolStripMenuItem1.Name = "taxaToolStripMenuItem1";
-            this.taxaToolStripMenuItem1.Size = new System.Drawing.Size(153, 22);
+            this.taxaToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F1)));
+            this.taxaToolStripMenuItem1.Size = new System.Drawing.Size(199, 22);
             this.taxaToolStripMenuItem1.Text = "Taxa";
             this.taxaToolStripMenuItem1.Click += new System.EventHandler(this.taxaToolStripMenuItem1_Click);
             // 
             // grupoVeiculosToolStripMenuItem
             // 
             this.grupoVeiculosToolStripMenuItem.Name = "grupoVeiculosToolStripMenuItem";
-            this.grupoVeiculosToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.grupoVeiculosToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F2)));
+            this.grupoVeiculosToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.grupoVeiculosToolStripMenuItem.Text = "Grupo Veículos";
             this.grupoVeiculosToolStripMenuItem.Click += new System.EventHandler(this.grupoVeiculosToolStripMenuItem_Click);
             // 
             // clienteToolStripMenuItem
             // 
             this.clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
-            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.clienteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F3)));
+            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.clienteToolStripMenuItem.Text = "Cliente";
             this.clienteToolStripMenuItem.Click += new System.EventHandler(this.clienteToolStripMenuItem_Click);
             // 
             // funcionarioToolStripMenuItem
             // 
             this.funcionarioToolStripMenuItem.Name = "funcionarioToolStripMenuItem";
-            this.funcionarioToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.funcionarioToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4)));
+            this.funcionarioToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.funcionarioToolStripMenuItem.Text = "Funcionário";
             this.funcionarioToolStripMenuItem.Click += new System.EventHandler(this.funcionarioToolStripMenuItem_Click);
             // 

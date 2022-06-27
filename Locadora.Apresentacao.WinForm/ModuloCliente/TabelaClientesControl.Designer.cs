@@ -50,7 +50,6 @@
             this.Controls.Add(this.grid);
             this.Name = "TabelaClientesControl";
             this.Size = new System.Drawing.Size(660, 378);
-            this.Load += new System.EventHandler(this.TabelaClientesControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.ResumeLayout(false);
 
