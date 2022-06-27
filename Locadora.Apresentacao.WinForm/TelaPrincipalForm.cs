@@ -12,6 +12,9 @@ using System.Windows.Forms;
 using Locadora.Dominio.ModuloGrupoDeVeiculos;
 using Locadora.Infra.BancoDados.ModuloGrupoDeVeiculo;
 using Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos;
+using Locadora.Dominio.ModuloCliente;
+using Locadora.Apresentacao.WinForm.ModuloCliente;
+using Locadora.Infra.BancoDados.ModuloCliente;
 
 namespace Locadora.Apresentacao.WinForm
 {
@@ -112,10 +115,13 @@ namespace Locadora.Apresentacao.WinForm
             //controladores = new Dictionary<string, ControladorBase>();
 
             //controladores.Add("Disciplinas", new ControladorDisciplina(repositorioDisciplina));
+            controladores = new Dictionary<string, ControladorBase>();
 
+            IRepositorioCliente repositorioCliente = new RepositorioClienteEmBancoDeDados();
+            controladores.Add("Cliente", new ControladorCliente(repositorioCliente));
 
             IRepositorioFuncionario repositorioFuncionario = new RepositorioFuncionarioBancoDados();
-                        
+            
             controladores = new Dictionary<string, ControladorBase>();
 
             controladores.Add("Funcionario", new ControladorFuncionario(repositorioFuncionario));

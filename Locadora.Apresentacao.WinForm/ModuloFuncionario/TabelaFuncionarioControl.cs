@@ -31,7 +31,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
 
         internal int ObtemNumeroRegistroSelecionado()
         {
-            return grid.SelecionarNumero<int>();
+            return grid.SelecionarId<int>();
         }
 
         public void AtualizarRegistros(List<Funcionario> funcionarios)
@@ -43,6 +43,11 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
                 //exemplo
                 grid.Rows.Add(funcionario.Id, funcionario.Nome, funcionario.Login, funcionario.DataEntrada);
             }
+        }
+
+        private void grid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

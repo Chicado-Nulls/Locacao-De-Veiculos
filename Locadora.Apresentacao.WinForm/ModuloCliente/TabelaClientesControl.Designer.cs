@@ -1,6 +1,6 @@
-﻿namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
+﻿namespace Locadora.Apresentacao.WinForm.ModuloCliente
 {
-    partial class TabelaFuncionarioControl
+    partial class TabelaClientesControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -39,17 +39,18 @@
             this.grid.Location = new System.Drawing.Point(0, 0);
             this.grid.Name = "grid";
             this.grid.RowTemplate.Height = 25;
-            this.grid.Size = new System.Drawing.Size(644, 402);
+            this.grid.Size = new System.Drawing.Size(660, 378);
             this.grid.TabIndex = 0;
             this.grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_CellContentClick);
             // 
-            // TabelaFuncionarioControl
+            // TabelaClientesControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.grid);
-            this.Name = "TabelaFuncionarioControl";
-            this.Size = new System.Drawing.Size(644, 402);
+            this.Name = "TabelaClientesControl";
+            this.Size = new System.Drawing.Size(660, 378);
+            this.Load += new System.EventHandler(this.TabelaClientesControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.ResumeLayout(false);
 
