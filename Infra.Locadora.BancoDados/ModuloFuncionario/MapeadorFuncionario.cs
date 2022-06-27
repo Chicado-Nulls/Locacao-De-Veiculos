@@ -15,6 +15,8 @@ namespace Locadora.Infra.BancoDados.ModuloFuncionario
             comando.Parameters.AddWithValue("LOGIN", registro.Login);
             comando.Parameters.AddWithValue("SENHA", registro.Senha);
             comando.Parameters.AddWithValue("DATAENTRADA", registro.DataEntrada);
+            comando.Parameters.AddWithValue("ADMINISTRADOR", registro.Administrador);
+            comando.Parameters.AddWithValue("SALARIO", registro.Salario);
         }
 
         public override Funcionario ConverterRegistro(SqlDataReader leitorRegistro)
@@ -24,6 +26,8 @@ namespace Locadora.Infra.BancoDados.ModuloFuncionario
             string login = Convert.ToString(leitorRegistro["FUNCIONARIO_LOGIN"]);
             string senha = Convert.ToString(leitorRegistro["FUNCIONARIO_SENHA"]);
             DateTime dataEntrada = Convert.ToDateTime(leitorRegistro["FUNCIONARIO_DATAENTRADA"]);
+            bool administrador = Convert.ToBoolean(leitorRegistro["FUNCIONARIO_ADMINISTRADOR"]);
+            decimal salario = Convert.ToDecimal(leitorRegistro["FUNCIONARIO_SALARIO"]);
             
             var funcionario = new Funcionario
             {
@@ -31,7 +35,9 @@ namespace Locadora.Infra.BancoDados.ModuloFuncionario
                 Nome = nome,
                 Login = login,
                 Senha = senha,
-                DataEntrada = dataEntrada
+                DataEntrada = dataEntrada,
+                Administrador = administrador,
+                Salario = salario
             };
 
             return funcionario;

@@ -89,9 +89,9 @@ namespace Locadora.Test.Infra.ModuloFuncionario
         public void Deve_selecionar_todos_os_fornecedores()
         {
             //arrange
-            var f0 = new Funcionario("Usuário master", "Admin1", "Admin1", new DateTime(2022, 01, 01)); ;
-            var f1 = new Funcionario("Ze da pastelaria", "zezeze", "zezeze", new DateTime(2022, 02, 02)); ;
-            var f2 = new Funcionario("Joao da borracharia", "joaobr", "joaobr", new DateTime(2022, 03, 03)); ;
+            var f0 = new Funcionario("Usuário master", "Admin1", "Admin1", new DateTime(2022, 01, 01), false, 50.00m); ;
+            var f1 = new Funcionario("Ze da pastelaria", "zezeze", "zezeze", new DateTime(2022, 02, 02), false, 50.00m); ;
+            var f2 = new Funcionario("Joao da borracharia", "joaobr", "joaobr", new DateTime(2022, 03, 03), false, 50.00m); 
 
             repositorio.Inserir(f0);
             repositorio.Inserir(f1);
@@ -109,10 +109,10 @@ namespace Locadora.Test.Infra.ModuloFuncionario
             Assert.AreEqual(f2.Nome, fornecedores[2].Nome);
         }
 
-
+        
         private Funcionario NovoFuncionario()
         {
-            return new Funcionario("Usuário master", "Admin1", "Admin1", new DateTime(2022,01,01));
+            return new Funcionario("Usuário master", "Admin1", "Admin1", new DateTime(2022,01,01), false, 50.00m);
         }
     }
 }

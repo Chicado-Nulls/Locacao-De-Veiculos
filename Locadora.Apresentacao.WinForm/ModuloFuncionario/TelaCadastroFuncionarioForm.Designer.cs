@@ -39,7 +39,13 @@
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtBoxDataCadastro = new System.Windows.Forms.TextBox();
+            this.groupBoxTipoFuncionario = new System.Windows.Forms.GroupBox();
+            this.rBtnAdministrador = new System.Windows.Forms.RadioButton();
+            this.rBtnComum = new System.Windows.Forms.RadioButton();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtBoxSalario = new System.Windows.Forms.TextBox();
+            this.txtBoxDataCadastro = new System.Windows.Forms.MaskedTextBox();
+            this.groupBoxTipoFuncionario.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtBoxID
@@ -73,7 +79,7 @@
             this.txtBoxNome.Location = new System.Drawing.Point(177, 82);
             this.txtBoxNome.Name = "txtBoxNome";
             this.txtBoxNome.Size = new System.Drawing.Size(175, 23);
-            this.txtBoxNome.TabIndex = 2;
+            this.txtBoxNome.TabIndex = 1;
             // 
             // label3
             // 
@@ -89,7 +95,7 @@
             this.txtBoxLogin.Location = new System.Drawing.Point(177, 121);
             this.txtBoxLogin.Name = "txtBoxLogin";
             this.txtBoxLogin.Size = new System.Drawing.Size(175, 23);
-            this.txtBoxLogin.TabIndex = 4;
+            this.txtBoxLogin.TabIndex = 2;
             // 
             // label4
             // 
@@ -105,12 +111,12 @@
             this.txtBoxSenha.Location = new System.Drawing.Point(177, 163);
             this.txtBoxSenha.Name = "txtBoxSenha";
             this.txtBoxSenha.Size = new System.Drawing.Size(175, 23);
-            this.txtBoxSenha.TabIndex = 6;
+            this.txtBoxSenha.TabIndex = 3;
             // 
             // btnSalvar
             // 
             this.btnSalvar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnSalvar.Location = new System.Drawing.Point(121, 272);
+            this.btnSalvar.Location = new System.Drawing.Point(121, 359);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(90, 36);
             this.btnSalvar.TabIndex = 8;
@@ -121,7 +127,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(286, 272);
+            this.btnCancelar.Location = new System.Drawing.Point(286, 359);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(90, 36);
             this.btnCancelar.TabIndex = 9;
@@ -137,20 +143,77 @@
             this.label5.TabIndex = 11;
             this.label5.Text = "Data Cadastro";
             // 
+            // groupBoxTipoFuncionario
+            // 
+            this.groupBoxTipoFuncionario.Controls.Add(this.rBtnAdministrador);
+            this.groupBoxTipoFuncionario.Controls.Add(this.rBtnComum);
+            this.groupBoxTipoFuncionario.Location = new System.Drawing.Point(103, 287);
+            this.groupBoxTipoFuncionario.Name = "groupBoxTipoFuncionario";
+            this.groupBoxTipoFuncionario.Size = new System.Drawing.Size(249, 52);
+            this.groupBoxTipoFuncionario.TabIndex = 12;
+            this.groupBoxTipoFuncionario.TabStop = false;
+            this.groupBoxTipoFuncionario.Text = "Tipo Funcionario";
+            // 
+            // rBtnAdministrador
+            // 
+            this.rBtnAdministrador.AutoSize = true;
+            this.rBtnAdministrador.Location = new System.Drawing.Point(141, 21);
+            this.rBtnAdministrador.Name = "rBtnAdministrador";
+            this.rBtnAdministrador.Size = new System.Drawing.Size(101, 19);
+            this.rBtnAdministrador.TabIndex = 7;
+            this.rBtnAdministrador.TabStop = true;
+            this.rBtnAdministrador.Text = "Administrador";
+            this.rBtnAdministrador.UseVisualStyleBackColor = true;
+            // 
+            // rBtnComum
+            // 
+            this.rBtnComum.AutoSize = true;
+            this.rBtnComum.Checked = true;
+            this.rBtnComum.Location = new System.Drawing.Point(21, 22);
+            this.rBtnComum.Name = "rBtnComum";
+            this.rBtnComum.Size = new System.Drawing.Size(69, 19);
+            this.rBtnComum.TabIndex = 6;
+            this.rBtnComum.TabStop = true;
+            this.rBtnComum.Text = "Comum";
+            this.rBtnComum.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(130, 247);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(42, 15);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Salário";
+            // 
+            // txtBoxSalario
+            // 
+            this.txtBoxSalario.Location = new System.Drawing.Point(177, 244);
+            this.txtBoxSalario.Name = "txtBoxSalario";
+            this.txtBoxSalario.Size = new System.Drawing.Size(101, 23);
+            this.txtBoxSalario.TabIndex = 5;
+            this.txtBoxSalario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxSalario_KeyPress);
+            // 
             // txtBoxDataCadastro
             // 
-            this.txtBoxDataCadastro.Location = new System.Drawing.Point(177, 205);
+            this.txtBoxDataCadastro.Location = new System.Drawing.Point(178, 205);
+            this.txtBoxDataCadastro.Mask = "00/00/0000";
             this.txtBoxDataCadastro.Name = "txtBoxDataCadastro";
-            this.txtBoxDataCadastro.Size = new System.Drawing.Size(101, 23);
-            this.txtBoxDataCadastro.TabIndex = 10;
+            this.txtBoxDataCadastro.Size = new System.Drawing.Size(100, 23);
+            this.txtBoxDataCadastro.TabIndex = 4;
+            this.txtBoxDataCadastro.ValidatingType = typeof(System.DateTime);
             // 
             // TelaCadastroFuncionarioForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 323);
-            this.Controls.Add(this.label5);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(484, 417);
             this.Controls.Add(this.txtBoxDataCadastro);
+            this.Controls.Add(this.txtBoxSalario);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.groupBoxTipoFuncionario);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.label4);
@@ -161,9 +224,15 @@
             this.Controls.Add(this.txtBoxNome);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtBoxID);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(500, 456);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(500, 456);
             this.Name = "TelaCadastroFuncionarioForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro Funcionário";
+            this.groupBoxTipoFuncionario.ResumeLayout(false);
+            this.groupBoxTipoFuncionario.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -182,6 +251,11 @@
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtBoxDataCadastro;
+        private System.Windows.Forms.GroupBox groupBoxTipoFuncionario;
+        private System.Windows.Forms.RadioButton rBtnAdministrador;
+        private System.Windows.Forms.RadioButton rBtnComum;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtBoxSalario;
+        private System.Windows.Forms.MaskedTextBox txtBoxDataCadastro;
     }
 }

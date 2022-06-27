@@ -1,6 +1,7 @@
 ﻿using FluentValidation.Results;
 using Locadora.Dominio.ModuloFuncionario;
 using System;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
@@ -36,7 +37,11 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
             
             txtBoxSenha.Text = _funcionario.Senha != null ? _funcionario.Senha : "";
             
+            rBtnAdministrador.Checked = _funcionario.Administrador;
+            
             txtBoxDataCadastro.Text = _funcionario.DataEntrada != default ? Convert.ToString(_funcionario.DataEntrada) : "";
+
+            txtBoxSalario.Text = _funcionario.Salario != default ? string.Format("{0:#,##0.00}", Double.Parse(_funcionario.Salario.ToString())) : "";
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -62,6 +67,34 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
             Funcionario.Login = txtBoxLogin.Text;
             Funcionario.Senha = txtBoxSenha.Text;
             Funcionario.DataEntrada = Convert.ToDateTime(txtBoxDataCadastro.Text);
+            Funcionario.Administrador = rBtnAdministrador.Checked;
+            Funcionario.Salario = Convert.ToDecimal(txtBoxSalario.Text);
+        }
+
+        #region Métodos privados
+
+        #endregion
+
+        private void txtBoxSalario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar) || e.KeyChar.Equals((char)Keys.Back))
+            {
+                TextBox box = (TextBox)sender;
+
+                string texto = Regex.Replace(box.Text, "[^0-9]", string.Empty);
+
+                if (texto == string.Empty) texto = "00";
+
+                if (e.KeyChar.Equals((char)Keys.Back))
+                    texto = texto.Substring(0, texto.Length -1);
+                else
+                    texto += e.KeyChar;
+
+                box.Text = string.Format("{0:#,##0.00}", Double.Parse(texto)/100);
+
+                box.Select(box.Text.Length, 0);
+            }
+            e.Handled = true;
         }
     }
 }

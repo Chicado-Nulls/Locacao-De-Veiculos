@@ -21,6 +21,14 @@ namespace Locadora.Dominio.ModuloFuncionario
             RuleFor(x => x.Senha)
                 .NotNull()
                 .MinimumLength(6);
+
+            RuleFor(x => x.DataEntrada)
+                .NotNull()
+                .LessThan(p => DateTime.Now);
+
+            RuleFor(x => x.Salario)
+                .NotNull()
+                .GreaterThan(1);
         }
     }
 }

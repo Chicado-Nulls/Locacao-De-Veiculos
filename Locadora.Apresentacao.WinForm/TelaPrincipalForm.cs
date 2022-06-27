@@ -20,8 +20,6 @@ namespace Locadora.Apresentacao.WinForm
 
             Instancia = this;
 
-            labelRodape.Text = "Teste";
-            
             labelRodape.Text = string.Empty;
             labelTipoCadastro.Text = string.Empty;
             InicializarControladores();
@@ -111,7 +109,7 @@ namespace Locadora.Apresentacao.WinForm
 
 
             IRepositorioFuncionario repositorioFuncionario = new RepositorioFuncionarioBancoDados();
-            
+                        
             controladores = new Dictionary<string, ControladorBase>();
 
             controladores.Add("Funcionario", new ControladorFuncionario(repositorioFuncionario));
