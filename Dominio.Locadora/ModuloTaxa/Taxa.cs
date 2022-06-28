@@ -13,6 +13,14 @@ namespace Locadora.Dominio.ModuloTaxa
         {
 
         }
+
+        public Taxa(decimal? valor, string descricao, TipoDeCalculo? tipoDeCalculo)
+        {
+            Valor=valor;
+            Descricao=descricao;
+            TipoDeCalculo=tipoDeCalculo;
+        }
+
         public override void Atualizar(Taxa registro)
         {
             

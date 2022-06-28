@@ -13,6 +13,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
         {
             InitializeComponent();
             Text = titulo;
+            txtBoxSenha.PasswordChar = '*';
         }
 
         public Funcionario Funcionario
@@ -95,6 +96,17 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
                 box.Select(box.Text.Length, 0);
             }
             e.Handled = true;
+        }
+
+        private void checkBoxMostrarSenha_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxMostrarSenha.Checked == true)
+            {
+                txtBoxSenha.PasswordChar = '\u0000';
+                return;
+            }
+
+            txtBoxSenha.PasswordChar = '*';
         }
     }
 }

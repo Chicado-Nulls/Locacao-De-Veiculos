@@ -84,9 +84,9 @@
             this.Descrição.AutoSize = true;
             this.Descrição.Location = new System.Drawing.Point(28, 115);
             this.Descrição.Name = "Descrição";
-            this.Descrição.Size = new System.Drawing.Size(58, 15);
+            this.Descrição.Size = new System.Drawing.Size(66, 15);
             this.Descrição.TabIndex = 7;
-            this.Descrição.Text = "Descrição";
+            this.Descrição.Text = "Descrição *";
             // 
             // groupBox1
             // 

@@ -90,8 +90,8 @@ namespace Locadora.Test.Infra.ModuloFuncionario
         public void Deve_selecionar_todos_os_fornecedores()
         {
             //arrange
-            var f0 = new Funcionario("Usuário master", "Admin1", "Admin1", new DateTime(2022, 01, 01), false, 50.00m); ;
-            var f1 = new Funcionario("Ze da pastelaria", "zezeze", "zezeze", new DateTime(2022, 02, 02), false, 50.00m); ;
+            var f0 = new Funcionario("Usuário master", "Admin1", "Admin1", new DateTime(2022, 01, 01), false, 50.00m);
+            var f1 = new Funcionario("Ze da pastelaria", "zezeze", "zezeze", new DateTime(2022, 02, 02), false, 50.00m);
             var f2 = new Funcionario("Joao da borracharia", "joaobr", "joaobr", new DateTime(2022, 03, 03), false, 50.00m); 
 
             repositorio.Inserir(f0);
@@ -110,7 +110,44 @@ namespace Locadora.Test.Infra.ModuloFuncionario
             Assert.AreEqual(f2.Nome, fornecedores[2].Nome);
         }
 
-        
+        [TestMethod]
+        public void Nao_deve_inserir_funcionario_duplicado()
+        {
+            //arrange
+            var fornecedor = NovoFuncionario();
+
+            //action
+            repositorio.Inserir(fornecedor);
+
+            repositorio.Inserir(fornecedor);
+
+            var fornecedorEncontrado = repositorio.SelecionarTodos();
+
+            //assert
+            Assert.AreEqual(1, fornecedorEncontrado.Count);
+        }
+
+        [TestMethod]
+        public void Nao_deve_ditar_funcionario_com_nome_e_login_igual_outro_registro()
+        {
+            //arrange
+            var f0 = new Funcionario("Usuário master", "Admin1", "Admin1", new DateTime(2022, 01, 01), false, 50.00m);
+            var f1 = new Funcionario("Ze da pastelaria", "zezeze", "zezeze", new DateTime(2022, 02, 02), false, 50.00m);
+
+            //action
+            repositorio.Inserir(f0);
+
+            repositorio.Inserir(f1);
+
+            f0.Nome = "Ze da pastelaria";
+            f0.Login = "zezeze";
+
+            var resultado = repositorio.Editar(f0);
+
+            //assert
+            Assert.AreEqual(false, resultado.IsValid);
+        }
+
         private Funcionario NovoFuncionario()
         {
             return new Funcionario("Usuário master", "Admin1", "Admin1", new DateTime(2022,01,01), false, 50.00m);
