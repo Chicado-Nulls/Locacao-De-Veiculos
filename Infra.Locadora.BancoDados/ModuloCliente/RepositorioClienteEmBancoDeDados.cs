@@ -10,7 +10,7 @@ using Locadora.Infra.BancoDados.Compartilhado;
 namespace Locadora.Infra.BancoDados.ModuloCliente
 {
 
-    public class RepositorioClienteEmBancoDeDados : RepositorioBase<Cliente, ValidadorCliente, MapeadorCliente>, IRepositorioCliente
+    public class RepositorioClienteEmBancoDeDados : RepositorioBase<Cliente, MapeadorCliente>, IRepositorioCliente
     {
         protected override string sqlInserir =>
             @"INSERT INTO [TBCLIENTE] 
@@ -92,36 +92,36 @@ namespace Locadora.Infra.BancoDados.ModuloCliente
             FROM
                 [TBCLIENTE]";
 
-        protected override string sqlValidaRegistroDuplicadoInserir =>
-             @"SELECT 
-                    [ID],
-		            [NOME],
-                    [CPF],
-                    [CNPJ],
-                    [ENDERECO],
-                    [CNH],
-                    [EMAIL],
-                    [TELEFONE],
-                    [TIPOCADASTRO]
-	            FROM 
-		            [TBCLIENTE]
-		        WHERE
-                    [CPF] = @CPF OR [CNPJ] = @CNPJ";
+        //protected override string sqlValidaRegistroDuplicadoInserir =>
+        //     @"SELECT 
+        //            [ID],
+		      //      [NOME],
+        //            [CPF],
+        //            [CNPJ],
+        //            [ENDERECO],
+        //            [CNH],
+        //            [EMAIL],
+        //            [TELEFONE],
+        //            [TIPOCADASTRO]
+	       //     FROM 
+		      //      [TBCLIENTE]
+		      //  WHERE
+        //            [CPF] = @CPF OR [CNPJ] = @CNPJ";
 
-        protected override string sqlValidaRegistroDuplicadoEditar =>
-            @"SELECT 
-                    [ID],
-		            [NOME],
-                    [CPF],
-                    [CNPJ],
-                    [ENDERECO],
-                    [CNH],
-                    [EMAIL],
-                    [TELEFONE],
-                    [TIPOCADASTRO]
-	            FROM 
-		            [TBCLIENTE]
-		        WHERE
-                    [CPF] = @CPF AND [CNPJ] = @CNPJ AND ID <> @ID";
+        //protected override string sqlValidaRegistroDuplicadoEditar =>
+        //    @"SELECT 
+        //            [ID],
+		      //      [NOME],
+        //            [CPF],
+        //            [CNPJ],
+        //            [ENDERECO],
+        //            [CNH],
+        //            [EMAIL],
+        //            [TELEFONE],
+        //            [TIPOCADASTRO]
+	       //     FROM 
+		      //      [TBCLIENTE]
+		      //  WHERE
+        //            [CPF] = @CPF AND [CNPJ] = @CNPJ AND ID <> @ID";
     }
 }

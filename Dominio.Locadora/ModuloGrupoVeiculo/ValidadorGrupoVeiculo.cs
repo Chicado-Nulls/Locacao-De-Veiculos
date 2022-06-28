@@ -6,11 +6,11 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Locadora.Dominio.ModuloGrupoDeVeiculos
+namespace Locadora.Dominio.ModuloGrupoDeVeiculo
 {
-    public class ValidadorGrupoDeVeiculos : AbstractValidator<GrupoDeVeiculo>
+    public class ValidadorGrupoVeiculo : AbstractValidator<GrupoVeiculo>
     {
-        public ValidadorGrupoDeVeiculos()
+        public ValidadorGrupoVeiculo()
         {
             RuleFor(x => x.Nome)
                .NotNull()

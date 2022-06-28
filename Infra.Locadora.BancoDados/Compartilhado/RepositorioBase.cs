@@ -9,9 +9,8 @@ using System.Data.SqlClient;
 namespace Locadora.Infra.BancoDados.Compartilhado
 {
     public abstract class 
-        RepositorioBase<T, TValidador, TMapeador>
+        RepositorioBase<T, TMapeador>
         where T : EntidadeBase<T>
-        where TValidador : AbstractValidator<T>, new ()
         where TMapeador : MapeadorBase<T>, new ()
     {
         protected string enderecoBanco =
@@ -21,11 +20,7 @@ namespace Locadora.Infra.BancoDados.Compartilhado
 
         protected abstract string sqlInserir { get; }
 
-        protected abstract string sqlValidaRegistroDuplicadoInserir { get; }
-
         protected abstract string sqlEditar { get; }
-
-        protected abstract string sqlValidaRegistroDuplicadoEditar { get; }
 
         protected abstract string sqlExcluir { get; }
 
@@ -33,26 +28,8 @@ namespace Locadora.Infra.BancoDados.Compartilhado
 
         protected abstract string sqlSelecionarTodos { get; }
 
-        public virtual ValidationResult Inserir(T registro)
+        public virtual void Inserir(T registro)
         {
-            var validador = new TValidador();
-
-            var resultadoValidacao = validador.Validate(registro);
-
-            if (resultadoValidacao.IsValid == false)
-                return resultadoValidacao;
-
-            bool existeRegistro = ExisteRegistroIgual(registro, sqlValidaRegistroDuplicadoInserir);
-
-            if (existeRegistro)
-            {
-                ValidationResult erro = new ValidationResult();
-
-                erro.Errors.Add(new ValidationFailure("", "Campos com '*' precisam ser únicos")); 
-
-                return erro;
-            }
-
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
             SqlCommand comandoInsercao = new SqlCommand(sqlInserir, conexaoComBanco);
@@ -67,29 +44,10 @@ namespace Locadora.Infra.BancoDados.Compartilhado
 
             conexaoComBanco.Close();
 
-            return resultadoValidacao;
         }
 
-        public virtual ValidationResult Editar(T registro)
+        public virtual void Editar(T registro)
         {
-            var validador = new TValidador();
-
-            var resultadoValidacao = validador.Validate(registro);
-
-            if (resultadoValidacao.IsValid == false)
-                return resultadoValidacao;
-
-            bool existeRegistro = ExisteRegistroIgual(registro, sqlValidaRegistroDuplicadoEditar);
-
-            if (existeRegistro)
-            {
-                ValidationResult erro = new ValidationResult();
-
-                erro.Errors.Add(new ValidationFailure("", "Campos com '*' precisam ser únicos"));
-
-                return erro;
-            }
-
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
             SqlCommand comandoEdicao = new SqlCommand(sqlEditar, conexaoComBanco);
@@ -102,7 +60,6 @@ namespace Locadora.Infra.BancoDados.Compartilhado
             comandoEdicao.ExecuteNonQuery();
             conexaoComBanco.Close();
 
-            return resultadoValidacao;
         }
 
         public virtual void Excluir(T registro)
@@ -160,30 +117,6 @@ namespace Locadora.Infra.BancoDados.Compartilhado
             conexaoComBanco.Close();
 
             return registros;
-        }
-
-        private bool ExisteRegistroIgual(T registro, string consultaVerificaDuplicidade)
-        {
-            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
-
-            SqlCommand comandoSelecao = new SqlCommand(consultaVerificaDuplicidade, conexaoComBanco);
-
-            var mapeador = new TMapeador();
-
-            mapeador.ConfigurarParametros(registro, comandoSelecao);
-
-            conexaoComBanco.Open();
-
-            SqlDataReader leitorRegistro = comandoSelecao.ExecuteReader();
-
-            T registroBusca = null;
-
-            if (leitorRegistro.Read())
-                registroBusca = mapeador.ConverterRegistro(leitorRegistro);
-
-            conexaoComBanco.Close();
-
-            return registroBusca == null? false : true;
         }
 
     }

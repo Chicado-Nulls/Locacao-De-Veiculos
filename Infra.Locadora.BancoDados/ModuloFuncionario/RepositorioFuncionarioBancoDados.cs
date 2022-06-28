@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Locadora.Infra.BancoDados.ModuloFuncionario
 {
-    public class RepositorioFuncionarioBancoDados : RepositorioBase<Funcionario, ValidadorFuncionario, MapeadorFuncionario>, IRepositorioFuncionario
+    public class RepositorioFuncionarioBancoDados : RepositorioBase<Funcionario, MapeadorFuncionario>, IRepositorioFuncionario
     {
         protected override string sqlInserir =>
              @"INSERT INTO [TBFUNCIONARIO]
@@ -75,37 +75,37 @@ namespace Locadora.Infra.BancoDados.ModuloFuncionario
 
                 FROM TBFUNCIONARIO AS FUNCIONARIO";
 
-        protected override string sqlValidaRegistroDuplicadoInserir =>
-            @"SELECT 
-	                FUNCIONARIO.ID FUNCIONARIO_ID,
-	                FUNCIONARIO.NOME FUNCIONARIO_NOME,
-	                FUNCIONARIO.LOGIN FUNCIONARIO_LOGIN,
-	                FUNCIONARIO.SENHA FUNCIONARIO_SENHA,
-	                FUNCIONARIO.DATAENTRADA FUNCIONARIO_DATAENTRADA,
-                    FUNCIONARIO.ADMINISTRADOR FUNCIONARIO_ADMINISTRADOR,
-                    FUNCIONARIO.SALARIO FUNCIONARIO_SALARIO
+        //protected override string sqlValidaRegistroDuplicadoInserir =>
+        //    @"SELECT 
+	       //         FUNCIONARIO.ID FUNCIONARIO_ID,
+	       //         FUNCIONARIO.NOME FUNCIONARIO_NOME,
+	       //         FUNCIONARIO.LOGIN FUNCIONARIO_LOGIN,
+	       //         FUNCIONARIO.SENHA FUNCIONARIO_SENHA,
+	       //         FUNCIONARIO.DATAENTRADA FUNCIONARIO_DATAENTRADA,
+        //            FUNCIONARIO.ADMINISTRADOR FUNCIONARIO_ADMINISTRADOR,
+        //            FUNCIONARIO.SALARIO FUNCIONARIO_SALARIO
 
-                FROM TBFUNCIONARIO AS FUNCIONARIO
+        //        FROM TBFUNCIONARIO AS FUNCIONARIO
 
-                WHERE NOME = @NOME AND LOGIN = @LOGIN";
+        //        WHERE NOME = @NOME AND LOGIN = @LOGIN";
 
-        protected override string sqlValidaRegistroDuplicadoEditar =>
-             @"SELECT 
-	                FUNCIONARIO.ID FUNCIONARIO_ID,
-	                FUNCIONARIO.NOME FUNCIONARIO_NOME,
-	                FUNCIONARIO.LOGIN FUNCIONARIO_LOGIN,
-	                FUNCIONARIO.SENHA FUNCIONARIO_SENHA,
-	                FUNCIONARIO.DATAENTRADA FUNCIONARIO_DATAENTRADA,
-                    FUNCIONARIO.ADMINISTRADOR FUNCIONARIO_ADMINISTRADOR,
-                    FUNCIONARIO.SALARIO FUNCIONARIO_SALARIO
+        //protected override string sqlValidaRegistroDuplicadoEditar =>
+        //     @"SELECT 
+	       //         FUNCIONARIO.ID FUNCIONARIO_ID,
+	       //         FUNCIONARIO.NOME FUNCIONARIO_NOME,
+	       //         FUNCIONARIO.LOGIN FUNCIONARIO_LOGIN,
+	       //         FUNCIONARIO.SENHA FUNCIONARIO_SENHA,
+	       //         FUNCIONARIO.DATAENTRADA FUNCIONARIO_DATAENTRADA,
+        //            FUNCIONARIO.ADMINISTRADOR FUNCIONARIO_ADMINISTRADOR,
+        //            FUNCIONARIO.SALARIO FUNCIONARIO_SALARIO
 
-                FROM TBFUNCIONARIO AS FUNCIONARIO
+        //        FROM TBFUNCIONARIO AS FUNCIONARIO
 
-                WHERE NOME = @NOME AND LOGIN = @LOGIN AND ID <> @ID";
+        //        WHERE NOME = @NOME AND LOGIN = @LOGIN AND ID <> @ID";
 
-        public bool FuncionarioAdministrador(Funcionario funcionario)
-        {
-            throw new NotImplementedException();
-        }
+        //public bool FuncionarioAdministrador(Funcionario funcionario)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

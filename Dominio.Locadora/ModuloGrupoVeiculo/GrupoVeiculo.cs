@@ -6,19 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Locadora.Dominio.ModuloGrupoDeVeiculos
+namespace Locadora.Dominio.ModuloGrupoDeVeiculo
 {
-    public class GrupoDeVeiculo : EntidadeBase<GrupoDeVeiculo>
+    public class GrupoVeiculo : EntidadeBase<GrupoVeiculo>
     {
 
 
-        public GrupoDeVeiculo() { }
-        public GrupoDeVeiculo(string nome)
+        public GrupoVeiculo() { }
+        public GrupoVeiculo(string nome)
         {
            this.Nome = nome;    
         }
         
-        public override void Atualizar(GrupoDeVeiculo registro)
+        public override void Atualizar(GrupoVeiculo registro)
         {
                Nome = registro.Nome;
         }
@@ -28,7 +28,7 @@ namespace Locadora.Dominio.ModuloGrupoDeVeiculos
 
         public override bool Equals(object obj)
         {
-            return obj is GrupoDeVeiculo grupoDeVeiculo &&
+            return obj is GrupoVeiculo grupoDeVeiculo &&
                    Nome == grupoDeVeiculo.Nome;                  
         }
         

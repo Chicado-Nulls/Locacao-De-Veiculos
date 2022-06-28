@@ -1,4 +1,5 @@
-﻿using Locadora.Apresentacao.WinForm.Compartilhado;
+﻿using Locadora.Aplicacao.ModuloFuncionario;
+using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloFuncionario;
 using System;
 using System.Collections.Generic;
@@ -12,12 +13,16 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
     public class ControladorFuncionario : ControladorBase
     {
         IRepositorioFuncionario repositorio;
+        private ServiceFuncionario serviceFuncionario;
         TabelaFuncionarioControl tabelaFuncionario;
 
-        public ControladorFuncionario(IRepositorioFuncionario repositorioFuncionario)
+        
+        public ControladorFuncionario(IRepositorioFuncionario repositorioFuncionario, ServiceFuncionario serviceFuncionario)
         {
-            repositorio=repositorioFuncionario;
+            this.serviceFuncionario=serviceFuncionario;
+            this.repositorio = repositorioFuncionario;
         }
+
         public override void Editar()
         {
             var numero = tabelaFuncionario.ObtemNumeroRegistroSelecionado();
@@ -35,7 +40,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
 
             tela.Funcionario = funcionarioSelecionado.Clone();
 
-            tela.GravarRegistro = repositorio.Editar;
+            tela.GravarRegistro = serviceFuncionario.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -45,11 +50,18 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
             }
         }
 
+        //public override bool Equals(object? obj)
+        //{
+        //    return obj is ControladorFuncionario funcionario&&
+        //           EqualityComparer<IRepositorioFuncionario>.Default.Equals(repositorio, funcionario.repositorio)&&
+        //           EqualityComparer<ServiceFuncionario>.Default.Equals(serviceFuncionario, funcionario.serviceFuncionario);
+        //}
+
         public override void Excluir()
         {
             var numero = tabelaFuncionario.ObtemNumeroRegistroSelecionado();
 
-            Funcionario materiaSelecionada = repositorio.SelecionarPorId(numero);
+            Funcionario materiaSelecionada = serviceFuncionario.SelecionarPorId(numero);
 
             if (materiaSelecionada == null)
             {
@@ -73,7 +85,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
 
             telaCadastro.Funcionario = new Funcionario();
 
-            telaCadastro.GravarRegistro = repositorio.Inserir;
+            telaCadastro.GravarRegistro = serviceFuncionario.Inserir;
 
             DialogResult resultado = telaCadastro.ShowDialog();
 

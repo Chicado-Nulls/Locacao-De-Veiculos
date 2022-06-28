@@ -1,4 +1,5 @@
-﻿using Locadora.Apresentacao.WinForm.Compartilhado;
+﻿using Locadora.Aplicacao.ModuloTaxa;
+using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloTaxa;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,13 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
     {
 
         IRepositorioTaxa RepositorioTaxa;
+        ServiceTaxa serviceTaxa;
         TabelaTaxaControl tabelaTaxa;
 
-        public ControladorTaxa(IRepositorioTaxa repositorioTaxa)
+        public ControladorTaxa(IRepositorioTaxa repositorioTaxa, ServiceTaxa serviceTaxa)
         {
-            this.RepositorioTaxa = repositorioTaxa;
+            RepositorioTaxa=repositorioTaxa;
+            this.serviceTaxa=serviceTaxa;
         }
 
         public override void Editar()
@@ -33,7 +36,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
             TelaTaxa telaTaxa = new TelaTaxa();
 
             telaTaxa.Taxa = taxa;
-            telaTaxa.GravarRegistro = RepositorioTaxa.Editar;
+            telaTaxa.GravarRegistro = serviceTaxa.Editar;
 
             DialogResult dialogResult = telaTaxa.ShowDialog();
 
@@ -55,8 +58,8 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
             }
             if (MessageBox.Show($"Deseja realmente excluir a taxa '{taxa.Descricao}'?", "Exclusão de taxa", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
                 return;
-            
-            RepositorioTaxa.Excluir(taxa);
+
+            serviceTaxa.Excluir(taxa);
 
             CarregarTaxas();
         }
@@ -67,7 +70,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
 
             telaTaxa.Taxa= new Taxa();
 
-            telaTaxa.GravarRegistro = RepositorioTaxa.Inserir;
+            telaTaxa.GravarRegistro = serviceTaxa.Inserir;
 
             DialogResult resultado = telaTaxa.ShowDialog();
 

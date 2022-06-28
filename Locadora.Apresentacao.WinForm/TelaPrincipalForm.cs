@@ -9,12 +9,16 @@ using System;
 using System.Collections.Generic;
 
 using System.Windows.Forms;
-using Locadora.Dominio.ModuloGrupoDeVeiculos;
-using Locadora.Infra.BancoDados.ModuloGrupoDeVeiculo;
 using Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos;
 using Locadora.Dominio.ModuloCliente;
 using Locadora.Apresentacao.WinForm.ModuloCliente;
 using Locadora.Infra.BancoDados.ModuloCliente;
+using Locadora.Aplicacao.ModuloCliente;
+using Locadora.Aplicacao.ModuloFuncionario;
+using Locadora.Aplicacao.ModuloTaxa;
+using Locadora.Aplicacao.ModuloGrupoDeVeiculos;
+using Locadora.Dominio.ModuloGrupoDeVeiculo;
+using Locadora.Infra.BancoDados.ModuloGrupoVeiculo;
 
 namespace Locadora.Apresentacao.WinForm
 {
@@ -111,19 +115,20 @@ namespace Locadora.Apresentacao.WinForm
             controladores = new Dictionary<string, ControladorBase>();
 
             IRepositorioCliente repositorioCliente = new RepositorioClienteEmBancoDeDados();
-            controladores.Add("Cliente", new ControladorCliente(repositorioCliente));
+            ServiceCliente serviceCliente = new ServiceCliente(repositorioCliente);
+            controladores.Add("Cliente", new ControladorCliente(repositorioCliente, serviceCliente));
 
             IRepositorioFuncionario repositorioFuncionario = new RepositorioFuncionarioBancoDados();
-            
-            controladores.Add("Funcionario", new ControladorFuncionario(repositorioFuncionario));
+            ServiceFuncionario serviceFuncionario = new ServiceFuncionario(repositorioFuncionario);
+            controladores.Add("Funcionario", new ControladorFuncionario(repositorioFuncionario, serviceFuncionario));
 
             IRepositorioTaxa repositorioTaxa = new RepositorioTaxa();
+            ServiceTaxa serviceTaxa = new ServiceTaxa(repositorioTaxa);
+            controladores.Add("Taxa", new ControladorTaxa(repositorioTaxa, serviceTaxa));
 
-            controladores.Add("Taxa", new ControladorTaxa(repositorioTaxa));
-
-            IRepositorioGrupoDeVeiculos repositorioGrupoDeVeiculos = new RepositorioGrupoDeVeiculo();
-
-            controladores.Add("Grupo Veiculos", new ControladorGrupoDeVeiculos(repositorioGrupoDeVeiculos));
+            IRepositorioGrupoVeiculo repositorioGrupoDeVeiculos = new RepositorioGrupoVeiculo();
+            ServiceGrupoVeiculo serviceGrupoDeVeiculos = new ServiceGrupoVeiculo(repositorioGrupoDeVeiculos);
+            controladores.Add("Grupo Veiculos", new ControladorGrupoVeiculo(repositorioGrupoDeVeiculos, serviceGrupoDeVeiculos));
             
 
         }

@@ -1,5 +1,5 @@
 ﻿using FluentValidation.Results;
-using Locadora.Dominio.ModuloGrupoDeVeiculos;
+using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,14 +15,14 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
 {
     public partial class TelaCadastroGrupoDeVeiculos : Form
     {
-        GrupoDeVeiculo _grupoDeVeiculos;
+        GrupoVeiculo _grupoDeVeiculos;
 
         public TelaCadastroGrupoDeVeiculos()
         {
             InitializeComponent();
         }
 
-        public GrupoDeVeiculo GrupoDeVeiculo 
+        public GrupoVeiculo GrupoDeVeiculo 
         {
             get { return _grupoDeVeiculos; }
             set 
@@ -32,7 +32,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
             }
 
         }
-        public Func<GrupoDeVeiculo, ValidationResult> GravarRegistro { get; set; }
+        public Func<GrupoVeiculo, ValidationResult> GravarRegistro { get; set; }
         private void ConfigurarTela()
         {
             txtBoxId.Text = _grupoDeVeiculos.Id != null ? _grupoDeVeiculos.Id.ToString() : "0";

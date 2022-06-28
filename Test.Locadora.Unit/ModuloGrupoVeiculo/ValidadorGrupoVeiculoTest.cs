@@ -1,5 +1,5 @@
 ﻿using FluentValidation.TestHelper;
-using Locadora.Dominio.ModuloGrupoDeVeiculos;
+using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -10,17 +10,17 @@ using System.Threading.Tasks;
 namespace Locadora.Test.Unit.ModuloGrupoDeVeiculos
 {
     [TestClass]
-    public class ValidadorGrupoDeVeiculosTest
+    public class ValidadorGrupoVeiculoTest
     {
 
-        ValidadorGrupoDeVeiculos validador;
+        ValidadorGrupoVeiculo validador;
 
-        GrupoDeVeiculo grupoDeVeiculo;
+        GrupoVeiculo grupoDeVeiculo;
 
-        public ValidadorGrupoDeVeiculosTest()
+        public ValidadorGrupoVeiculoTest()
         {
-            validador = new ValidadorGrupoDeVeiculos();
-            grupoDeVeiculo = new GrupoDeVeiculo()
+            validador = new ValidadorGrupoVeiculo();
+            grupoDeVeiculo = new GrupoVeiculo()
             {
                 Id = 1,
                 Nome = "a3434434"

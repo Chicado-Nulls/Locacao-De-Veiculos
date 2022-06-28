@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
 {
-    public class ConfigurarToolboxGrupoDeVeiculos : ConfigurarToolboxBase
+    public class ConfigurarToolboxGrupoVeiculo : ConfigurarToolboxBase
     {
         public override string TipoCadastro => "Grupo De Veiculos";
 

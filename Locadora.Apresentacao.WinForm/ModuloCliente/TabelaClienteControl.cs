@@ -12,9 +12,9 @@ using Locadora.Apresentacao.WinForm.Compartilhado;
 
 namespace Locadora.Apresentacao.WinForm.ModuloCliente
 {
-    public partial class TabelaClientesControl : UserControl
+    public partial class TabelaClienteControl : UserControl
     {
-        public TabelaClientesControl()
+        public TabelaClienteControl()
         {
             InitializeComponent();
             grid.ConfigurarGridZebrado();

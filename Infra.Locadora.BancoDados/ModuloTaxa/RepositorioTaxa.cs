@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Locadora.Infra.BancoDados.ModuloTaxa
 {
-    public class RepositorioTaxa : RepositorioBase<Taxa, ValidadorTaxa, MapeadorTaxa>, IRepositorioTaxa
+    public class RepositorioTaxa : RepositorioBase<Taxa, MapeadorTaxa>, IRepositorioTaxa
     {
         protected override string sqlInserir => @"INSERT INTO [TbTaxa]
                                                    (
@@ -45,14 +45,14 @@ namespace Locadora.Infra.BancoDados.ModuloTaxa
 
         protected override string sqlSelecionarTodos => @"SELECT * FROM [TbTaxa]";
 
-        protected override string sqlValidaRegistroDuplicadoInserir =>
-            @"SELECT * FROM [TbTaxa]
-                            WHERE
-                            [DESCRICAO]=@DESCRICAO";
+        //protected override string sqlValidaRegistroDuplicadoInserir =>
+        //    @"SELECT * FROM [TbTaxa]
+        //                    WHERE
+        //                    [DESCRICAO]=@DESCRICAO";
 
-        protected override string sqlValidaRegistroDuplicadoEditar =>
-            @"SELECT * FROM [TbTaxa]
-                            WHERE
-                            [DESCRICAO] = @DESCRICAO AND [ID] <> @ID";
+        //protected override string sqlValidaRegistroDuplicadoEditar =>
+        //    @"SELECT * FROM [TbTaxa]
+        //                    WHERE
+        //                    [DESCRICAO] = @DESCRICAO AND [ID] <> @ID";
     }
 }

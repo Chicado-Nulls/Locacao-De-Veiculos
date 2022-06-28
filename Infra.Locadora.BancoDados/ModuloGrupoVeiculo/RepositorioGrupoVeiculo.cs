@@ -1,5 +1,5 @@
 ﻿using Locadora.Dominio.Compartilhado;
-using Locadora.Dominio.ModuloGrupoDeVeiculos;
+using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using Locadora.Infra.BancoDados.Compartilhado;
 using System;
 using System.Collections.Generic;
@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Locadora.Infra.BancoDados.ModuloGrupoDeVeiculo
+namespace Locadora.Infra.BancoDados.ModuloGrupoVeiculo
 {
-    public class RepositorioGrupoDeVeiculo : RepositorioBase<GrupoDeVeiculo, ValidadorGrupoDeVeiculos, MapaeadorGrupoDeVeiculo>, IRepositorioGrupoDeVeiculos
+    public class RepositorioGrupoVeiculo : RepositorioBase<GrupoVeiculo, MapaeadorGrupoVeiculo>, IRepositorioGrupoVeiculo
     {
         protected override string sqlInserir => @"INSERT INTO [TBGRUPODEVEICULOS]
                                                     (
@@ -33,15 +33,15 @@ namespace Locadora.Infra.BancoDados.ModuloGrupoDeVeiculo
                                                              [ID]=@ID";
         protected override string sqlSelecionarTodos => @"SELECT * FROM [TBGRUPODEVEICULOS]";
 
-        protected override string sqlValidaRegistroDuplicadoInserir =>
-            @"SELECT * FROM [TBGRUPODEVEICULOS]
-                    WHERE
-                        [NOME]=@NOME";
+        //protected override string sqlValidaRegistroDuplicadoInserir =>
+        //    @"SELECT * FROM [TBGRUPODEVEICULOS]
+        //            WHERE
+        //                [NOME]=@NOME";
 
-        protected override string sqlValidaRegistroDuplicadoEditar =>
-            @"SELECT * FROM [TBGRUPODEVEICULOS]
-                    WHERE
-                        [NOME]=@NOME AND [ID] <> @ID";
+        //protected override string sqlValidaRegistroDuplicadoEditar =>
+        //    @"SELECT * FROM [TBGRUPODEVEICULOS]
+        //            WHERE
+        //                [NOME]=@NOME AND [ID] <> @ID";
 
     }
 }

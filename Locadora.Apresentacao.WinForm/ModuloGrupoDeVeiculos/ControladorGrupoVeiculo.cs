@@ -1,5 +1,6 @@
-﻿using Locadora.Apresentacao.WinForm.Compartilhado;
-using Locadora.Dominio.ModuloGrupoDeVeiculos;
+﻿using Locadora.Aplicacao.ModuloGrupoDeVeiculos;
+using Locadora.Apresentacao.WinForm.Compartilhado;
+using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,20 +10,21 @@ using System.Windows.Forms;
 
 namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
 {
-    public class ControladorGrupoDeVeiculos : ControladorBase
+    public class ControladorGrupoVeiculo : ControladorBase
     {
-        IRepositorioGrupoDeVeiculos repositorio;
-        TabelaGrupoDeVeiculosControl tabela; 
+        IRepositorioGrupoVeiculo repositorio;
+        ServiceGrupoVeiculo serviceGrupoDeVeiculos;
+        TabelaGrupoVeiculoControl tabela;
 
-        public ControladorGrupoDeVeiculos(IRepositorioGrupoDeVeiculos repositorio)
+        public ControladorGrupoVeiculo(IRepositorioGrupoVeiculo repositorio, ServiceGrupoVeiculo serviceGrupoDeVeiculos)
         {
-            this.repositorio = repositorio;
+            this.repositorio=repositorio;
+            this.serviceGrupoDeVeiculos=serviceGrupoDeVeiculos;
         }
-
 
         public override void Editar()
         {
-            GrupoDeVeiculo grupo = SelecionarGrupoPorNumero();
+            GrupoVeiculo grupo = SelecionarGrupoPorNumero();
 
             if (grupo == null)
             {
@@ -35,7 +37,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
 
             telaGrupo.GrupoDeVeiculo = grupo;
 
-            telaGrupo.GravarRegistro = repositorio.Editar;
+            telaGrupo.GravarRegistro = serviceGrupoDeVeiculos.Editar;
 
             DialogResult dialogResult = telaGrupo.ShowDialog();
 
@@ -47,7 +49,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
 
         public override void Excluir()
         {
-            GrupoDeVeiculo grupo = SelecionarGrupoPorNumero();
+            GrupoVeiculo grupo = SelecionarGrupoPorNumero();
 
             if (grupo == null)
             {
@@ -60,7 +62,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
              "Exclusão de Grupo de Veiculos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
                 return;
 
-            repositorio.Excluir(grupo);
+            serviceGrupoDeVeiculos.Excluir(grupo);
             CarregarGrupoDeVeiculos();
         }
 
@@ -68,9 +70,9 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
         {
             TelaCadastroGrupoDeVeiculos telaCadastro = new TelaCadastroGrupoDeVeiculos();
 
-            telaCadastro.GrupoDeVeiculo = new GrupoDeVeiculo();
+            telaCadastro.GrupoDeVeiculo = new GrupoVeiculo();
 
-            telaCadastro.GravarRegistro = repositorio.Inserir;
+            telaCadastro.GravarRegistro = serviceGrupoDeVeiculos.Inserir;
 
             DialogResult resultado = telaCadastro.ShowDialog();
 
@@ -80,7 +82,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
 
         private void CarregarGrupoDeVeiculos()
         {
-            List<GrupoDeVeiculo> grupos = repositorio.SelecionarTodos();
+            List<GrupoVeiculo> grupos = repositorio.SelecionarTodos();
 
             tabela.AtualizarRegistros(grupos);
 
@@ -90,24 +92,24 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
 
         public override ConfigurarToolboxBase ObtemConfiguracaoToolbox()
         {
-            return new ConfigurarToolboxGrupoDeVeiculos();
+            return new ConfigurarToolboxGrupoVeiculo();
         }
 
         public override UserControl ObtemListagem()
         {
             if (tabela == null)
-                tabela= new TabelaGrupoDeVeiculosControl();
+                tabela= new TabelaGrupoVeiculoControl();
 
             CarregarGrupoDeVeiculos();
 
             return tabela;
         }
 
-        private GrupoDeVeiculo SelecionarGrupoPorNumero()
+        private GrupoVeiculo SelecionarGrupoPorNumero()
         {
             var numero = tabela.ObtemNumeroRegistroSelecionado();
 
-            GrupoDeVeiculo grupo = repositorio.SelecionarPorId(numero);
+            GrupoVeiculo grupo = repositorio.SelecionarPorId(numero);
 
             return grupo;
 

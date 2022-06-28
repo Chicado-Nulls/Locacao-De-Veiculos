@@ -6,17 +6,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Locadora.Dominio.ModuloCliente;
+using Locadora.Aplicacao.ModuloCliente;
 
 namespace Locadora.Apresentacao.WinForm.ModuloCliente
 {
     public class ControladorCliente : ControladorBase
     {
         private readonly IRepositorioCliente repositorioCliente;
-        private TabelaClientesControl tabelaClientes;
+        private ServiceCliente serviceCliente;
 
-        public ControladorCliente(IRepositorioCliente repositorioCliente)
+        private TabelaClienteControl tabelaClientes;
+
+        public ControladorCliente(IRepositorioCliente repositorioCliente, ServiceCliente serviceCliente)
         {
-            this.repositorioCliente = repositorioCliente;
+            this.repositorioCliente=repositorioCliente;
+            this.serviceCliente=serviceCliente;
         }
 
         public override void Editar()
@@ -35,7 +39,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
 
             tela.Cliente = clienteSelecionado.Clone();
 
-            tela.GravarRegistro = repositorioCliente.Editar;
+            tela.GravarRegistro = serviceCliente.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -50,7 +54,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
         {
             var numero = tabelaClientes.ObtemIdClienteSelecionado();
 
-            Cliente clienteSelecionado = repositorioCliente.SelecionarPorId(numero);
+            Cliente clienteSelecionado = serviceCliente.SelecionarPorId(numero);
 
             if (clienteSelecionado == null)
             {
@@ -75,7 +79,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
 
             tela.Cliente = new Cliente();
 
-            tela.GravarRegistro = repositorioCliente.Inserir;
+            tela.GravarRegistro = serviceCliente.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -110,7 +114,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
         {
 
             if (tabelaClientes == null)
-                tabelaClientes = new TabelaClientesControl();
+                tabelaClientes = new TabelaClienteControl();
 
             CarregarClientes();
 

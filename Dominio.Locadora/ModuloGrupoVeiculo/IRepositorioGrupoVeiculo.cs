@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Locadora.Dominio.ModuloGrupoDeVeiculos
+namespace Locadora.Dominio.ModuloGrupoDeVeiculo
 {
-    public  interface IRepositorioGrupoDeVeiculos:IRepositorioBase<GrupoDeVeiculo>
+    public  interface IRepositorioGrupoVeiculo:IRepositorioBase<GrupoVeiculo>
     {
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Locadora.Apresentacao.WinForm.Compartilhado;
-using Locadora.Dominio.ModuloGrupoDeVeiculos;
+using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
 {
-    public partial class TabelaGrupoDeVeiculosControl : UserControl
+    public partial class TabelaGrupoVeiculoControl : UserControl
     {        
-        public TabelaGrupoDeVeiculosControl()
+        public TabelaGrupoVeiculoControl()
         {
             InitializeComponent();
             grid.ConfigurarGridZebrado();
@@ -39,7 +39,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
             return grid.SelecionarId<int>();
         }
 
-        public void AtualizarRegistros(List<GrupoDeVeiculo> grupoDeVeiculos)
+        public void AtualizarRegistros(List<GrupoVeiculo> grupoDeVeiculos)
         {
             grid.Rows.Clear();
 
