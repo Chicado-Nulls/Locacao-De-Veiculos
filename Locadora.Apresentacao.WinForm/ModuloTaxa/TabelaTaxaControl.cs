@@ -37,7 +37,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
 
         internal int ObtemNumeroMateriaSelecionado()
         {
-            return grid.SelecionarNumero<int>();
+            return grid.SelecionarId<int>();
         }
 
         public void AtualizarRegistros(List<Taxa> taxas)
