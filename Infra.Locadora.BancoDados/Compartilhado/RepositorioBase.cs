@@ -27,6 +27,9 @@ namespace Locadora.Infra.BancoDados.Compartilhado
         protected abstract string sqlSelecionarPorId { get; }
 
         protected abstract string sqlSelecionarTodos { get; }
+        protected abstract string sqlValidaRegistroDuplicadoInserir { get; }
+
+        protected abstract string sqlValidaRegistroDuplicadoEditar { get; }
 
         public virtual void Inserir(T registro)
         {
@@ -118,6 +121,40 @@ namespace Locadora.Infra.BancoDados.Compartilhado
 
             return registros;
         }
+        public bool ExisteRegistroIgual(T registro, string tipo)
+        {
+           string consultaVerificaDuplicidade = selecionarSql(tipo);
 
+           SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+
+            SqlCommand comandoSelecao = new SqlCommand(consultaVerificaDuplicidade, conexaoComBanco);
+
+            var mapeador = new TMapeador();
+
+            mapeador.ConfigurarParametros(registro, comandoSelecao);
+
+            conexaoComBanco.Open();
+
+            SqlDataReader leitorRegistro = comandoSelecao.ExecuteReader();
+
+            T registroBusca = null;
+
+            if (leitorRegistro.Read())
+                registroBusca = mapeador.ConverterRegistro(leitorRegistro);
+
+            conexaoComBanco.Close();
+
+            return registroBusca == null ? false : true;
+        }
+
+        private string selecionarSql(string tipo)
+        {
+            if(tipo == "Inserir")
+            {
+                return sqlValidaRegistroDuplicadoInserir;
+
+            }
+            return sqlValidaRegistroDuplicadoEditar;
+        }
     }
 }

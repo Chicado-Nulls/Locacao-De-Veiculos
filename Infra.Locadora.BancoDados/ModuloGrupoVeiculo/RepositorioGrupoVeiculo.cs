@@ -33,15 +33,15 @@ namespace Locadora.Infra.BancoDados.ModuloGrupoVeiculo
                                                              [ID]=@ID";
         protected override string sqlSelecionarTodos => @"SELECT * FROM [TBGRUPODEVEICULOS]";
 
-        //protected override string sqlValidaRegistroDuplicadoInserir =>
-        //    @"SELECT * FROM [TBGRUPODEVEICULOS]
-        //            WHERE
-        //                [NOME]=@NOME";
+        protected override string sqlValidaRegistroDuplicadoInserir =>
+            @"SELECT * FROM [TBGRUPODEVEICULOS]
+                  WHERE
+                       [NOME]=@NOME";
 
-        //protected override string sqlValidaRegistroDuplicadoEditar =>
-        //    @"SELECT * FROM [TBGRUPODEVEICULOS]
-        //            WHERE
-        //                [NOME]=@NOME AND [ID] <> @ID";
+        protected override string sqlValidaRegistroDuplicadoEditar =>
+            @"SELECT * FROM [TBGRUPODEVEICULOS]
+                   WHERE
+                       [NOME]=@NOME AND [ID] <> @ID";
 
     }
 }

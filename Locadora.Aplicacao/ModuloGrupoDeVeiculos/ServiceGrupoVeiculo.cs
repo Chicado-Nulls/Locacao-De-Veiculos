@@ -1,4 +1,6 @@
 ﻿using FluentValidation.Results;
+using Locadora.Aplicacao.Compartilhado;
+using Locadora.Dominio.Compartilhado;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using System;
 using System.Collections.Generic;
@@ -8,58 +10,13 @@ using System.Threading.Tasks;
 
 namespace Locadora.Aplicacao.ModuloGrupoDeVeiculos
 {
-    public class ServiceGrupoVeiculo
+    public class ServiceGrupoVeiculo : ServiceBase<GrupoVeiculo, ValidadorGrupoVeiculo>
     {
-        IRepositorioGrupoVeiculo repositorio;
-
-        public ServiceGrupoVeiculo(IRepositorioGrupoVeiculo repositorio)
+        public ServiceGrupoVeiculo(IRepositorioBase<GrupoVeiculo> repositorio) : base(repositorio)
         {
-            this.repositorio=repositorio;
+
         }
 
-        public ValidationResult Inserir(GrupoVeiculo registro)
-        {
-            var validador = new ValidadorGrupoVeiculo();
-
-            var resultado = validador.Validate(registro);
-
-            if (resultado.IsValid)
-            {
-                repositorio.Inserir(registro);
-            }
-            return resultado;
-        }
-        public ValidationResult Editar(GrupoVeiculo registro)
-        {
-            var validador = new ValidadorGrupoVeiculo();
-
-            var resultado = validador.Validate(registro);
-
-            if (resultado.IsValid)
-            {
-                repositorio.Editar(registro);
-            }
-            return resultado;
-        }
-        public ValidationResult Excluir(GrupoVeiculo registro)
-        {
-            var validador = new ValidadorGrupoVeiculo();
-
-            var resultado = validador.Validate(registro);
-
-            if (resultado.IsValid)
-            {
-                repositorio.Excluir(registro);
-            }
-            return resultado;
-        }
-        public GrupoVeiculo SelecionarPorId(int id)
-        {
-            return repositorio.SelecionarPorId(id);
-        }
-        public List<GrupoVeiculo> SelecionarTodos()
-        {
-            return repositorio.SelecionarTodos();
-        }
+       
     }
 }

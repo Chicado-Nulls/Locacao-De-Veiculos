@@ -1,7 +1,8 @@
 ﻿using FluentAssertions;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using Locadora.Infra.BancoDados.Compartilhado;
-using Locadora.Infra.BancoDados.ModuloGrupoDeVeiculo;
+
+using Locadora.Infra.BancoDados.ModuloGrupoVeiculo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;

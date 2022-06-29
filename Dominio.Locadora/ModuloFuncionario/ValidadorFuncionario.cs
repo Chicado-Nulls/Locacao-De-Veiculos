@@ -25,6 +25,9 @@ namespace Locadora.Dominio.ModuloFuncionario
             RuleFor(x => x.DataEntrada)
                 .NotNull()
                 .LessThan(p => DateTime.Now);
+                
+                
+                
 
             RuleFor(x => x.Salario)
                 .NotNull()
