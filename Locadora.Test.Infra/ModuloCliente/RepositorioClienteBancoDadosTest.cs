@@ -123,6 +123,7 @@ namespace Locadora.Test.Infra.ModuloCliente
             Assert.AreEqual(cliente1.Nome, clientes[0].Nome);
             Assert.AreEqual(cliente2.Nome, clientes[1].Nome);
             Assert.AreEqual(cliente3.Nome, clientes[2].Nome);
+            Db.ExecutarSql("DELETE FROM TBCLIENTE; DBCC CHECKIDENT (TBCLIENTE, RESEED, 0)");
         }
 
         //[TestMethod]

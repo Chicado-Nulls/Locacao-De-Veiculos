@@ -104,6 +104,7 @@ namespace Locadora.Test.Infra.ModuloTaxa
             listTaxa[0].Descricao.Should().Be(novaTaxaUm.Descricao);
             listTaxa[1].Descricao.Should().Be(novaTaxaDois.Descricao);
             listTaxa[2].Descricao.Should().Be(novaTaxaTres.Descricao);
+            Db.ExecutarSql("DELETE FROM [TbTaxa]; DBCC CHECKIDENT ([TbTaxa], RESEED, 0)");
         }
 
         //[TestMethod]

@@ -108,6 +108,7 @@ namespace Locadora.Test.Infra.ModuloFuncionario
             Assert.AreEqual(f0.Nome, fornecedores[0].Nome);
             Assert.AreEqual(f1.Nome, fornecedores[1].Nome);
             Assert.AreEqual(f2.Nome, fornecedores[2].Nome);
+            Db.ExecutarSql("DELETE FROM TBFUNCIONARIO; DBCC CHECKIDENT (TBFUNCIONARIO, RESEED, 0)");
         }
 
         //[TestMethod]

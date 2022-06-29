@@ -90,6 +90,7 @@ namespace Locadora.Test.Infra.ModuloGrupoDeVeiculo
             grupos[0].Should().Be(grupoUm);
             grupos[1].Should().Be(grupoDois);
             grupos[2].Should().Be(grupoTres);
+            Db.ExecutarSql("DELETE FROM TBGRUPODEVEICULOS; DBCC CHECKIDENT (TBGRUPODEVEICULOS, RESEED, 0)");
         }
 
         //[TestMethod]

@@ -58,7 +58,7 @@ namespace Locadora.Aplicacao.Compartilhado
 
             if (resultado.IsValid)
             {
-                repositorio.Inserir(registro);
+                repositorio.Editar(registro);
             }
             return resultado;
         }
