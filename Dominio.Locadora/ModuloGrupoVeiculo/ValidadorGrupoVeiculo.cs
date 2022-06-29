@@ -16,7 +16,7 @@ namespace Locadora.Dominio.ModuloGrupoDeVeiculo
                .NotNull()
                .MaximumLength(60)
                .MinimumLength(2)
-               .Matches(new Regex(@"^([^0-9]*)$"))
+               .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$").WithMessage("Caracteres especiais não são permitidos!")
                .NotEmpty();
         }
     }

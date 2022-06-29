@@ -14,12 +14,13 @@ namespace Locadora.Dominio.ModuloTaxa
         {
             RuleFor(x => x.Descricao)
                  .NotNull()
-                 .MaximumLength(60)
-                 .Matches(new Regex(@"^([^0-9]*)$"))
+                 .MinimumLength(3)
+                 .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$").WithMessage("Caracteres especiais não são permitidos!")
                  .NotEmpty();
-          
-             RuleFor(x => x.TipoDeCalculo)
-                 .NotNull();
+
+            RuleFor(x => x.TipoDeCalculo)
+                .NotNull()
+                .NotEmpty();
 
             RuleFor(x => x.Valor)
                 .NotNull()
