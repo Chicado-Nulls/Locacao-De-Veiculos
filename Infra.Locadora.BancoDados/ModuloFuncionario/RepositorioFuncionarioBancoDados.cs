@@ -87,7 +87,7 @@ namespace Locadora.Infra.BancoDados.ModuloFuncionario
 
                 FROM TBFUNCIONARIO AS FUNCIONARIO
 
-               WHERE NOME = @NOME AND LOGIN = @LOGIN";
+               WHERE NOME = @NOME OR LOGIN = @LOGIN";
 
         protected override string sqlValidaRegistroDuplicadoEditar =>
              @"SELECT 
@@ -101,7 +101,7 @@ namespace Locadora.Infra.BancoDados.ModuloFuncionario
 
                 FROM TBFUNCIONARIO AS FUNCIONARIO
 
-                WHERE NOME = @NOME AND LOGIN = @LOGIN AND ID <> @ID";
+                WHERE (NOME = @NOME or LOGIN = @LOGIN) AND ID <> @ID";
 
         //public bool FuncionarioAdministrador(Funcionario funcionario)
         //{

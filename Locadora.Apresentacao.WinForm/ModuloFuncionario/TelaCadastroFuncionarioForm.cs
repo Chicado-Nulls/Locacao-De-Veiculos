@@ -1,6 +1,7 @@
 ﻿using FluentValidation.Results;
 using Locadora.Dominio.ModuloFuncionario;
 using System;
+using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -39,14 +40,20 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
             txtBoxSenha.Text = _funcionario.Senha != null ? _funcionario.Senha : "";
             
             rBtnAdministrador.Checked = _funcionario.Administrador;
-            
-            txtBoxDataCadastro.Text = _funcionario.DataEntrada != default ? Convert.ToString(_funcionario.DataEntrada) : "";
+
+            dtPickerDataEntrada.Text = _funcionario.DataEntrada != default ? Convert.ToString(_funcionario.DataEntrada) : "";
 
             txtBoxSalario.Text = _funcionario.Salario != default ? string.Format("{0:#,##0.00}", Double.Parse(_funcionario.Salario.ToString())) : "";
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+            if (ExisteCompoVazio())
+            {
+                DialogResult = DialogResult.None;
+                return;
+            }
+                
             ConfigurarObjeto();
 
             var resultadoValidacao = GravarRegistro(Funcionario);
@@ -61,13 +68,30 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
             }
         }
 
+        private bool ExisteCompoVazio()
+        {
+            bool existeCampoVazio = false;
+            TelaPrincipalForm.Instancia.AtualizarRodape("");
+            if (string.IsNullOrEmpty(txtBoxNome.Text) ||
+                string.IsNullOrEmpty(txtBoxLogin.Text) ||
+                string.IsNullOrEmpty(txtBoxSenha.Text) ||
+                string.IsNullOrEmpty(dtPickerDataEntrada.Text) ||
+                string.IsNullOrEmpty(txtBoxSalario.Text))
+            {
+                TelaPrincipalForm.Instancia.AtualizarRodape("Preencha todos os campos do formulário");
+                existeCampoVazio = true;
+            }
+
+            return existeCampoVazio;
+        }
+
         private void ConfigurarObjeto()
         {
             Funcionario.Id = txtBoxID.Text != "0" ? Convert.ToInt32(txtBoxID.Text) : 0;
             Funcionario.Nome = txtBoxNome.Text;
             Funcionario.Login = txtBoxLogin.Text;
             Funcionario.Senha = txtBoxSenha.Text;
-            Funcionario.DataEntrada = Convert.ToDateTime(txtBoxDataCadastro.Text);
+            Funcionario.DataEntrada = Convert.ToDateTime(dtPickerDataEntrada.Text);
             Funcionario.Administrador = rBtnAdministrador.Checked;
             Funcionario.Salario = Convert.ToDecimal(txtBoxSalario.Text);
         }

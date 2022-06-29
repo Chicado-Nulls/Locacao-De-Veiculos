@@ -50,13 +50,6 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
             }
         }
 
-        //public override bool Equals(object? obj)
-        //{
-        //    return obj is ControladorFuncionario funcionario&&
-        //           EqualityComparer<IRepositorioFuncionario>.Default.Equals(repositorio, funcionario.repositorio)&&
-        //           EqualityComparer<ServiceFuncionario>.Default.Equals(serviceFuncionario, funcionario.serviceFuncionario);
-        //}
-
         public override void Excluir()
         {
             var numero = tabelaFuncionario.ObtemNumeroRegistroSelecionado();

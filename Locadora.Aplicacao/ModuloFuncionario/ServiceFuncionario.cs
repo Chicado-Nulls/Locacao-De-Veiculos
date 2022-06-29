@@ -19,47 +19,59 @@ namespace Locadora.Aplicacao.ModuloFuncionario
 
         public ValidationResult Inserir(Funcionario registro)
         {
-            var validador = new ValidadorFuncionario();
-
-            var resultado = validador.Validate(registro);
+            var resultado = ValidarFuncionario(registro, "Inserir");
 
             if (resultado.IsValid)
-            {
                 repositorio.Inserir(registro);
-            }
+            
             return resultado;
         }
         public ValidationResult Editar(Funcionario registro)
         {
-            var validador = new ValidadorFuncionario();
-
-            var resultado = validador.Validate(registro);
+            var resultado = ValidarFuncionario(registro, "Editar");
 
             if (resultado.IsValid)
-            {
                 repositorio.Editar(registro);
-            }
+            
             return resultado;
         }
         public ValidationResult Excluir(Funcionario registro)
         {
             var validador = new ValidadorFuncionario();
 
-            var resultado = validador.Validate(registro);
+            var registroEncontrado = repositorio.SelecionarPorId(registro.Id) ;
+
+            var resultado = validador.Validate(registroEncontrado);
 
             if (resultado.IsValid)
-            {
                 repositorio.Excluir(registro);
-            }
+            
+
             return resultado;
         }
         public Funcionario SelecionarPorId(int id)
         {
             return repositorio.SelecionarPorId(id);
         }
+
         public List<Funcionario> SelecionarTodos()
         {
             return repositorio.SelecionarTodos();
+        }
+
+        private ValidationResult ValidarFuncionario(Funcionario registro, string Tipo)
+        {
+            var validador = new ValidadorFuncionario();
+
+            var resultado = validador.Validate(registro);
+
+            bool registroUnico = repositorio.ExisteRegistroIgual(registro, Tipo);
+
+            if (registroUnico)
+                resultado.Errors.Add(new ValidationFailure("Campos", "Campos com * precisam ser únicos"));
+            
+
+            return resultado;
         }
     }
 }
