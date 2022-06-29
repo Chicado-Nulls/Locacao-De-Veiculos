@@ -36,7 +36,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
                 return;
             }
 
-            var tela = new TelaCadastroFuncionarioForm("Editar Funcionário");
+            var tela = new TelaCadastroFuncionarioForm("Editar Funcionário", "Editar");
 
             tela.Funcionario = funcionarioSelecionado.Clone();
 
@@ -74,7 +74,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
 
         public override void Inserir()
         {
-            TelaCadastroFuncionarioForm telaCadastro = new TelaCadastroFuncionarioForm("Cadastrar Funcionário");
+            TelaCadastroFuncionarioForm telaCadastro = new TelaCadastroFuncionarioForm("Inserir Funcionário", "Inserir");
 
             telaCadastro.Funcionario = new Funcionario();
 

@@ -44,17 +44,21 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
             textEndereco.Text = _cliente.Endereco;
             textEmail.Text = _cliente.Email;
             textTelefone.Text = _cliente.Telefone;
-            
+
             if (_cliente.Id != 0)
+                SelecionaTipoCadastro();
+        }
+
+        private void SelecionaTipoCadastro()
+        {
+            switch (_cliente.TipoCadastro)
             {
-                if (_cliente.TipoCadastro == true)
-                {
+                case true:
                     radioPessoaFisica.Checked = true;
-                }
-                else if (_cliente.TipoCadastro == false)
-                {
+                    break;
+                case false:
                     radioPessoaJuridica.Checked = true;
-                }
+                    break;
             }
         }
 
@@ -62,7 +66,10 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
         {
             if (ExisteCamposVazio())
             {
+                TelaPrincipalForm.Instancia.AtualizarRodape("Preencha todos os campos do formulário");
+
                 DialogResult = DialogResult.None;
+
                 return;
             }
             ConfigurarObjeto();
@@ -82,34 +89,25 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
 
         private bool ExisteCamposVazio()
         {
-            bool existeCampoVazio = false;
             TelaPrincipalForm.Instancia.AtualizarRodape("");
 
             if (string.IsNullOrEmpty(textNome.Text) ||
                 string.IsNullOrEmpty(textTelefone.Text) ||
                 string.IsNullOrEmpty(textEmail.Text) ||
                 string.IsNullOrEmpty(textEndereco.Text))
-            {
-                TelaPrincipalForm.Instancia.AtualizarRodape("Preencha todos os campos do formulário");
-                existeCampoVazio = true;
-            }
+                return true;
+            
 
             if (radioPessoaFisica.Checked && 
                 (string.IsNullOrEmpty(textCPF.Text) ||
                 string.IsNullOrEmpty(textCNH.Text)))
-            {
-                TelaPrincipalForm.Instancia.AtualizarRodape("Preencha todos os campos do formulário");
-                existeCampoVazio = true;
-            }
+                return true;
+            
             if (radioPessoaJuridica.Checked &&
                 string.IsNullOrEmpty(textCNPJ.Text))
-            {
-                TelaPrincipalForm.Instancia.AtualizarRodape("Preencha todos os campos do formulário");
-                existeCampoVazio = true;
-            }
-
-
-            return existeCampoVazio;
+                return true;
+            
+            return false;
         }
 
         private void ConfigurarObjeto()
@@ -129,9 +127,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
         private bool GerarTipoCadastro()
         {
             if (radioPessoaFisica.Checked == true)
-            {
                 return true;
-            }
 
             return false;
         }

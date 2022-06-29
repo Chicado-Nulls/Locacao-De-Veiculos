@@ -75,7 +75,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
 
         public override void Inserir()
         {
-            TelaCadastroCliente tela = new TelaCadastroCliente("Cadastrar Cliente", "Inserir");
+            TelaCadastroCliente tela = new TelaCadastroCliente("Inserir Cliente", "Inserir");
 
             tela.Cliente = new Cliente();
 

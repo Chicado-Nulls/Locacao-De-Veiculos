@@ -33,7 +33,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
                 return;
             }
 
-            TelaCadastroGrupoDeVeiculos telaGrupo = new TelaCadastroGrupoDeVeiculos();
+            TelaCadastroGrupoDeVeiculos telaGrupo = new TelaCadastroGrupoDeVeiculos("Editar Grupo de Veículo", "Editar");
 
             telaGrupo.GrupoDeVeiculo = grupo;
 
@@ -68,7 +68,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
 
         public override void Inserir()
         {
-            TelaCadastroGrupoDeVeiculos telaCadastro = new TelaCadastroGrupoDeVeiculos();
+            TelaCadastroGrupoDeVeiculos telaCadastro = new TelaCadastroGrupoDeVeiculos("Inserir Grupo de Veículo", "Inserir");
 
             telaCadastro.GrupoDeVeiculo = new GrupoVeiculo();
 
