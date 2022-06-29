@@ -10,10 +10,11 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
     public partial class TelaCadastroFuncionarioForm : Form
     {
         Funcionario _funcionario;
-        public TelaCadastroFuncionarioForm(string titulo)
+        public TelaCadastroFuncionarioForm(string titulo, string label)
         {
             InitializeComponent();
             Text = titulo;
+            btnSalvar.Text = label;
             txtBoxSenha.PasswordChar = '*';
         }
 
@@ -50,7 +51,10 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
         {
             if (ExisteCompoVazio())
             {
+                TelaPrincipalForm.Instancia.AtualizarRodape("Preencha todos os campos do formulário");
+
                 DialogResult = DialogResult.None;
+
                 return;
             }
                 
@@ -70,19 +74,17 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
 
         private bool ExisteCompoVazio()
         {
-            bool existeCampoVazio = false;
             TelaPrincipalForm.Instancia.AtualizarRodape("");
+            
             if (string.IsNullOrEmpty(txtBoxNome.Text) ||
                 string.IsNullOrEmpty(txtBoxLogin.Text) ||
                 string.IsNullOrEmpty(txtBoxSenha.Text) ||
                 string.IsNullOrEmpty(dtPickerDataEntrada.Text) ||
                 string.IsNullOrEmpty(txtBoxSalario.Text))
-            {
-                TelaPrincipalForm.Instancia.AtualizarRodape("Preencha todos os campos do formulário");
-                existeCampoVazio = true;
-            }
+                return true;
+            
 
-            return existeCampoVazio;
+            return false;
         }
 
         private void ConfigurarObjeto()

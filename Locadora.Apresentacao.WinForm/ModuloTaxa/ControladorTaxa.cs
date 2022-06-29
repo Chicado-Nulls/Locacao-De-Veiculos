@@ -33,7 +33,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
                 "Edição de taxa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            TelaTaxa telaTaxa = new TelaTaxa();
+            TelaTaxa telaTaxa = new TelaTaxa("Editar Taxa", "Editar");
 
             telaTaxa.Taxa = taxa;
             telaTaxa.GravarRegistro = serviceTaxa.Editar;
@@ -66,7 +66,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
 
         public override void Inserir()
         {
-            TelaTaxa telaTaxa=  new TelaTaxa();
+            TelaTaxa telaTaxa=  new TelaTaxa("Inserir Taxa", "Inserir");
 
             telaTaxa.Taxa= new Taxa();
 

@@ -17,9 +17,11 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
     {
         GrupoVeiculo _grupoDeVeiculos;
 
-        public TelaCadastroGrupoDeVeiculos()
+        public TelaCadastroGrupoDeVeiculos(string titulo, string label)
         {
             InitializeComponent();
+            Text = titulo;
+            gravarBtn.Text = label;
         }
 
         public GrupoVeiculo GrupoDeVeiculo 

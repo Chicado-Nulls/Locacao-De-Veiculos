@@ -17,9 +17,11 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
     {
         private Taxa _taxa;
         
-        public TelaTaxa()
+        public TelaTaxa(string titulo, string label)
         {
             InitializeComponent();
+            Text = titulo;
+            btnGravar.Text = label;
         }
         public Taxa Taxa
         {
@@ -36,6 +38,14 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
         public Func<Taxa, ValidationResult> GravarRegistro { get; set; }
         private void btnGravar_Click(object sender, EventArgs e)
         {
+            if (ExisteCampoVazio())
+            {
+                TelaPrincipalForm.Instancia.AtualizarRodape("Preencha todos os campos");
+
+                DialogResult = DialogResult.None;
+
+                return;
+            }
             ConfigurarObjeto();
 
             var resultadoValidacao = GravarRegistro(Taxa);
@@ -50,6 +60,14 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
 
                 DialogResult = DialogResult.None;
             }
+        }
+
+        private bool ExisteCampoVazio()
+        {
+            if(string.IsNullOrEmpty(txtBoxDescricao.Text) || string.IsNullOrEmpty(txtBoxValor.Text))
+                return true;
+            
+            return false;
         }
 
         private void ConfigurarObjeto()
