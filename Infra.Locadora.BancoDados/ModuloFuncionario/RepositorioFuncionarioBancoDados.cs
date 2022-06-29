@@ -75,21 +75,7 @@ namespace Locadora.Infra.BancoDados.ModuloFuncionario
 
                 FROM TBFUNCIONARIO AS FUNCIONARIO";
 
-        protected override string sqlValidaRegistroDuplicadoInserir =>
-            @"SELECT 
-	                FUNCIONARIO.ID FUNCIONARIO_ID,
-	                FUNCIONARIO.NOME FUNCIONARIO_NOME,
-	               FUNCIONARIO.LOGIN FUNCIONARIO_LOGIN,
-	                FUNCIONARIO.SENHA FUNCIONARIO_SENHA,
-	              FUNCIONARIO.DATAENTRADA FUNCIONARIO_DATAENTRADA,
-                   FUNCIONARIO.ADMINISTRADOR FUNCIONARIO_ADMINISTRADOR,
-                    FUNCIONARIO.SALARIO FUNCIONARIO_SALARIO
-
-                FROM TBFUNCIONARIO AS FUNCIONARIO
-
-               WHERE NOME = @NOME OR LOGIN = @LOGIN";
-
-        protected override string sqlValidaRegistroDuplicadoEditar =>
+        protected override string sqlValidaRegistroDuplicado =>
              @"SELECT 
 	                FUNCIONARIO.ID FUNCIONARIO_ID,
 	                FUNCIONARIO.NOME FUNCIONARIO_NOME,
@@ -102,10 +88,5 @@ namespace Locadora.Infra.BancoDados.ModuloFuncionario
                 FROM TBFUNCIONARIO AS FUNCIONARIO
 
                 WHERE (NOME = @NOME or LOGIN = @LOGIN) AND ID <> @ID";
-
-        //public bool FuncionarioAdministrador(Funcionario funcionario)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }

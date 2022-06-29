@@ -92,23 +92,7 @@ namespace Locadora.Infra.BancoDados.ModuloCliente
             FROM
                 [TBCLIENTE]";
 
-        protected override string sqlValidaRegistroDuplicadoInserir =>
-             @"SELECT 
-                    [ID],
-		            [NOME],
-                    [CPF],
-                    [CNPJ],
-                    [ENDERECO],
-                   [CNH],
-                   [EMAIL],
-                   [TELEFONE],
-                   [TIPOCADASTRO]
-	            FROM 
-		            [TBCLIENTE]
-		        WHERE
-                  [CPF] = @CPF OR [CNPJ] = @CNPJ";
-
-        protected override string sqlValidaRegistroDuplicadoEditar =>
+        protected override string sqlValidaRegistroDuplicado =>
             @"SELECT 
                     [ID],
 		            [NOME],
