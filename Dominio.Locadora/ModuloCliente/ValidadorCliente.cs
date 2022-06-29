@@ -8,8 +8,11 @@ namespace Locadora.Dominio.ModuloCliente
         {
             RuleFor(x => x.Nome)
               .NotNull()
-              .NotEmpty();
-            
+              .NotEmpty()
+              .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$")
+              .WithMessage("Caracteres especiais não são permitidos!")
+              .MaximumLength(50);
+
             RuleFor(x => x.Endereco)
               .NotNull()
               .NotEmpty();
@@ -27,13 +30,13 @@ namespace Locadora.Dominio.ModuloCliente
                 .NotNull()
                 .NotEmpty()
                 .IsValidCPF()
-                .When(x => x.TipoCadastro==true);
+                .When(x => x.TipoCadastro == true);
 
             RuleFor(x => x.Cnpj)
                 .NotEmpty()
                 .NotNull()
                 .IsValidCNPJ()
-                .When(x => x.TipoCadastro==false);
+                .When(x => x.TipoCadastro == false);
 
         }
 
