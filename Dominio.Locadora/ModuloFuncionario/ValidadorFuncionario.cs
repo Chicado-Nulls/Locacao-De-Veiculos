@@ -9,29 +9,31 @@ namespace Locadora.Dominio.ModuloFuncionario
         public ValidadorFuncionario()
         {
             RuleFor(x => x.Nome)
-                .NotNull()
-                .MaximumLength(60)
-                .Matches(new Regex(@"^([^0-9]*)$"))
-                .NotEmpty();
+                .NotEmpty().WithMessage("O campo 'Nome' é obrigatório!")
+                .NotNull().WithMessage("O campo 'Nome' é obrigatório!")
+                .MinimumLength(6).WithMessage("Campo 'Nome' deve ter no mínimo 6 caractes!")
+                .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$").WithMessage("Caracteres especiais não são permitidos!")
+                .Matches(new Regex(@"^([^0-9]*)$")).WithMessage("Numero não são permitidos para o campo 'Nome!");
 
             RuleFor(x => x.Login)
-                .NotNull()
-                .MinimumLength(6);
+                .NotEmpty().WithMessage("O campo 'Nome' é obrigatório!")
+                .NotNull().WithMessage("O campo 'Nome' é obrigatório!")
+                .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$").WithMessage("Caracteres especiais não são permitidos!")
+                .MinimumLength(6).WithMessage("Campo 'Login' deve ter no mínimo 6 caractes!");
 
             RuleFor(x => x.Senha)
-                .NotNull()
-                .MinimumLength(6);
+                .NotEmpty().WithMessage("O campo 'Senha' é obrigatório!")
+                .NotNull().WithMessage("O campo 'Senha' é obrigatório!")
+                .MinimumLength(8).WithMessage("'Senha' deve ter no mínimo 8 (oito) caracteres!");
 
             RuleFor(x => x.DataEntrada)
-                .NotNull()
-                .LessThan(p => DateTime.Now);
-                
-                
-                
-
+                .NotEmpty().WithMessage("O campo 'Data de Entrada' é obrigatório!")
+                .NotNull().WithMessage("O campo 'Data de Entrada' é obrigatório!")
+                .LessThan(p => DateTime.Now).WithMessage("O campo 'Data de Entrada' não deve ser maior que data atual!");
             RuleFor(x => x.Salario)
-                .NotNull()
-                .GreaterThan(1);
+                .NotEmpty().WithMessage("O campo 'Salário' é obrigatório!")
+                .NotNull().WithMessage("O campo 'Salário' é obrigatório!")
+                .GreaterThan(0).WithMessage("O campo 'Salário' deve ser maior que 0 (zero)!");
         }
     }
 }
