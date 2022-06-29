@@ -106,22 +106,22 @@ namespace Locadora.Test.Infra.ModuloTaxa
             listTaxa[2].Descricao.Should().Be(novaTaxaTres.Descricao);
         }
 
-        [TestMethod]
-        public void Nao_deve_Inserir_Taxa_com_descricao_duplicada()
-        {
-            //range
-            var NovaTaxa = gerarTaxa();
-            var taxa2 = gerarTaxa();
+        //[TestMethod]
+        //public void Nao_deve_Inserir_Taxa_com_descricao_duplicada()
+        //{
+        //    //range
+        //    var NovaTaxa = gerarTaxa();
+        //    var taxa2 = gerarTaxa();
 
-            //action
-            repositorio.Inserir(NovaTaxa);
-            repositorio.Inserir(taxa2);
+        //    //action
+        //    repositorio.Inserir(NovaTaxa);
+        //    repositorio.Inserir(taxa2);
 
-            var taxaInserida = repositorio.SelecionarTodos();
+        //    var taxaInserida = repositorio.SelecionarTodos();
 
-            //Assert
-            Assert.AreEqual(1, taxaInserida.Count);
-        }
+        //    //Assert
+        //    Assert.AreEqual(1, taxaInserida.Count);
+        //}
 
         [TestMethod]
         public void Nao_deve_editar_Taxa_com_descricao_duplicada()

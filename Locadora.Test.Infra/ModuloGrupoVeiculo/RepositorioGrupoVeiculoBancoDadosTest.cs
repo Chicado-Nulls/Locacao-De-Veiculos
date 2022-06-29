@@ -92,24 +92,24 @@ namespace Locadora.Test.Infra.ModuloGrupoDeVeiculo
             grupos[2].Should().Be(grupoTres);
         }
 
-        [TestMethod]
-        public void Nao_deve_inserir_novo_GrupoDeVeiculo_com_nome_duplicado()
-        {
-            //arrange
-            var grupo = GerandoGrupoDeVeiculo();
+        //[TestMethod]
+        //public void Nao_deve_inserir_novo_GrupoDeVeiculo_com_nome_duplicado()
+        //{
+        //    //arrange
+        //    var grupo = GerandoGrupoDeVeiculo();
 
             
-            //action
-            repositorio.Inserir(grupo);
+        //    //action
+        //    repositorio.Inserir(grupo);
 
-            repositorio.Inserir(grupo);
+        //    repositorio.Inserir(grupo);
 
             
-            //assert
-            var grupoInserido = repositorio.SelecionarTodos();
+        //    //assert
+        //    var grupoInserido = repositorio.SelecionarTodos();
 
-            Assert.AreEqual(1, grupoInserido.Count);
-        }
+        //    Assert.AreEqual(1, grupoInserido.Count);
+        //}
 
         [TestMethod]
         public void Nao_deve_ditar_GrupoDeVeiculo_com_nome_duplicado()

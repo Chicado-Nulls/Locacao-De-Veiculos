@@ -125,22 +125,22 @@ namespace Locadora.Test.Infra.ModuloCliente
             Assert.AreEqual(cliente3.Nome, clientes[2].Nome);
         }
 
-        [TestMethod]
-        public void Nao_deve_inserir_cpf_duplicado()
-        {
-            //arrange
-            var cliente1 = new Cliente("Matheus de Souza", "12333", "12345", "888888", "lages sc", "Matheus@hotmail.com", "4999988938", true);
-            var cliente2 = new Cliente("Eduardo", "12333", "145678765", "845678", "curitiba", "Eduardo@hotmail.com", "4999778", false);
+        //[TestMethod]
+        //public void Nao_deve_inserir_cpf_duplicado()
+        //{
+        //    //arrange
+        //    var cliente1 = new Cliente("Matheus de Souza", "12333", "12345", "888888", "lages sc", "Matheus@hotmail.com", "4999988938", true);
+        //    var cliente2 = new Cliente("Eduardo", "12333", "145678765", "845678", "curitiba", "Eduardo@hotmail.com", "4999778", false);
 
-            //action
-            repositorio.Inserir(cliente1);
-            repositorio.Inserir(cliente2);
+        //    //action
+        //    repositorio.Inserir(cliente1);
+        //    repositorio.Inserir(cliente2);
 
-            //assert
-            var clienteEncontrado = repositorio.SelecionarTodos();
+        //    //assert
+        //    var clienteEncontrado = repositorio.SelecionarTodos();
 
-            Assert.AreEqual(1, clienteEncontrado.Count);
-        }
+        //    Assert.AreEqual(1, clienteEncontrado.Count);
+        //}
 
         [TestMethod]
         public void Nao_deve_editar_cliente_com_cpf_igual_outro_cliente()
@@ -160,22 +160,22 @@ namespace Locadora.Test.Infra.ModuloCliente
             //Assert.AreEqual(false, resultado.IsValid);
         }
 
-        [TestMethod]
-        public void Nao_deve_inserir_cnpf_duplicado()
-        {
-            //arrange
-            var cliente1 = new Cliente("Matheus de Souza", "12333", "12345", "888888", "lages sc", "Matheus@hotmail.com", "4999988938", true);
-            var cliente2 = new Cliente("Eduardo", "456443", "12345", "845678", "curitiba", "Eduardo@hotmail.com", "4999778", false);
+        //[TestMethod]
+        //public void Nao_deve_inserir_cnpf_duplicado()
+        //{
+        //    //arrange
+        //    var cliente1 = new Cliente("Matheus de Souza", "12333", "12345", "888888", "lages sc", "Matheus@hotmail.com", "4999988938", true);
+        //    var cliente2 = new Cliente("Eduardo", "456443", "12345", "845678", "curitiba", "Eduardo@hotmail.com", "4999778", false);
 
-            //action
-            repositorio.Inserir(cliente1);
-            repositorio.Inserir(cliente2);
+        //    //action
+        //    repositorio.Inserir(cliente1);
+        //    repositorio.Inserir(cliente2);
 
-            //assert
-            var clienteEncontrado = repositorio.SelecionarTodos();
+        //    //assert
+        //    var clienteEncontrado = repositorio.SelecionarTodos();
 
-            Assert.AreEqual(1, clienteEncontrado.Count);
-        }
+        //    Assert.AreEqual(1, clienteEncontrado.Count);
+        //}
 
         [TestMethod]
         public void Nao_deve_editar_cliente_com_cnpj_igual_outro_cliente()
