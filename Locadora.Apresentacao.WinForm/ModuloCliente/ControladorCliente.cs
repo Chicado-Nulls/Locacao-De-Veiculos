@@ -35,7 +35,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
                 return;
             }
 
-            TelaCadastroCliente tela = new TelaCadastroCliente("EditarCliente");
+            TelaCadastroCliente tela = new TelaCadastroCliente("Editar Cliente", "Editar");
 
             tela.Cliente = clienteSelecionado.Clone();
 
@@ -75,7 +75,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
 
         public override void Inserir()
         {
-            TelaCadastroCliente tela = new TelaCadastroCliente("Cadastrar Cliente");
+            TelaCadastroCliente tela = new TelaCadastroCliente("Cadastrar Cliente", "Inserir");
 
             tela.Cliente = new Cliente();
 

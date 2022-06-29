@@ -14,63 +14,60 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
 {
     public partial class TelaCadastroCliente : Form
     {
-        public TelaCadastroCliente(string v)
+        public TelaCadastroCliente(string titulo, string label)
         {
             InitializeComponent();
+            Text = titulo;
+            btnInserir.Text = label;
         }
-        private Cliente cliente;
+        private Cliente _cliente;
 
         public Func<Cliente, ValidationResult> GravarRegistro { get; set; }
 
         public Cliente Cliente
         {
-            get { return cliente; }
+            get { return _cliente; }
             set
             {
-                cliente = value;
+                _cliente = value;
                 ConfigurarTela();
-
-                if(cliente.Id != 0)
-                {
-                    if(cliente.TipoCadastro == true)
-                    {
-                        radioPessoaFisica.Checked = true;
-                    }
-                    else if(cliente.TipoCadastro == false)
-                    {
-                        radioPessoaJuridica.Checked = true;
-                    }
-                }
-
             }
         }
 
         private void ConfigurarTela()
         {
-            textNome.Text = cliente.Nome;
-            textCPF.Text = cliente.Cpf;
-            textCNPJ.Text = cliente.Cnpj;
-            textCNH.Text = cliente.Cnh;
-            textEndereco.Text = cliente.Endereco;
-            textEmail.Text = cliente.Email;
-            textTelefone.Text = cliente.Telefone;
-        }
-
-
-        private void TelaCadastroCliente_Load(object sender, EventArgs e)
-        {
-            TelaPrincipalForm.Instancia.AtualizarRodape("");
-        }
-
-        private void labelCpf_Click(object sender, EventArgs e)
-        {
-
+            textId.Text = _cliente.Id.ToString();
+            textNome.Text = _cliente.Nome;
+            textCPF.Text = _cliente.Cpf;
+            textCNPJ.Text = _cliente.Cnpj;
+            textCNH.Text = _cliente.Cnh;
+            textEndereco.Text = _cliente.Endereco;
+            textEmail.Text = _cliente.Email;
+            textTelefone.Text = _cliente.Telefone;
+            
+            if (_cliente.Id != 0)
+            {
+                if (_cliente.TipoCadastro == true)
+                {
+                    radioPessoaFisica.Checked = true;
+                }
+                else if (_cliente.TipoCadastro == false)
+                {
+                    radioPessoaJuridica.Checked = true;
+                }
+            }
         }
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
+            if (ExisteCamposVazio())
+            {
+                DialogResult = DialogResult.None;
+                return;
+            }
             ConfigurarObjeto();
-            var resultadoValidacao = GravarRegistro(cliente);
+
+            var resultadoValidacao = GravarRegistro(_cliente);
 
             if (resultadoValidacao.IsValid == false)
             {
@@ -83,17 +80,49 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
             }
         }
 
+        private bool ExisteCamposVazio()
+        {
+            bool existeCampoVazio = false;
+            TelaPrincipalForm.Instancia.AtualizarRodape("");
+
+            if (string.IsNullOrEmpty(textNome.Text) ||
+                string.IsNullOrEmpty(textTelefone.Text) ||
+                string.IsNullOrEmpty(textEmail.Text) ||
+                string.IsNullOrEmpty(textEndereco.Text))
+            {
+                TelaPrincipalForm.Instancia.AtualizarRodape("Preencha todos os campos do formulário");
+                existeCampoVazio = true;
+            }
+
+            if (radioPessoaFisica.Checked && 
+                (string.IsNullOrEmpty(textCPF.Text) ||
+                string.IsNullOrEmpty(textCNH.Text)))
+            {
+                TelaPrincipalForm.Instancia.AtualizarRodape("Preencha todos os campos do formulário");
+                existeCampoVazio = true;
+            }
+            if (radioPessoaJuridica.Checked &&
+                string.IsNullOrEmpty(textCNPJ.Text))
+            {
+                TelaPrincipalForm.Instancia.AtualizarRodape("Preencha todos os campos do formulário");
+                existeCampoVazio = true;
+            }
+
+
+            return existeCampoVazio;
+        }
+
         private void ConfigurarObjeto()
         {
-            //cliente.Id = textId.Text != "0" ? Convert.ToInt32(textId.Text) : 0;
-            cliente.Nome = textNome.Text;
-            cliente.Cpf = textCPF.Text;
-            cliente.Cnpj = textCNPJ.Text;
-            cliente.Cnh = textCNH.Text;
-            cliente.Endereco = textEndereco.Text;
-            cliente.Email = textEmail.Text;
-            cliente.Telefone = textTelefone.Text;
-            cliente.TipoCadastro = GerarTipoCadastro();
+            _cliente.Id = textId.Text != "0" ? Convert.ToInt32(textId.Text) : 0;
+            _cliente.Nome = textNome.Text;
+            _cliente.Cpf = textCPF.Text;
+            _cliente.Cnpj = textCNPJ.Text;
+            _cliente.Cnh = textCNH.Text;
+            _cliente.Endereco = textEndereco.Text;
+            _cliente.Email = textEmail.Text;
+            _cliente.Telefone = textTelefone.Text;
+            _cliente.TipoCadastro = GerarTipoCadastro();
         }
 
 
@@ -104,28 +133,19 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
                 return true;
             }
 
-            if (radioPessoaJuridica.Checked == true)
-            {
-                return false;
-            }
-
-            return true;
-
-
+            return false;
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private void radioPessoaFisica_CheckedChanged(object sender, EventArgs e)
         {
             textCPF.Enabled = true;
             textCNH.Enabled = true;
             textCNPJ.Enabled = false;
 
             textCNPJ.Clear();
-
-
-
         }
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+
+        private void radioPessoaJuridica_CheckedChanged(object sender, EventArgs e)
         {
             textCPF.Enabled = false;
             textCNH.Enabled = false;
@@ -134,6 +154,5 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
             textCPF.Clear();
             textCNH.Clear();
         }
-
     }
 }
