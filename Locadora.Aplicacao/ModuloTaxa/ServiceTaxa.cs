@@ -1,4 +1,6 @@
 ﻿using FluentValidation.Results;
+using Locadora.Aplicacao.Compartilhado;
+using Locadora.Dominio.Compartilhado;
 using Locadora.Dominio.ModuloTaxa;
 using System;
 using System.Collections.Generic;
@@ -8,58 +10,10 @@ using System.Threading.Tasks;
 
 namespace Locadora.Aplicacao.ModuloTaxa
 {
-    public class ServiceTaxa
+    public class ServiceTaxa : ServiceBase<Taxa, ValidadorTaxa>
     {
-        IRepositorioTaxa repositorio;
-
-        public ServiceTaxa(IRepositorioTaxa repositorioTaxa)
+        public ServiceTaxa(IRepositorioBase<Taxa> repositorio) : base(repositorio)
         {
-            this.repositorio=repositorioTaxa;
-        }
-
-        public ValidationResult Inserir(Taxa registro)
-        {
-            var validador = new ValidadorTaxa();
-
-            var resultado = validador.Validate(registro);
-
-            if (resultado.IsValid)
-            {
-                repositorio.Inserir(registro);
-            }
-            return resultado;
-        }
-        public ValidationResult Editar(Taxa registro)
-        {
-            var validador = new ValidadorTaxa();
-
-            var resultado = validador.Validate(registro);
-
-            if (resultado.IsValid)
-            {
-                repositorio.Editar(registro);
-            }
-            return resultado;
-        }
-        public ValidationResult Excluir(Taxa registro)
-        {
-            var validador = new ValidadorTaxa();
-
-            var resultado = validador.Validate(registro);
-
-            if (resultado.IsValid)
-            {
-                repositorio.Excluir(registro);
-            }
-            return resultado;
-        }
-        public Taxa SelecionarPorId(int id)
-        {
-            return  repositorio.SelecionarPorId(id);
-        }
-        public List<Taxa> SelecionarTodos()
-        {
-            return repositorio.SelecionarTodos();
         }
     }
 }
