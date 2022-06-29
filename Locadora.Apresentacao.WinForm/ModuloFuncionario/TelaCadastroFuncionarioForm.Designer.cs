@@ -120,7 +120,7 @@
             this.btnSalvar.Location = new System.Drawing.Point(12, 373);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(90, 36);
-            this.btnSalvar.TabIndex = 8;
+            this.btnSalvar.TabIndex = 10;
             this.btnSalvar.Text = "Inserir";
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
@@ -131,7 +131,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(163, 373);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(90, 36);
-            this.btnCancelar.TabIndex = 9;
+            this.btnCancelar.TabIndex = 11;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -151,7 +151,7 @@
             this.groupBoxTipoFuncionario.Location = new System.Drawing.Point(11, 301);
             this.groupBoxTipoFuncionario.Name = "groupBoxTipoFuncionario";
             this.groupBoxTipoFuncionario.Size = new System.Drawing.Size(249, 52);
-            this.groupBoxTipoFuncionario.TabIndex = 12;
+            this.groupBoxTipoFuncionario.TabIndex = 7;
             this.groupBoxTipoFuncionario.TabStop = false;
             this.groupBoxTipoFuncionario.Text = "Tipo Funcionario";
             // 
@@ -161,7 +161,7 @@
             this.rBtnAdministrador.Location = new System.Drawing.Point(141, 21);
             this.rBtnAdministrador.Name = "rBtnAdministrador";
             this.rBtnAdministrador.Size = new System.Drawing.Size(101, 19);
-            this.rBtnAdministrador.TabIndex = 7;
+            this.rBtnAdministrador.TabIndex = 9;
             this.rBtnAdministrador.TabStop = true;
             this.rBtnAdministrador.Text = "Administrador";
             this.rBtnAdministrador.UseVisualStyleBackColor = true;
@@ -173,7 +173,7 @@
             this.rBtnComum.Location = new System.Drawing.Point(21, 22);
             this.rBtnComum.Name = "rBtnComum";
             this.rBtnComum.Size = new System.Drawing.Size(69, 19);
-            this.rBtnComum.TabIndex = 6;
+            this.rBtnComum.TabIndex = 8;
             this.rBtnComum.TabStop = true;
             this.rBtnComum.Text = "Comum";
             this.rBtnComum.UseVisualStyleBackColor = true;
@@ -192,7 +192,7 @@
             this.txtBoxSalario.Location = new System.Drawing.Point(11, 272);
             this.txtBoxSalario.Name = "txtBoxSalario";
             this.txtBoxSalario.Size = new System.Drawing.Size(101, 23);
-            this.txtBoxSalario.TabIndex = 5;
+            this.txtBoxSalario.TabIndex = 6;
             this.txtBoxSalario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxSalario_KeyPress);
             // 
             // checkBoxMostrarSenha
@@ -201,7 +201,7 @@
             this.checkBoxMostrarSenha.Location = new System.Drawing.Point(12, 188);
             this.checkBoxMostrarSenha.Name = "checkBoxMostrarSenha";
             this.checkBoxMostrarSenha.Size = new System.Drawing.Size(101, 19);
-            this.checkBoxMostrarSenha.TabIndex = 16;
+            this.checkBoxMostrarSenha.TabIndex = 4;
             this.checkBoxMostrarSenha.Text = "Mostrar senha";
             this.checkBoxMostrarSenha.UseVisualStyleBackColor = true;
             this.checkBoxMostrarSenha.CheckedChanged += new System.EventHandler(this.checkBoxMostrarSenha_CheckedChanged);
@@ -212,7 +212,7 @@
             this.dtPickerDataEntrada.Location = new System.Drawing.Point(12, 228);
             this.dtPickerDataEntrada.Name = "dtPickerDataEntrada";
             this.dtPickerDataEntrada.Size = new System.Drawing.Size(101, 23);
-            this.dtPickerDataEntrada.TabIndex = 4;
+            this.dtPickerDataEntrada.TabIndex = 5;
             // 
             // TelaCadastroFuncionarioForm
             // 

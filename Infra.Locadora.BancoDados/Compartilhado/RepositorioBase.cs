@@ -27,6 +27,7 @@ namespace Locadora.Infra.BancoDados.Compartilhado
         protected abstract string sqlSelecionarPorId { get; }
 
         protected abstract string sqlSelecionarTodos { get; }
+
         protected abstract string sqlValidaRegistroDuplicado{ get; }
 
         public virtual void Inserir(T registro)
@@ -121,11 +122,9 @@ namespace Locadora.Infra.BancoDados.Compartilhado
         }
         public bool ExisteRegistroIgual(T registro, string tipo)
         {
-           string consultaVerificaDuplicidade = sqlValidaRegistroDuplicado;
-
            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
-            SqlCommand comandoSelecao = new SqlCommand(consultaVerificaDuplicidade, conexaoComBanco);
+            SqlCommand comandoSelecao = new SqlCommand(sqlValidaRegistroDuplicado, conexaoComBanco);
 
             var mapeador = new TMapeador();
 
