@@ -48,7 +48,7 @@
             this.btnGravar.Location = new System.Drawing.Point(58, 307);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(75, 32);
-            this.btnGravar.TabIndex = 2;
+            this.btnGravar.TabIndex = 5;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
             this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
@@ -59,7 +59,7 @@
             this.BtnCancelar.Location = new System.Drawing.Point(205, 307);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Size = new System.Drawing.Size(75, 32);
-            this.BtnCancelar.TabIndex = 3;
+            this.BtnCancelar.TabIndex = 6;
             this.BtnCancelar.Text = "Cancelar";
             this.BtnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -68,7 +68,7 @@
             this.txtBoxDescricao.Location = new System.Drawing.Point(28, 133);
             this.txtBoxDescricao.Name = "txtBoxDescricao";
             this.txtBoxDescricao.Size = new System.Drawing.Size(293, 23);
-            this.txtBoxDescricao.TabIndex = 4;
+            this.txtBoxDescricao.TabIndex = 2;
             // 
             // label1
             // 
@@ -105,7 +105,7 @@
             this.checkFixo.Location = new System.Drawing.Point(6, 47);
             this.checkFixo.Name = "checkFixo";
             this.checkFixo.Size = new System.Drawing.Size(90, 19);
-            this.checkFixo.TabIndex = 1;
+            this.checkFixo.TabIndex = 4;
             this.checkFixo.Text = "Calculo Fixo";
             this.checkFixo.UseVisualStyleBackColor = true;
             // 
@@ -116,7 +116,7 @@
             this.checkDiario.Location = new System.Drawing.Point(6, 22);
             this.checkDiario.Name = "checkDiario";
             this.checkDiario.Size = new System.Drawing.Size(99, 19);
-            this.checkDiario.TabIndex = 0;
+            this.checkDiario.TabIndex = 3;
             this.checkDiario.TabStop = true;
             this.checkDiario.Text = "Calculo Diario";
             this.checkDiario.UseVisualStyleBackColor = true;
@@ -126,7 +126,7 @@
             this.txtBoxValor.Location = new System.Drawing.Point(28, 81);
             this.txtBoxValor.Name = "txtBoxValor";
             this.txtBoxValor.Size = new System.Drawing.Size(86, 23);
-            this.txtBoxValor.TabIndex = 9;
+            this.txtBoxValor.TabIndex = 1;
             this.txtBoxValor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxValor_KeyPress);
             // 
             // txtBoxId

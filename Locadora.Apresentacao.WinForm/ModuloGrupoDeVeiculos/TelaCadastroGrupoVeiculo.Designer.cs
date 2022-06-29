@@ -42,7 +42,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(186, 210);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(74, 27);
-            this.btnCancelar.TabIndex = 0;
+            this.btnCancelar.TabIndex = 3;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -52,7 +52,7 @@
             this.gravarBtn.Location = new System.Drawing.Point(106, 210);
             this.gravarBtn.Name = "gravarBtn";
             this.gravarBtn.Size = new System.Drawing.Size(74, 27);
-            this.gravarBtn.TabIndex = 1;
+            this.gravarBtn.TabIndex = 2;
             this.gravarBtn.Text = "Gravar";
             this.gravarBtn.UseVisualStyleBackColor = true;
             this.gravarBtn.Click += new System.EventHandler(this.gravarBtn_Click);
@@ -62,7 +62,7 @@
             this.TextNomeDoGrupo.Location = new System.Drawing.Point(12, 107);
             this.TextNomeDoGrupo.Name = "TextNomeDoGrupo";
             this.TextNomeDoGrupo.Size = new System.Drawing.Size(248, 23);
-            this.TextNomeDoGrupo.TabIndex = 2;
+            this.TextNomeDoGrupo.TabIndex = 1;
             // 
             // label1
             // 
