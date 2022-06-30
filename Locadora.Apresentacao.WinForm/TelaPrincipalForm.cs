@@ -178,5 +178,20 @@ namespace Locadora.Apresentacao.WinForm
         {
             controlador.Excluir();
         }
+
+        private void condutoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void planoDeCobrançaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void veículosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

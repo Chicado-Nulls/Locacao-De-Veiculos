@@ -49,6 +49,9 @@
             this.panelRegistros = new System.Windows.Forms.Panel();
             this.statusStripMensagem = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
+            this.condutoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.planoDeCobrançaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.veículosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastrosToolStripMenuItem.SuspendLayout();
             this.toolbox.SuspendLayout();
             this.statusStripMensagem.SuspendLayout();
@@ -70,7 +73,10 @@
             this.taxaToolStripMenuItem1,
             this.grupoVeiculosToolStripMenuItem,
             this.clienteToolStripMenuItem,
-            this.funcionarioToolStripMenuItem});
+            this.funcionarioToolStripMenuItem,
+            this.condutoresToolStripMenuItem,
+            this.planoDeCobrançaToolStripMenuItem,
+            this.veículosToolStripMenuItem});
             this.taxaToolStripMenuItem.Name = "taxaToolStripMenuItem";
             this.taxaToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.taxaToolStripMenuItem.Text = "Cadastro";
@@ -79,7 +85,7 @@
             // 
             this.taxaToolStripMenuItem1.Name = "taxaToolStripMenuItem1";
             this.taxaToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F1)));
-            this.taxaToolStripMenuItem1.Size = new System.Drawing.Size(199, 22);
+            this.taxaToolStripMenuItem1.Size = new System.Drawing.Size(220, 22);
             this.taxaToolStripMenuItem1.Text = "Taxa";
             this.taxaToolStripMenuItem1.Click += new System.EventHandler(this.taxaToolStripMenuItem1_Click);
             // 
@@ -87,7 +93,7 @@
             // 
             this.grupoVeiculosToolStripMenuItem.Name = "grupoVeiculosToolStripMenuItem";
             this.grupoVeiculosToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F2)));
-            this.grupoVeiculosToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.grupoVeiculosToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.grupoVeiculosToolStripMenuItem.Text = "Grupo Veículos";
             this.grupoVeiculosToolStripMenuItem.Click += new System.EventHandler(this.grupoVeiculosToolStripMenuItem_Click);
             // 
@@ -95,7 +101,7 @@
             // 
             this.clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
             this.clienteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F3)));
-            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.clienteToolStripMenuItem.Text = "Cliente";
             this.clienteToolStripMenuItem.Click += new System.EventHandler(this.clienteToolStripMenuItem_Click);
             // 
@@ -103,7 +109,7 @@
             // 
             this.funcionarioToolStripMenuItem.Name = "funcionarioToolStripMenuItem";
             this.funcionarioToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F4)));
-            this.funcionarioToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.funcionarioToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.funcionarioToolStripMenuItem.Text = "Funcionário";
             this.funcionarioToolStripMenuItem.Click += new System.EventHandler(this.funcionarioToolStripMenuItem_Click);
             // 
@@ -247,6 +253,30 @@
             this.labelRodape.Size = new System.Drawing.Size(52, 17);
             this.labelRodape.Text = "[rodapé]";
             // 
+            // condutoresToolStripMenuItem
+            // 
+            this.condutoresToolStripMenuItem.Name = "condutoresToolStripMenuItem";
+            this.condutoresToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F5)));
+            this.condutoresToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.condutoresToolStripMenuItem.Text = "Condutores";
+            this.condutoresToolStripMenuItem.Click += new System.EventHandler(this.condutoresToolStripMenuItem_Click);
+            // 
+            // planoDeCobrançaToolStripMenuItem
+            // 
+            this.planoDeCobrançaToolStripMenuItem.Name = "planoDeCobrançaToolStripMenuItem";
+            this.planoDeCobrançaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F6)));
+            this.planoDeCobrançaToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.planoDeCobrançaToolStripMenuItem.Text = "Plano de Cobrança";
+            this.planoDeCobrançaToolStripMenuItem.Click += new System.EventHandler(this.planoDeCobrançaToolStripMenuItem_Click);
+            // 
+            // veículosToolStripMenuItem
+            // 
+            this.veículosToolStripMenuItem.Name = "veículosToolStripMenuItem";
+            this.veículosToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F7)));
+            this.veículosToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.veículosToolStripMenuItem.Text = "Veículos";
+            this.veículosToolStripMenuItem.Click += new System.EventHandler(this.veículosToolStripMenuItem_Click);
+            // 
             // TelaPrincipalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -292,5 +322,8 @@
         private System.Windows.Forms.Panel panelRegistros;
         private System.Windows.Forms.StatusStrip statusStripMensagem;
         private System.Windows.Forms.ToolStripStatusLabel labelRodape;
+        private System.Windows.Forms.ToolStripMenuItem condutoresToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem planoDeCobrançaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem veículosToolStripMenuItem;
     }
 }
