@@ -26,15 +26,15 @@ namespace Locadora.Infra.BancoDados.ModuloCliente
 
         public override Cliente ConverterRegistro(SqlDataReader leitorRegistro)
         {
-            int id = Convert.ToInt32(leitorRegistro["ID"]);
-            string nome = Convert.ToString(leitorRegistro["NOME"]);
-            string cpf = Convert.ToString(leitorRegistro["CPF"]);
-            string cnpj = Convert.ToString(leitorRegistro["CNPJ"]);
-            string cnh = Convert.ToString(leitorRegistro["CNH"]);
-            string endereco = Convert.ToString(leitorRegistro["ENDERECO"]);
-            string email = Convert.ToString(leitorRegistro["EMAIL"]);
-            string telefone = Convert.ToString(leitorRegistro["TELEFONE"]);
-            bool tipocadastro = leitorRegistro.GetBoolean(leitorRegistro.GetOrdinal("TIPOCADASTRO"));
+            int id = Convert.ToInt32(leitorRegistro["CLIENTE_ID"]);
+            string nome = Convert.ToString(leitorRegistro["CLIENTE_NOME"]);
+            string cpf = Convert.ToString(leitorRegistro["CLIENTE_CPF"]);
+            string cnpj = Convert.ToString(leitorRegistro["CLIENTE_CNPJ"]);
+            string cnh = Convert.ToString(leitorRegistro["CLIENTE_CNH"]);
+            string endereco = Convert.ToString(leitorRegistro["CLIENTE_ENDERECO"]);
+            string email = Convert.ToString(leitorRegistro["CLIENTE_EMAIL"]);
+            string telefone = Convert.ToString(leitorRegistro["CLIENTE_TELEFONE"]);
+            bool tipocadastro = leitorRegistro.GetBoolean(leitorRegistro.GetOrdinal("CLIENTE_TIPOCADASTRO"));
 
             var cliente = new Cliente
             {

@@ -62,50 +62,48 @@ namespace Locadora.Infra.BancoDados.ModuloCliente
 
         protected override string sqlSelecionarPorId =>
             @"SELECT 
-                    [ID],
-		            [NOME],
-                    [CPF],
-                    [CNPJ],
-                    [ENDERECO],
-                    [CNH],
-                    [EMAIL],
-                    [TELEFONE],
-                    [TIPOCADASTRO]
+                    [ID] as CLIENTE_ID,
+		            [NOME] as CLIENTE_NOME,
+                    [CPF] as CLIENTE_CPF,
+                    [CNPJ] as CLIENTE_CNPJ,
+                    [ENDERECO] as CLIENTE_ENDERECO,
+                    [CNH] as CLIENTE_CNH,
+                    [EMAIL] as CLIENTE_EMAIL,
+                    [TELEFONE] as CLIENTE_TELEFONE,
+                    [TIPOCADASTRO] as CLIENTE_TIPOCADASTRO
 	            FROM 
 		            [TBCLIENTE]
 		        WHERE
                     [ID] = @ID";
 
         protected override string sqlSelecionarTodos =>
-            @"SELECT      
-                [ID],
-                [NOME],
-                [CPF],
-                [CNPJ],             
-                [ENDERECO],                    
-                [CNH],
-                [EMAIL],
-                [TELEFONE],
-                [TIPOCADASTRO]
-                
-                
-            FROM
-                [TBCLIENTE]";
+            @"SELECT 
+                    [ID] as CLIENTE_ID,
+		            [NOME] as CLIENTE_NOME,
+                    [CPF] as CLIENTE_CPF,
+                    [CNPJ] as CLIENTE_CNPJ,
+                    [ENDERECO] as CLIENTE_ENDERECO,
+                    [CNH] as CLIENTE_CNH,
+                    [EMAIL] as CLIENTE_EMAIL,
+                    [TELEFONE] as CLIENTE_TELEFONE,
+                    [TIPOCADASTRO] as CLIENTE_TIPOCADASTRO
+	            FROM 
+		            [TBCLIENTE]";
 
         protected override string sqlValidaRegistroDuplicado =>
             @"SELECT 
-                    [ID],
-		            [NOME],
-                    [CPF],
-                    [CNPJ],
-                    [ENDERECO],
-                    [CNH],
-                    [EMAIL],
-                   [TELEFONE],
-                    [TIPOCADASTRO]
+                    [ID] as CLIENTE_ID,
+		            [NOME] as CLIENTE_NOME,
+                    [CPF] as CLIENTE_CPF,
+                    [CNPJ] as CLIENTE_CNPJ,
+                    [ENDERECO] as CLIENTE_ENDERECO,
+                    [CNH] as CLIENTE_CNH,
+                    [EMAIL] as CLIENTE_EMAIL,
+                    [TELEFONE] as CLIENTE_TELEFONE,
+                    [TIPOCADASTRO] as CLIENTE_TIPOCADASTRO
 	            FROM 
 		            [TBCLIENTE]
-		       WHERE
+		        WHERE
                     [CPF] = @CPF AND [CNPJ] = @CNPJ AND ID <> @ID";
     }
 }
