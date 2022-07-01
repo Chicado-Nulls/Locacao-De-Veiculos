@@ -5,13 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Locadora.Dominio.ModuloCarro
+namespace Locadora.Dominio.ModuloCondutor
 {
-    public class Carro : EntidadeBase<Carro>
+    public interface IRepositorioCondutor : IRepositorioBase<Condutor>
     {
-        public override void Atualizar(Carro registro)
-        {
-           
-        }
     }
 }

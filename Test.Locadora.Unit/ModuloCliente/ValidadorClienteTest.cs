@@ -1,11 +1,6 @@
 ﻿using FluentValidation.TestHelper;
 using Locadora.Dominio.ModuloCliente;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Test.Unit.ModuloCliente
 {
@@ -19,7 +14,7 @@ namespace Locadora.Test.Unit.ModuloCliente
         {
             cliente = new()
             {
-                
+
                 Nome = "romulo",
                 Cpf = "12345",
                 Cnpj = "123456",
@@ -46,7 +41,7 @@ namespace Locadora.Test.Unit.ModuloCliente
             resultado.ShouldHaveValidationErrorFor(f => f.Nome);
         }
 
-       
+
         [TestMethod]
         public void Telefone_Deve_Ser_Obrigatorio()
         {
