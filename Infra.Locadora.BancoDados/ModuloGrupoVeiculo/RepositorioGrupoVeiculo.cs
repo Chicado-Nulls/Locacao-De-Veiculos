@@ -28,10 +28,21 @@ namespace Locadora.Infra.BancoDados.ModuloGrupoVeiculo
         protected override string sqlExcluir => @"DELETE [TBGRUPODEVEICULOS]
                                                     WHERE
                                                      [ID]=@ID";
-        protected override string sqlSelecionarPorId => @"SELECT * FROM [TBGRUPODEVEICULOS]
+        protected override string sqlSelecionarPorId => @"SELECT 
+
+                                                            ID AS GRUPODEVEICULO_ID,
+                                                            NOME
+
+                                                           FROM [TBGRUPODEVEICULOS]
+
                                                             WHERE
                                                              [ID]=@ID";
-        protected override string sqlSelecionarTodos => @"SELECT * FROM [TBGRUPODEVEICULOS]";
+        protected override string sqlSelecionarTodos => @"SELECT 
+                                                            ID AS GRUPODEVEICULO_ID,
+                                                            NOME
+                                                           FROM [TBGRUPODEVEICULOS]
+
+";
 
         protected override string sqlValidaRegistroDuplicado =>
             @"SELECT * FROM [TBGRUPODEVEICULOS]

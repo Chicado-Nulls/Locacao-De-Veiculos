@@ -24,7 +24,7 @@ namespace Locadora.Dominio.ModuloGrupoDeVeiculo
         }
 
         public string Nome { get; set; }
-        public List<Carro> ListaDeCarros { get; set; }
+        public List<Veiculo> ListaDeVeiculo{ get; set; }
 
         public override bool Equals(object obj)
         {
