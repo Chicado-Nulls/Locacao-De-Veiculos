@@ -31,6 +31,7 @@ namespace Locadora.Dominio.ModuloCondutor
               .NotNull().WithMessage("O campo 'Cpf' não pode ser nulo!")
               .NotEmpty().WithMessage("O campo 'Cpf' não pode ser vazio!")
               .IsValidCPF().WithMessage("Formato do campo 'Cpf' inválido!");
+
             RuleFor(x => x.Cnh)
               .NotNull().WithMessage("O campo 'Cnh' não pode ser nulo!")
               .NotEmpty().WithMessage("O campo 'Cnh' não pode ser vazio!")

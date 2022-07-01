@@ -49,5 +49,7 @@ namespace Locadora.Infra.BancoDados.ModuloTaxa
             @"SELECT * FROM [TbTaxa]
                            WHERE
                            [DESCRICAO] = @DESCRICAO AND [ID] <> @ID";
+
+        public RepositorioTaxa(bool bancoTeste = false) : base(bancoTeste) { }
     }
 }

@@ -63,6 +63,7 @@
     <Build Include="TbGrupoDeVeiculos.sql" />
     <Build Include="TbCliente.sql" />
     <Build Include="TbVeiculo.sql" />
+    <Build Include="TbCondutor.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Locadora.Infra.Sql.refactorlog" />

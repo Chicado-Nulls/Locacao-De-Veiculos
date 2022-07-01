@@ -10,6 +10,21 @@ namespace Locadora.Dominio.ModuloCondutor
 {
     public class Condutor : EntidadeBase<Condutor>
     {
+        public Condutor(string nome, string cpf, string cnh, string endereco, string email, string telefone, Cliente cliente)
+        {
+            Nome=nome;
+            Cpf=cpf;
+            Cnh=cnh;
+            Endereco=endereco;
+            Email=email;
+            Telefone=telefone;
+            Cliente=cliente;
+        }
+
+        public Condutor()
+        {
+        }
+
         public string Nome { get; set; }
         public string Cpf { get; set; }
         public string Cnh { get; set; }
@@ -25,6 +40,7 @@ namespace Locadora.Dominio.ModuloCondutor
                 Endereco = registro.Endereco;
                 Email = registro.Email;
                 Telefone = registro.Telefone;
+                Cliente = Cliente == null ? new Cliente() : Cliente;
                 Cliente.Atualizar(registro.Cliente);
         }
         public override bool Equals(object obj)
