@@ -21,4 +21,25 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Administrador" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="e0afd2a4-cb98-4ceb-9d7e-6181e85a60c9" ChangeDateTime="07/01/2022 18:19:39">
+    <Property Name="ElementName" Value="[dbo].[FK_TbPlanoCobranca_ToTable]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[TbPlanoCobranca]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_TbPlanoCobranca_TbGrupoVeiculo]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="54c0bc43-07b2-4520-97a0-7b8ddd587d2e" ChangeDateTime="07/01/2022 18:19:54">
+    <Property Name="ElementName" Value="[dbo].[FK_TbPlanoCobranca_TbGrupoVeiculo]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[TbPlanoCobranca]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_TbPlanoCobranca_TbGrupoDeVeiculo]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0babf60d-527e-4beb-9e55-f924232922e4" ChangeDateTime="07/01/2022 18:20:03">
+    <Property Name="ElementName" Value="[dbo].[FK_TbPlanoCobranca_TbGrupoDeVeiculo]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[TbPlanoCobranca]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_TbPlanoCobranca_TbGrupoDeVeiculos]" />
+  </Operation>
 </Operations>

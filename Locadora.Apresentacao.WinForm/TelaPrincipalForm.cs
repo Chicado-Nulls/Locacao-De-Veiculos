@@ -147,6 +147,10 @@ namespace Locadora.Apresentacao.WinForm
         {
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }
+        private void planoDeCobrançaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+        }
 
         private void funcionarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -180,11 +184,6 @@ namespace Locadora.Apresentacao.WinForm
         }
 
         private void condutoresToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void planoDeCobrançaToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
