@@ -1,11 +1,5 @@
 ﻿using Locadora.Dominio.ModuloCliente;
-using Locadora.Dominio.ModuloFuncionario;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Test.Unit.ModuloCliente
 {
@@ -18,7 +12,7 @@ namespace Locadora.Test.Unit.ModuloCliente
         {
             cliente = new()
             {
-              
+
                 Nome = "romulo",
                 Cpf = "12345",
                 Cnpj = "123456",
@@ -58,7 +52,7 @@ namespace Locadora.Test.Unit.ModuloCliente
             Assert.AreEqual("5999444494", ClienteCriar.Telefone);
 
             // Asset
-            Assert.AreEqual(true,  ClienteCriar.TipoCadastro);
+            Assert.AreEqual(true, ClienteCriar.TipoCadastro);
         }
 
         [TestMethod]
@@ -93,6 +87,7 @@ namespace Locadora.Test.Unit.ModuloCliente
 
 
         }
+
         [TestMethod]
         public void Deve_atualizar_campos_cliente()
         {
@@ -126,9 +121,6 @@ namespace Locadora.Test.Unit.ModuloCliente
 
             // Asset
             Assert.AreEqual(cliente.TipoCadastro, ClienteCriar.TipoCadastro);
-
-
-
         }
     }
 }
