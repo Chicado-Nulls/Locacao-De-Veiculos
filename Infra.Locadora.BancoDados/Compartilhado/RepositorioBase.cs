@@ -13,9 +13,18 @@ namespace Locadora.Infra.BancoDados.Compartilhado
         where T : EntidadeBase<T>
         where TMapeador : MapeadorBase<T>, new ()
     {
+        public RepositorioBase(bool bancoTeste = false)
+        {
+            enderecoBanco = bancoTeste == true ? enderecoBancoTest : enderecoBanco;
+        }
         protected string enderecoBanco =
             @"Data Source=(LOCALDB)\MSSQLLOCALDB;
               Initial Catalog=LocadoraVeiculosDB;
+              Integrated Security=True";
+
+        protected string enderecoBancoTest =
+            @"Data Source=(LOCALDB)\MSSQLLOCALDB;
+              Initial Catalog=LocadoraVeiculosDBTest;
               Integrated Security=True";
 
         protected abstract string sqlInserir { get; }
@@ -120,6 +129,7 @@ namespace Locadora.Infra.BancoDados.Compartilhado
 
             return registros;
         }
+
         public bool ExisteRegistroIgual(T registro, string tipo)
         {
            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);

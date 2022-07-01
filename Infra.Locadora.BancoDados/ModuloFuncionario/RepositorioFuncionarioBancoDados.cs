@@ -88,5 +88,6 @@ namespace Locadora.Infra.BancoDados.ModuloFuncionario
                 FROM TBFUNCIONARIO AS FUNCIONARIO
 
                 WHERE (NOME = @NOME or LOGIN = @LOGIN) AND ID <> @ID";
+        public RepositorioFuncionarioBancoDados(bool bancoTeste = false) : base(bancoTeste) { }
     }
 }

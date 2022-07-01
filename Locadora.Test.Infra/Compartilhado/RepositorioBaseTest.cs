@@ -16,11 +16,16 @@ namespace Locadora.Test.Infra.Compartilhado
         protected abstract string NomeTabela { get; }
         public RepositorioBaseTest()
         {
-            LimparTabela();
+            LimparTabela(null);
         }
-        protected void LimparTabela()
+        protected void LimparTabela(string tabela)
         {
-            string sql = "DELETE FROM "+NomeTabela+"TBCLIENTE; DBCC CHECKIDENT ("+NomeTabela+", RESEED, 0)";
+            string sql;
+
+            if (tabela == null)
+                sql = "DELETE FROM "+NomeTabela+"; DBCC CHECKIDENT ("+NomeTabela+", RESEED, 0)";
+            else
+                sql = "DELETE FROM "+tabela+"; DBCC CHECKIDENT ("+tabela+", RESEED, 0)";
 
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 

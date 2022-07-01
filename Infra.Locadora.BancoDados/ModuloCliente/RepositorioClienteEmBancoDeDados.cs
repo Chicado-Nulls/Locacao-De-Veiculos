@@ -105,5 +105,10 @@ namespace Locadora.Infra.BancoDados.ModuloCliente
 		            [TBCLIENTE]
 		        WHERE
                     [CPF] = @CPF AND [CNPJ] = @CNPJ AND ID <> @ID";
+
+        public RepositorioClienteEmBancoDeDados(bool bancoTeste = false) : base(bancoTeste)
+        {
+
+        }
     }
 }
