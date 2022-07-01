@@ -11,10 +11,7 @@ namespace Locadora.Dominio.ModuloCarro
 {
     public class Veiculo : EntidadeBase<Veiculo>
     {
-        public Veiculo()
-        {
-
-        }
+       
 
         public Veiculo(string modelo, string placa, string marca, string cor, decimal? capacidadeTanque, decimal? kmPercorrido, EnumTipoDeCombustivel tipoDeCombustivel)
         {
@@ -25,6 +22,10 @@ namespace Locadora.Dominio.ModuloCarro
             CapacidadeTanque = capacidadeTanque;
             KmPercorrido = kmPercorrido;
             TipoDeCombustivel = tipoDeCombustivel;
+        }
+        public Veiculo()
+        {
+
         }
 
         public override void Atualizar(Veiculo registro)

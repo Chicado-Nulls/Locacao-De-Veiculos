@@ -28,4 +28,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Modelo" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="dafcda66-4b78-4f71-8ea1-226822eeb1dc" ChangeDateTime="07/01/2022 18:19:37">
+    <Property Name="ElementName" Value="[dbo].[FK_TbVeiculo_ToTable]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[TbVeiculo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_TbVeiculo_TB]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8468348e-0d59-475d-b59c-5ad6f2dcd174" ChangeDateTime="07/01/2022 18:22:24">
+    <Property Name="ElementName" Value="[dbo].[FK_TbVeiculo_ToTable]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[TbVeiculo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_TbVeiculo_TbGrupoDeVeiculos]" />
+  </Operation>
 </Operations>

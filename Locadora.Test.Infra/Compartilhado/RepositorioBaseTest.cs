@@ -20,7 +20,7 @@ namespace Locadora.Test.Infra.Compartilhado
         }
         protected void LimparTabela()
         {
-            string sql = "DELETE FROM "+NomeTabela+"TBCLIENTE; DBCC CHECKIDENT ("+NomeTabela+", RESEED, 0)";
+            string sql = "DELETE FROM "+NomeTabela+"; DBCC CHECKIDENT ("+NomeTabela+", RESEED, 0)";
 
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 

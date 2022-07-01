@@ -40,7 +40,7 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
                                                  SET
                                                    [MODELO]=@MODELO,
                                                    [MARCA]=@MARCA,
-                                                   [ENUMTIPODECOMBUSTIVEL]=@ENUMTIPOCOMBUSTIVEL,
+                                                   [ENUMTIPODECOMBUSTIVEL]=@ENUMTIPODECOMBUSTIVEL,
                                                    [COR]=@COR,
                                                    [KMPERCORRIDO]=@KMPERCORRIDO,
                                                    [CAPACIDADETANQUE]= @CAPACIDADETANQUE,
@@ -65,7 +65,7 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
                 V.COR,                                                       
                 V.KMPERCORRIDO,                                                        
                 V.CAPACIDADETANQUE,                                                        
-                V.PLACA
+                V.PLACA,
 
                 R.Id AS GRUPODEVEICULO_ID,
                 R.NOME														 
@@ -74,7 +74,7 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
                    [TbVeiculo] AS V
                    INNER JOIN TBGRUPODEVEICULOS AS R ON V.GrupoDeVeiculo_Id=R.Id
                   WHERE
-                   [ID]=@ID";
+                   V.ID=@ID";
 
 
 

@@ -31,6 +31,7 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
             comando.Parameters.AddWithValue("KMPERCORRIDO", registro.KmPercorrido);
             comando.Parameters.AddWithValue("CAPACIDADETANQUE", registro.CapacidadeTanque);
             comando.Parameters.AddWithValue("ENUMTIPODECOMBUSTIVEL", registro.TipoDeCombustivel);
+            comando.Parameters.AddWithValue("GRUPODEVEICULO_ID", registro.GrupoDeVeiculo.Id);
         }
 
         public override Veiculo ConverterRegistro(SqlDataReader leitorRegistro)

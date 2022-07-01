@@ -8,5 +8,6 @@
     [EnumTipoDeCombustivel] INT NULL, 
     [CapacidadeTanque] DECIMAL(18, 2) NULL, 
     [KmPercorrido] DECIMAL(18, 2) NULL, 
-    [GrupoDeVeiculo_Id] INT NULL 
+    [GrupoDeVeiculo_Id] INT NULL, 
+    CONSTRAINT [FK_TbVeiculo_TbGrupoDeVeiculos] FOREIGN KEY (GrupoDeVeiculo_Id) REFERENCES TbGrupoDeVeiculos(Id) 
 )
