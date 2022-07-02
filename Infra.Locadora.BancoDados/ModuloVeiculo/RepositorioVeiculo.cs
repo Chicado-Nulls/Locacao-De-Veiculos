@@ -11,6 +11,10 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
 {
     public class RepositorioVeiculo : RepositorioBase<Veiculo, MapeadorVeiculo>
     {
+        public RepositorioVeiculo(bool BancoTeste = false) : base(BancoTeste)
+        {
+
+        }
         protected override string sqlInserir => @"Insert into [TbVeiculo]
                                                     (
                                                       Modelo,
@@ -101,6 +105,25 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
 
 
 
-        protected override string sqlValidaRegistroDuplicado => throw new NotImplementedException();
+        protected override string sqlValidaRegistroDuplicado => 
+            @"  V.ID AS VEICULO_ID,                                                         
+                V.MODELO,                                                        
+                V.MARCA,                                                       
+                V.ENUMTIPODECOMBUSTIVEL,                                                       
+                V.COR,                                                       
+                V.KMPERCORRIDO,                                                        
+                V.CAPACIDADETANQUE,                                                        
+                V.PLACA,
+
+                R.Id AS GRUPODEVEICULO_ID,
+                R.NOME														 
+                                                          
+                FROM 
+                  [TbVeiculo] AS V
+                  INNER JOIN TBGRUPODEVEICULOS AS R ON V.GrupoDeVeiculo_Id=R.Id
+                WHERE 
+                  [PLACA]=@PLACA AND [VEICULO_ID] <> @ID";
+
+
     }
 }

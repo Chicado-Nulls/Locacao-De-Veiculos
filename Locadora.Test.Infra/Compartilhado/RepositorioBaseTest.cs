@@ -23,9 +23,9 @@ namespace Locadora.Test.Infra.Compartilhado
             string sql;
 
             if (tabela == null)
-                sql = "DELETE FROM "+NomeTabela+"; DBCC CHECKIDENT ("+NomeTabela+", RESEED, 0)";
+                sql = @"DELETE FROM "+NomeTabela+" DBCC CHECKIDENT ("+NomeTabela+", RESEED, 0)";
             else
-                sql = "DELETE FROM "+tabela+"; DBCC CHECKIDENT ("+tabela+", RESEED, 0)";
+                sql = $"DELETE FROM [{tabela}] DBCC CHECKIDENT ({tabela}, RESEED, 0)";
 
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 

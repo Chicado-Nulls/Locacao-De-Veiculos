@@ -24,8 +24,9 @@ namespace Locadora.Test.Infra.ModuloVeiculo
 
         public RepositorioGrupoVeiculoBancoDadosTest()
         {
-            this.repositorio = new RepositorioVeiculo();
-            this.repositorioGrupo=new RepositorioGrupoVeiculo();
+            this.repositorio = new RepositorioVeiculo(true);            
+            this.repositorioGrupo=new RepositorioGrupoVeiculo(true);
+            
         }
         [TestMethod]
         
@@ -78,6 +79,7 @@ namespace Locadora.Test.Infra.ModuloVeiculo
 
         public void Deve_Selecionar_Todos()
         {
+            LimparTabela(NomeTabela);
             Veiculo veiculoUm = new Veiculo("BMW Z4", "40440-DV", "BMW", "Azul", 30m, 100m, EnumTipoDeCombustivel.GasolinaAdtivada);
 
             Veiculo veiculoDois = new Veiculo("BMW M2", "204242-DD", "BMWM", "LARANJA", 50m, 200M, EnumTipoDeCombustivel.GasolinaComum);

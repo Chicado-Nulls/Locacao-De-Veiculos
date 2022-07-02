@@ -11,6 +11,10 @@ namespace Locadora.Infra.BancoDados.ModuloGrupoVeiculo
 {
     public class RepositorioGrupoVeiculo : RepositorioBase<GrupoVeiculo, MapaeadorGrupoVeiculo>, IRepositorioGrupoVeiculo
     {
+        public RepositorioGrupoVeiculo(bool bancoTeste = false):base(bancoTeste)
+        {
+
+        }
         protected override string sqlInserir => @"INSERT INTO [TBGRUPODEVEICULOS]
                                                     (
                                                      NOME
