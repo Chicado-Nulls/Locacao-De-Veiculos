@@ -19,6 +19,10 @@ using Locadora.Aplicacao.ModuloTaxa;
 using Locadora.Aplicacao.ModuloGrupoDeVeiculos;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using Locadora.Infra.BancoDados.ModuloGrupoVeiculo;
+using Locadora.Aplicacao.ModuloVeiculo;
+using Locadora.Dominio.ModuloVeiculo;
+using Locadora.Infra.BancoDados.ModuloVeiculo;
+using Locadora.Apresentacao.WinForm.ModuloVeiculo;
 
 namespace Locadora.Apresentacao.WinForm
 {
@@ -129,6 +133,10 @@ namespace Locadora.Apresentacao.WinForm
             IRepositorioGrupoVeiculo repositorioGrupoDeVeiculos = new RepositorioGrupoVeiculo();
             ServiceGrupoVeiculo serviceGrupoDeVeiculos = new ServiceGrupoVeiculo(repositorioGrupoDeVeiculos);
             controladores.Add("Grupo Veiculos", new ControladorGrupoVeiculo(repositorioGrupoDeVeiculos, serviceGrupoDeVeiculos));
+
+            IrepositorioVeiculo repositorioVeiculo = new RepositorioVeiculo();
+            ServiceVeiculo serviceVeiculo = new ServiceVeiculo(repositorioVeiculo);
+            controladores.Add("Veiculos", new ControladorVeiculo(repositorioVeiculo,serviceGrupoDeVeiculos,serviceVeiculo));
             
 
         }
@@ -191,7 +199,7 @@ namespace Locadora.Apresentacao.WinForm
 
         private void veículosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }
     }
 }

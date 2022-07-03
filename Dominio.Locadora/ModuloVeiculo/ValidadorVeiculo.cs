@@ -49,6 +49,9 @@ namespace Locadora.Dominio.ModuloVeiculo
                .GreaterThanOrEqualTo(0)             
                .NotEmpty()
                .NotNull();
+            RuleFor(x=>x.TipoDeCombustivel)
+                .NotEmpty()
+               .NotNull();
         }
 
     }

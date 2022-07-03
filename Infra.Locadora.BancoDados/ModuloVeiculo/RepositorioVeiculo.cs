@@ -1,5 +1,6 @@
 ﻿using Locadora.Dominio.Compartilhado;
 using Locadora.Dominio.ModuloCarro;
+using Locadora.Dominio.ModuloVeiculo;
 using Locadora.Infra.BancoDados.Compartilhado;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Locadora.Infra.BancoDados.ModuloVeiculo
 {
-    public class RepositorioVeiculo : RepositorioBase<Veiculo, MapeadorVeiculo>
+    public class RepositorioVeiculo : RepositorioBase<Veiculo, MapeadorVeiculo>,IrepositorioVeiculo
     {
         public RepositorioVeiculo(bool BancoTeste = false) : base(BancoTeste)
         {
@@ -105,8 +106,9 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
 
 
 
-        protected override string sqlValidaRegistroDuplicado => 
-            @"  V.ID AS VEICULO_ID,                                                         
+        protected override string sqlValidaRegistroDuplicado =>
+            @"   Select 
+                V.ID AS VEICULO_ID,                                                         
                 V.MODELO,                                                        
                 V.MARCA,                                                       
                 V.ENUMTIPODECOMBUSTIVEL,                                                       
@@ -122,7 +124,7 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
                   [TbVeiculo] AS V
                   INNER JOIN TBGRUPODEVEICULOS AS R ON V.GrupoDeVeiculo_Id=R.Id
                 WHERE 
-                  [PLACA]=@PLACA AND [VEICULO_ID] <> @ID";
+                  V.PLACA=@PLACA AND V.ID <> @ID";
 
 
     }

@@ -31,6 +31,11 @@ namespace Locadora.Dominio.ModuloGrupoDeVeiculo
             return obj is GrupoVeiculo grupoDeVeiculo &&
                    Nome == grupoDeVeiculo.Nome;                  
         }
-        
+
+        public override string ToString()
+        {
+            return $"{Nome}";
+        }
+
     }
 }
