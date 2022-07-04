@@ -8,9 +8,8 @@ namespace Locadora.Dominio.ModuloVeiculo
 {
     public  enum EnumTipoDeCombustivel
     {
-        GasolinaComum= 0,
-        GasolinaAdtivada= 1,
-        Etanol=2,
-        Eletrico=3 
+        Gasolina= 0,       
+        Etanol=1,
+        Eletrico=2 
     }
 }

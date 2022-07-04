@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FluentValidation.Results;
 using Locadora.Dominio.ModuloVeiculo;
+using System.Text.RegularExpressions;
 
 namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
 {
@@ -49,7 +50,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
 
         private void ConfigurarTela()
         {
-
+            textBoxId.Text = Veiculo.Id.ToString();
             textBoxPlaca.Text = Veiculo.Placa == null ? "" : Veiculo.Placa;
             textBoxModelo.Text = Veiculo.Modelo == null ? "" : Veiculo.Modelo;
             textBoxMarca.Text = Veiculo.Marca == null ? "" : Veiculo.Marca;
@@ -59,8 +60,10 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
             textBoxKmPercorrido.Text = Veiculo.KmPercorrido == null ? "" : string.Format("{0:#,##0.00}", Double.Parse(Veiculo.KmPercorrido.ToString()));
             TextBoxCapacidadeTanque.Text = Veiculo.CapacidadeTanque == null ? "" : string.Format("{0:#,##0.00}", Double.Parse(Veiculo.KmPercorrido.ToString()));
 
-            
-           
+            comboBoxGrupoVeiculo.SelectedItem =Veiculo.GrupoDeVeiculo==null ? null: (GrupoVeiculo)Veiculo.GrupoDeVeiculo;
+            comboBoxTipoCombustivel.SelectedItem = Veiculo.TipoDeCombustivel == null ? null: Veiculo.TipoDeCombustivel.ToString();
+
+
 
         }
         private void ConfigurarObjeto()
@@ -78,7 +81,14 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
-          
+            if (ExisteCampoVazio())
+            {
+                TelaPrincipalForm.Instancia.AtualizarRodape("Preencha todos os campos");
+
+                DialogResult = DialogResult.None;
+
+                return;
+            }
 
             ConfigurarObjeto();
 
@@ -95,7 +105,22 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
                 DialogResult = DialogResult.None;
             }
         }
-        
+
+        private bool ExisteCampoVazio()
+        {
+            if (string.IsNullOrEmpty(textBoxPlaca.Text) ||
+                comboBoxGrupoVeiculo.SelectedItem == null ||
+                string.IsNullOrEmpty(textBoxModelo.Text) ||
+                string.IsNullOrEmpty(textBoxMarca.Text) ||
+                string.IsNullOrEmpty(textBoxCor.Text) ||
+                string.IsNullOrEmpty(textBoxKmPercorrido.Text) ||
+                string.IsNullOrEmpty(TextBoxCapacidadeTanque.Text) 
+                )
+                return true;
+
+            return false;
+        }
+
         private void EncherComboBoxGrupoVeiculo(List<GrupoVeiculo> GruposVeiculos)
         {
             comboBoxGrupoVeiculo.Items.Clear();
@@ -108,18 +133,64 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
        
         private string SelecionarEnum()
         {
-            var enumSelecionado = comboBoxTipoCombustivel.SelectedItem.ToString();
+            var enumSelecionado = Enum.Parse(typeof(EnumTipoDeCombustivel),comboBoxTipoCombustivel.SelectedItem.ToString().Replace(" ",""));
 
-            if (enumSelecionado == "Gasolina Comum")
-                return "GasolinaComum";
-            if (enumSelecionado == "Gasolina Adtivada")
-                return "GasolinaAdtivada";
+            switch (enumSelecionado)
+            {
+                case EnumTipoDeCombustivel.Gasolina:
+                    return "Gasolina";
+                    break;
+                case EnumTipoDeCombustivel.Etanol:
+                    return "Etanol";
+                    break;
+                default: return "Eletrico";
+            }
+            return null;     
+        }       
+        private void TextBoxCapacidadeTanque_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar) || e.KeyChar.Equals((char)Keys.Back))
+            {
+                TextBox box = (TextBox)sender;
 
-            return null;
+                string texto = Regex.Replace(box.Text, "[^0-9]", string.Empty);
 
-               
-                
+                if (texto == string.Empty) texto = "00";
+
+                if (e.KeyChar.Equals((char)Keys.Back))
+                    texto = texto.Substring(0, texto.Length - 1);
+                else
+                    texto += e.KeyChar;
+
+                box.Text = string.Format("{0:#,##0.00}", Double.Parse(texto) / 100);
+
+                box.Select(box.Text.Length, 0);
+            }
+            e.Handled = true;
         }
 
+        private void textBoxKmPercorrido_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar) || e.KeyChar.Equals((char)Keys.Back))
+            {
+                TextBox box = (TextBox)sender;
+
+                string texto = Regex.Replace(box.Text, "[^0-9]", string.Empty);
+
+                if (texto == string.Empty) texto = "00";
+
+                if (e.KeyChar.Equals((char)Keys.Back))
+                    texto = texto.Substring(0, texto.Length - 1);
+                else
+                    texto += e.KeyChar;
+
+                box.Text = string.Format("{0:#,##0.00}", Double.Parse(texto) / 100);
+
+                box.Select(box.Text.Length, 0);
+            }
+            e.Handled = true;
+        }
+
+       
     }
 }

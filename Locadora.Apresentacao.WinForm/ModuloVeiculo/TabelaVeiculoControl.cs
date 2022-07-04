@@ -1,5 +1,6 @@
 ﻿using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloCarro;
+using Locadora.Dominio.ModuloVeiculo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,8 +30,10 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
                 new DataGridViewTextBoxColumn { DataPropertyName = "Modelo", HeaderText = "Modelo", FillWeight=15F },
                 new DataGridViewTextBoxColumn { DataPropertyName = "Placa", HeaderText = "Placa", FillWeight=15F },
                 new DataGridViewTextBoxColumn { DataPropertyName = "Km Rodados", HeaderText = "Km Rodados", FillWeight=15F },
-                new DataGridViewTextBoxColumn { DataPropertyName = "Tipo De Combustivel", HeaderText = "Tipo De Combustivel", FillWeight=15F }
-                
+                new DataGridViewTextBoxColumn { DataPropertyName = "Tipo De Combustivel", HeaderText = "Tipo De Combustivel", FillWeight=15F },
+                new DataGridViewTextBoxColumn { DataPropertyName = "Grupo Veiculo", HeaderText = "Grupo Veiculo", FillWeight=15F }  
+
+
             };
 
             return colunas;
@@ -46,10 +49,14 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
 
             foreach (var veiculo in veiculos)
             {
-                grid.Rows.Add(veiculo.Id,veiculo.Modelo,veiculo.Placa,veiculo.KmPercorrido,veiculo.TipoDeCombustivel);
+                
+
+
+                grid.Rows.Add(veiculo.Id,veiculo.Modelo,veiculo.Placa,veiculo.KmPercorrido,veiculo.TipoDeCombustivel,veiculo.GrupoDeVeiculo);
                 //exemplo
                 //grid.Rows.Add(materia.Numero, materia.Nome, materia.Disciplina.Nome, materia.Serie.GetDescription());
             }
         }
+        
     }
 }

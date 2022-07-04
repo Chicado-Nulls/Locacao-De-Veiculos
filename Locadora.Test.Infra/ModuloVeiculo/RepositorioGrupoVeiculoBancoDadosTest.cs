@@ -80,9 +80,9 @@ namespace Locadora.Test.Infra.ModuloVeiculo
         public void Deve_Selecionar_Todos()
         {
             LimparTabela(NomeTabela);
-            Veiculo veiculoUm = new Veiculo("BMW Z4", "40440-DV", "BMW", "Azul", 30m, 100m, EnumTipoDeCombustivel.GasolinaAdtivada);
+            Veiculo veiculoUm = new Veiculo("BMW Z4", "40440-DV", "BMW", "Azul", 30m, 100m, EnumTipoDeCombustivel.Gasolina);
 
-            Veiculo veiculoDois = new Veiculo("BMW M2", "204242-DD", "BMWM", "LARANJA", 50m, 200M, EnumTipoDeCombustivel.GasolinaComum);
+            Veiculo veiculoDois = new Veiculo("BMW M2", "204242-DD", "BMWM", "LARANJA", 50m, 200M, EnumTipoDeCombustivel.Gasolina);
 
             Veiculo veiculoTres = new Veiculo("Stock car", "224242-bb", "Toyota", "Vermelho", 20m, 300m, EnumTipoDeCombustivel.Etanol);
 
@@ -111,7 +111,7 @@ namespace Locadora.Test.Infra.ModuloVeiculo
 
             repositorioGrupo.Inserir(grupoDeVeiculo);
 
-            var veiculo = new Veiculo("BMW Z4","40440-DV","BMW","Azul",30m,100m, EnumTipoDeCombustivel.GasolinaAdtivada);
+            var veiculo = new Veiculo("BMW Z4","40440-DV","BMW","Azul",30m,100m, EnumTipoDeCombustivel.Gasolina);
 
             veiculo.GrupoDeVeiculo=grupoDeVeiculo;
 
