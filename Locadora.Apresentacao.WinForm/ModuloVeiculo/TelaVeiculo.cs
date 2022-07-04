@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using FluentValidation.Results;
 using Locadora.Dominio.ModuloVeiculo;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
 {
@@ -21,7 +22,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
         Veiculo _veiculo;
         List<GrupoVeiculo> GruposVeiculos;
         List<EnumTipoDeCombustivel> tipoDeCombustivel;
-
+        string caminhoFoto;
 
 
         public TelaVeiculo(List<GrupoVeiculo> grupoVeiculos)
@@ -62,6 +63,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
 
             comboBoxGrupoVeiculo.SelectedItem =Veiculo.GrupoDeVeiculo==null ? null: (GrupoVeiculo)Veiculo.GrupoDeVeiculo;
             comboBoxTipoCombustivel.SelectedItem = Veiculo.TipoDeCombustivel == null ? null: Veiculo.TipoDeCombustivel.ToString();
+            carregarFoto();
 
 
 
@@ -76,6 +78,8 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
             _veiculo.TipoDeCombustivel=  (EnumTipoDeCombustivel)Enum.Parse(typeof(EnumTipoDeCombustivel), SelecionarEnum());
             _veiculo.CapacidadeTanque=Convert.ToDecimal(TextBoxCapacidadeTanque.Text);
             _veiculo.KmPercorrido = Convert.ToDecimal(textBoxKmPercorrido.Text);
+            _veiculo.Foto = converterFoto(caminhoFoto);
+            
 
         }
 
@@ -191,6 +195,42 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
             e.Handled = true;
         }
 
-       
+        private void btnInserirFoto_Click(object sender, EventArgs e)
+        {
+            var openfile = new OpenFileDialog();
+            openfile.Filter = "Arquivos de Imagem jpg e png |*.jpg; *.png;";
+            openfile.Multiselect = false;
+
+            if(openfile.ShowDialog() == DialogResult.OK)
+            {
+               caminhoFoto= openfile.FileName;
+            }
+            if (caminhoFoto != "")
+            {
+                pictureBox.Load(caminhoFoto);
+            }
+        }
+        private byte[] converterFoto(string caminhoFoto)
+        {
+            byte[] foto;
+            using (var stream = new FileStream(caminhoFoto, FileMode.Open, FileAccess.Read))
+            {
+                using(var reader= new BinaryReader(stream))
+                {
+                    foto=reader.ReadBytes((int)stream.Length);
+                }
+            }
+
+            return foto;
+        }
+
+        private void carregarFoto()
+        {
+            using(var foto= new MemoryStream(_veiculo.Foto))
+            {
+                pictureBox.Image=Image.FromStream(foto);
+            }
+        }
+
     }
 }

@@ -32,6 +32,7 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
             comando.Parameters.AddWithValue("CAPACIDADETANQUE", registro.CapacidadeTanque);
             comando.Parameters.AddWithValue("ENUMTIPODECOMBUSTIVEL", registro.TipoDeCombustivel);
             comando.Parameters.AddWithValue("GRUPODEVEICULO_ID", registro.GrupoDeVeiculo.Id);
+            comando.Parameters.AddWithValue("FOTO", registro.Foto);
         }
 
         public override Veiculo ConverterRegistro(SqlDataReader leitorRegistro)
@@ -50,21 +51,25 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
 
             decimal capacidadeTanque = Convert.ToDecimal(leitorRegistro["CAPACIDADETANQUE"]);
 
+            byte[] foto = (byte[])(leitorRegistro["FOTO"]);
+
             EnumTipoDeCombustivel tipoDeCombustivel = (EnumTipoDeCombustivel)Convert.ToInt32(leitorRegistro["ENUMTIPODECOMBUSTIVEL"]);
 
             var grupoVeiculo= mapeadorGrupoDeVeiculo.ConverterRegistro(leitorRegistro);
 
             var Veiculo = new Veiculo()
             {
-              Id = id,
-              Modelo = modelo,
-              Marca = marca,
-              Placa = placa,    
-              Cor = cor,
-              KmPercorrido=kmPercorrido,
-              CapacidadeTanque=capacidadeTanque,
-              TipoDeCombustivel=tipoDeCombustivel,
-              GrupoDeVeiculo=grupoVeiculo
+                Id = id,
+                Modelo = modelo,
+                Marca = marca,
+                Placa = placa,
+                Cor = cor,
+                KmPercorrido = kmPercorrido,
+                CapacidadeTanque = capacidadeTanque,
+                TipoDeCombustivel = tipoDeCombustivel,
+                GrupoDeVeiculo = grupoVeiculo,
+                Foto = foto
+
             };
 
             return Veiculo;

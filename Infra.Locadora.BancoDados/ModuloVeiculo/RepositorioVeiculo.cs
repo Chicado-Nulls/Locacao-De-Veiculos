@@ -25,7 +25,8 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
                                                       KmPercorrido,
                                                       CapacidadeTanque,
                                                       Placa,
-                                                      GrupoDeVeiculo_Id
+                                                      GrupoDeVeiculo_Id,
+                                                      FOTO
                                                     )
                                                      VALUES
                                                     (
@@ -36,7 +37,8 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
                                                      @KMPERCORRIDO,
                                                      @CAPACIDADETANQUE,
                                                      @PLACA,
-                                                     @GRUPODEVEICULO_ID
+                                                     @GRUPODEVEICULO_ID,
+                                                     @FOTO
                                                     ); 
                                                        select SCOPE_IDENTITY();";
 
@@ -50,7 +52,8 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
                                                    [KMPERCORRIDO]=@KMPERCORRIDO,
                                                    [CAPACIDADETANQUE]= @CAPACIDADETANQUE,
                                                    [PLACA]=@PLACA,
-                                                   [GRUPODEVEICULO_ID]=@GRUPODEVEICULO_ID
+                                                   [GRUPODEVEICULO_ID]=@GRUPODEVEICULO_ID,
+                                                   [FOTO]=@FOTO
                                                  WHERE 
                                                    [ID]=@ID";
         protected override string sqlExcluir => @"DELETE [TbVeiculo]
@@ -71,6 +74,7 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
                 V.KMPERCORRIDO,                                                        
                 V.CAPACIDADETANQUE,                                                        
                 V.PLACA,
+                V.FOTO,
 
                 R.Id AS GRUPODEVEICULO_ID,
                 R.NOME														 
@@ -96,6 +100,7 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
                 V.KMPERCORRIDO,                                                        
                 V.CAPACIDADETANQUE,                                                        
                 V.PLACA,
+                V.FOTO,
 
                 R.Id AS GRUPODEVEICULO_ID,
                 R.NOME														 

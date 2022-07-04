@@ -56,6 +56,8 @@ namespace Locadora.Dominio.ModuloCarro
 
         public GrupoVeiculo  GrupoDeVeiculo { get; set; }
 
+        public Byte[] Foto { get; set; }
+
         public override bool Equals(object obj)
         {
             return obj is Veiculo veiculo &&

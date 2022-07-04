@@ -48,6 +48,10 @@
             this.textBoxPlaca = new System.Windows.Forms.TextBox();
             this.textBoxId = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.btnInserirFoto = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBoxGrupoVeiculo
@@ -63,7 +67,7 @@
             // btnInserir
             // 
             this.btnInserir.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnInserir.Location = new System.Drawing.Point(39, 515);
+            this.btnInserir.Location = new System.Drawing.Point(76, 527);
             this.btnInserir.Name = "btnInserir";
             this.btnInserir.Size = new System.Drawing.Size(100, 42);
             this.btnInserir.TabIndex = 9;
@@ -74,7 +78,7 @@
             // button2
             // 
             this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.Location = new System.Drawing.Point(182, 515);
+            this.button2.Location = new System.Drawing.Point(219, 527);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 42);
             this.button2.TabIndex = 10;
@@ -93,7 +97,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 115);
+            this.label2.Location = new System.Drawing.Point(23, 409);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 15);
             this.label2.TabIndex = 4;
@@ -102,7 +106,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(20, 232);
+            this.label3.Location = new System.Drawing.Point(21, 297);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 15);
             this.label3.TabIndex = 5;
@@ -111,7 +115,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(20, 174);
+            this.label4.Location = new System.Drawing.Point(23, 468);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 15);
             this.label4.TabIndex = 6;
@@ -120,7 +124,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(22, 289);
+            this.label5.Location = new System.Drawing.Point(23, 355);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(26, 15);
             this.label5.TabIndex = 7;
@@ -134,7 +138,7 @@
             "Gasolina",
             "Etanol",
             "Eletrico"});
-            this.comboBoxTipoCombustivel.Location = new System.Drawing.Point(21, 359);
+            this.comboBoxTipoCombustivel.Location = new System.Drawing.Point(22, 150);
             this.comboBoxTipoCombustivel.Name = "comboBoxTipoCombustivel";
             this.comboBoxTipoCombustivel.Size = new System.Drawing.Size(142, 23);
             this.comboBoxTipoCombustivel.TabIndex = 6;
@@ -142,7 +146,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(21, 341);
+            this.label6.Location = new System.Drawing.Point(22, 132);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(111, 15);
             this.label6.TabIndex = 9;
@@ -150,29 +154,29 @@
             // 
             // textBoxModelo
             // 
-            this.textBoxModelo.Location = new System.Drawing.Point(21, 133);
+            this.textBoxModelo.Location = new System.Drawing.Point(21, 427);
             this.textBoxModelo.Name = "textBoxModelo";
-            this.textBoxModelo.Size = new System.Drawing.Size(232, 23);
+            this.textBoxModelo.Size = new System.Drawing.Size(246, 23);
             this.textBoxModelo.TabIndex = 2;
             // 
             // textBoxMarca
             // 
-            this.textBoxMarca.Location = new System.Drawing.Point(21, 192);
+            this.textBoxMarca.Location = new System.Drawing.Point(21, 486);
             this.textBoxMarca.Name = "textBoxMarca";
-            this.textBoxMarca.Size = new System.Drawing.Size(232, 23);
+            this.textBoxMarca.Size = new System.Drawing.Size(246, 23);
             this.textBoxMarca.TabIndex = 3;
             // 
             // textBoxCor
             // 
-            this.textBoxCor.Location = new System.Drawing.Point(22, 307);
+            this.textBoxCor.Location = new System.Drawing.Point(21, 373);
             this.textBoxCor.Name = "textBoxCor";
-            this.textBoxCor.Size = new System.Drawing.Size(188, 23);
+            this.textBoxCor.Size = new System.Drawing.Size(198, 23);
             this.textBoxCor.TabIndex = 5;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(23, 394);
+            this.label7.Location = new System.Drawing.Point(24, 185);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(110, 15);
             this.label7.TabIndex = 14;
@@ -180,7 +184,7 @@
             // 
             // TextBoxCapacidadeTanque
             // 
-            this.TextBoxCapacidadeTanque.Location = new System.Drawing.Point(22, 412);
+            this.TextBoxCapacidadeTanque.Location = new System.Drawing.Point(21, 203);
             this.TextBoxCapacidadeTanque.Name = "TextBoxCapacidadeTanque";
             this.TextBoxCapacidadeTanque.Size = new System.Drawing.Size(142, 23);
             this.TextBoxCapacidadeTanque.TabIndex = 7;
@@ -188,7 +192,7 @@
             // 
             // textBoxKmPercorrido
             // 
-            this.textBoxKmPercorrido.Location = new System.Drawing.Point(20, 469);
+            this.textBoxKmPercorrido.Location = new System.Drawing.Point(21, 260);
             this.textBoxKmPercorrido.Name = "textBoxKmPercorrido";
             this.textBoxKmPercorrido.Size = new System.Drawing.Size(143, 23);
             this.textBoxKmPercorrido.TabIndex = 8;
@@ -197,7 +201,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(20, 451);
+            this.label8.Location = new System.Drawing.Point(21, 242);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(83, 15);
             this.label8.TabIndex = 17;
@@ -205,16 +209,16 @@
             // 
             // textBoxPlaca
             // 
-            this.textBoxPlaca.Location = new System.Drawing.Point(22, 250);
+            this.textBoxPlaca.Location = new System.Drawing.Point(21, 315);
             this.textBoxPlaca.Name = "textBoxPlaca";
             this.textBoxPlaca.PlaceholderText = "AAA-000";
-            this.textBoxPlaca.Size = new System.Drawing.Size(188, 23);
+            this.textBoxPlaca.Size = new System.Drawing.Size(198, 23);
             this.textBoxPlaca.TabIndex = 4;
             // 
             // textBoxId
             // 
             this.textBoxId.Enabled = false;
-            this.textBoxId.Location = new System.Drawing.Point(23, 45);
+            this.textBoxId.Location = new System.Drawing.Point(21, 28);
             this.textBoxId.Name = "textBoxId";
             this.textBoxId.Size = new System.Drawing.Size(45, 23);
             this.textBoxId.TabIndex = 18;
@@ -222,17 +226,48 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(23, 27);
+            this.label9.Location = new System.Drawing.Point(21, 9);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(17, 15);
             this.label9.TabIndex = 19;
             this.label9.Text = "Id";
             // 
+            // pictureBox
+            // 
+            this.pictureBox.Location = new System.Drawing.Point(200, 89);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(193, 194);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox.TabIndex = 20;
+            this.pictureBox.TabStop = false;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(263, 71);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(66, 15);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "Inserir Foto";
+            // 
+            // btnInserirFoto
+            // 
+            this.btnInserirFoto.Location = new System.Drawing.Point(237, 289);
+            this.btnInserirFoto.Name = "btnInserirFoto";
+            this.btnInserirFoto.Size = new System.Drawing.Size(130, 24);
+            this.btnInserirFoto.TabIndex = 22;
+            this.btnInserirFoto.Text = "Inserir Nova Foto";
+            this.btnInserirFoto.UseVisualStyleBackColor = true;
+            this.btnInserirFoto.Click += new System.EventHandler(this.btnInserirFoto_Click);
+            // 
             // TelaVeiculo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(323, 581);
+            this.ClientSize = new System.Drawing.Size(405, 581);
+            this.Controls.Add(this.btnInserirFoto);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.textBoxId);
             this.Controls.Add(this.textBoxPlaca);
@@ -257,6 +292,7 @@
             this.MinimizeBox = false;
             this.Name = "TelaVeiculo";
             this.Text = "TelaVeiculo";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -284,5 +320,8 @@
         private System.Windows.Forms.TextBox textBoxPlaca;
         private System.Windows.Forms.TextBox textBoxId;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button btnInserirFoto;
     }
 }
