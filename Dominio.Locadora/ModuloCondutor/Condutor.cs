@@ -23,6 +23,7 @@ namespace Locadora.Dominio.ModuloCondutor
 
         public Condutor()
         {
+            Cliente = new Cliente();
         }
 
         public string Nome { get; set; }

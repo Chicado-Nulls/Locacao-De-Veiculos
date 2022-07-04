@@ -24,7 +24,7 @@ namespace Locadora.Dominio.ModuloCondutor
 
             RuleFor(x => x.Email)
               .NotNull().WithMessage("O campo 'Email' não pode ser nulo!")
-              .NotEmpty().WithMessage("O campo 'Email' não pode ser nulo!")
+              .NotEmpty().WithMessage("O campo 'Email' não pode ser vazio!")
               .EmailAddress().WithMessage("Formato campo 'Email' inválidpo!");
             
             RuleFor(x => x.Cpf)
