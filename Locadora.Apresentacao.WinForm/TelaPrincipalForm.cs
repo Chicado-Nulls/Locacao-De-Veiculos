@@ -19,6 +19,10 @@ using Locadora.Aplicacao.ModuloTaxa;
 using Locadora.Aplicacao.ModuloGrupoDeVeiculos;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using Locadora.Infra.BancoDados.ModuloGrupoVeiculo;
+using Locadora.Dominio.ModuloCondutor;
+using Locadora.Aplicacao.ModuloCondutor;
+using Locadora.Infra.BancoDados.ModuloCondutor;
+using Locadora.Apresentacao.WinForm.ModuloCondutor;
 
 namespace Locadora.Apresentacao.WinForm
 {
@@ -129,8 +133,11 @@ namespace Locadora.Apresentacao.WinForm
             IRepositorioGrupoVeiculo repositorioGrupoDeVeiculos = new RepositorioGrupoVeiculo();
             ServiceGrupoVeiculo serviceGrupoDeVeiculos = new ServiceGrupoVeiculo(repositorioGrupoDeVeiculos);
             controladores.Add("Grupo Veiculos", new ControladorGrupoVeiculo(repositorioGrupoDeVeiculos, serviceGrupoDeVeiculos));
-            
 
+
+            IRepositorioCondutor repositorioCondutor = new RepositorioCondutor();
+            ServiceCondutor servicecondutor = new ServiceCondutor(repositorioCondutor);
+            controladores.Add("Condutores", new ControladorCondutor(repositorioCondutor, servicecondutor, repositorioCliente));
         }
 
         private void taxaToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -181,7 +188,7 @@ namespace Locadora.Apresentacao.WinForm
 
         private void condutoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }
 
         private void planoDeCobrançaToolStripMenuItem_Click(object sender, EventArgs e)
