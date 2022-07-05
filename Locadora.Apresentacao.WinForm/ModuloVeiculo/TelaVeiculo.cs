@@ -25,13 +25,15 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
         string caminhoFoto;
 
 
-        public TelaVeiculo(List<GrupoVeiculo> grupoVeiculos)
+        public TelaVeiculo(List<GrupoVeiculo> grupoVeiculos, string titulo, string label)
         {
             InitializeComponent();
 
             this.GruposVeiculos = grupoVeiculos;
             this.tipoDeCombustivel=new List<EnumTipoDeCombustivel>();
-            
+
+            Text = titulo;
+            btnInserir.Text = label;
 
             EncherComboBoxGrupoVeiculo(GruposVeiculos);
         }

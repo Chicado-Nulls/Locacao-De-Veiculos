@@ -38,7 +38,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
                 "Edição de veiculo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            TelaVeiculo telaVeiculo = new TelaVeiculo(serviceGrupoVeiculo.SelecionarTodos());
+            TelaVeiculo telaVeiculo = new TelaVeiculo(serviceGrupoVeiculo.SelecionarTodos(), "Editar Veículo", "Editar");
 
             telaVeiculo.Veiculo = veiculo;
             telaVeiculo.GravarRegistro = serviceVeiculo.Editar;
@@ -78,7 +78,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
               "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            TelaVeiculo telaVeiculo= new TelaVeiculo(serviceGrupoVeiculo.SelecionarTodos());
+            TelaVeiculo telaVeiculo= new TelaVeiculo(serviceGrupoVeiculo.SelecionarTodos(), "Inserir Veículo", "Inserir");
 
             telaVeiculo.Veiculo = new Veiculo();
 
