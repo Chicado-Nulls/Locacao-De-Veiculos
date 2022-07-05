@@ -31,6 +31,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
 
             this.GruposVeiculos = grupoVeiculos;
             this.tipoDeCombustivel=new List<EnumTipoDeCombustivel>();
+            
 
             EncherComboBoxGrupoVeiculo(GruposVeiculos);
         }
@@ -118,7 +119,8 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
                 string.IsNullOrEmpty(textBoxMarca.Text) ||
                 string.IsNullOrEmpty(textBoxCor.Text) ||
                 string.IsNullOrEmpty(textBoxKmPercorrido.Text) ||
-                string.IsNullOrEmpty(TextBoxCapacidadeTanque.Text) 
+                string.IsNullOrEmpty(TextBoxCapacidadeTanque.Text) ||
+                pictureBox.Image==null
                 )
                 return true;
 
@@ -220,17 +222,21 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
                     foto=reader.ReadBytes((int)stream.Length);
                 }
             }
-
             return foto;
         }
 
         private void carregarFoto()
         {
-            using(var foto= new MemoryStream(_veiculo.Foto))
+            if (_veiculo.Foto != null)
             {
-                pictureBox.Image=Image.FromStream(foto);
+                using (var foto = new MemoryStream(_veiculo.Foto))
+                {
+                    pictureBox.Image = Image.FromStream(foto);
+                }
             }
+          
         }
+       
 
     }
 }

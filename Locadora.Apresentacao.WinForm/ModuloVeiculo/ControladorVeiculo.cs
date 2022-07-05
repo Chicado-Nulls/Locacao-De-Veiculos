@@ -26,9 +26,6 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
             this.RepositorioVeiculo = repositorioVeiculo;
             this.serviceGrupoVeiculo = serviceGrupoVeiculo;
             this.serviceVeiculo = serviceVeiculo;
-
-         
-
         }
 
         public override void Editar()
@@ -75,6 +72,12 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
 
         public override void Inserir()
         {
+            if (serviceGrupoVeiculo.SelecionarTodos().Count == 0)
+            {
+                MessageBox.Show("Crie um grupo de Veiculo primeiro",
+              "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
             TelaVeiculo telaVeiculo= new TelaVeiculo(serviceGrupoVeiculo.SelecionarTodos());
 
             telaVeiculo.Veiculo = new Veiculo();
@@ -126,5 +129,6 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
             return veiculo;
 
         }
+       
     }
 }
