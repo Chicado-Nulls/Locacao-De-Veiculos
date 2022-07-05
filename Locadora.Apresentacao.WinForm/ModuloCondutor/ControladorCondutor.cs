@@ -43,7 +43,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCondutor
             TelaCadastroCondutorForm tela = new TelaCadastroCondutorForm("Editar Condutor", "Editar");
 
             tela.Clientes = _repositorioCliente.SelecionarTodos();
-
+            
             tela.Condutor = clienteSelecionado.Clone();
 
             tela.GravarRegistro = serviceCondutor.Editar;
@@ -84,6 +84,13 @@ namespace Locadora.Apresentacao.WinForm.ModuloCondutor
             TelaCadastroCondutorForm tela = new TelaCadastroCondutorForm("Inserir Condutor", "Inserir");
 
             tela.Clientes = _repositorioCliente.SelecionarTodos();
+
+            if (tela.Clientes == null)
+            {
+                MessageBox.Show("Nenhum cliente cadastrado. O cadastro de condutor necessita de um cliente cadastrado!",
+                "Inserir Condutor(s)", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             tela.Condutor = new Condutor();
 
