@@ -66,5 +66,10 @@ namespace Locadora.Dominio.ModuloCliente
         {
             return MemberwiseClone() as Cliente;
         }
+        public override string ToString()
+        {
+            string tipo = TipoCadastro == true ? "P. Física" : "P. Jurídica";
+            return $"ID: {Id} | Nome: {Nome} | Tipo: {tipo}";
+        }
     }
 }
