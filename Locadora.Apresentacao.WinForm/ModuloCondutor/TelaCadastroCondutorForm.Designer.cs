@@ -82,7 +82,7 @@
             this.txtBoxNome.Location = new System.Drawing.Point(12, 143);
             this.txtBoxNome.Name = "txtBoxNome";
             this.txtBoxNome.Size = new System.Drawing.Size(292, 23);
-            this.txtBoxNome.TabIndex = 5;
+            this.txtBoxNome.TabIndex = 4;
             // 
             // label3
             // 
@@ -116,7 +116,7 @@
             this.txtBoxEndereco.Location = new System.Drawing.Point(12, 276);
             this.txtBoxEndereco.Name = "txtBoxEndereco";
             this.txtBoxEndereco.Size = new System.Drawing.Size(292, 23);
-            this.txtBoxEndereco.TabIndex = 11;
+            this.txtBoxEndereco.TabIndex = 7;
             // 
             // label6
             // 
@@ -151,7 +151,7 @@
             this.cBoxCliente.Location = new System.Drawing.Point(12, 71);
             this.cBoxCliente.Name = "cBoxCliente";
             this.cBoxCliente.Size = new System.Drawing.Size(292, 23);
-            this.cBoxCliente.TabIndex = 16;
+            this.cBoxCliente.TabIndex = 1;
             // 
             // checkBoxCliente
             // 
@@ -159,7 +159,7 @@
             this.checkBoxCliente.Location = new System.Drawing.Point(12, 100);
             this.checkBoxCliente.Name = "checkBoxCliente";
             this.checkBoxCliente.Size = new System.Drawing.Size(122, 19);
-            this.checkBoxCliente.TabIndex = 17;
+            this.checkBoxCliente.TabIndex = 2;
             this.checkBoxCliente.Text = "Usar dados cliente";
             this.checkBoxCliente.UseVisualStyleBackColor = true;
             this.checkBoxCliente.CheckedChanged += new System.EventHandler(this.checkBoxCliente_CheckedChanged);
@@ -167,10 +167,10 @@
             // btnInserir
             // 
             this.btnInserir.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnInserir.Location = new System.Drawing.Point(12, 411);
+            this.btnInserir.Location = new System.Drawing.Point(32, 411);
             this.btnInserir.Name = "btnInserir";
             this.btnInserir.Size = new System.Drawing.Size(90, 36);
-            this.btnInserir.TabIndex = 18;
+            this.btnInserir.TabIndex = 10;
             this.btnInserir.Text = "[label]";
             this.btnInserir.UseVisualStyleBackColor = true;
             this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
@@ -178,10 +178,10 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(214, 411);
+            this.btnCancel.Location = new System.Drawing.Point(197, 411);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(90, 36);
-            this.btnCancel.TabIndex = 19;
+            this.btnCancel.TabIndex = 11;
             this.btnCancel.Text = "Cancelar";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
@@ -191,7 +191,7 @@
             this.txtBoxEmail.Name = "txtBoxEmail";
             this.txtBoxEmail.PlaceholderText = "email@dominio.com";
             this.txtBoxEmail.Size = new System.Drawing.Size(292, 23);
-            this.txtBoxEmail.TabIndex = 13;
+            this.txtBoxEmail.TabIndex = 8;
             // 
             // txtBoxTelefone
             // 
@@ -199,16 +199,16 @@
             this.txtBoxTelefone.Name = "txtBoxTelefone";
             this.txtBoxTelefone.PlaceholderText = "(00) 0 0000-0000";
             this.txtBoxTelefone.Size = new System.Drawing.Size(99, 23);
-            this.txtBoxTelefone.TabIndex = 15;
+            this.txtBoxTelefone.TabIndex = 9;
             this.txtBoxTelefone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxTelefone_KeyPress);
             // 
             // maskedTxtBoxCpf
             // 
             this.maskedTxtBoxCpf.Location = new System.Drawing.Point(12, 187);
-            this.maskedTxtBoxCpf.Mask = "000.000.000-00";
+            this.maskedTxtBoxCpf.Mask = "000,000,000-00";
             this.maskedTxtBoxCpf.Name = "maskedTxtBoxCpf";
             this.maskedTxtBoxCpf.Size = new System.Drawing.Size(100, 23);
-            this.maskedTxtBoxCpf.TabIndex = 20;
+            this.maskedTxtBoxCpf.TabIndex = 5;
             // 
             // maskedTxtBoxCnh
             // 
@@ -216,7 +216,7 @@
             this.maskedTxtBoxCnh.Mask = "00000000000";
             this.maskedTxtBoxCnh.Name = "maskedTxtBoxCnh";
             this.maskedTxtBoxCnh.Size = new System.Drawing.Size(100, 23);
-            this.maskedTxtBoxCnh.TabIndex = 21;
+            this.maskedTxtBoxCnh.TabIndex = 6;
             // 
             // limparCamposLinkLabel
             // 
@@ -225,7 +225,7 @@
             this.limparCamposLinkLabel.Location = new System.Drawing.Point(213, 101);
             this.limparCamposLinkLabel.Name = "limparCamposLinkLabel";
             this.limparCamposLinkLabel.Size = new System.Drawing.Size(91, 15);
-            this.limparCamposLinkLabel.TabIndex = 22;
+            this.limparCamposLinkLabel.TabIndex = 3;
             this.limparCamposLinkLabel.TabStop = true;
             this.limparCamposLinkLabel.Text = "Limpar Campos";
             this.limparCamposLinkLabel.Click += new System.EventHandler(this.limparCamposLinkLabel_Click);
