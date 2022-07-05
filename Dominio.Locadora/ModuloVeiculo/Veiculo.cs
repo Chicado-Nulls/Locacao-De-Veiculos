@@ -3,6 +3,7 @@ using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using Locadora.Dominio.ModuloVeiculo;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -68,6 +69,18 @@ namespace Locadora.Dominio.ModuloCarro
                   CapacidadeTanque == veiculo.CapacidadeTanque &&
                   KmPercorrido == veiculo.KmPercorrido &&
                   TipoDeCombustivel == veiculo.TipoDeCombustivel;
+        }
+        public void converterFoto(string caminhoFoto)
+        {
+            byte[] foto;
+            using (var stream = new FileStream(caminhoFoto, FileMode.Open, FileAccess.Read))
+            {
+                using (var reader = new BinaryReader(stream))
+                {
+                    foto = reader.ReadBytes((int)stream.Length);
+                }
+            }
+            Foto=foto;
         }
     }
 }

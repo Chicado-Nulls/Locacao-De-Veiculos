@@ -6,6 +6,7 @@ using Locadora.Infra.BancoDados.ModuloGrupoVeiculo;
 using Locadora.Infra.BancoDados.ModuloVeiculo;
 using Locadora.Test.Infra.Compartilhado;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,19 +22,20 @@ namespace Locadora.Test.Infra.ModuloVeiculo
 
         private RepositorioVeiculo repositorio;
         private RepositorioGrupoVeiculo repositorioGrupo;
+        byte[] foto = { 1, 2, 3 };
 
         public RepositorioGrupoVeiculoBancoDadosTest()
         {
-            this.repositorio = new RepositorioVeiculo(true);            
-            this.repositorioGrupo=new RepositorioGrupoVeiculo(true);
-            
+            this.repositorio = new RepositorioVeiculo(true);
+            this.repositorioGrupo = new RepositorioGrupoVeiculo(true);
+           
         }
         [TestMethod]
         
         public void Deve_Inserir()
         {
             var veiculo = GerandoVeiculo();
-
+            veiculo.Foto = foto;
             repositorio.Inserir(veiculo);
 
             var veiculoInserido = repositorio.SelecionarPorId(veiculo.Id);
@@ -44,7 +46,7 @@ namespace Locadora.Test.Infra.ModuloVeiculo
         public void Deve_Editar()
         {
             var veiculo = GerandoVeiculo();
-
+            veiculo.Foto = foto;
             repositorio.Inserir(veiculo);
 
             veiculo.Modelo = "BMW M3 GT2";
@@ -63,6 +65,7 @@ namespace Locadora.Test.Infra.ModuloVeiculo
         public void Deve_Excluir()
         {
             var veiculo = GerandoVeiculo();
+            
 
             repositorio.Inserir(veiculo);
 
@@ -81,11 +84,12 @@ namespace Locadora.Test.Infra.ModuloVeiculo
         {
             LimparTabela(NomeTabela);
             Veiculo veiculoUm = new Veiculo("BMW Z4", "40440-DV", "BMW", "Azul", 30m, 100m, EnumTipoDeCombustivel.Gasolina);
+            veiculoUm.Foto = foto;
 
             Veiculo veiculoDois = new Veiculo("BMW M2", "204242-DD", "BMWM", "LARANJA", 50m, 200M, EnumTipoDeCombustivel.Gasolina);
-
+            veiculoDois.Foto = foto;
             Veiculo veiculoTres = new Veiculo("Stock car", "224242-bb", "Toyota", "Vermelho", 20m, 300m, EnumTipoDeCombustivel.Etanol);
-
+            veiculoTres.Foto = foto;
             var grupoVeiculo = GerarGrupo();
 
             veiculoUm.GrupoDeVeiculo=grupoVeiculo;
@@ -112,6 +116,7 @@ namespace Locadora.Test.Infra.ModuloVeiculo
             repositorioGrupo.Inserir(grupoDeVeiculo);
 
             var veiculo = new Veiculo("BMW Z4","40440-DV","BMW","Azul",30m,100m, EnumTipoDeCombustivel.Gasolina);
+            veiculo.Foto = foto;
 
             veiculo.GrupoDeVeiculo=grupoDeVeiculo;
 
