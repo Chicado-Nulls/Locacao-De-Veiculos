@@ -1,4 +1,5 @@
 ﻿using FluentValidation.Results;
+using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloFuncionario;
 using System;
 using System.Drawing;
@@ -104,24 +105,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
 
         private void txtBoxSalario_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsDigit(e.KeyChar) || e.KeyChar.Equals((char)Keys.Back))
-            {
-                TextBox box = (TextBox)sender;
-
-                string texto = Regex.Replace(box.Text, "[^0-9]", string.Empty);
-
-                if (texto == string.Empty) texto = "00";
-
-                if (e.KeyChar.Equals((char)Keys.Back))
-                    texto = texto.Substring(0, texto.Length -1);
-                else
-                    texto += e.KeyChar;
-
-                box.Text = string.Format("{0:#,##0.00}", Double.Parse(texto)/100);
-
-                box.Select(box.Text.Length, 0);
-            }
-            e.Handled = true;
+            TextBoxBaseExtension.FormatarMoedaReal(sender, e);
         }
 
         private void checkBoxMostrarSenha_CheckedChanged(object sender, EventArgs e)
