@@ -11,6 +11,7 @@ namespace Locadora.Dominio.ModuloCondutor
               .NotNull().WithMessage("O campo 'Nome' não pode ser nulo!")
               .NotEmpty().WithMessage("O campo 'Nome' não pode ser vazio!")
               .Matches(@"^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$").WithMessage("O campo 'Nome' não permite caracteres especiais!")
+              .MinimumLength(2).WithMessage("O campo 'Nome' deve conter no mínimo 2 caracteres!")
               .MaximumLength(50);
 
             RuleFor(x => x.Endereco)
@@ -20,11 +21,14 @@ namespace Locadora.Dominio.ModuloCondutor
 
             RuleFor(x => x.Telefone)
               .NotNull().WithMessage("O campo 'Telefone' não pode ser nulo!")
-              .NotEmpty().WithMessage("O campo 'Telefone' não pode ser vazio!");
+              .NotEmpty().WithMessage("O campo 'Telefone' não pode ser vazio!")
+              .MinimumLength(10).WithMessage("O campo 'Telefone' deve conter no mínimo 10 caracteres!")
+              .MaximumLength(16).WithMessage("O campo 'Telefone' deve conter no máximo 16 caracteres!");
 
             RuleFor(x => x.Email)
               .NotNull().WithMessage("O campo 'Email' não pode ser nulo!")
-              .NotEmpty().WithMessage("O campo 'Email' não pode ser nulo!")
+              .NotEmpty().WithMessage("O campo 'Email' não pode ser vazio!")
+              .MinimumLength(8).WithMessage("O campo 'Email' deve conter no mínimo 8 caracteres!")
               .EmailAddress().WithMessage("Formato campo 'Email' inválidpo!");
             
             RuleFor(x => x.Cpf)
@@ -35,7 +39,7 @@ namespace Locadora.Dominio.ModuloCondutor
             RuleFor(x => x.Cnh)
               .NotNull().WithMessage("O campo 'Cnh' não pode ser nulo!")
               .NotEmpty().WithMessage("O campo 'Cnh' não pode ser vazio!")
-              .Length(11).WithMessage("O campo 'Cnh' deve conter 11 caracteres!");
+              .Length(11).WithMessage("O campo 'Cnh' deve conter 11 números!");
 
         }
     }

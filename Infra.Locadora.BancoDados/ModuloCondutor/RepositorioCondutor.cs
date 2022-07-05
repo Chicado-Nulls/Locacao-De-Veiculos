@@ -78,7 +78,7 @@ namespace Locadora.Infra.BancoDados.ModuloCondutor
 
 				ON CONDUTOR.CLIENTE_ID = CLIENTE.ID
 
-				WHERE @ID = @ID";
+				WHERE CONDUTOR.ID = @ID";
 
 
         protected override string sqlSelecionarTodos =>
@@ -107,7 +107,33 @@ namespace Locadora.Infra.BancoDados.ModuloCondutor
 
 				ON CONDUTOR.CLIENTE_ID = CLIENTE.ID";
 
-        protected override string sqlValidaRegistroDuplicado => throw new NotImplementedException();
+        protected override string sqlValidaRegistroDuplicado =>
+			@"SELECT
+					CONDUTOR.ID AS CONDUTOR_ID,
+					CONDUTOR.NOME AS CONDUTOR_NOME,
+					CONDUTOR.CPF AS CONDUTOR_CPF,
+					CONDUTOR.CNH AS CONDUTOR_CNH,
+					CONDUTOR.EMAIL AS CONDUTOR_EMAIL,
+					CONDUTOR.TELEFONE AS CONDUTOR_TELEFONE,
+					CONDUTOR.ENDERECO AS CONDUTOR_ENDERECO,
+
+					CLIENTE.ID AS CLIENTE_ID,
+					CLIENTE.NOME AS CLIENTE_NOME,
+					CLIENTE.CPF AS CLIENTE_CPF,
+					CLIENTE.CNPJ AS CLIENTE_CNPJ,
+					CLIENTE.ENDERECO AS CLIENTE_ENDERECO,
+					CLIENTE.CNH AS CLIENTE_CNH,
+					CLIENTE.EMAIL AS CLIENTE_EMAIL,
+					CLIENTE.TELEFONE AS CLIENTE_TELEFONE,
+					CLIENTE.TIPOCADASTRO AS CLIENTE_TIPOCADASTRO
+
+				FROM TBCONDUTOR AS CONDUTOR
+
+				INNER JOIN TBCLIENTE AS CLIENTE
+
+				ON CONDUTOR.CLIENTE_ID = CLIENTE.ID
+
+				WHERE CONDUTOR.CPF = @CPF AND CLIENTE.ID = @CLIENTE_ID AND CONDUTOR.ID <> @ID";
 
 		public RepositorioCondutor(bool BancoTeste = false) : base(BancoTeste)
         {
