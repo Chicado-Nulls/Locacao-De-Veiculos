@@ -4,6 +4,7 @@ using Locadora.Dominio.Compartilhado;
 using Locadora.Infra.BancoDados.Compartilhado;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace Locadora.Aplicacao.Compartilhado
     {
         IRepositorioBase<T> repositorio;
 
-        protected  ServiceBase(IRepositorioBase<T> repositorio)
+        public ServiceBase(IRepositorioBase<T> repositorio)
         {
             this.repositorio = repositorio;
         }
@@ -26,13 +27,13 @@ namespace Locadora.Aplicacao.Compartilhado
             var validador = new TValidador();
 
             var resultado = validador.Validate(registro);
-
+            if (!resultado.IsValid)
+                return resultado;  
+            
             var existeRepetido = repositorio.ExisteRegistroIgual(registro, "Inserir");
 
             if (existeRepetido)
-            {
                 return GerarErroRepetido();
-            }
 
             if (resultado.IsValid)
             {
@@ -48,6 +49,9 @@ namespace Locadora.Aplicacao.Compartilhado
             var validador = new TValidador();
 
             var resultado = validador.Validate(registro);
+
+            if (!resultado.IsValid)
+                return resultado;
 
             var existeRepetido = repositorio.ExisteRegistroIgual(registro,"Editar");
 
@@ -68,10 +72,17 @@ namespace Locadora.Aplicacao.Compartilhado
            
             var resultado = validador.Validate(registro);
 
-            if (resultado.IsValid)
+            if (!resultado.IsValid)
+                return resultado;
+            try
             {
                 repositorio.Excluir(registro);
             }
+            catch(Exception e)
+            {
+                resultado.Errors.Add(new ValidationFailure("", $"Não foi possível excluir {registro.ToString()}. Registro tem vínculo em outra tabela"));
+            }
+            
             return resultado;
         }
 
@@ -84,7 +95,7 @@ namespace Locadora.Aplicacao.Compartilhado
             return repositorio.SelecionarTodos();
         }
 
-        private static ValidationResult GerarErroRepetido()
+        protected virtual ValidationResult GerarErroRepetido()
         {
             ValidationResult erro = new ValidationResult();
 
@@ -92,8 +103,5 @@ namespace Locadora.Aplicacao.Compartilhado
 
             return erro;
         }
-
-
-
     }
 }

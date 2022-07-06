@@ -5,16 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Locadora.Test.Infra.Compartilhado
+namespace Locadora.Test.Service.Compartilhado
 {
-    public abstract class RepositorioBaseTest
+    public abstract class ServiceBaseTest
     {
         private string enderecoBanco =
             @"Data Source=(LOCALDB)\MSSQLLOCALDB;
               Initial Catalog=LocadoraVeiculosDBTest;
               Integrated Security=True";
         protected abstract string NomeTabela { get; }
-        public RepositorioBaseTest()
+        public ServiceBaseTest()
         {
             LimparTabela(null);
         }
@@ -23,9 +23,9 @@ namespace Locadora.Test.Infra.Compartilhado
             string sql;
 
             if (tabela == null)
-                sql = @"DELETE FROM "+NomeTabela+" DBCC CHECKIDENT ("+NomeTabela+", RESEED, 0)";
+                sql = "DELETE FROM "+NomeTabela+"; DBCC CHECKIDENT ("+NomeTabela+", RESEED, 0)";
             else
-                sql = $"DELETE FROM [{tabela}] DBCC CHECKIDENT ({tabela}, RESEED, 0)";
+                sql = "DELETE FROM "+tabela+"; DBCC CHECKIDENT ("+tabela+", RESEED, 0)";
 
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 

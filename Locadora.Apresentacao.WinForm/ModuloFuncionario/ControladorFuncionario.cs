@@ -67,8 +67,14 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
                "Exclusão de Funcionário", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
                 return;
 
+            var resultado = serviceFuncionario.Excluir(materiaSelecionada);
+            
+            if (!resultado.IsValid)
+            {
+                TelaPrincipalForm.Instancia.AtualizarRodape(resultado.Errors[0].ErrorMessage);
+                return;
+            }
 
-            repositorio.Excluir(materiaSelecionada);
             CarregarFuncionarios();
         }
 

@@ -63,7 +63,14 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
              "Exclusão de Grupo de Veiculos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
                 return;
 
-            serviceGrupoDeVeiculos.Excluir(grupo);
+            var resultado = serviceGrupoDeVeiculos.Excluir(grupo);
+
+            if (!resultado.IsValid)
+            {
+                TelaPrincipalForm.Instancia.AtualizarRodape(resultado.Errors[0].ErrorMessage);
+                return;
+            }
+
             CarregarGrupoDeVeiculos();
         }
 

@@ -17,7 +17,7 @@ namespace Locadora.Test.Unit.ModuloCondutor
             _cliente = new()
             {
 
-                Nome = "romulo",
+                Nome = "Romulo",
                 Cpf = "12345",
                 Cnpj = "123456",
                 Cnh = "88888",
@@ -29,9 +29,9 @@ namespace Locadora.Test.Unit.ModuloCondutor
 
             _condutor = new()
             {
-                Nome = "romulo",
-                Cpf = "12345",
-                Cnh = "88888",
+                Nome = "Marcos",
+                Cpf = "01202195903",
+                Cnh = "12345678911",
                 Endereco = "lages",
                 Email = "Romulo@gmail.com",
                 Telefone = "49999999",

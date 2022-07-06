@@ -20,15 +20,12 @@ namespace Locadora.Dominio.ModuloCliente
         public bool TipoCadastro { get; set; }    
 
         
-        
-
         public Cliente()
         {
         }
 
         public Cliente( string nome, string cpf, string cnpj, string cnh, string endereco, string email, string telefone, bool tipoCadastro)
         {
-            //Id = id;
             Nome = nome;
             Cpf = cpf;
             Cnpj = cnpj;
@@ -43,7 +40,6 @@ namespace Locadora.Dominio.ModuloCliente
 
         public override void Atualizar(Cliente registro)
         {
-            Id = registro.Id;
             Nome = registro.Nome;
             Cpf = registro.Cpf;
             Cnpj = registro.Cnpj;
@@ -57,7 +53,6 @@ namespace Locadora.Dominio.ModuloCliente
         public override bool Equals(object obj)
         {
             return obj is Cliente Cliente &&
-                   Id == Cliente.Id &&
                    Nome == Cliente.Nome &&
                    Cpf == Cliente.Cpf &&
                    Cnh == Cliente.Cnh &&
@@ -70,6 +65,11 @@ namespace Locadora.Dominio.ModuloCliente
         public Cliente Clone()
         {
             return MemberwiseClone() as Cliente;
+        }
+        public override string ToString()
+        {
+            string tipo = TipoCadastro == true ? "P. Física" : "P. Jurídica";
+            return $"ID: {Id} | Nome: {Nome} | Tipo: {tipo}";
         }
     }
 }

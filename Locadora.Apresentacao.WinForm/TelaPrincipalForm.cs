@@ -19,6 +19,14 @@ using Locadora.Aplicacao.ModuloTaxa;
 using Locadora.Aplicacao.ModuloGrupoDeVeiculos;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using Locadora.Infra.BancoDados.ModuloGrupoVeiculo;
+using Locadora.Dominio.ModuloCondutor;
+using Locadora.Aplicacao.ModuloCondutor;
+using Locadora.Infra.BancoDados.ModuloCondutor;
+using Locadora.Apresentacao.WinForm.ModuloCondutor;
+using Locadora.Aplicacao.ModuloVeiculo;
+using Locadora.Dominio.ModuloVeiculo;
+using Locadora.Infra.BancoDados.ModuloVeiculo;
+using Locadora.Apresentacao.WinForm.ModuloVeiculo;
 using Locadora.Dominio.ModuloPlanoCobranca;
 using Locadora.Aplicacao.ModuloPlanoCobranca;
 using Locadora.Apresentacao.WinForm.ModuloPlanoCobranca;
@@ -131,6 +139,17 @@ namespace Locadora.Apresentacao.WinForm
             controladores.Add("Taxa", new ControladorTaxa(repositorioTaxa, serviceTaxa));
 
             IRepositorioGrupoVeiculo repositorioGrupoDeVeiculos = new RepositorioGrupoVeiculo();
+            ServiceGrupoVeiculo serviceGrupoDeVeiculos = new ServiceGrupoVeiculo(repositorioGrupoDeVeiculos);
+            controladores.Add("Grupo Veiculos", new ControladorGrupoVeiculo(repositorioGrupoDeVeiculos, serviceGrupoDeVeiculos));
+
+            IrepositorioVeiculo repositorioVeiculo = new RepositorioVeiculo();
+            ServiceVeiculo serviceVeiculo = new ServiceVeiculo(repositorioVeiculo);
+            controladores.Add("Veiculos", new ControladorVeiculo(repositorioVeiculo,serviceGrupoDeVeiculos,serviceVeiculo));
+            
+
+            IRepositorioCondutor repositorioCondutor = new RepositorioCondutor();
+            ServiceCondutor servicecondutor = new ServiceCondutor(repositorioCondutor);
+            controladores.Add("Condutores", new ControladorCondutor(repositorioCondutor, servicecondutor, repositorioCliente));
             ServiceGrupoVeiculo serviceGrupoVeiculo = new ServiceGrupoVeiculo(repositorioGrupoDeVeiculos);
             controladores.Add("Grupo Veiculos", new ControladorGrupoVeiculo(repositorioGrupoDeVeiculos, serviceGrupoVeiculo));
 
@@ -193,12 +212,12 @@ namespace Locadora.Apresentacao.WinForm
 
         private void condutoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }
 
         private void veículosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }
     }
 }

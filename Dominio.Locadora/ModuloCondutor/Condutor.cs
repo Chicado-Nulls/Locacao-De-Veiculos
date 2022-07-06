@@ -23,6 +23,7 @@ namespace Locadora.Dominio.ModuloCondutor
 
         public Condutor()
         {
+            Cliente = new Cliente();
         }
 
         public string Nome { get; set; }
@@ -46,7 +47,6 @@ namespace Locadora.Dominio.ModuloCondutor
         public override bool Equals(object obj)
         {
             return obj is Condutor condutor &&
-                   Id == condutor.Id &&
                    Nome == condutor.Nome &&
                    Cpf == condutor.Cpf &&
                    Cnh == condutor.Cnh &&

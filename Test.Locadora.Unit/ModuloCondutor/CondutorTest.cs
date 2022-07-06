@@ -93,9 +93,6 @@ namespace Locadora.Test.Unit.ModuloCondutor
             // Asset
             Assert.AreEqual(null, condutor.Telefone);
 
-            // Asset
-            Assert.AreEqual(null, condutor.Cliente);
-
         }
 
         [TestMethod]
