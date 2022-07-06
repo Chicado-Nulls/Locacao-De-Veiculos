@@ -31,7 +31,7 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
             comando.Parameters.AddWithValue("KMPERCORRIDO", registro.KmPercorrido);
             comando.Parameters.AddWithValue("CAPACIDADETANQUE", registro.CapacidadeTanque);
             comando.Parameters.AddWithValue("ENUMTIPODECOMBUSTIVEL", registro.TipoDeCombustivel);
-            comando.Parameters.AddWithValue("GRUPODEVEICULO_ID", registro.GrupoDeVeiculo.Id);
+            comando.Parameters.AddWithValue("GRUPOVEICULO_ID", registro.GrupoDeVeiculo.Id);
             comando.Parameters.AddWithValue("FOTO", registro.Foto);
         }
 

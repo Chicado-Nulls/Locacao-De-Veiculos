@@ -60,7 +60,7 @@
   <ItemGroup>
     <Build Include="TbFuncionario.sql" />
     <Build Include="TbTaxa.sql" />
-    <Build Include="TbGrupoDeVeiculos.sql" />
+    <Build Include="TbGrupoVeiculo.sql" />
     <Build Include="TbCliente.sql" />
     <Build Include="TbPlanoCobranca.sql" />
     <Build Include="TbVeiculo.sql" />

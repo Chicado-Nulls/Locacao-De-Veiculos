@@ -44,7 +44,6 @@ namespace Locadora.Test.Infra.ModuloPlanoCobranca
             this.repositorioGrupoVeiculo = new RepositorioGrupoVeiculo(true);
             this.repositorioPlanoCobranca = new RepositorioPlanoCobrancaBancoDados(true);
 
-            LimparTabela("TBGRUPODEVEICULOS");
         }
 
         [TestMethod]

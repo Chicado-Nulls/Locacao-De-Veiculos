@@ -20,60 +20,68 @@ namespace Locadora.Test.Infra.ModuloVeiculo
     {
         protected override string NomeTabela =>"TbVeiculo";
 
-        private RepositorioVeiculo repositorio;
-        private RepositorioGrupoVeiculo repositorioGrupo;
-        byte[] foto = { 1, 2, 3 };
+        RepositorioVeiculo _repositorio;
+        RepositorioGrupoVeiculo _repositorioGrupo;
 
+        GrupoVeiculo _grupoVeiculo;
+
+        Veiculo _veiculo;
+        
         public RepositorioVeiculoBancoDadosTest()
         {
-            this.repositorio = new RepositorioVeiculo(true);
-            this.repositorioGrupo = new RepositorioGrupoVeiculo(true);
-           
+            this._repositorio = new RepositorioVeiculo(true);
+            this._repositorioGrupo = new RepositorioGrupoVeiculo(true);
+
+            this._grupoVeiculo = new GrupoVeiculo("Turismo");
+            this._veiculo = new Veiculo("BMW Z4", "40440-DV", "BMW", "Azul", 30m, 100m, EnumTipoDeCombustivel.Gasolina);
+            this._veiculo.Foto = new byte[] { 1,2,3};
         }
         [TestMethod]
         
         public void Deve_Inserir()
         {
-            var veiculo = GerandoVeiculo();
-            veiculo.Foto = foto;
-            repositorio.Inserir(veiculo);
+            _repositorioGrupo.Inserir(_grupoVeiculo);
+            
+            _veiculo.GrupoDeVeiculo = _grupoVeiculo;
+            
+            _repositorio.Inserir(_veiculo);
 
-            var veiculoInserido = repositorio.SelecionarPorId(veiculo.Id);
+            var veiculoInserido = _repositorio.SelecionarPorId(_veiculo.Id);
 
-            veiculoInserido.Should().Be(veiculo);
+            veiculoInserido.Should().Be(_veiculo);
         }
         [TestMethod]
         public void Deve_Editar()
         {
-            var veiculo = GerandoVeiculo();
-            veiculo.Foto = foto;
-            repositorio.Inserir(veiculo);
+            _repositorioGrupo.Inserir(_grupoVeiculo);
 
-            veiculo.Modelo = "BMW M3 GT2";
-            veiculo.Placa = "242420-TB";
-            veiculo.Cor = "Laranja";
-            veiculo.TipoDeCombustivel = EnumTipoDeCombustivel.Etanol;
+            _veiculo.GrupoDeVeiculo = _grupoVeiculo;
 
-            repositorio.Editar(veiculo);
+            _repositorio.Inserir(_veiculo);
 
-            var veiculoEditado = repositorio.SelecionarPorId(veiculo.Id);
+            Veiculo veiculoEditado = new Veiculo("Uno", "abc-1234", "Fiat", "Azul", 10m, 50m, EnumTipoDeCombustivel.Gasolina);
+            veiculoEditado.Foto = new byte[] { 1, 2, 3 };
+            veiculoEditado.GrupoDeVeiculo = _grupoVeiculo;
 
-            veiculoEditado.Should().Be(veiculo);    
+            _veiculo.Atualizar(veiculoEditado);
+
+            _repositorio.Editar(_veiculo);
+
+            var veiculoEncontrado = _repositorio.SelecionarPorId(_veiculo.Id);
+
+            veiculoEncontrado.Should().Be(_veiculo);    
 
         }
         [TestMethod]
         public void Deve_Excluir()
         {
-            var veiculo = GerandoVeiculo();
-            
+            _repositorioGrupo.Inserir(_grupoVeiculo);
 
-            repositorio.Inserir(veiculo);
+            _veiculo.GrupoDeVeiculo = _grupoVeiculo;
 
-            var veiculoExcluir = repositorio.SelecionarPorId(veiculo.Id);
+            _repositorio.Excluir(_veiculo);
 
-            repositorio.Excluir(veiculoExcluir);
-
-            var veiculoExcluido=repositorio.SelecionarPorId(veiculoExcluir.Id);
+            var veiculoExcluido=_repositorio.SelecionarPorId(_veiculo.Id);
 
             veiculoExcluido.Should().BeNull();
             
@@ -82,7 +90,9 @@ namespace Locadora.Test.Infra.ModuloVeiculo
 
         public void Deve_Selecionar_Todos()
         {
-            LimparTabela(NomeTabela);
+            _repositorioGrupo.Inserir(_grupoVeiculo);
+
+            byte[] foto = new byte[] { 1, 2, 3 };
             Veiculo veiculoUm = new Veiculo("BMW Z4", "40440-DV", "BMW", "Azul", 30m, 100m, EnumTipoDeCombustivel.Gasolina);
             veiculoUm.Foto = foto;
 
@@ -90,45 +100,20 @@ namespace Locadora.Test.Infra.ModuloVeiculo
             veiculoDois.Foto = foto;
             Veiculo veiculoTres = new Veiculo("Stock car", "224242-bb", "Toyota", "Vermelho", 20m, 300m, EnumTipoDeCombustivel.Etanol);
             veiculoTres.Foto = foto;
-            var grupoVeiculo = GerarGrupo();
+            
+            veiculoUm.GrupoDeVeiculo= _grupoVeiculo;
+            veiculoDois.GrupoDeVeiculo = _grupoVeiculo;
+            veiculoTres.GrupoDeVeiculo = _grupoVeiculo;
 
-            veiculoUm.GrupoDeVeiculo=grupoVeiculo;
-            veiculoDois.GrupoDeVeiculo = grupoVeiculo;
-            veiculoTres.GrupoDeVeiculo = grupoVeiculo;
+            _repositorio.Inserir(veiculoUm);
+            _repositorio.Inserir(veiculoDois);
+            _repositorio.Inserir(veiculoTres);
 
-            repositorio.Inserir(veiculoUm);
-            repositorio.Inserir(veiculoDois);
-            repositorio.Inserir(veiculoTres);
-
-            var listaVeiculos = repositorio.SelecionarTodos();
+            var listaVeiculos = _repositorio.SelecionarTodos();
 
             listaVeiculos[0].Should().Be(veiculoUm);
             listaVeiculos[1].Should().Be(veiculoDois);
             listaVeiculos[2].Should().Be(veiculoTres);
-        }
-
-
-
-        public Veiculo GerandoVeiculo()
-        {
-            var grupoDeVeiculo = new GrupoVeiculo("Turismo");
-
-            repositorioGrupo.Inserir(grupoDeVeiculo);
-
-            var veiculo = new Veiculo("BMW Z4","40440-DV","BMW","Azul",30m,100m, EnumTipoDeCombustivel.Gasolina);
-            veiculo.Foto = foto;
-
-            veiculo.GrupoDeVeiculo=grupoDeVeiculo;
-
-            return veiculo;
-        }
-        public GrupoVeiculo GerarGrupo()
-        {
-            var grupoDeVeiculo = new GrupoVeiculo("Turismo");
-
-            repositorioGrupo.Inserir(grupoDeVeiculo);
-
-            return grupoDeVeiculo;
         }
 
     }

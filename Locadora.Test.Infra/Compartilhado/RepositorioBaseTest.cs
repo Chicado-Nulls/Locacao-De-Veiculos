@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Locadora.Infra.BancoDados.Compartilhado;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -16,7 +17,13 @@ namespace Locadora.Test.Infra.Compartilhado
         protected abstract string NomeTabela { get; }
         public RepositorioBaseTest()
         {
-            LimparTabela(null);
+            LimparTabela("TBPLANOCOBRANCA");
+            LimparTabela("TBVEICULO");
+            LimparTabela("TBGRUPOVEICULO");
+            LimparTabela("TBFUNCIONARIO");
+            LimparTabela("TBCONDUTOR");
+            LimparTabela("TBCLIENTE");
+            LimparTabela("TBTAXA");
         }
         protected void LimparTabela(string tabela)
         {

@@ -64,12 +64,12 @@ namespace Locadora.Infra.BancoDados.ModuloPlanoCobranca
                     PLANO.[CONTROLADO_DIARIA] AS PLANOCOBRANCA_CONTROLADO_DIARIA,
                     PLANO.[CONTROLADO_POR_KM] AS PLANOCOBRANCA_CONTROLADO_POR_KM,
                     PLANO.[CONTROLADO_LIMITE_KM] AS PLANOCOBRANCA_CONTROLADO_LIMITE_KM,
-                    GRUPO.[ID] AS GRUPODEVEICULO_ID,
-                    GRUPO.[NOME] AS GRUPODEVEICULO_NOME
+                    GRUPO.[ID] AS GRUPOVEICULO_ID,
+                    GRUPO.[NOME] AS GRUPOVEICULO_NOME
 
                 FROM[TBPLANOCOBRANCA] AS PLANO
 
-                INNER JOIN TBGRUPODEVEICULOS AS GRUPO
+                INNER JOIN TBGRUPOVEICULO AS GRUPO
                 
                 ON PLANO.GRUPO_VEICULO_ID = GRUPO.ID
                 
@@ -87,12 +87,12 @@ namespace Locadora.Infra.BancoDados.ModuloPlanoCobranca
                         PLANO.[CONTROLADO_DIARIA] AS PLANOCOBRANCA_CONTROLADO_DIARIA,
                         PLANO.[CONTROLADO_POR_KM] AS PLANOCOBRANCA_CONTROLADO_POR_KM,
                         PLANO.[CONTROLADO_LIMITE_KM] AS PLANOCOBRANCA_CONTROLADO_LIMITE_KM,
-                        GRUPO.[ID] AS GRUPODEVEICULO_ID,
-                        GRUPO.[NOME] AS GRUPODEVEICULO_NOME
+                        GRUPO.[ID] AS GRUPOVEICULO_ID,
+                        GRUPO.[NOME] AS GRUPOVEICULO_NOME
 
                 FROM[TBPLANOCOBRANCA] AS PLANO
 
-                INNER JOIN TBGRUPODEVEICULOS AS GRUPO
+                INNER JOIN TBGRUPOVEICULO AS GRUPO
                 
                 ON PLANO.GRUPO_VEICULO_ID = GRUPO.ID";
 

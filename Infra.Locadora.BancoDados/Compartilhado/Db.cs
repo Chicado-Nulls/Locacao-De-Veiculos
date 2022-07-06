@@ -9,7 +9,7 @@ namespace Locadora.Infra.BancoDados.Compartilhado
             @"Data Source=(LOCALDB)\MSSQLLOCALDB;
               Initial Catalog=LocadoraVeiculosDB;
               Integrated Security=True";
-
+        
         public static void ExecutarSql(string sql)
         {
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);

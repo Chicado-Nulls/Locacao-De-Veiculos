@@ -154,4 +154,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Controlado_Limite_Km" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="3b4d96c0-6f1a-436a-8f19-0de054d02ff5" ChangeDateTime="07/06/2022 21:12:05">
+    <Property Name="ElementName" Value="[dbo].[TbVeiculo].[GrupoDeVeiculo_Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TbVeiculo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="GrupoVeiculo_Id" />
+  </Operation>
 </Operations>

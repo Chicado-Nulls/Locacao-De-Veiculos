@@ -25,7 +25,7 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
                                                       KmPercorrido,
                                                       CapacidadeTanque,
                                                       Placa,
-                                                      GrupoDeVeiculo_Id,
+                                                      GrupoVeiculo_Id,
                                                       FOTO
                                                     )
                                                      VALUES
@@ -37,7 +37,7 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
                                                      @KMPERCORRIDO,
                                                      @CAPACIDADETANQUE,
                                                      @PLACA,
-                                                     @GRUPODEVEICULO_ID,
+                                                     @GRUPOVEICULO_ID,
                                                      @FOTO
                                                     ); 
                                                        select SCOPE_IDENTITY();";
@@ -52,7 +52,7 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
                                                    [KMPERCORRIDO]=@KMPERCORRIDO,
                                                    [CAPACIDADETANQUE]= @CAPACIDADETANQUE,
                                                    [PLACA]=@PLACA,
-                                                   [GRUPODEVEICULO_ID]=@GRUPODEVEICULO_ID,
+                                                   [GRUPOVEICULO_ID]=@GRUPOVEICULO_ID,
                                                    [FOTO]=@FOTO
                                                  WHERE 
                                                    [ID]=@ID";
@@ -76,12 +76,12 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
                 V.PLACA,
                 V.FOTO,
 
-                R.Id AS GRUPODEVEICULO_ID,
-                R.NOME														 
+                R.Id AS GRUPOVEICULO_ID,
+                R.NOME as GRUPOVEICULO_NOME														 
                                                           
                   FROM 
                    [TbVeiculo] AS V
-                   INNER JOIN TBGRUPODEVEICULOS AS R ON V.GrupoDeVeiculo_Id=R.Id
+                   INNER JOIN TBGRUPOVEICULO AS R ON V.GrupoVeiculo_Id=R.Id
                   WHERE
                    V.ID=@ID";
 
@@ -102,12 +102,12 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
                 V.PLACA,
                 V.FOTO,
 
-                R.Id AS GRUPODEVEICULO_ID,
-                R.NOME														 
+                R.Id AS GRUPOVEICULO_ID,
+                R.NOME AS GRUPOVEICULO_NOME														 
                                                           
                 FROM 
                   [TbVeiculo] AS V
-                  INNER JOIN TBGRUPODEVEICULOS AS R ON V.GrupoDeVeiculo_Id=R.Id";
+                  INNER JOIN TBGRUPOVEICULO AS R ON V.GrupoVeiculo_Id=R.Id";
 
 
 
@@ -122,12 +122,12 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
                 V.CAPACIDADETANQUE,                                                        
                 V.PLACA,
 
-                R.Id AS GRUPODEVEICULO_ID,
+                R.Id AS GRUPOVEICULO_ID,
                 R.NOME														 
                                                           
                 FROM 
                   [TbVeiculo] AS V
-                  INNER JOIN TBGRUPODEVEICULOS AS R ON V.GrupoDeVeiculo_Id=R.Id
+                  INNER JOIN TBGRUPOVEICULO AS R ON V.GrupoVeiculo_Id=R.Id
                 WHERE 
                   V.PLACA=@PLACA AND V.ID <> @ID";
 
