@@ -59,7 +59,13 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
             if (MessageBox.Show($"Deseja realmente excluir a taxa '{taxa.Descricao}'?", "Exclusão de taxa", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
                 return;
 
-            serviceTaxa.Excluir(taxa);
+            var resultado = serviceTaxa.Excluir(taxa);
+
+            if (!resultado.IsValid)
+            {
+                TelaPrincipalForm.Instancia.AtualizarRodape(resultado.Errors[0].ErrorMessage);
+                return;
+            }
 
             CarregarTaxas();
         }

@@ -63,14 +63,21 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
                 return;
             }
 
-            DialogResult resultado = MessageBox.Show($"Deseja realmente excluir o cliente '{clienteSelecionado.Nome}'?",
+            DialogResult dialogResult = MessageBox.Show($"Deseja realmente excluir o cliente '{clienteSelecionado.Nome}'?",
                "Exclusão de Cliente(s)", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-            if (resultado == DialogResult.OK)
+            if (dialogResult != DialogResult.OK)
+                return;
+
+            var resultado = serviceCliente.Excluir(clienteSelecionado);
+
+            if (!resultado.IsValid)
             {
-                repositorioCliente.Excluir(clienteSelecionado);
-                CarregarClientes();
+                TelaPrincipalForm.Instancia.AtualizarRodape(resultado.Errors[0].ErrorMessage);
+                return;
             }
+
+            CarregarClientes();
         }
 
         public override void Inserir()

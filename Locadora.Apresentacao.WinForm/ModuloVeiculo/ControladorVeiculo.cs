@@ -64,7 +64,13 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
             if (MessageBox.Show($"Deseja realmente excluir o veiculo selecionado '{veiculo.Modelo}'?", "Exclusão de veiculo", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
                 return;
 
-            serviceVeiculo.Excluir(veiculo);
+            var resultado = serviceVeiculo.Excluir(veiculo);
+
+            if (!resultado.IsValid)
+            {
+                TelaPrincipalForm.Instancia.AtualizarRodape(resultado.Errors[0].ErrorMessage);
+                return;
+            }
 
             CarregarVeiculos();
 

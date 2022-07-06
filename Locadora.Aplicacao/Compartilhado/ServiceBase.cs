@@ -4,6 +4,7 @@ using Locadora.Dominio.Compartilhado;
 using Locadora.Infra.BancoDados.Compartilhado;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -71,10 +72,17 @@ namespace Locadora.Aplicacao.Compartilhado
            
             var resultado = validador.Validate(registro);
 
-            if (resultado.IsValid)
+            if (!resultado.IsValid)
+                return resultado;
+            try
             {
                 repositorio.Excluir(registro);
             }
+            catch(Exception e)
+            {
+                resultado.Errors.Add(new ValidationFailure("", $"Não foi possível excluir {registro.ToString()}. Registro tem vínculo em outra tabela"));
+            }
+            
             return resultado;
         }
 

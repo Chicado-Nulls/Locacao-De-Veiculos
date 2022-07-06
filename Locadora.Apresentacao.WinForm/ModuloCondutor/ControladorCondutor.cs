@@ -69,14 +69,22 @@ namespace Locadora.Apresentacao.WinForm.ModuloCondutor
                 return;
             }
 
-            DialogResult resultado = MessageBox.Show($"Deseja realmente excluir o condutor '{condutorSelecionado.Nome}'?",
+            DialogResult dialogResult = MessageBox.Show($"Deseja realmente excluir o condutor '{condutorSelecionado.Nome}'?",
                "Exclusão de Condutor(s)", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-            if (resultado == DialogResult.OK)
+            if (dialogResult != DialogResult.OK)
+                return;
+
+            var resultado = serviceCondutor.Excluir(condutorSelecionado);
+
+            if (!resultado.IsValid)
             {
-                repositorioCondutor.Excluir(condutorSelecionado);
-                CarregarCondutores();
+                TelaPrincipalForm.Instancia.AtualizarRodape(resultado.Errors[0].ErrorMessage);
+                return;
             }
+
+            CarregarCondutores();
+            
         }
 
         public override void Inserir()
