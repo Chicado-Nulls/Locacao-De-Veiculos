@@ -14,22 +14,22 @@ namespace Locadora.Infra.BancoDados.ModuloPlanoCobranca
             @"INSERT INTO [TBPLANOCOBRANCA]
               (
                 GRUPO_VEICULO_ID,
-                DIARIO_VALOR_DIARIO,
-                DIARIO_VALOR_POR_KM,
-                LIVRE_VALOR_DIARIO,
-                CONTROLADO_VALOR_DIARIO,
-                CONTROLADO_VALOR_POR_KM,
-                CONTROLADO_LIMITE_DE_KM
+                DIARIO_DIARIA,
+                DIARIO_POR_KM,
+                LIVRE_DIARIA,
+                CONTROLADO_DIARIA,
+                CONTROLADO_POR_KM,
+                CONTROLADO_LIMITE_KM
               )
               VALUES
              (
                 @GRUPO_VEICULO_ID,
-                @DIARIO_VALOR_DIARIO,
-                @DIARIO_VALOR_POR_KM,
-                @LIVRE_VALOR_DIARIO,
-                @CONTROLADO_VALOR_DIARIO,
-                @CONTROLADO_VALOR_POR_KM,
-                @CONTROLADO_LIMITE_DE_KM
+                @DIARIO_DIARIA,
+                @DIARIO_POR_KM,
+                @LIVRE_DIARIA,
+                @CONTROLADO_DIARIA,
+                @CONTROLADO_POR_KM,
+                @CONTROLADO_LIMITE_KM
              );
                SELECT SCOPE_IDENTITY();";
 
@@ -38,12 +38,12 @@ namespace Locadora.Infra.BancoDados.ModuloPlanoCobranca
                     SET 
                         
                         [GRUPO_VEICULO_ID] = @GRUPO_VEICULO_ID, 
-                        [DIARIO_VALOR_DIARIO] = @DIARIO_VALOR_DIARIO, 
-                        [DIARIO_VALOR_POR_KM] = @DIARIO_VALOR_POR_KM,
-                        [LIVRE_VALOR_DIARIO] = @LIVRE_VALOR_DIARIO,
-                        [CONTROLADO_VALOR_DIARIO] = @CONTROLADO_VALOR_DIARIO,
-                        [CONTROLADO_VALOR_POR_KM] = @CONTROLADO_VALOR_POR_KM,
-                        [CONTROLADO_LIMITE_DE_KM] = @CONTROLADO_LIMITE_DE_KM
+                        [DIARIO_DIARIA] = @DIARIO_DIARIA, 
+                        [DIARIO_POR_KM] = @DIARIO_POR_KM,
+                        [LIVRE_DIARIA] = @LIVRE_DIARIA,
+                        [CONTROLADO_DIARIA] = @CONTROLADO_DIARIA,
+                        [CONTROLADO_POR_KM] = @CONTROLADO_POR_KM,
+                        [CONTROLADO_LIMITE_KM] = @CONTROLADO_LIMITE_KM
 
                     WHERE [ID] = @ID";
 
@@ -55,48 +55,46 @@ namespace Locadora.Infra.BancoDados.ModuloPlanoCobranca
                     [ID] = @ID";
 
         protected override string sqlSelecionarPorId =>
-            @"SELECT PLANO.[ID] AS PLANO_ID,
-                      PLANO.[GRUPO_VEICULO_ID] AS PLANO_GRUPO_VEICULO_ID,
-                      PLANO.[DIARIO_VALOR_DIARIO] AS PLANO_DIARIO_VALOR_DIARIO,
-                      PLANO.[DIARIO_VALOR_POR_KM] AS PLANO_DIARIO_VALOR_POR_KM,
-                      PLANO.[LIVRE_VALOR_DIARIO] AS PLANO_LIVRE_VALOR_DIARIO,
-                      PLANO.[CONTROLADO_VALOR_DIARIO] AS PLANO_CONTROLADO_VALOR_DIARIO,
-                      PLANO.[CONTROLADO_VALOR_POR_KM] AS PLANO_CONTROLADO_VALOR_POR_KM,
-                      PLANO.[CONTROLADO_LIMITE_DE_KM] AS PLANO_CONTROLADO_LIMITE_DE_KM,
-	                  GRUPO.[ID] AS GRUPODEVEICULO_ID,
-	                  GRUPO.[NOME] AS GRUPODEVEICULO_NOME
+            @"SELECT 
+                    PLANO.[ID] AS PLANOCOBRANCA_ID,
+                    PLANO.[GRUPO_VEICULO_ID] AS PLANO_GRUPO_VEICULO_ID,
+                    PLANO.[DIARIO_DIARIA] AS PLANOCOBRANCA_DIARIO_DIARIA,
+                    PLANO.[DIARIO_POR_KM] AS PLANOCOBRANCA_DIARIOR_POR_KM,
+                    PLANO.[LIVRE_DIARIA] AS PLANOCOBRANCA_LIVRE_DIARIA,
+                    PLANO.[CONTROLADO_DIARIA] AS PLANOCOBRANCA_CONTROLADO_DIARIA,
+                    PLANO.[CONTROLADO_POR_KM] AS PLANOCOBRANCA_CONTROLADO_POR_KM,
+                    PLANO.[CONTROLADO_LIMITE_KM] AS PLANOCOBRANCA_CONTROLADO_LIMITE_KM,
+                    GRUPO.[ID] AS GRUPODEVEICULO_ID,
+                    GRUPO.[NOME] AS GRUPODEVEICULO_NOME
 
                 FROM[TBPLANOCOBRANCA] AS PLANO
 
-
-
-                   INNER JOIN TBGRUPODEVEICULOS AS GRUPO
-                   ON
-                   PLANO.GRUPO_VEICULO_ID = GRUPO.ID
-                   WHERE PLANO.ID = @ID
-";
+                INNER JOIN TBGRUPODEVEICULOS AS GRUPO
+                
+                ON PLANO.GRUPO_VEICULO_ID = GRUPO.ID
+                
+                WHERE PLANO.ID = @ID
+                ";
 
 
 
         protected override string sqlSelecionarTodos =>
-                            @"SELECT PLANO.[ID] AS PLANO_ID,
-                      PLANO.[GRUPO_VEICULO_ID] AS PLANO_GRUPO_VEICULO_ID,
-                      PLANO.[DIARIO_VALOR_DIARIO] AS PLANO_DIARIO_VALOR_DIARIO,
-                      PLANO.[DIARIO_VALOR_POR_KM] AS PLANO_DIARIO_VALOR_POR_KM,
-                      PLANO.[LIVRE_VALOR_DIARIO] AS PLANO_LIVRE_VALOR_DIARIO,
-                      PLANO.[CONTROLADO_VALOR_DIARIO] AS PLANO_CONTROLADO_VALOR_DIARIO,
-                      PLANO.[CONTROLADO_VALOR_POR_KM] AS PLANO_CONTROLADO_VALOR_POR_KM,
-                      PLANO.[CONTROLADO_LIMITE_DE_KM] AS PLANO_CONTROLADO_LIMITE_DE_KM,
-	                  GRUPO.[ID] AS GRUPODEVEICULO_ID,
-	                  GRUPO.[NOME] AS GRUPODEVEICULO_NOME
+                @"SELECT 
+                        PLANO.[ID] AS PLANOCOBRANCA_ID,
+                        PLANO.[DIARIO_DIARIA] AS PLANOCOBRANCA_DIARIO_DIARIA,
+                        PLANO.[DIARIO_POR_KM] AS PLANOCOBRANCA_DIARIOR_POR_KM,
+                        PLANO.[LIVRE_DIARIA] AS PLANOCOBRANCA_LIVRE_DIARIA,
+                        PLANO.[CONTROLADO_DIARIA] AS PLANOCOBRANCA_CONTROLADO_DIARIA,
+                        PLANO.[CONTROLADO_POR_KM] AS PLANOCOBRANCA_CONTROLADO_POR_KM,
+                        PLANO.[CONTROLADO_LIMITE_KM] AS PLANOCOBRANCA_CONTROLADO_LIMITE_KM,
+                        GRUPO.[ID] AS GRUPODEVEICULO_ID,
+                        GRUPO.[NOME] AS GRUPODEVEICULO_NOME
 
                 FROM[TBPLANOCOBRANCA] AS PLANO
 
-
-
-                   INNER JOIN TBGRUPODEVEICULOS AS GRUPO
-                   ON
-                   PLANO.GRUPO_VEICULO_ID = GRUPO.ID";
+                INNER JOIN TBGRUPODEVEICULOS AS GRUPO
+                
+                ON PLANO.GRUPO_VEICULO_ID = GRUPO.ID";
 
 
 

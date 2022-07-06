@@ -112,4 +112,46 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Controlado_Limite_De_Km" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="f32a7e73-8e0c-426b-8716-d070f2b2bfa5" ChangeDateTime="07/06/2022 19:03:04">
+    <Property Name="ElementName" Value="[dbo].[TbPlanoCobranca].[Diario_Valor_Diario]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TbPlanoCobranca]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Diario_Diaria" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="87654de7-5643-4381-b6df-9c4272dd0511" ChangeDateTime="07/06/2022 19:03:11">
+    <Property Name="ElementName" Value="[dbo].[TbPlanoCobranca].[Diario_Valor_Por_Km]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TbPlanoCobranca]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Diario_Por_Km" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="256a28b1-f816-466d-b221-62fb0c7bc65f" ChangeDateTime="07/06/2022 19:03:17">
+    <Property Name="ElementName" Value="[dbo].[TbPlanoCobranca].[Livre_Valor_Diario]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TbPlanoCobranca]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Livre_Diaria" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f78518f7-d33e-4bd0-8357-dfd893710ea0" ChangeDateTime="07/06/2022 19:03:23">
+    <Property Name="ElementName" Value="[dbo].[TbPlanoCobranca].[Controlado_Valor_Diario]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TbPlanoCobranca]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Controlado_Diaria" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="bda231a0-2b9d-4179-b66c-c83b8d06795e" ChangeDateTime="07/06/2022 19:03:28">
+    <Property Name="ElementName" Value="[dbo].[TbPlanoCobranca].[Controlado_Valor_Por_Km]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TbPlanoCobranca]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Controlado_Por_Km" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a85d6226-3949-454f-8ed6-479e95a79cc1" ChangeDateTime="07/06/2022 19:03:34">
+    <Property Name="ElementName" Value="[dbo].[TbPlanoCobranca].[Controlado_Limite_De_Km]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TbPlanoCobranca]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Controlado_Limite_Km" />
+  </Operation>
 </Operations>

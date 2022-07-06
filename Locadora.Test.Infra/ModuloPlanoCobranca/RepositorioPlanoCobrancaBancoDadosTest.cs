@@ -32,12 +32,12 @@ namespace Locadora.Test.Infra.ModuloPlanoCobranca
             {
 
                 GrupoVeiculo = grupoVeiculo,
-                DiarioValorDiario = 2,
-                DiarioValorPorKm = 3,
-                LivreValorDiario = 4,
-                ControladoValorDiario = 5,
-                ControladoValorPorKm = 6,
-                ControladoLimiteDeKm = 7
+                DiarioDiaria = 2,
+                DiarioPorKm = 3,
+                LivreDiaria = 4,
+                ControladoDiaria = 5,
+                ControladoPorKm = 6,
+                ControladoLimiteKm = 7
 
             };
             

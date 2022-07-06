@@ -18,12 +18,12 @@ namespace Locadora.Test.Unit.ModuloPlanoCobranca
             _planoCobranca = new()
             {
                 GrupoVeiculo = _grupoVeiculo,
-                DiarioValorDiario = 100,
-                DiarioValorPorKm = 4,
-                LivreValorDiario = 5,
-                ControladoValorDiario = 2,
-                ControladoValorPorKm = 3,
-                ControladoLimiteDeKm = 8
+                DiarioDiaria = 100,
+                DiarioPorKm = 4,
+                LivreDiaria = 5,
+                ControladoDiaria = 2,
+                ControladoPorKm = 3,
+                ControladoLimiteKm = 8
             };
 
             _validador = new ValidadorPlanoCobranca();
@@ -32,150 +32,150 @@ namespace Locadora.Test.Unit.ModuloPlanoCobranca
         public void Diario_valor_diario_nao_deve_ser_nulo()
         {
             // arrange
-            _planoCobranca.DiarioValorDiario = default;
+            _planoCobranca.DiarioDiaria = default;
 
             // action
             var resultado = _validador.TestValidate(_planoCobranca);
 
             // assert
-            resultado.ShouldHaveValidationErrorFor(f => f.DiarioValorDiario);
+            resultado.ShouldHaveValidationErrorFor(f => f.DiarioDiaria);
         }
         [TestMethod]
         public void Diario_valor_diario_deve_ser_maior_que_zero()
         {
             // arrange
-            _planoCobranca.DiarioValorDiario = 0;
+            _planoCobranca.DiarioDiaria = 0;
 
             // action
             var resultado = _validador.TestValidate(_planoCobranca);
 
             // assert
-            resultado.ShouldHaveValidationErrorFor(f => f.DiarioValorDiario);
+            resultado.ShouldHaveValidationErrorFor(f => f.DiarioDiaria);
         }
 
         [TestMethod]
         public void Diario_valor_por_km_nao_deve_ser_nulo()
         {
             // arrange
-            _planoCobranca.DiarioValorPorKm = default;
+            _planoCobranca.DiarioPorKm = default;
 
             // action
             var resultado = _validador.TestValidate(_planoCobranca);
 
             // assert
-            resultado.ShouldHaveValidationErrorFor(f => f.DiarioValorPorKm);
+            resultado.ShouldHaveValidationErrorFor(f => f.DiarioPorKm);
         }
         [TestMethod]
         public void Diario_valor_por_km_deve_ser_maior_que_zero()
         {
             // arrange
-            _planoCobranca.DiarioValorPorKm = 0;
+            _planoCobranca.DiarioPorKm = 0;
 
             // action
             var resultado = _validador.TestValidate(_planoCobranca);
 
             // assert
-            resultado.ShouldHaveValidationErrorFor(f => f.DiarioValorPorKm);
+            resultado.ShouldHaveValidationErrorFor(f => f.DiarioPorKm);
         }
 
         [TestMethod]
         public void Livre_valor_diario_nao_deve_ser_nulo()
         {
             // arrange
-            _planoCobranca.LivreValorDiario = default;
+            _planoCobranca.LivreDiaria = default;
 
             // action
             var resultado = _validador.TestValidate(_planoCobranca);
 
             // assert
-            resultado.ShouldHaveValidationErrorFor(f => f.LivreValorDiario);
+            resultado.ShouldHaveValidationErrorFor(f => f.LivreDiaria);
         }
         [TestMethod]
         public void Livre_valor_diario_deve_ser_maior_que_zero()
         {
             // arrange
-            _planoCobranca.LivreValorDiario = 0;
+            _planoCobranca.LivreDiaria = 0;
 
             // action
             var resultado = _validador.TestValidate(_planoCobranca);
 
             // assert
-            resultado.ShouldHaveValidationErrorFor(f => f.LivreValorDiario);
+            resultado.ShouldHaveValidationErrorFor(f => f.LivreDiaria);
         }
 
         [TestMethod]
         public void Controlado_valor_diario_nao_deve_ser_nulo()
         {
             // arrange
-            _planoCobranca.ControladoValorDiario = default;
+            _planoCobranca.ControladoDiaria = default;
 
             // action
             var resultado = _validador.TestValidate(_planoCobranca);
 
             // assert
-            resultado.ShouldHaveValidationErrorFor(f => f.ControladoValorDiario);
+            resultado.ShouldHaveValidationErrorFor(f => f.ControladoDiaria);
         }
         [TestMethod]
         public void Controlado_valor_diario_deve_ser_maior_que_zero()
         {
             // arrange
-            _planoCobranca.ControladoValorDiario = 0;
+            _planoCobranca.ControladoDiaria = 0;
 
             // action
             var resultado = _validador.TestValidate(_planoCobranca);
 
             // assert
-            resultado.ShouldHaveValidationErrorFor(f => f.ControladoValorDiario);
+            resultado.ShouldHaveValidationErrorFor(f => f.ControladoDiaria);
         }
 
         [TestMethod]
         public void Controlado_valor_por_km_nao_deve_ser_nulo()
         {
             // arrange
-            _planoCobranca.ControladoValorPorKm = default;
+            _planoCobranca.ControladoPorKm = default;
 
             // action
             var resultado = _validador.TestValidate(_planoCobranca);
 
             // assert
-            resultado.ShouldHaveValidationErrorFor(f => f.ControladoValorPorKm);
+            resultado.ShouldHaveValidationErrorFor(f => f.ControladoPorKm);
         }
         [TestMethod]
         public void Controlado_valor_por_km_deve_ser_maior_que_zero()
         {
             // arrange
-            _planoCobranca.ControladoValorPorKm = 0;
+            _planoCobranca.ControladoPorKm = 0;
 
             // action
             var resultado = _validador.TestValidate(_planoCobranca);
 
             // assert
-            resultado.ShouldHaveValidationErrorFor(f => f.ControladoValorPorKm);
+            resultado.ShouldHaveValidationErrorFor(f => f.ControladoPorKm);
         }
 
         [TestMethod]
         public void Controlado_limite_de_km_nao_deve_ser_nulo()
         {
             // arrange
-            _planoCobranca.ControladoLimiteDeKm = default;
+            _planoCobranca.ControladoLimiteKm = default;
 
             // action
             var resultado = _validador.TestValidate(_planoCobranca);
 
             // assert
-            resultado.ShouldHaveValidationErrorFor(f => f.ControladoLimiteDeKm);
+            resultado.ShouldHaveValidationErrorFor(f => f.ControladoLimiteKm);
         }
         [TestMethod]
         public void Controlado_limite_de_km_deve_ser_maior_que_zero()
         {
             // arrange
-            _planoCobranca.ControladoLimiteDeKm = 0;
+            _planoCobranca.ControladoLimiteKm = 0;
 
             // action
             var resultado = _validador.TestValidate(_planoCobranca);
 
             // assert
-            resultado.ShouldHaveValidationErrorFor(f => f.ControladoLimiteDeKm);
+            resultado.ShouldHaveValidationErrorFor(f => f.ControladoLimiteKm);
         }
     }
 }

@@ -27,12 +27,12 @@ namespace Locadora.Test.Unit.ModuloPlanoCobranca
             planoCobranca = new()
             {
                 GrupoVeiculo = grupoVeiculo,
-                DiarioValorDiario = 100,
-                DiarioValorPorKm = 4,
-                LivreValorDiario = 5,
-                ControladoValorDiario = 2,
-                ControladoValorPorKm = 3,
-                ControladoLimiteDeKm = 8
+                DiarioDiaria = 100,
+                DiarioPorKm = 4,
+                LivreDiaria = 5,
+                ControladoDiaria = 2,
+                ControladoPorKm = 3,
+                ControladoLimiteKm = 8
             };
         }
 
@@ -46,22 +46,22 @@ namespace Locadora.Test.Unit.ModuloPlanoCobranca
             Assert.AreEqual(grupoVeiculo, planoCobranca.GrupoVeiculo);
 
             // Asset
-            Assert.AreEqual(100, planoCobranca.DiarioValorDiario);
+            Assert.AreEqual(100, planoCobranca.DiarioDiaria);
 
             // Asset
-            Assert.AreEqual(4, planoCobranca.DiarioValorPorKm);
+            Assert.AreEqual(4, planoCobranca.DiarioPorKm);
 
             // Asset
-            Assert.AreEqual(5, planoCobranca.LivreValorDiario);
+            Assert.AreEqual(5, planoCobranca.LivreDiaria);
 
             // Asset
-            Assert.AreEqual(2, planoCobranca.ControladoValorDiario);
+            Assert.AreEqual(2, planoCobranca.ControladoDiaria);
 
             // Asset
-            Assert.AreEqual(3, planoCobranca.ControladoValorPorKm);
+            Assert.AreEqual(3, planoCobranca.ControladoPorKm);
 
             // Asset
-            Assert.AreEqual(8, planoCobranca.ControladoLimiteDeKm);
+            Assert.AreEqual(8, planoCobranca.ControladoLimiteKm);
         }
 
         [TestMethod]
@@ -74,22 +74,22 @@ namespace Locadora.Test.Unit.ModuloPlanoCobranca
             Assert.AreEqual(null, planoCobranca.GrupoVeiculo);
 
             // Asset
-            Assert.AreEqual(0, planoCobranca.DiarioValorDiario);
+            Assert.AreEqual(0, planoCobranca.DiarioDiaria);
 
             // Asset
-            Assert.AreEqual(0, planoCobranca.DiarioValorPorKm);
+            Assert.AreEqual(0, planoCobranca.DiarioPorKm);
 
             // Asset
-            Assert.AreEqual(0, planoCobranca.LivreValorDiario);
+            Assert.AreEqual(0, planoCobranca.LivreDiaria);
 
             // Asset
-            Assert.AreEqual(0, planoCobranca.ControladoValorDiario);
+            Assert.AreEqual(0, planoCobranca.ControladoDiaria);
 
             // Asset
-            Assert.AreEqual(0, planoCobranca.ControladoValorPorKm);
+            Assert.AreEqual(0, planoCobranca.ControladoPorKm);
 
             // Asset
-            Assert.AreEqual(0, planoCobranca.ControladoLimiteDeKm);
+            Assert.AreEqual(0, planoCobranca.ControladoLimiteKm);
 
 
 
@@ -108,22 +108,22 @@ namespace Locadora.Test.Unit.ModuloPlanoCobranca
             Assert.AreEqual(planoCobranca.GrupoVeiculo, novoPlanoCobranca.GrupoVeiculo);
 
             // Asset
-            Assert.AreEqual(planoCobranca.DiarioValorDiario, novoPlanoCobranca.DiarioValorDiario);
+            Assert.AreEqual(planoCobranca.DiarioDiaria, novoPlanoCobranca.DiarioDiaria);
 
             // Asset
-            Assert.AreEqual(planoCobranca.DiarioValorPorKm, novoPlanoCobranca.DiarioValorPorKm);
+            Assert.AreEqual(planoCobranca.DiarioPorKm, novoPlanoCobranca.DiarioPorKm);
 
             // Asset
-            Assert.AreEqual(planoCobranca.LivreValorDiario, novoPlanoCobranca.LivreValorDiario);
+            Assert.AreEqual(planoCobranca.LivreDiaria, novoPlanoCobranca.LivreDiaria);
 
             // Asset
-            Assert.AreEqual(planoCobranca.ControladoValorDiario, novoPlanoCobranca.ControladoValorDiario);
+            Assert.AreEqual(planoCobranca.ControladoDiaria, novoPlanoCobranca.ControladoDiaria);
 
             // Asset
-            Assert.AreEqual(planoCobranca.ControladoValorPorKm, novoPlanoCobranca.ControladoValorPorKm);
+            Assert.AreEqual(planoCobranca.ControladoPorKm, novoPlanoCobranca.ControladoPorKm);
 
             // Asset
-            Assert.AreEqual(planoCobranca.ControladoLimiteDeKm, novoPlanoCobranca.ControladoLimiteDeKm);
+            Assert.AreEqual(planoCobranca.ControladoLimiteKm, novoPlanoCobranca.ControladoLimiteKm);
 
         }
 

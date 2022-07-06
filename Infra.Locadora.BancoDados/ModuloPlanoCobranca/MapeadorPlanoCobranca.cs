@@ -22,36 +22,36 @@ namespace Locadora.Infra.BancoDados.ModuloPlanoCobranca
         {
             comando.Parameters.AddWithValue("ID", registro.Id);
             comando.Parameters.AddWithValue("GRUPO_VEICULO_ID", registro.GrupoVeiculo.Id);
-            comando.Parameters.AddWithValue("DIARIO_VALOR_DIARIO", registro.DiarioValorDiario);
-            comando.Parameters.AddWithValue("DIARIO_VALOR_POR_KM", registro.DiarioValorPorKm);
-            comando.Parameters.AddWithValue("LIVRE_VALOR_DIARIO", registro.LivreValorDiario);
-            comando.Parameters.AddWithValue("CONTROLADO_VALOR_DIARIO", registro.ControladoValorDiario);
-            comando.Parameters.AddWithValue("CONTROLADO_VALOR_POR_KM", registro.ControladoValorPorKm);
-            comando.Parameters.AddWithValue("CONTROLADO_LIMITE_DE_KM", registro.ControladoLimiteDeKm);
+            comando.Parameters.AddWithValue("DIARIO_DIARIA", registro.DiarioDiaria);
+            comando.Parameters.AddWithValue("DIARIO_POR_KM", registro.DiarioPorKm);
+            comando.Parameters.AddWithValue("LIVRE_DIARIA", registro.LivreDiaria);
+            comando.Parameters.AddWithValue("CONTROLADO_DIARIA", registro.ControladoDiaria);
+            comando.Parameters.AddWithValue("CONTROLADO_POR_KM", registro.ControladoPorKm);
+            comando.Parameters.AddWithValue("CONTROLADO_LIMITE_KM", registro.ControladoLimiteKm);
         }
 
         public override PlanoCobranca ConverterRegistro(SqlDataReader leitorRegistro)
         {
-            int id = Convert.ToInt32(leitorRegistro["PLANO_ID"]);
+            int id = Convert.ToInt32(leitorRegistro["PLANOCOBRANCA_ID"]);
             var grupoVeiculo = mapeador.ConverterRegistro(leitorRegistro);
-            decimal diarioValorDiario = Convert.ToDecimal(leitorRegistro["PLANO_DIARIO_VALOR_DIARIO"]);
-            decimal diarioValorPorKm = Convert.ToDecimal(leitorRegistro["PLANO_DIARIO_VALOR_POR_KM"]);
-            decimal livreValorDiario = Convert.ToDecimal(leitorRegistro["PLANO_LIVRE_VALOR_DIARIO"]);
-            decimal controladoValorDiario = Convert.ToDecimal(leitorRegistro["PLANO_CONTROLADO_VALOR_DIARIO"]);
-            decimal controladoValorPorKm = Convert.ToDecimal(leitorRegistro["PLANO_CONTROLADO_VALOR_POR_KM"]);
-            decimal controladoLimiteKm = Convert.ToDecimal(leitorRegistro["PLANO_CONTROLADO_LIMITE_DE_KM"]);
+            decimal diarioValorDiario = Convert.ToDecimal(leitorRegistro["PLANOCOBRANCA_DIARIO_DIARIA"]);
+            decimal diarioValorPorKm = Convert.ToDecimal(leitorRegistro["PLANOCOBRANCA_DIARIOR_POR_KM"]);
+            decimal livreValorDiario = Convert.ToDecimal(leitorRegistro["PLANOCOBRANCA_LIVRE_DIARIA"]);
+            decimal controladoValorDiario = Convert.ToDecimal(leitorRegistro["PLANOCOBRANCA_CONTROLADO_DIARIA"]);
+            decimal controladoValorPorKm = Convert.ToDecimal(leitorRegistro["PLANOCOBRANCA_CONTROLADO_POR_KM"]);
+            decimal controladoLimiteKm = Convert.ToDecimal(leitorRegistro["PLANOCOBRANCA_CONTROLADO_LIMITE_KM"]);
 
             var planoCobranca = new PlanoCobranca
             {
 
                 Id = id,
                 GrupoVeiculo = grupoVeiculo,
-                DiarioValorDiario = diarioValorDiario,
-                DiarioValorPorKm = diarioValorPorKm,
-                LivreValorDiario= livreValorDiario,
-                ControladoValorDiario = controladoValorDiario,
-                ControladoValorPorKm = controladoValorPorKm,
-                ControladoLimiteDeKm = controladoLimiteKm
+                DiarioDiaria = diarioValorDiario,
+                DiarioPorKm = diarioValorPorKm,
+                LivreDiaria= livreValorDiario,
+                ControladoDiaria = controladoValorDiario,
+                ControladoPorKm = controladoValorPorKm,
+                ControladoLimiteKm = controladoLimiteKm
                 
 
             };
