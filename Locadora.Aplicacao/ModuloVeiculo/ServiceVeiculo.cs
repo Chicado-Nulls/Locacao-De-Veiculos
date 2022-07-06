@@ -15,5 +15,7 @@ namespace Locadora.Aplicacao.ModuloVeiculo
         public ServiceVeiculo(IRepositorioBase<Veiculo> repositorio) : base(repositorio)
         {
         }
+
+       
     }
 }

@@ -8,28 +8,32 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Serilog;
 
 namespace Locadora.Aplicacao.Compartilhado
 {
-    public abstract  class ServiceBase<T,TValidador> 
+    public abstract class ServiceBase<T, TValidador>
         where T : EntidadeBase<T>
          where TValidador : AbstractValidator<T>, new()
     {
         IRepositorioBase<T> repositorio;
+        
 
         public ServiceBase(IRepositorioBase<T> repositorio)
         {
             this.repositorio = repositorio;
+            
         }
 
         public virtual ValidationResult Inserir(T registro)
         {
+            Log.Logger.Debug("Tentando inserir "+registro+"... {@f}", registro);
             var validador = new TValidador();
 
             var resultado = validador.Validate(registro);
             if (!resultado.IsValid)
-                return resultado;  
-            
+                return resultado;
+
             var existeRepetido = repositorio.ExisteRegistroIgual(registro, "Inserir");
 
             if (existeRepetido)
@@ -42,7 +46,7 @@ namespace Locadora.Aplicacao.Compartilhado
             return resultado;
         }
 
-        
+
 
         public virtual ValidationResult Editar(T registro)
         {
@@ -53,7 +57,7 @@ namespace Locadora.Aplicacao.Compartilhado
             if (!resultado.IsValid)
                 return resultado;
 
-            var existeRepetido = repositorio.ExisteRegistroIgual(registro,"Editar");
+            var existeRepetido = repositorio.ExisteRegistroIgual(registro, "Editar");
 
             if (existeRepetido)
             {
@@ -69,7 +73,7 @@ namespace Locadora.Aplicacao.Compartilhado
         public virtual ValidationResult Excluir(T registro)
         {
             var validador = new TValidador();
-           
+
             var resultado = validador.Validate(registro);
 
             if (!resultado.IsValid)
@@ -78,11 +82,11 @@ namespace Locadora.Aplicacao.Compartilhado
             {
                 repositorio.Excluir(registro);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 resultado.Errors.Add(new ValidationFailure("", $"Não foi possível excluir {registro.ToString()}. Registro tem vínculo em outra tabela"));
             }
-            
+
             return resultado;
         }
 
@@ -103,5 +107,8 @@ namespace Locadora.Aplicacao.Compartilhado
 
             return erro;
         }
+        
+        
+        
     }
 }
