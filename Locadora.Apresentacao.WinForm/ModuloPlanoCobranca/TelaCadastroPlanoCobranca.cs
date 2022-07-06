@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using Locadora.Dominio.ModuloPlanoCobranca;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using FluentValidation.Results;
+using Locadora.Apresentacao.WinForm.Compartilhado;
 
 namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
 {
@@ -17,15 +18,15 @@ namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
         }
 
         private PlanoCobranca _planoCobranca;
-        public List<GrupoVeiculo> _grupoVeiculos; 
-        public List<GrupoVeiculo> GrupoVeiculos 
-        { 
+        public List<GrupoVeiculo> _grupoVeiculos;
+        public List<GrupoVeiculo> GrupoVeiculos
+        {
             get { return _grupoVeiculos; }
             set
             {
                 _grupoVeiculos = value;
                 PreencherCBoxGrupoVeiculo();
-            } 
+            }
         }
 
         private void PreencherCBoxGrupoVeiculo()
@@ -53,6 +54,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
         }
         private void ConfigurarTela()
         {
+            txtBoxId.Text = _planoCobranca.Id == default ? "0" : _planoCobranca.Id.ToString();
             txtBoxControladoDiaria.Text = _planoCobranca.ControladoDiaria == default ? "" : _planoCobranca.ControladoDiaria.ToString();
             txtBoxControladoPorKm.Text = _planoCobranca.ControladoPorKm == default ? "" : _planoCobranca.ControladoPorKm.ToString();
             txtBoxControladoLimteKm.Text = _planoCobranca.ControladoLimiteKm == default ? "" : _planoCobranca.ControladoLimiteKm.ToString();
@@ -64,32 +66,79 @@ namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
 
         private void txtBoxControladoDiaria_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            TextBoxBaseExtension.FormatarMoedaReal(sender, e);
         }
 
         private void txtBoxControladoPorKm_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            TextBoxBaseExtension.FormatarMoedaReal(sender, e);
         }
 
         private void txtBoxControladoLimteKm_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            TextBoxBaseExtension.FormatarMoedaReal(sender, e);
         }
 
         private void txtBoxDiarioDiaria_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            TextBoxBaseExtension.FormatarMoedaReal(sender, e);
         }
 
         private void txtBoxDiarioPorKm_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            TextBoxBaseExtension.FormatarMoedaReal(sender, e);
         }
 
         private void txtBoxLivreDiaria_KeyPress(object sender, KeyPressEventArgs e)
         {
+            TextBoxBaseExtension.FormatarMoedaReal(sender, e);
+        }
 
+        private void btnInserir_Click(object sender, EventArgs e)
+        {
+            if (ExisteCampoVazio())
+            {
+                TelaPrincipalForm.Instancia.AtualizarRodape("Preencha todos os campos do formulário!");
+                DialogResult = DialogResult.None;
+                return;
+            }
+
+            ConfigurarObjeto();
+
+            var resultado = GravarRegistro(_planoCobranca);
+
+            if (resultado.IsValid)
+                return;
+
+            TelaPrincipalForm.Instancia.AtualizarRodape(resultado.Errors[0].ErrorMessage);
+            DialogResult = DialogResult.None;
+            return;
+            
+        }
+
+        private void ConfigurarObjeto()
+        {
+            _planoCobranca.GrupoVeiculo = (GrupoVeiculo)comboBoxGrupoVeiculo.SelectedItem;
+            _planoCobranca.ControladoDiaria  = Convert.ToDecimal(txtBoxControladoDiaria.Text);
+            _planoCobranca.ControladoPorKm = Convert.ToDecimal(txtBoxControladoPorKm.Text);
+            _planoCobranca.ControladoLimiteKm = Convert.ToDecimal(txtBoxControladoLimteKm.Text);
+            _planoCobranca.DiarioDiaria = Convert.ToDecimal(txtBoxDiarioDiaria.Text);
+            _planoCobranca.DiarioPorKm = Convert.ToDecimal(txtBoxDiarioPorKm.Text);
+            _planoCobranca.LivreDiaria = Convert.ToDecimal(txtBoxLivreDiaria.Text);
+        }
+
+        private bool ExisteCampoVazio()
+        {
+            if (string.IsNullOrEmpty(txtBoxControladoDiaria.Text) ||
+                string.IsNullOrEmpty(txtBoxControladoPorKm.Text) ||
+                string.IsNullOrEmpty(txtBoxControladoLimteKm.Text) ||
+                string.IsNullOrEmpty(txtBoxDiarioDiaria.Text) ||
+                string.IsNullOrEmpty(txtBoxDiarioPorKm.Text) ||
+                string.IsNullOrEmpty(txtBoxLivreDiaria.Text) ||
+                comboBoxGrupoVeiculo.SelectedIndex == 0
+                )return true;
+
+            return false;
         }
     }
 }

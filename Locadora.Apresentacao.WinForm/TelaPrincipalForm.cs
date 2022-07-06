@@ -146,16 +146,13 @@ namespace Locadora.Apresentacao.WinForm
             ServiceVeiculo serviceVeiculo = new ServiceVeiculo(repositorioVeiculo);
             controladores.Add("Veiculos", new ControladorVeiculo(repositorioVeiculo,serviceGrupoDeVeiculos,serviceVeiculo));
             
-
             IRepositorioCondutor repositorioCondutor = new RepositorioCondutor();
             ServiceCondutor servicecondutor = new ServiceCondutor(repositorioCondutor);
             controladores.Add("Condutores", new ControladorCondutor(repositorioCondutor, servicecondutor, repositorioCliente));
-            ServiceGrupoVeiculo serviceGrupoVeiculo = new ServiceGrupoVeiculo(repositorioGrupoDeVeiculos);
-            controladores.Add("Grupo Veiculos", new ControladorGrupoVeiculo(repositorioGrupoDeVeiculos, serviceGrupoVeiculo));
-
+            
             IRepositorioPlanoCobranca repositorioPlanoCobranca = new RepositorioPlanoCobrancaBancoDados();
             ServicePlanoCobranca servicePlanoCobranca = new ServicePlanoCobranca(repositorioPlanoCobranca);
-            controladores.Add("Plano de Cobranca", new ControladorPlanoCobranca(repositorioPlanoCobranca, servicePlanoCobranca, serviceGrupoVeiculo));
+            controladores.Add("Plano de Cobranca", new ControladorPlanoCobranca(repositorioPlanoCobranca, servicePlanoCobranca, serviceGrupoDeVeiculos));
 
 
         }
