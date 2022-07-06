@@ -19,6 +19,10 @@ using Locadora.Aplicacao.ModuloTaxa;
 using Locadora.Aplicacao.ModuloGrupoDeVeiculos;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using Locadora.Infra.BancoDados.ModuloGrupoVeiculo;
+using Locadora.Dominio.ModuloPlanoCobranca;
+using Locadora.Aplicacao.ModuloPlanoCobranca;
+using Locadora.Apresentacao.WinForm.ModuloPlanoCobranca;
+using Locadora.Infra.BancoDados.ModuloPlanoCobranca;
 
 namespace Locadora.Apresentacao.WinForm
 {
@@ -129,7 +133,11 @@ namespace Locadora.Apresentacao.WinForm
             IRepositorioGrupoVeiculo repositorioGrupoDeVeiculos = new RepositorioGrupoVeiculo();
             ServiceGrupoVeiculo serviceGrupoDeVeiculos = new ServiceGrupoVeiculo(repositorioGrupoDeVeiculos);
             controladores.Add("Grupo Veiculos", new ControladorGrupoVeiculo(repositorioGrupoDeVeiculos, serviceGrupoDeVeiculos));
-            
+
+            IRepositorioPlanoCobranca repositorioPlanoCobranca = new RepositorioPlanoCobrancaBancoDados();
+            ServicePlanoCobranca servicePlanoCobranca = new ServicePlanoCobranca(repositorioPlanoCobranca);
+            controladores.Add("Plano de Cobrança", new ControladorPlanoCobranca(repositorioPlanoCobranca, servicePlanoCobranca));
+
 
         }
 

@@ -28,7 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.grid = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.SuspendLayout();
+            // 
+            // grid
+            // 
+            this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid.Location = new System.Drawing.Point(-25, -10);
+            this.grid.Name = "grid";
+            this.grid.RowTemplate.Height = 25;
+            this.grid.Size = new System.Drawing.Size(686, 446);
+            this.grid.TabIndex = 0;
             // 
             // TabelaPlanoCobrancaControl
             // 
@@ -36,12 +47,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.grid);
             this.Name = "TabelaPlanoCobrancaControl";
             this.Size = new System.Drawing.Size(644, 402);
+            ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.DataGridView grid;
     }
 }

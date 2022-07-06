@@ -10,17 +10,37 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using Locadora.Infra.BancoDados.ModuloGrupoVeiculo;
 using Locadora.Infra.BancoDados.Compartilhado;
+using Locadora.Dominio.ModuloPlanoCobranca;
+using System.ComponentModel.DataAnnotations;
 
 namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
 {
     public partial class TelaCadastroPlanoCobranca : Form
     {
-        public TelaCadastroPlanoCobranca()
+        public TelaCadastroPlanoCobranca(string titulo, string label)
         {
             InitializeComponent();
         }
 
+        private PlanoCobranca _planoCobranca;
+
         private RepositorioGrupoVeiculo repositorio;
+
+        public Func<PlanoCobranca, ValidationResult> GravarRegistro { get; set; }
+
+        public PlanoCobranca PlanoCobranca
+        {
+            get { return _planoCobranca; }
+            set
+            {
+                _planoCobranca = value;
+                ConfigurarTela();
+            }
+        }
+        private void ConfigurarTela()
+        {
+            
+        } 
 
         private void comboBoxGrupoVeiculo_SelectedIndexChanged(object sender, EventArgs e)
         {

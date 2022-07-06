@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Locadora.Dominio.ModuloCliente;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Locadora.Infra.BancoDados.ModuloCliente;
+using Locadora.Infra.BancoDados.Compartilhado;
 
 namespace Locadora.Test.Infra.ModuloCliente
 {
@@ -34,7 +35,7 @@ namespace Locadora.Test.Infra.ModuloCliente
 
 
         [TestMethod]
-        public void Deve_inserir_novo_funcionario()
+        public void Deve_inserir_novo_cliente()
         {
             //action
             repositorio.Inserir(cliente);
@@ -73,7 +74,7 @@ namespace Locadora.Test.Infra.ModuloCliente
         }
 
         [TestMethod]
-        public void Deve_excluir_funcionario()
+        public void Deve_excluir_cliente()
         {
             //arrange           
             repositorio.Inserir(cliente);

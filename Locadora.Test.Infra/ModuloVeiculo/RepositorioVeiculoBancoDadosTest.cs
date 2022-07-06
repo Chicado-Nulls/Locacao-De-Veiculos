@@ -15,14 +15,14 @@ using System.Threading.Tasks;
 namespace Locadora.Test.Infra.ModuloVeiculo
 {
     [TestClass]
-    public class RepositorioGrupoVeiculoBancoDadosTest : RepositorioBaseTest
+    public class RepositorioVeiculoBancoDadosTest : RepositorioBaseTest
     {
         protected override string NomeTabela =>"TbVeiculo";
 
         private RepositorioVeiculo repositorio;
         private RepositorioGrupoVeiculo repositorioGrupo;
 
-        public RepositorioGrupoVeiculoBancoDadosTest()
+        public RepositorioVeiculoBancoDadosTest()
         {
             this.repositorio = new RepositorioVeiculo();
             this.repositorioGrupo=new RepositorioGrupoVeiculo();

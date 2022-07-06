@@ -14,11 +14,11 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
     public class MapeadorVeiculo : MapeadorBase<Veiculo>
     {
 
-        MapaeadorGrupoVeiculo mapeadorGrupoDeVeiculo;
+        MapeadorGrupoVeiculo mapeadorGrupoDeVeiculo;
 
         public MapeadorVeiculo()
         {
-            this.mapeadorGrupoDeVeiculo = new MapaeadorGrupoVeiculo();
+            this.mapeadorGrupoDeVeiculo = new MapeadorGrupoVeiculo();
         }
 
         public override void ConfigurarParametros(Veiculo registro, SqlCommand comando)
@@ -31,7 +31,7 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
             comando.Parameters.AddWithValue("KMPERCORRIDO", registro.KmPercorrido);
             comando.Parameters.AddWithValue("CAPACIDADETANQUE", registro.CapacidadeTanque);
             comando.Parameters.AddWithValue("ENUMTIPODECOMBUSTIVEL", registro.TipoDeCombustivel);
-            comando.Parameters.AddWithValue("GRUPODEVEICULO_ID", registro.GrupoDeVeiculo.Id);
+            comando.Parameters.AddWithValue("GRUPO_ID", registro.GrupoDeVeiculo.Id);
         }
 
         public override Veiculo ConverterRegistro(SqlDataReader leitorRegistro)

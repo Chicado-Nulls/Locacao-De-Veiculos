@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Locadora.Infra.BancoDados.ModuloGrupoVeiculo
 {
-    public class RepositorioGrupoVeiculo : RepositorioBase<GrupoVeiculo, MapaeadorGrupoVeiculo>, IRepositorioGrupoVeiculo
+    public class RepositorioGrupoVeiculo : RepositorioBase<GrupoVeiculo, MapeadorGrupoVeiculo>, IRepositorioGrupoVeiculo
     {
         protected override string sqlInserir => @"INSERT INTO [TBGRUPODEVEICULOS]
                                                     (
@@ -31,7 +31,7 @@ namespace Locadora.Infra.BancoDados.ModuloGrupoVeiculo
         protected override string sqlSelecionarPorId => @"SELECT 
 
                                                             ID AS GRUPODEVEICULO_ID,
-                                                            NOME
+                                                            NOME AS GRUPODEVEICULO_NOME
 
                                                            FROM [TBGRUPODEVEICULOS]
 
@@ -39,7 +39,7 @@ namespace Locadora.Infra.BancoDados.ModuloGrupoVeiculo
                                                              [ID]=@ID";
         protected override string sqlSelecionarTodos => @"SELECT 
                                                             ID AS GRUPODEVEICULO_ID,
-                                                            NOME
+                                                            NOME AS GRUPODEVEICULO_NOME
                                                            FROM [TBGRUPODEVEICULOS]
 
 ";
@@ -48,5 +48,7 @@ namespace Locadora.Infra.BancoDados.ModuloGrupoVeiculo
             @"SELECT * FROM [TBGRUPODEVEICULOS]
                    WHERE
                        [NOME]=@NOME AND [ID] <> @ID";
+
+        public RepositorioGrupoVeiculo(bool bancoTeste = false) : base(bancoTeste) { }
     }
 }

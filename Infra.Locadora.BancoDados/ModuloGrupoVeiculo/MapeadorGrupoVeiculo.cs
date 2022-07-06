@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Locadora.Infra.BancoDados.ModuloGrupoVeiculo
 {
-    public class MapaeadorGrupoVeiculo:MapeadorBase<GrupoVeiculo>
+    public class MapeadorGrupoVeiculo:MapeadorBase<GrupoVeiculo>
     {
         public override void ConfigurarParametros(GrupoVeiculo registro, SqlCommand comando)
         {
@@ -20,7 +20,7 @@ namespace Locadora.Infra.BancoDados.ModuloGrupoVeiculo
         public override GrupoVeiculo ConverterRegistro(SqlDataReader leitorRegistro)
         {
             int id = Convert.ToInt32(leitorRegistro["GRUPODEVEICULO_ID"]);
-            string nome = Convert.ToString(leitorRegistro["NOME"]);
+            string nome = Convert.ToString(leitorRegistro["GRUPODEVEICULO_NOME"]);
 
             var grupoDeVeiculo = new GrupoVeiculo()
             {
