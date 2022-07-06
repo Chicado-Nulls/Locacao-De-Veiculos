@@ -13,7 +13,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
 
         public override string TooltipInserir => "Inserir Plano De Cobrança";
 
-        public override string TooltipEditar => "Editar Grupo De Cobrança";
+        public override string TooltipEditar => "Editar Plano De Cobrança";
 
         public override string TooltipExcluir => "Excluir Plano De Cobrança";
     }

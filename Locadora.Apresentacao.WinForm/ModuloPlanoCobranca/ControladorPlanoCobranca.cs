@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Locadora.Aplicacao.ModuloPlanoCobranca;
 using Locadora.Aplicacao.ModuloFuncionario;
 using System.Windows.Forms;
+using Locadora.Aplicacao.ModuloGrupoDeVeiculos;
 
 namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
 {
@@ -15,18 +16,21 @@ namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
     {
         private readonly IRepositorioPlanoCobranca repositorio;
         private ServicePlanoCobranca servicePlanoCobranca;
+        private ServiceGrupoVeiculo serviceGrupoVeiculo;
         private TabelaPlanoCobrancaControl tabelaPlanoCobranca;
 
-        public ControladorPlanoCobranca(IRepositorioPlanoCobranca repositorioPlanoCobranca, ServicePlanoCobranca servicePlanoCobranca)
+        public ControladorPlanoCobranca(IRepositorioPlanoCobranca repositorioPlanoCobranca, ServicePlanoCobranca servicePlanoCobranca, ServiceGrupoVeiculo serviceGrupoVeiculo)
         {
             this.servicePlanoCobranca = servicePlanoCobranca;
             this.repositorio = repositorioPlanoCobranca;
-
+            this.serviceGrupoVeiculo = serviceGrupoVeiculo;
         }
 
         public override void Inserir()
         {
             TelaCadastroPlanoCobranca telaCadastro = new TelaCadastroPlanoCobranca("Inserir Plano de Cobrança", "Inserir");
+
+            telaCadastro.GrupoVeiculos = serviceGrupoVeiculo.SelecionarTodos();
 
             telaCadastro.PlanoCobranca = new PlanoCobranca();
 
@@ -41,6 +45,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
         public override void Editar()
         {
             var numero = tabelaPlanoCobranca.ObtemIdPlanoCobrancaSelecionado();
+
             var planoCobrancaSelecionado = repositorio.SelecionarPorId(numero);
 
             if (planoCobrancaSelecionado == null)
@@ -51,6 +56,8 @@ namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
             }
 
             TelaCadastroPlanoCobranca tela = new TelaCadastroPlanoCobranca("Editar Plano", "Editar");
+
+            tela.GrupoVeiculos = serviceGrupoVeiculo.SelecionarTodos();
 
             tela.PlanoCobranca = planoCobrancaSelecionado.Clone();
 
@@ -88,12 +95,6 @@ namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
             }
         }
 
-        private PlanoCobranca ObtemPlanoCobrancaSelecionado()
-        {
-            var id = tabelaPlanoCobranca.ObtemIdPlanoCobrancaSelecionado();
-
-            return repositorio.SelecionarPorId(id);
-        }
         private void CarregarPlanoCobranca()
         {
             List<PlanoCobranca> planoCobranca = repositorio.SelecionarTodos();

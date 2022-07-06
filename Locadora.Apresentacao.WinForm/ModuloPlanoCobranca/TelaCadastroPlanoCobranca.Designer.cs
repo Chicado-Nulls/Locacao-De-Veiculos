@@ -28,39 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonDiario = new System.Windows.Forms.Button();
-            this.buttonLivre = new System.Windows.Forms.Button();
-            this.buttonControlado = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxGrupoVeiculo = new System.Windows.Forms.ComboBox();
+            this.groupBoxDiario = new System.Windows.Forms.GroupBox();
+            this.txtBoxDiarioPorKm = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtBoxDiarioDiaria = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.groupBoxLivre = new System.Windows.Forms.GroupBox();
+            this.txtBoxLivreDiaria = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.groupBoxControlado = new System.Windows.Forms.GroupBox();
+            this.txtBoxControladoLimteKm = new System.Windows.Forms.TextBox();
+            this.txtBoxControladoPorKm = new System.Windows.Forms.TextBox();
+            this.txtBoxControladoDiaria = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnInserir = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.groupBoxDiario.SuspendLayout();
+            this.groupBoxLivre.SuspendLayout();
+            this.groupBoxControlado.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // buttonDiario
-            // 
-            this.buttonDiario.Location = new System.Drawing.Point(12, 88);
-            this.buttonDiario.Name = "buttonDiario";
-            this.buttonDiario.Size = new System.Drawing.Size(120, 44);
-            this.buttonDiario.TabIndex = 2;
-            this.buttonDiario.Text = "Plano Diário";
-            this.buttonDiario.UseVisualStyleBackColor = true;
-            // 
-            // buttonLivre
-            // 
-            this.buttonLivre.Location = new System.Drawing.Point(138, 88);
-            this.buttonLivre.Name = "buttonLivre";
-            this.buttonLivre.Size = new System.Drawing.Size(120, 44);
-            this.buttonLivre.TabIndex = 3;
-            this.buttonLivre.Text = "Plano Livre";
-            this.buttonLivre.UseVisualStyleBackColor = true;
-            // 
-            // buttonControlado
-            // 
-            this.buttonControlado.Location = new System.Drawing.Point(264, 88);
-            this.buttonControlado.Name = "buttonControlado";
-            this.buttonControlado.Size = new System.Drawing.Size(120, 44);
-            this.buttonControlado.TabIndex = 4;
-            this.buttonControlado.Text = "Plano Controlado";
-            this.buttonControlado.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -76,34 +66,219 @@
             this.comboBoxGrupoVeiculo.FormattingEnabled = true;
             this.comboBoxGrupoVeiculo.Location = new System.Drawing.Point(12, 27);
             this.comboBoxGrupoVeiculo.Name = "comboBoxGrupoVeiculo";
-            this.comboBoxGrupoVeiculo.Size = new System.Drawing.Size(121, 23);
+            this.comboBoxGrupoVeiculo.Size = new System.Drawing.Size(230, 23);
             this.comboBoxGrupoVeiculo.TabIndex = 5;
-            
+            // 
+            // groupBoxDiario
+            // 
+            this.groupBoxDiario.Controls.Add(this.txtBoxDiarioPorKm);
+            this.groupBoxDiario.Controls.Add(this.label3);
+            this.groupBoxDiario.Controls.Add(this.txtBoxDiarioDiaria);
+            this.groupBoxDiario.Controls.Add(this.label2);
+            this.groupBoxDiario.Location = new System.Drawing.Point(139, 56);
+            this.groupBoxDiario.Name = "groupBoxDiario";
+            this.groupBoxDiario.Size = new System.Drawing.Size(105, 115);
+            this.groupBoxDiario.TabIndex = 6;
+            this.groupBoxDiario.TabStop = false;
+            this.groupBoxDiario.Text = "Diário";
+            // 
+            // txtBoxDiarioPorKm
+            // 
+            this.txtBoxDiarioPorKm.Location = new System.Drawing.Point(6, 81);
+            this.txtBoxDiarioPorKm.Name = "txtBoxDiarioPorKm";
+            this.txtBoxDiarioPorKm.Size = new System.Drawing.Size(91, 23);
+            this.txtBoxDiarioPorKm.TabIndex = 13;
+            this.txtBoxDiarioPorKm.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxDiarioPorKm_KeyPress);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 19);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 15);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Valor diaria";
+            // 
+            // txtBoxDiarioDiaria
+            // 
+            this.txtBoxDiarioDiaria.Location = new System.Drawing.Point(6, 37);
+            this.txtBoxDiarioDiaria.Name = "txtBoxDiarioDiaria";
+            this.txtBoxDiarioDiaria.Size = new System.Drawing.Size(91, 23);
+            this.txtBoxDiarioDiaria.TabIndex = 12;
+            this.txtBoxDiarioDiaria.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxDiarioDiaria_KeyPress);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 63);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 15);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Valor por KM";
+            // 
+            // groupBoxLivre
+            // 
+            this.groupBoxLivre.Controls.Add(this.txtBoxLivreDiaria);
+            this.groupBoxLivre.Controls.Add(this.label4);
+            this.groupBoxLivre.Location = new System.Drawing.Point(250, 56);
+            this.groupBoxLivre.Name = "groupBoxLivre";
+            this.groupBoxLivre.Size = new System.Drawing.Size(106, 71);
+            this.groupBoxLivre.TabIndex = 7;
+            this.groupBoxLivre.TabStop = false;
+            this.groupBoxLivre.Text = "Livre";
+            // 
+            // txtBoxLivreDiaria
+            // 
+            this.txtBoxLivreDiaria.Location = new System.Drawing.Point(6, 37);
+            this.txtBoxLivreDiaria.Name = "txtBoxLivreDiaria";
+            this.txtBoxLivreDiaria.Size = new System.Drawing.Size(91, 23);
+            this.txtBoxLivreDiaria.TabIndex = 11;
+            this.txtBoxLivreDiaria.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxLivreDiaria_KeyPress);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 19);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 15);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Valor diaria";
+            // 
+            // groupBoxControlado
+            // 
+            this.groupBoxControlado.Controls.Add(this.txtBoxControladoLimteKm);
+            this.groupBoxControlado.Controls.Add(this.txtBoxControladoPorKm);
+            this.groupBoxControlado.Controls.Add(this.txtBoxControladoDiaria);
+            this.groupBoxControlado.Controls.Add(this.label8);
+            this.groupBoxControlado.Controls.Add(this.label7);
+            this.groupBoxControlado.Controls.Add(this.label6);
+            this.groupBoxControlado.Location = new System.Drawing.Point(12, 56);
+            this.groupBoxControlado.Name = "groupBoxControlado";
+            this.groupBoxControlado.Size = new System.Drawing.Size(121, 166);
+            this.groupBoxControlado.TabIndex = 7;
+            this.groupBoxControlado.TabStop = false;
+            this.groupBoxControlado.Text = "Controlado";
+            // 
+            // txtBoxControladoLimteKm
+            // 
+            this.txtBoxControladoLimteKm.Location = new System.Drawing.Point(6, 125);
+            this.txtBoxControladoLimteKm.Name = "txtBoxControladoLimteKm";
+            this.txtBoxControladoLimteKm.Size = new System.Drawing.Size(91, 23);
+            this.txtBoxControladoLimteKm.TabIndex = 9;
+            this.txtBoxControladoLimteKm.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxControladoLimteKm_KeyPress);
+            // 
+            // txtBoxControladoPorKm
+            // 
+            this.txtBoxControladoPorKm.Location = new System.Drawing.Point(6, 81);
+            this.txtBoxControladoPorKm.Name = "txtBoxControladoPorKm";
+            this.txtBoxControladoPorKm.Size = new System.Drawing.Size(91, 23);
+            this.txtBoxControladoPorKm.TabIndex = 8;
+            this.txtBoxControladoPorKm.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxControladoPorKm_KeyPress);
+            // 
+            // txtBoxControladoDiaria
+            // 
+            this.txtBoxControladoDiaria.Location = new System.Drawing.Point(6, 37);
+            this.txtBoxControladoDiaria.Name = "txtBoxControladoDiaria";
+            this.txtBoxControladoDiaria.Size = new System.Drawing.Size(91, 23);
+            this.txtBoxControladoDiaria.TabIndex = 7;
+            this.txtBoxControladoDiaria.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxControladoDiaria_KeyPress);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 107);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(77, 15);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "Limite de KM";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 63);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(75, 15);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "Valor por KM";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 19);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(65, 15);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "Valor diaria";
+            // 
+            // btnInserir
+            // 
+            this.btnInserir.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnInserir.Location = new System.Drawing.Point(55, 241);
+            this.btnInserir.Name = "btnInserir";
+            this.btnInserir.Size = new System.Drawing.Size(90, 36);
+            this.btnInserir.TabIndex = 8;
+            this.btnInserir.Text = "[label]";
+            this.btnInserir.UseVisualStyleBackColor = true;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(231, 241);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(90, 36);
+            this.btnCancel.TabIndex = 9;
+            this.btnCancel.Text = "Cancelar";
+            this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // TelaCadastroPlanoCobranca
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(396, 144);
+            this.ClientSize = new System.Drawing.Size(368, 290);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnInserir);
+            this.Controls.Add(this.groupBoxControlado);
+            this.Controls.Add(this.groupBoxLivre);
+            this.Controls.Add(this.groupBoxDiario);
             this.Controls.Add(this.comboBoxGrupoVeiculo);
-            this.Controls.Add(this.buttonControlado);
-            this.Controls.Add(this.buttonLivre);
-            this.Controls.Add(this.buttonDiario);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(384, 329);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(384, 329);
             this.Name = "TelaCadastroPlanoCobranca";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Plano de Cobrança";
+            this.groupBoxDiario.ResumeLayout(false);
+            this.groupBoxDiario.PerformLayout();
+            this.groupBoxLivre.ResumeLayout(false);
+            this.groupBoxLivre.PerformLayout();
+            this.groupBoxControlado.ResumeLayout(false);
+            this.groupBoxControlado.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Button buttonDiario;
-        private System.Windows.Forms.Button buttonLivre;
-        private System.Windows.Forms.Button buttonControlado;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBoxGrupoVeiculo;
+        private System.Windows.Forms.GroupBox groupBoxDiario;
+        private System.Windows.Forms.GroupBox groupBoxLivre;
+        private System.Windows.Forms.GroupBox groupBoxControlado;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtBoxDiarioPorKm;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtBoxDiarioDiaria;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtBoxLivreDiaria;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtBoxControladoLimteKm;
+        private System.Windows.Forms.TextBox txtBoxControladoPorKm;
+        private System.Windows.Forms.TextBox txtBoxControladoDiaria;
+        private System.Windows.Forms.Button btnInserir;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

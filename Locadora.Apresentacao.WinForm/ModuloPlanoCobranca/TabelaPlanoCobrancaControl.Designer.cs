@@ -35,10 +35,11 @@
             // grid
             // 
             this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grid.Location = new System.Drawing.Point(-25, -10);
+            this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grid.Location = new System.Drawing.Point(0, 0);
             this.grid.Name = "grid";
             this.grid.RowTemplate.Height = 25;
-            this.grid.Size = new System.Drawing.Size(686, 446);
+            this.grid.Size = new System.Drawing.Size(644, 402);
             this.grid.TabIndex = 0;
             // 
             // TabelaPlanoCobrancaControl
