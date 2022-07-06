@@ -47,21 +47,26 @@ namespace Locadora.Dominio.ModuloPlanoCobranca
 
         }
 
-        public override bool Equals(object obj)
-        {
-            return obj is PlanoCobranca PlanoCobranca &&
-                   GrupoVeiculo == PlanoCobranca.GrupoVeiculo &&
-                   DiarioValorDiario == PlanoCobranca.DiarioValorDiario &&
-                   DiarioValorPorKm == PlanoCobranca.DiarioValorPorKm &&
-                   LivreValorDiario == PlanoCobranca.LivreValorDiario &&
-                   ControladoValorDiario == PlanoCobranca.ControladoValorDiario &&
-                   ControladoValorPorKm == PlanoCobranca.ControladoValorPorKm &&
-                   ControladoLimiteDeKm == PlanoCobranca.ControladoLimiteDeKm;
-        }
-
         public PlanoCobranca Clone()
         {
             return MemberwiseClone() as PlanoCobranca;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is PlanoCobranca cobranca &&
+                   GrupoVeiculo.Equals(cobranca.GrupoVeiculo) &&
+                   DiarioValorDiario == cobranca.DiarioValorDiario &&
+                   DiarioValorPorKm == cobranca.DiarioValorPorKm &&
+                   LivreValorDiario == cobranca.LivreValorDiario &&
+                   ControladoValorDiario == cobranca.ControladoValorDiario &&
+                   ControladoValorPorKm == cobranca.ControladoValorPorKm &&
+                   ControladoLimiteDeKm == cobranca.ControladoLimiteDeKm;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, GrupoVeiculo, DiarioValorDiario, DiarioValorPorKm, LivreValorDiario, ControladoValorDiario, ControladoValorPorKm, ControladoLimiteDeKm);
         }
     }
 }

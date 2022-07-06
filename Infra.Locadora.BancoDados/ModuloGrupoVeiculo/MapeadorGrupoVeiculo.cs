@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Locadora.Infra.BancoDados.ModuloGrupoVeiculo
 {
-    public class MapeadorGrupoVeiculo:MapeadorBase<GrupoVeiculo>
+    public class MapeadorGrupoVeiculo : MapeadorBase<GrupoVeiculo>
     {
         public override void ConfigurarParametros(GrupoVeiculo registro, SqlCommand comando)
         {
@@ -32,3 +32,4 @@ namespace Locadora.Infra.BancoDados.ModuloGrupoVeiculo
         }
     }
 }
+

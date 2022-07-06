@@ -67,20 +67,44 @@ namespace Locadora.Test.Infra.ModuloPlanoCobranca
             var planoCobrancaEncontrado = repositorioPlanoCobranca.SelecionarPorId(planoCobranca.Id);
 
             Assert.IsNotNull(planoCobrancaEncontrado);
+            Assert.AreEqual(planoCobranca, planoCobrancaEncontrado);
+        }
 
-            Assert.AreEqual("Esportivo", planoCobranca.GrupoVeiculo.Nome);
-            Assert.AreEqual(1, planoCobranca.GrupoVeiculo.Id);
+        [TestMethod]
+        public void Deve_Editar_Plano_Cobranca()
+        {
+            repositorioGrupoVeiculo.Inserir(grupoVeiculo);
 
-            Assert.AreEqual(1, planoCobranca.Id);
-            Assert.AreEqual(2, planoCobranca.DiarioValorDiario);
-            Assert.AreEqual(3, planoCobranca.DiarioValorPorKm);
-            Assert.AreEqual(4, planoCobranca.LivreValorDiario);
-            Assert.AreEqual(5, planoCobranca.ControladoValorDiario);
-            Assert.AreEqual(6, planoCobranca.ControladoValorPorKm);
-            Assert.AreEqual(7, planoCobranca.ControladoLimiteDeKm);
+            grupoVeiculo.Nome = "Camionete";
+
+            repositorioGrupoVeiculo.Editar(grupoVeiculo);
+
+
+            
+            repositorioPlanoCobranca.Inserir(planoCobranca);
+            
+            planoCobranca.GrupoVeiculo = grupoVeiculo;
+            planoCobranca.DiarioValorDiario = 8;
+            planoCobranca.DiarioValorPorKm = 7;
+            planoCobranca.LivreValorDiario = 6;
+            planoCobranca.ControladoValorDiario = 8;
+            planoCobranca.ControladoValorPorKm = 4;
+            planoCobranca.ControladoLimiteDeKm = 4;
+
+            repositorioPlanoCobranca.Editar(planoCobranca);
+
+
+
+            var planoCobrancaEncontrado = repositorioPlanoCobranca.SelecionarPorId(planoCobranca.Id);
+
+            Assert.IsNotNull(planoCobrancaEncontrado);
+            Assert.AreEqual(planoCobranca, planoCobrancaEncontrado);
+
 
 
         }
+
+
 
 
 
