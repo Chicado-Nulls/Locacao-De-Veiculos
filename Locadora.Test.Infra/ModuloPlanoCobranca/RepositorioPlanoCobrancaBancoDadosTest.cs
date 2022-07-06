@@ -25,15 +25,12 @@ namespace Locadora.Test.Infra.ModuloPlanoCobranca
 
             grupoVeiculo = new()
             {
-                Id = 1,
                 Nome = "Esportivo"
             };
-
 
             planoCobranca = new()
             {
 
-                Id = 1,
                 GrupoVeiculo = grupoVeiculo,
                 DiarioValorDiario = 2,
                 DiarioValorPorKm = 3,
@@ -43,18 +40,12 @@ namespace Locadora.Test.Infra.ModuloPlanoCobranca
                 ControladoLimiteDeKm = 7
 
             };
-
-
-
-
-
+            
             this.repositorioGrupoVeiculo = new RepositorioGrupoVeiculo(true);
             this.repositorioPlanoCobranca = new RepositorioPlanoCobrancaBancoDados(true);
 
             LimparTabela("TBGRUPODEVEICULOS");
-
         }
-
 
         [TestMethod]
         public void Deve_Inserir_Plano_Cobranca()
@@ -73,52 +64,61 @@ namespace Locadora.Test.Infra.ModuloPlanoCobranca
         [TestMethod]
         public void Deve_Editar_Plano_Cobranca()
         {
+            //Arrange
+            PlanoCobranca planoCobrancaEditada = new PlanoCobranca(grupoVeiculo, 1, 2, 3, 4, 5, 6);
+
+            //Action
             repositorioGrupoVeiculo.Inserir(grupoVeiculo);
 
-            grupoVeiculo.Nome = "Camionete";
-
-            repositorioGrupoVeiculo.Editar(grupoVeiculo);
-
-
-            
             repositorioPlanoCobranca.Inserir(planoCobranca);
-            
-            planoCobranca.GrupoVeiculo = grupoVeiculo;
-            planoCobranca.DiarioValorDiario = 8;
-            planoCobranca.DiarioValorPorKm = 7;
-            planoCobranca.LivreValorDiario = 6;
-            planoCobranca.ControladoValorDiario = 8;
-            planoCobranca.ControladoValorPorKm = 4;
-            planoCobranca.ControladoLimiteDeKm = 4;
+
+            planoCobranca.Atualizar(planoCobrancaEditada);
 
             repositorioPlanoCobranca.Editar(planoCobranca);
 
-
-
+            //Assert
             var planoCobrancaEncontrado = repositorioPlanoCobranca.SelecionarPorId(planoCobranca.Id);
 
             Assert.IsNotNull(planoCobrancaEncontrado);
             Assert.AreEqual(planoCobranca, planoCobrancaEncontrado);
-
-
-
         }
 
+        [TestMethod]
+        public void Deve_Excluir_Plano_Cobranca()
+        {
+            //Action
+            repositorioGrupoVeiculo.Inserir(grupoVeiculo);
+
+            repositorioPlanoCobranca.Inserir(planoCobranca);
+
+            repositorioPlanoCobranca.Excluir(planoCobranca);
+
+            //Assert
+            var planoCobrancaEncontrado = repositorioPlanoCobranca.SelecionarPorId(planoCobranca.Id);
+
+            Assert.IsNull(planoCobrancaEncontrado);
+        }
+
+        [TestMethod]
+        public void Deve_selecionar_todos_Plano_Cobranca()
+        {
+            //Arrange
+            PlanoCobranca planoCobranca1 = new PlanoCobranca(grupoVeiculo, 1, 2, 3, 4, 5, 6);
+            PlanoCobranca planoCobranca2 = new PlanoCobranca(grupoVeiculo, 6, 7, 8, 9, 10, 11);
+            PlanoCobranca planoCobranca3 = new PlanoCobranca(grupoVeiculo, 12, 13, 14, 15, 16, 17);
+
+            //Action
+            repositorioGrupoVeiculo.Inserir(grupoVeiculo);
+
+            repositorioPlanoCobranca.Inserir(planoCobranca1);
+            repositorioPlanoCobranca.Inserir(planoCobranca2);
+            repositorioPlanoCobranca.Inserir(planoCobranca3);
 
 
+            //Assert
+            var planoCobrancaEncontrado = repositorioPlanoCobranca.SelecionarTodos();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+            Assert.AreEqual(3, planoCobrancaEncontrado.Count);
+        }
     }
 }
