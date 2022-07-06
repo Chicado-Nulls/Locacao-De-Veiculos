@@ -15,33 +15,33 @@ namespace Locadora.Dominio.ModuloPlanoCobranca
               .NotNull()
               .NotEmpty();
 
-            RuleFor(x => x.DiarioValorDiario)
+            RuleFor(x => x.DiarioDiaria)
               .NotNull()
               .NotEmpty()
               .GreaterThan(0);
 
-            RuleFor(x => x.DiarioValorPorKm)
+            RuleFor(x => x.DiarioPorKm)
               .NotNull()
               .NotEmpty()
               .GreaterThan(0); 
 
 
-            RuleFor(x => x.LivreValorDiario)
+            RuleFor(x => x.LivreDiaria)
               .NotNull()
               .NotEmpty()
               .GreaterThan(0);
 
-            RuleFor(x => x.ControladoValorDiario)
+            RuleFor(x => x.ControladoDiaria)
               .NotNull()
               .NotEmpty()
               .GreaterThan(0);
 
-            RuleFor(x => x.ControladoValorPorKm)
+            RuleFor(x => x.ControladoPorKm)
               .NotNull()
               .NotEmpty()
               .GreaterThan(0);
 
-            RuleFor(x => x.ControladoLimiteDeKm)
+            RuleFor(x => x.ControladoLimiteKm)
               .NotNull()
               .NotEmpty()
               .GreaterThan(0);

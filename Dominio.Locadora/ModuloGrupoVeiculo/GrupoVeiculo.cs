@@ -23,6 +23,11 @@ namespace Locadora.Dominio.ModuloGrupoDeVeiculo
                Nome = registro.Nome;
         }
 
+        public override string ToString()
+        {
+            return $"ID: {Id} | Nome: {Nome}";
+        }
+
         public string Nome { get; set; }
         public List<Veiculo> ListaDeVeiculo{ get; set; }
 
