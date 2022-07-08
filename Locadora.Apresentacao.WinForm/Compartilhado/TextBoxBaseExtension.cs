@@ -16,7 +16,7 @@ namespace Locadora.Apresentacao.WinForm.Compartilhado
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public static void FormatarMoedaReal(object sender, KeyPressEventArgs e)
+        public static void FormatarCampoMoedaReal(object sender, KeyPressEventArgs e)
         {
             if (char.IsDigit(e.KeyChar) || e.KeyChar.Equals((char)Keys.Back))
             {
@@ -36,6 +36,17 @@ namespace Locadora.Apresentacao.WinForm.Compartilhado
                 box.Select(box.Text.Length, 0);
             }
             e.Handled = true;
+
+        }
+        
+        /// <summary>
+        /// Metodo formata decimal para string em formato moeda real
+        /// Este método deve ser implementado junto ao contrutor das telas para formatar campo do textBox
+        /// </summary>
+        /// <param decimal="valor"></param>
+        public static string FormatarStringMoedaReal(decimal ?valor)
+        {
+            return string.Format("{0:#,##0.00}", Double.Parse(valor.ToString()));
         }
 
         /// <summary>

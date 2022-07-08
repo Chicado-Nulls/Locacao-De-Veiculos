@@ -1,4 +1,5 @@
 ﻿using FluentValidation.Results;
+using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloTaxa;
 using System;
 using System.Collections.Generic;
@@ -46,22 +47,20 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
 
                 return;
             }
+
             ConfigurarObjeto();
 
             var resultadoValidacao = GravarRegistro(Taxa);
 
-            if (resultadoValidacao.IsValid == false)
-            {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+            if (resultadoValidacao.IsValid)
+                return;
 
+            string erro = resultadoValidacao.Errors[0].ErrorMessage;
 
-                TelaPrincipalForm.Instancia.AtualizarRodape(erro);
-
-
-                DialogResult = DialogResult.None;
-            }
+            TelaPrincipalForm.Instancia.AtualizarRodape(erro);
+            
+            DialogResult = DialogResult.None;
         }
-
         private bool ExisteCampoVazio()
         {
             if(string.IsNullOrEmpty(txtBoxDescricao.Text) || string.IsNullOrEmpty(txtBoxValor.Text))
@@ -69,7 +68,6 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
             
             return false;
         }
-
         private void ConfigurarObjeto()
         {
             Taxa.Descricao=txtBoxDescricao.Text;
@@ -87,12 +85,11 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
 
             Taxa.TipoDeCalculo=TipoDeCalculo.CalculoDiario;                             
         }        
-
         private void ConfigurarTela()
         {
             txtBoxId.Text = Taxa.Id == default ? "0" : Taxa.Id.ToString(); 
             txtBoxDescricao.Text = Taxa.Descricao == null ? "" : Taxa.Descricao; 
-            txtBoxValor.Text = Taxa.Valor == default ? "" : string.Format("{0:#,##0.00}", Double.Parse(Taxa.Valor.ToString()));
+            txtBoxValor.Text = Taxa.Valor == default ? "" : TextBoxBaseExtension.FormatarStringMoedaReal(Taxa.Valor);
             ConfigurarTipoCalculoTela();
         }
         private void ConfigurarTipoCalculoTela()
@@ -105,27 +102,9 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
 
             checkDiario.Checked = true;
         }
-
         private void txtBoxValor_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsDigit(e.KeyChar) || e.KeyChar.Equals((char)Keys.Back))
-            {
-                TextBox box = (TextBox)sender;
-
-                string texto = Regex.Replace(box.Text, "[^0-9]", string.Empty);
-
-                if (texto == string.Empty) texto = "00";
-
-                if (e.KeyChar.Equals((char)Keys.Back))
-                    texto = texto.Substring(0, texto.Length -1);
-                else
-                    texto += e.KeyChar;
-
-                box.Text = string.Format("{0:#,##0.00}", Double.Parse(texto)/100);
-
-                box.Select(box.Text.Length, 0);
-            }
-            e.Handled = true;
+            TextBoxBaseExtension.FormatarCampoMoedaReal(sender, e);
         }
     }
 }

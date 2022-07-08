@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Locadora.Dominio.ModuloCliente;
 using FluentValidation.Results;
+using Locadora.Apresentacao.WinForm.Compartilhado;
 
 namespace Locadora.Apresentacao.WinForm.ModuloCliente
 {
@@ -21,9 +22,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
             btnInserir.Text = label;
         }
         private Cliente _cliente;
-
         public Func<Cliente, ValidationResult> GravarRegistro { get; set; }
-
         public Cliente Cliente
         {
             get { return _cliente; }
@@ -33,7 +32,6 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
                 ConfigurarTela();
             }
         }
-
         private void ConfigurarTela()
         {
             textId.Text = _cliente.Id.ToString();
@@ -43,12 +41,11 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
             textCNH.Text = _cliente.Cnh;
             textEndereco.Text = _cliente.Endereco;
             textEmail.Text = _cliente.Email;
-            textTelefone.Text = _cliente.Telefone;
+            textTelefone.Text = String.IsNullOrEmpty(_cliente.Telefone)? "" : TextBoxBaseExtension.FormataStringTelefoneOuCelular(_cliente.Telefone);
 
             if (_cliente.Id != 0)
                 SelecionaTipoCadastro();
         }
-
         private void SelecionaTipoCadastro()
         {
             switch (_cliente.TipoCadastro)
@@ -61,10 +58,9 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
                     break;
             }
         }
-
         private void btnInserir_Click(object sender, EventArgs e)
         {
-            if (ExisteCamposVazio())
+            if (ExisteCampoVazio())
             {
                 TelaPrincipalForm.Instancia.AtualizarRodape("Preencha todos os campos do formulário");
 
@@ -86,8 +82,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
 
             }
         }
-
-        private bool ExisteCamposVazio()
+        private bool ExisteCampoVazio()
         {
             TelaPrincipalForm.Instancia.AtualizarRodape("");
 
@@ -109,7 +104,6 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
             
             return false;
         }
-
         private void ConfigurarObjeto()
         {
             _cliente.Id = textId.Text != "0" ? Convert.ToInt32(textId.Text) : 0;
@@ -122,8 +116,6 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
             _cliente.Telefone = textTelefone.Text;
             _cliente.TipoCadastro = GerarTipoCadastro();
         }
-
-
         private bool GerarTipoCadastro()
         {
             if (radioPessoaFisica.Checked == true)
@@ -131,7 +123,6 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
 
             return false;
         }
-
         private void radioPessoaFisica_CheckedChanged(object sender, EventArgs e)
         {
             textCPF.Enabled = true;
@@ -140,7 +131,6 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
 
             textCNPJ.Clear();
         }
-
         private void radioPessoaJuridica_CheckedChanged(object sender, EventArgs e)
         {
             textCPF.Enabled = false;
@@ -149,6 +139,10 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
 
             textCPF.Clear();
             textCNH.Clear();
+        }
+        private void textTelefone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBoxBaseExtension.FormatarCampoTelefoneOuCelulcar(sender, e);
         }
     }
 }

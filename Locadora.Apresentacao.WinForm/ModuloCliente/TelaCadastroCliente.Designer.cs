@@ -142,6 +142,7 @@
             this.textTelefone.PlaceholderText = "(00) 0 0000-0000";
             this.textTelefone.Size = new System.Drawing.Size(92, 23);
             this.textTelefone.TabIndex = 10;
+            this.textTelefone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textTelefone_KeyPress);
             // 
             // labelTelefone
             // 

@@ -66,32 +66,32 @@ namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
 
         private void txtBoxControladoDiaria_KeyPress(object sender, KeyPressEventArgs e)
         {
-            TextBoxBaseExtension.FormatarMoedaReal(sender, e);
+            TextBoxBaseExtension.FormatarCampoMoedaReal(sender, e);
         }
 
         private void txtBoxControladoPorKm_KeyPress(object sender, KeyPressEventArgs e)
         {
-            TextBoxBaseExtension.FormatarMoedaReal(sender, e);
+            TextBoxBaseExtension.FormatarCampoMoedaReal(sender, e);
         }
 
         private void txtBoxControladoLimteKm_KeyPress(object sender, KeyPressEventArgs e)
         {
-            TextBoxBaseExtension.FormatarMoedaReal(sender, e);
+            TextBoxBaseExtension.FormatarCampoMoedaReal(sender, e);
         }
 
         private void txtBoxDiarioDiaria_KeyPress(object sender, KeyPressEventArgs e)
         {
-            TextBoxBaseExtension.FormatarMoedaReal(sender, e);
+            TextBoxBaseExtension.FormatarCampoMoedaReal(sender, e);
         }
 
         private void txtBoxDiarioPorKm_KeyPress(object sender, KeyPressEventArgs e)
         {
-            TextBoxBaseExtension.FormatarMoedaReal(sender, e);
+            TextBoxBaseExtension.FormatarCampoMoedaReal(sender, e);
         }
 
         private void txtBoxLivreDiaria_KeyPress(object sender, KeyPressEventArgs e)
         {
-            TextBoxBaseExtension.FormatarMoedaReal(sender, e);
+            TextBoxBaseExtension.FormatarCampoMoedaReal(sender, e);
         }
 
         private void btnInserir_Click(object sender, EventArgs e)

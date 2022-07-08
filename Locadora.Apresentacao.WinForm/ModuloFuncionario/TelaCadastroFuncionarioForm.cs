@@ -1,4 +1,5 @@
 ﻿using FluentValidation.Results;
+using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloFuncionario;
 using System;
 using System.Drawing;
@@ -17,7 +18,6 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
             btnSalvar.Text = label;
             txtBoxSenha.PasswordChar = '*';
         }
-
         public Funcionario Funcionario
         {
             get { return _funcionario; }
@@ -27,9 +27,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
                 ConfigurarTela();
             }
         }
-
         public Func<Funcionario, ValidationResult> GravarRegistro { get; set; }
-
         private void ConfigurarTela()
         {
             txtBoxID.Text = _funcionario.Id != default ? Convert.ToString(_funcionario.Id) : "0";
@@ -44,9 +42,8 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
 
             dtPickerDataEntrada.Text = _funcionario.DataEntrada != default ? Convert.ToString(_funcionario.DataEntrada) : "";
 
-            txtBoxSalario.Text = _funcionario.Salario != default ? string.Format("{0:#,##0.00}", Double.Parse(_funcionario.Salario.ToString())) : "";
+            txtBoxSalario.Text = _funcionario.Salario != default ? TextBoxBaseExtension.FormatarStringMoedaReal(_funcionario.Salario) : "";
         }
-
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             if (ExisteCompoVazio())
@@ -62,16 +59,16 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
 
             var resultadoValidacao = GravarRegistro(Funcionario);
 
-            if (resultadoValidacao.IsValid == false)
-            {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+            if (resultadoValidacao.IsValid)
+                return;
 
-                TelaPrincipalForm.Instancia.AtualizarRodape(erro);
+            string erro = resultadoValidacao.Errors[0].ErrorMessage;
 
-                DialogResult = DialogResult.None;
-            }
+            TelaPrincipalForm.Instancia.AtualizarRodape(erro);
+
+            DialogResult = DialogResult.None;
+            
         }
-
         private bool ExisteCompoVazio()
         {
             TelaPrincipalForm.Instancia.AtualizarRodape("");
@@ -86,7 +83,6 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
 
             return false;
         }
-
         private void ConfigurarObjeto()
         {
             Funcionario.Id = txtBoxID.Text != "0" ? Convert.ToInt32(txtBoxID.Text) : 0;
@@ -97,33 +93,13 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
             Funcionario.Administrador = rBtnAdministrador.Checked;
             Funcionario.Salario = Convert.ToDecimal(txtBoxSalario.Text);
         }
-
         #region Métodos privados
 
         #endregion
-
         private void txtBoxSalario_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsDigit(e.KeyChar) || e.KeyChar.Equals((char)Keys.Back))
-            {
-                TextBox box = (TextBox)sender;
-
-                string texto = Regex.Replace(box.Text, "[^0-9]", string.Empty);
-
-                if (texto == string.Empty) texto = "00";
-
-                if (e.KeyChar.Equals((char)Keys.Back))
-                    texto = texto.Substring(0, texto.Length -1);
-                else
-                    texto += e.KeyChar;
-
-                box.Text = string.Format("{0:#,##0.00}", Double.Parse(texto)/100);
-
-                box.Select(box.Text.Length, 0);
-            }
-            e.Handled = true;
+            TextBoxBaseExtension.FormatarCampoMoedaReal(sender, e);
         }
-
         private void checkBoxMostrarSenha_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxMostrarSenha.Checked == true)
