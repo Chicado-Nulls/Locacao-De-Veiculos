@@ -15,5 +15,10 @@ namespace Locadora.Aplicacao.ModuloVeiculo
         public ServiceVeiculo(IRepositorioBase<Veiculo> repositorio) : base(repositorio)
         {
         }
+
+        protected override string ObterIdentificadorLog(Veiculo registro)
+        {
+            return $"ID: {registro.Id} | Nome: {registro.Modelo}";
+        }
     }
 }

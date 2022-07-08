@@ -1,3 +1,4 @@
+using Locadora.Infra.Logging;
 using System;
 using System.Windows.Forms;
 
@@ -11,6 +12,7 @@ namespace Locadora.Apresentacao.WinForm
         [STAThread]
         static void Main()
         {
+            ConfiguracaoLogLocadora.ConfgurarLog();
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

@@ -15,5 +15,10 @@ namespace Locadora.Aplicacao.ModuloCliente
         public ServiceCliente(IRepositorioBase<Cliente> repositorio) : base(repositorio)
         {
         }
+
+        protected override string ObterIdentificadorLog(Cliente registro)
+        {
+            return $"ID: {registro.Id} | Nome: {registro.Nome}";
+        }
     }
 }

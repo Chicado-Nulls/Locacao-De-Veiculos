@@ -16,7 +16,9 @@ namespace Locadora.Aplicacao.ModuloGrupoDeVeiculos
         {
 
         }
-
-       
+        protected override string ObterIdentificadorLog(GrupoVeiculo registro)
+        {
+            return $"ID: {registro.Id} | Nome: {registro.Nome}";
+        }       
     }
 }
