@@ -62,7 +62,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
 
 
             textBoxKmPercorrido.Text = Veiculo.KmPercorrido == null ? "" : string.Format("{0:#,##0.00}", Double.Parse(Veiculo.KmPercorrido.ToString()));
-            TextBoxCapacidadeTanque.Text = Veiculo.CapacidadeTanque == null ? "" : string.Format("{0:#,##0.00}", Double.Parse(Veiculo.KmPercorrido.ToString()));
+            TextBoxCapacidadeTanque.Text = Veiculo.CapacidadeTanque == null ? "" : string.Format("{0:#,##0.00}", Double.Parse(Veiculo.CapacidadeTanque.ToString()));
 
             comboBoxGrupoVeiculo.SelectedItem =Veiculo.GrupoDeVeiculo==null ? null: (GrupoVeiculo)Veiculo.GrupoDeVeiculo;
             comboBoxTipoCombustivel.SelectedItem = Veiculo.TipoDeCombustivel == null ? null: Veiculo.TipoDeCombustivel.ToString();
@@ -209,9 +209,19 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
             {
                caminhoFoto= openfile.FileName;
             }
-            if (caminhoFoto != "")
+            if (caminhoFoto != "" && caminhoFoto !=null)
             {
-                pictureBox.Load(caminhoFoto);
+                try
+                {
+                    pictureBox.Load(caminhoFoto);
+                    
+                }
+                catch (Exception ex)
+                {
+                    TelaPrincipalForm.Instancia.AtualizarRodape("Erro ao Inserir a imagem selecionada");
+                    return;
+                }
+               
             }
         }
         private void carregarFoto()
