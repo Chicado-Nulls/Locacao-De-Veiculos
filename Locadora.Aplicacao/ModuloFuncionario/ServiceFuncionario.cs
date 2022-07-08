@@ -15,5 +15,10 @@ namespace Locadora.Aplicacao.ModuloFuncionario
         public ServiceFuncionario(IRepositorioBase<Funcionario> repositorio) : base(repositorio)
         {
         }
+
+        protected override string ObterIdentificadorLog(Funcionario registro)
+        {
+            return $"ID: {registro.Id} | Nome: {registro.Nome}";
+        }
     }
 }

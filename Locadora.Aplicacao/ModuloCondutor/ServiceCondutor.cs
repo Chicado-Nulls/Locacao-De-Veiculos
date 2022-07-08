@@ -16,13 +16,9 @@ namespace Locadora.Aplicacao.ModuloCondutor
         {
         }
 
-        protected override ValidationResult GerarErroRepetido()
+        protected override string ObterIdentificadorLog(Condutor registro)
         {
-            ValidationResult erro = new ValidationResult();
-
-            erro.Errors.Add(new ValidationFailure("", "Condutor ja cadastrado para o cliente selecionado!"));
-
-            return erro;
+            return $"ID: {registro.Id} | Nome: {registro.Nome}";
         }
     }
 }

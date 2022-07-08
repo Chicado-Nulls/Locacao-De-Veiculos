@@ -16,6 +16,9 @@ namespace Locadora.Aplicacao.ModuloVeiculo
         {
         }
 
-       
+        protected override string ObterIdentificadorLog(Veiculo registro)
+        {
+            return $"ID: {registro.Id} | Nome: {registro.Modelo}";
+        }
     }
 }
