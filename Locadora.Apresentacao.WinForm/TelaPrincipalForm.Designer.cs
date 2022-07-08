@@ -52,7 +52,6 @@
             this.panelRegistros = new System.Windows.Forms.Panel();
             this.statusStripMensagem = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
-            this.cadastroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastrosToolStripMenuItem.SuspendLayout();
             this.toolbox.SuspendLayout();
             this.statusStripMensagem.SuspendLayout();
@@ -77,8 +76,7 @@
             this.funcionarioToolStripMenuItem,
             this.condutoresToolStripMenuItem,
             this.planoDeCobrançaToolStripMenuItem,
-            this.veículosToolStripMenuItem,
-            this.cadastroToolStripMenuItem});
+            this.veículosToolStripMenuItem});
             this.taxaToolStripMenuItem.Name = "taxaToolStripMenuItem";
             this.taxaToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.taxaToolStripMenuItem.Text = "Cadastro";
@@ -279,12 +277,6 @@
             this.labelRodape.Size = new System.Drawing.Size(52, 17);
             this.labelRodape.Text = "[rodapé]";
             // 
-            // cadastroToolStripMenuItem
-            // 
-            this.cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
-            this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
-            this.cadastroToolStripMenuItem.Text = "Cadastro";
-            // 
             // TelaPrincipalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -333,6 +325,5 @@
         private System.Windows.Forms.ToolStripMenuItem condutoresToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem planoDeCobrançaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem veículosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cadastroToolStripMenuItem;
     }
 }

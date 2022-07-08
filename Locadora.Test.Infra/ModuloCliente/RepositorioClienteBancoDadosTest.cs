@@ -1,25 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Locadora.Dominio.ModuloCliente;
+﻿using Locadora.Dominio.ModuloCliente;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Locadora.Infra.BancoDados.ModuloCliente;
 using Locadora.Infra.BancoDados.Compartilhado;
+using Locadora.Test.Infra.Compartilhado;
 
 namespace Locadora.Test.Infra.ModuloCliente
 {
     [TestClass]
-    public class RepositorioClienteBancoDadosTest
+    public class RepositorioClienteBancoDadosTest : RepositorioBaseTest
     {
         private Cliente cliente;
         private RepositorioClienteEmBancoDeDados repositorio;
 
+        protected override string NomeTabela => "TBCLIENTE";
+
         public RepositorioClienteBancoDadosTest()
         {
-            Db.ExecutarSql("DELETE FROM TBCLIENTE; DBCC CHECKIDENT (TBCLIENTE, RESEED, 0)");
-
             cliente = new Cliente();
             cliente.Nome = "Romulo Telles";
             cliente.Cpf = "1234567";
@@ -30,7 +26,7 @@ namespace Locadora.Test.Infra.ModuloCliente
             cliente.Telefone = "49999460894";
             cliente.TipoCadastro = true;
 
-            repositorio = new RepositorioClienteEmBancoDeDados();
+            repositorio = new RepositorioClienteEmBancoDeDados(true);
         }
 
 
@@ -109,7 +105,6 @@ namespace Locadora.Test.Infra.ModuloCliente
             var cliente2 = new Cliente("Eduardo", "456443", "145678765", "845678", "curitiba", "Eduardo@hotmail.com", "4999778", false);
             var cliente3 = new Cliente("Bruno", "55663", "1256345", "2348888", "lages sc", "Bruno@hotmail.com", "4999988938", true);
 
-            var repositorio = new RepositorioClienteEmBancoDeDados();
             repositorio.Inserir(cliente1);
             repositorio.Inserir(cliente2);
             repositorio.Inserir(cliente3);
@@ -124,7 +119,6 @@ namespace Locadora.Test.Infra.ModuloCliente
             Assert.AreEqual(cliente1.Nome, clientes[0].Nome);
             Assert.AreEqual(cliente2.Nome, clientes[1].Nome);
             Assert.AreEqual(cliente3.Nome, clientes[2].Nome);
-            Db.ExecutarSql("DELETE FROM TBCLIENTE; DBCC CHECKIDENT (TBCLIENTE, RESEED, 0)");
         }
 
         //[TestMethod]

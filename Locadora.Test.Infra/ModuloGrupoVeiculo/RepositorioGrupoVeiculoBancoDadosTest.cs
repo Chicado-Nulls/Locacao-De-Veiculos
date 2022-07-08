@@ -3,6 +3,7 @@ using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using Locadora.Infra.BancoDados.Compartilhado;
 
 using Locadora.Infra.BancoDados.ModuloGrupoVeiculo;
+using Locadora.Test.Infra.Compartilhado;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -13,14 +14,15 @@ using System.Threading.Tasks;
 namespace Locadora.Test.Infra.ModuloGrupoDeVeiculo
 {
     [TestClass]
-    public  class RepositorioGrupoVeiculoBancoDadosTest
+    public  class RepositorioGrupoVeiculoBancoDadosTest : RepositorioBaseTest
     {
         private RepositorioGrupoVeiculo repositorio;
 
+        protected override string NomeTabela => "TBGRUPOVEICULO";
+
         public RepositorioGrupoVeiculoBancoDadosTest()
         {
-            repositorio = new RepositorioGrupoVeiculo();
-            Db.ExecutarSql("DELETE FROM TBGRUPODEVEICULOS; DBCC CHECKIDENT (TBGRUPODEVEICULOS, RESEED, 0)");
+            repositorio = new RepositorioGrupoVeiculo(true);
         }
 
         [TestMethod]
@@ -90,7 +92,6 @@ namespace Locadora.Test.Infra.ModuloGrupoDeVeiculo
             grupos[0].Should().Be(grupoUm);
             grupos[1].Should().Be(grupoDois);
             grupos[2].Should().Be(grupoTres);
-            Db.ExecutarSql("DELETE FROM TBGRUPODEVEICULOS; DBCC CHECKIDENT (TBGRUPODEVEICULOS, RESEED, 0)");
         }
 
         //[TestMethod]

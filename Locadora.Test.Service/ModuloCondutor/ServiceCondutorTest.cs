@@ -68,7 +68,7 @@ namespace Locadora.Test.Service.ModuloCondutor
             var resultado = _serviceCondutor.Editar(novoCondutor);
 
             //assert
-            Assert.AreEqual("Condutor ja cadastrado para o cliente selecionado!", resultado.Errors[0].ErrorMessage);   
+            Assert.AreEqual("Campos com '*' precisam ser únicos", resultado.Errors[0].ErrorMessage);   
         }
 
         [TestMethod]
@@ -112,7 +112,7 @@ namespace Locadora.Test.Service.ModuloCondutor
             var resultado = _serviceCondutor.Inserir(novoCondutor);
 
             //assert
-            Assert.AreEqual("Condutor ja cadastrado para o cliente selecionado!", resultado.Errors[0].ErrorMessage);
+            Assert.AreEqual("Campos com '*' precisam ser únicos", resultado.Errors[0].ErrorMessage);
         }
 
         [TestMethod]

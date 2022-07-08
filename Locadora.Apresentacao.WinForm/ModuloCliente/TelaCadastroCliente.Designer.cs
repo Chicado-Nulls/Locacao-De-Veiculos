@@ -58,7 +58,7 @@
             this.btnInserir.Location = new System.Drawing.Point(71, 412);
             this.btnInserir.Name = "btnInserir";
             this.btnInserir.Size = new System.Drawing.Size(91, 33);
-            this.btnInserir.TabIndex = 8;
+            this.btnInserir.TabIndex = 11;
             this.btnInserir.Text = "Inserir";
             this.btnInserir.UseVisualStyleBackColor = true;
             this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
@@ -69,7 +69,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(191, 412);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(91, 33);
-            this.btnCancelar.TabIndex = 9;
+            this.btnCancelar.TabIndex = 12;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -87,7 +87,7 @@
             this.textNome.Location = new System.Drawing.Point(12, 113);
             this.textNome.Name = "textNome";
             this.textNome.Size = new System.Drawing.Size(324, 23);
-            this.textNome.TabIndex = 1;
+            this.textNome.TabIndex = 4;
             // 
             // labelCpf
             // 
@@ -141,7 +141,7 @@
             this.textTelefone.Name = "textTelefone";
             this.textTelefone.PlaceholderText = "(00) 0 0000-0000";
             this.textTelefone.Size = new System.Drawing.Size(92, 23);
-            this.textTelefone.TabIndex = 7;
+            this.textTelefone.TabIndex = 10;
             // 
             // labelTelefone
             // 
@@ -177,7 +177,7 @@
             this.groupBoxTipoCadastro.Location = new System.Drawing.Point(12, 54);
             this.groupBoxTipoCadastro.Name = "groupBoxTipoCadastro";
             this.groupBoxTipoCadastro.Size = new System.Drawing.Size(237, 42);
-            this.groupBoxTipoCadastro.TabIndex = 20;
+            this.groupBoxTipoCadastro.TabIndex = 1;
             this.groupBoxTipoCadastro.TabStop = false;
             this.groupBoxTipoCadastro.Text = "Tipo Cadastro";
             // 
@@ -187,7 +187,7 @@
             this.radioPessoaJuridica.Location = new System.Drawing.Point(127, 19);
             this.radioPessoaJuridica.Name = "radioPessoaJuridica";
             this.radioPessoaJuridica.Size = new System.Drawing.Size(104, 19);
-            this.radioPessoaJuridica.TabIndex = 1;
+            this.radioPessoaJuridica.TabIndex = 3;
             this.radioPessoaJuridica.TabStop = true;
             this.radioPessoaJuridica.Text = "Pessoa Jurídica";
             this.radioPessoaJuridica.UseVisualStyleBackColor = true;
@@ -199,7 +199,7 @@
             this.radioPessoaFisica.Location = new System.Drawing.Point(6, 19);
             this.radioPessoaFisica.Name = "radioPessoaFisica";
             this.radioPessoaFisica.Size = new System.Drawing.Size(93, 19);
-            this.radioPessoaFisica.TabIndex = 0;
+            this.radioPessoaFisica.TabIndex = 2;
             this.radioPessoaFisica.TabStop = true;
             this.radioPessoaFisica.Text = "Pessoa Física";
             this.radioPessoaFisica.UseVisualStyleBackColor = true;
@@ -212,7 +212,7 @@
             this.textCNPJ.Mask = "00,000,000/0000-00";
             this.textCNPJ.Name = "textCNPJ";
             this.textCNPJ.Size = new System.Drawing.Size(111, 23);
-            this.textCNPJ.TabIndex = 3;
+            this.textCNPJ.TabIndex = 6;
             // 
             // textCPF
             // 
@@ -221,14 +221,14 @@
             this.textCPF.Mask = "000,000,000-00";
             this.textCPF.Name = "textCPF";
             this.textCPF.Size = new System.Drawing.Size(92, 23);
-            this.textCPF.TabIndex = 2;
+            this.textCPF.TabIndex = 5;
             // 
             // textEndereco
             // 
             this.textEndereco.Location = new System.Drawing.Point(12, 289);
             this.textEndereco.Name = "textEndereco";
             this.textEndereco.Size = new System.Drawing.Size(324, 23);
-            this.textEndereco.TabIndex = 5;
+            this.textEndereco.TabIndex = 8;
             // 
             // textEmail
             // 
@@ -236,7 +236,7 @@
             this.textEmail.Name = "textEmail";
             this.textEmail.PlaceholderText = "email@dominio.com";
             this.textEmail.Size = new System.Drawing.Size(324, 23);
-            this.textEmail.TabIndex = 6;
+            this.textEmail.TabIndex = 9;
             // 
             // textCNH
             // 
@@ -244,7 +244,7 @@
             this.textCNH.Mask = "00000000000";
             this.textCNH.Name = "textCNH";
             this.textCNH.Size = new System.Drawing.Size(76, 23);
-            this.textCNH.TabIndex = 4;
+            this.textCNH.TabIndex = 7;
             // 
             // TelaCadastroCliente
             // 

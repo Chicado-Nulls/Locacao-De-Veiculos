@@ -48,7 +48,7 @@
             this.btnGravar.Location = new System.Drawing.Point(58, 307);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(75, 32);
-            this.btnGravar.TabIndex = 5;
+            this.btnGravar.TabIndex = 6;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
             this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
@@ -59,7 +59,7 @@
             this.BtnCancelar.Location = new System.Drawing.Point(205, 307);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Size = new System.Drawing.Size(75, 32);
-            this.BtnCancelar.TabIndex = 6;
+            this.BtnCancelar.TabIndex = 7;
             this.BtnCancelar.Text = "Cancelar";
             this.BtnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -95,7 +95,7 @@
             this.groupBox1.Location = new System.Drawing.Point(28, 167);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(208, 83);
-            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tipo de calculo";
             // 
@@ -105,7 +105,7 @@
             this.checkFixo.Location = new System.Drawing.Point(6, 47);
             this.checkFixo.Name = "checkFixo";
             this.checkFixo.Size = new System.Drawing.Size(90, 19);
-            this.checkFixo.TabIndex = 4;
+            this.checkFixo.TabIndex = 5;
             this.checkFixo.Text = "Calculo Fixo";
             this.checkFixo.UseVisualStyleBackColor = true;
             // 
@@ -116,7 +116,7 @@
             this.checkDiario.Location = new System.Drawing.Point(6, 22);
             this.checkDiario.Name = "checkDiario";
             this.checkDiario.Size = new System.Drawing.Size(99, 19);
-            this.checkDiario.TabIndex = 3;
+            this.checkDiario.TabIndex = 4;
             this.checkDiario.TabStop = true;
             this.checkDiario.Text = "Calculo Diario";
             this.checkDiario.UseVisualStyleBackColor = true;

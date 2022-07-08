@@ -90,7 +90,7 @@
             this.txtBoxDiarioPorKm.Location = new System.Drawing.Point(6, 81);
             this.txtBoxDiarioPorKm.Name = "txtBoxDiarioPorKm";
             this.txtBoxDiarioPorKm.Size = new System.Drawing.Size(91, 23);
-            this.txtBoxDiarioPorKm.TabIndex = 6;
+            this.txtBoxDiarioPorKm.TabIndex = 8;
             this.txtBoxDiarioPorKm.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxDiarioPorKm_KeyPress);
             // 
             // label3
@@ -107,7 +107,7 @@
             this.txtBoxDiarioDiaria.Location = new System.Drawing.Point(6, 37);
             this.txtBoxDiarioDiaria.Name = "txtBoxDiarioDiaria";
             this.txtBoxDiarioDiaria.Size = new System.Drawing.Size(91, 23);
-            this.txtBoxDiarioDiaria.TabIndex = 5;
+            this.txtBoxDiarioDiaria.TabIndex = 7;
             this.txtBoxDiarioDiaria.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxDiarioDiaria_KeyPress);
             // 
             // label2
@@ -126,7 +126,7 @@
             this.groupBoxLivre.Location = new System.Drawing.Point(250, 100);
             this.groupBoxLivre.Name = "groupBoxLivre";
             this.groupBoxLivre.Size = new System.Drawing.Size(106, 71);
-            this.groupBoxLivre.TabIndex = 7;
+            this.groupBoxLivre.TabIndex = 9;
             this.groupBoxLivre.TabStop = false;
             this.groupBoxLivre.Text = "Livre";
             // 
@@ -135,7 +135,7 @@
             this.txtBoxLivreDiaria.Location = new System.Drawing.Point(6, 37);
             this.txtBoxLivreDiaria.Name = "txtBoxLivreDiaria";
             this.txtBoxLivreDiaria.Size = new System.Drawing.Size(91, 23);
-            this.txtBoxLivreDiaria.TabIndex = 7;
+            this.txtBoxLivreDiaria.TabIndex = 10;
             this.txtBoxLivreDiaria.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxLivreDiaria_KeyPress);
             // 
             // label4
@@ -158,7 +158,7 @@
             this.groupBoxControlado.Location = new System.Drawing.Point(12, 100);
             this.groupBoxControlado.Name = "groupBoxControlado";
             this.groupBoxControlado.Size = new System.Drawing.Size(121, 166);
-            this.groupBoxControlado.TabIndex = 7;
+            this.groupBoxControlado.TabIndex = 2;
             this.groupBoxControlado.TabStop = false;
             this.groupBoxControlado.Text = "Controlado";
             // 
@@ -167,7 +167,7 @@
             this.txtBoxControladoLimteKm.Location = new System.Drawing.Point(6, 125);
             this.txtBoxControladoLimteKm.Name = "txtBoxControladoLimteKm";
             this.txtBoxControladoLimteKm.Size = new System.Drawing.Size(91, 23);
-            this.txtBoxControladoLimteKm.TabIndex = 4;
+            this.txtBoxControladoLimteKm.TabIndex = 5;
             this.txtBoxControladoLimteKm.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxControladoLimteKm_KeyPress);
             // 
             // txtBoxControladoPorKm
@@ -175,7 +175,7 @@
             this.txtBoxControladoPorKm.Location = new System.Drawing.Point(6, 81);
             this.txtBoxControladoPorKm.Name = "txtBoxControladoPorKm";
             this.txtBoxControladoPorKm.Size = new System.Drawing.Size(91, 23);
-            this.txtBoxControladoPorKm.TabIndex = 3;
+            this.txtBoxControladoPorKm.TabIndex = 4;
             this.txtBoxControladoPorKm.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxControladoPorKm_KeyPress);
             // 
             // txtBoxControladoDiaria
@@ -183,7 +183,7 @@
             this.txtBoxControladoDiaria.Location = new System.Drawing.Point(6, 37);
             this.txtBoxControladoDiaria.Name = "txtBoxControladoDiaria";
             this.txtBoxControladoDiaria.Size = new System.Drawing.Size(91, 23);
-            this.txtBoxControladoDiaria.TabIndex = 2;
+            this.txtBoxControladoDiaria.TabIndex = 3;
             this.txtBoxControladoDiaria.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxControladoDiaria_KeyPress);
             // 
             // label8
@@ -219,7 +219,7 @@
             this.btnInserir.Location = new System.Drawing.Point(55, 285);
             this.btnInserir.Name = "btnInserir";
             this.btnInserir.Size = new System.Drawing.Size(90, 36);
-            this.btnInserir.TabIndex = 8;
+            this.btnInserir.TabIndex = 11;
             this.btnInserir.Text = "[label]";
             this.btnInserir.UseVisualStyleBackColor = true;
             this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
@@ -230,7 +230,7 @@
             this.btnCancel.Location = new System.Drawing.Point(231, 285);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(90, 36);
-            this.btnCancel.TabIndex = 9;
+            this.btnCancel.TabIndex = 12;
             this.btnCancel.Text = "Cancelar";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 

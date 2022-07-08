@@ -15,5 +15,10 @@ namespace Locadora.Aplicacao.ModuloPlanoCobranca
         {
 
         }
+
+        protected override string ObterIdentificadorLog(PlanoCobranca registro)
+        {
+            return $"Plano de cobrança - ID: {registro.Id} | Nome: {registro.GrupoVeiculo.Nome}";
+        }
     }
 }
