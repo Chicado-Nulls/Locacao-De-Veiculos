@@ -57,8 +57,9 @@ namespace Locadora.Dominio.ModuloCarro
 
         public GrupoVeiculo  GrupoDeVeiculo { get; set; }
 
-        public Byte[] Foto { get; set; }
-
+        public byte[] Foto { get; set; }
+        
+        
         public override bool Equals(object obj)
         {
             return obj is Veiculo veiculo &&
@@ -70,17 +71,6 @@ namespace Locadora.Dominio.ModuloCarro
                   KmPercorrido == veiculo.KmPercorrido &&
                   TipoDeCombustivel == veiculo.TipoDeCombustivel;
         }
-        public void converterFoto(string caminhoFoto)
-        {
-            byte[] foto;
-            using (var stream = new FileStream(caminhoFoto, FileMode.Open, FileAccess.Read))
-            {
-                using (var reader = new BinaryReader(stream))
-                {
-                    foto = reader.ReadBytes((int)stream.Length);
-                }
-            }
-            Foto=foto;
-        }
+        
     }
 }

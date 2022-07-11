@@ -81,7 +81,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
             _veiculo.TipoDeCombustivel=  (EnumTipoDeCombustivel)Enum.Parse(typeof(EnumTipoDeCombustivel), SelecionarEnum());
             _veiculo.CapacidadeTanque=Convert.ToDecimal(TextBoxCapacidadeTanque.Text);
             _veiculo.KmPercorrido = Convert.ToDecimal(textBoxKmPercorrido.Text);
-            _veiculo.converterFoto(caminhoFoto);
+            _veiculo.Foto= converterFoto();
             
 
         }
@@ -233,6 +233,24 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
                     pictureBox.Image = Image.FromStream(foto);
                 }
             }          
+        }
+        private byte[] converterFoto()
+        {
+            byte[] foto;
+
+            if(caminhoFoto == null && pictureBox.Image != null)
+            {
+                return _veiculo.Foto;
+            } 
+
+            using (var stream = new FileStream(caminhoFoto, FileMode.Open, FileAccess.Read))
+            {
+                using (var reader = new BinaryReader(stream))
+                {
+                    foto = reader.ReadBytes((int)stream.Length);
+                }
+            }
+            return foto;
         }
     }
 }
