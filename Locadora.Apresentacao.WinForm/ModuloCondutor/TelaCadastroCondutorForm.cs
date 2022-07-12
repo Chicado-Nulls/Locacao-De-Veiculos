@@ -108,7 +108,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCondutor
         {
             Cliente cliente = (Cliente)cBoxCliente.SelectedItem;
 
-            _condutor.Id = Convert.ToInt32(txtBoxId.Text);
+            _condutor.Id = Guid.Parse(txtBoxId.Text.ToString());
             _condutor.Nome = txtBoxNome.Text;
             _condutor.Cpf = maskedTxtBoxCpf.Text;
             _condutor.Cnh = maskedTxtBoxCnh.Text;

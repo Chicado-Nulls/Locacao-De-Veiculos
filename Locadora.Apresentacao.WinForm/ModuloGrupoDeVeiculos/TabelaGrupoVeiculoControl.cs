@@ -34,9 +34,9 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
             return colunas;
         }
 
-        internal int ObtemNumeroRegistroSelecionado()
+        internal Guid ObtemNumeroRegistroSelecionado()
         {
-            return grid.SelecionarId<int>();
+            return grid.SelecionarId<Guid>();
         }
 
         public void AtualizarRegistros(List<GrupoVeiculo> grupoDeVeiculos)

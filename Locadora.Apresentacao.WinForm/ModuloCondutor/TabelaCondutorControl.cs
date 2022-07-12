@@ -50,9 +50,9 @@ namespace Locadora.Apresentacao.WinForm.ModuloCondutor
                 grid.Rows.Add(condutor.Id, condutor.Nome, condutor.Email, condutor.Telefone, condutor.Cliente.Nome);
             }
         }
-        internal int ObtemIdCondutorSelecionado()
+        internal Guid ObtemIdCondutorSelecionado()
         {
-            return grid.SelecionarId<int>();
+            return grid.SelecionarId<Guid>();
         }
     }
 }

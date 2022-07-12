@@ -15,7 +15,6 @@ namespace Locadora.Test.Unit.ModuloFuncionario
         {
             funcionario = new()
             {
-                Id = 1,
                 Nome = "Marcos Adriano Lima",
                 Login = "admin1",
                 Senha = "admin1",

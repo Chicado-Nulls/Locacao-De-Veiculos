@@ -85,7 +85,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
         }
         private void ConfigurarObjeto()
         {
-            Funcionario.Id = txtBoxID.Text != "0" ? Convert.ToInt32(txtBoxID.Text) : 0;
+            Funcionario.Id = Guid.Parse(txtBoxID.Text.ToString());
             Funcionario.Nome = txtBoxNome.Text;
             Funcionario.Login = txtBoxLogin.Text;
             Funcionario.Senha = txtBoxSenha.Text;
