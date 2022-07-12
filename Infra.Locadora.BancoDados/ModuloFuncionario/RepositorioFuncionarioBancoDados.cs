@@ -15,6 +15,7 @@ namespace Locadora.Infra.BancoDados.ModuloFuncionario
         protected override string sqlInserir =>
              @"INSERT INTO [TBFUNCIONARIO]
                         (
+                            [ID],       
                             [NOME],       
                             [LOGIN], 
                             [SENHA],
@@ -24,6 +25,7 @@ namespace Locadora.Infra.BancoDados.ModuloFuncionario
                         )
                     VALUES
                         (
+                            @ID,
                             @NOME,
                             @LOGIN,
                             @SENHA,

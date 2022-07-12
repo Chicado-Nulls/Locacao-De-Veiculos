@@ -13,6 +13,7 @@ namespace Locadora.Infra.BancoDados.ModuloCondutor
         protected override string sqlInserir =>
 			@"INSERT INTO [TBCONDUTOR] 
                 (
+                    [ID],
                     [NOME],
                     [CPF],
                     [CNH],
@@ -23,6 +24,7 @@ namespace Locadora.Infra.BancoDados.ModuloCondutor
                 )
 	            VALUES
                 (   
+                    @ID,
                     @NOME,
                     @CPF, 
                     @CNH,
