@@ -14,13 +14,15 @@ namespace Locadora.Infra.BancoDados.ModuloGrupoVeiculo
         public RepositorioGrupoVeiculo(bool bancoTeste = false) : base(bancoTeste) { }
         protected override string sqlInserir => @"INSERT INTO [TBGRUPOVEICULO]
                                                     (
+                                                     ID,
                                                      NOME
                                                     )
                                                   VALUES
                                                      (
+                                                      @ID,
                                                       @NOME
-                                                     );
-                                                  SELECT SCOPE_IDENTITY();";
+                                                     )
+                                                 ";
         protected override string sqlEditar => @"UPDATE [TBGRUPOVEICULO]
                                                   SET
                                                    NOME=@NOME

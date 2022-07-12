@@ -14,17 +14,19 @@ namespace Locadora.Infra.BancoDados.ModuloTaxa
     {
         protected override string sqlInserir => @"INSERT INTO [TbTaxa]
                                                    (
+                                                    [ID],
                                                     [VALOR],
                                                     [DESCRICAO],
                                                     [ENUM_TIPODECALCULO]
                                                    )
                                                    VALUES
                                                     (
+                                                     @ID,
                                                      @VALOR,
                                                      @DESCRICAO,
                                                      @ENUM_TIPODECALCULO
-                                                    );
-                                                   Select SCOPE_IDENTITY()";
+                                                    )
+                                                  ";
 
 
 

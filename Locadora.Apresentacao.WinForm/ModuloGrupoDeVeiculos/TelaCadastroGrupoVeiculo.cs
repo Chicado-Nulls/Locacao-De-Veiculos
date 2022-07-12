@@ -59,7 +59,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
 
         private void ConfigurarObjeto()
         {
-            _grupoDeVeiculos.Id = Convert.ToInt32(txtBoxId.Text);
+            _grupoDeVeiculos.Id = Guid.Parse(txtBoxId.Text.ToString());
             _grupoDeVeiculos.Nome = TextNomeDoGrupo.Text;
         }
     }

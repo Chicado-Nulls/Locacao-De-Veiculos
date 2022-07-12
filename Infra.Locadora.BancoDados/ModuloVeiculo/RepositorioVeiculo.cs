@@ -18,6 +18,7 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
         }
         protected override string sqlInserir => @"Insert into [TbVeiculo]
                                                     (
+                                                      ID,
                                                       Modelo,
                                                       Marca,
                                                       EnumTipoDeCombustivel,
@@ -30,6 +31,7 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
                                                     )
                                                      VALUES
                                                     (
+                                                     @ID,
                                                      @MODELO,
                                                      @MARCA,
                                                      @ENUMTIPODECOMBUSTIVEL,
@@ -39,8 +41,8 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
                                                      @PLACA,
                                                      @GRUPOVEICULO_ID,
                                                      @FOTO
-                                                    ); 
-                                                       select SCOPE_IDENTITY();";
+                                                    ) 
+                                                       ";
 
 
         protected override string sqlEditar => @"UPDATE [TbVeiculo]
