@@ -21,7 +21,7 @@ namespace Locadora.Infra.BancoDados.ModuloTaxa
 
         public override Taxa ConverterRegistro(SqlDataReader leitorRegistro)
         {
-            int id = Convert.ToInt32(leitorRegistro["ID"]);
+            Guid id = Guid.Parse(leitorRegistro["ID"].ToString());
 
             decimal valor = Convert.ToDecimal(leitorRegistro["VALOR"]);
 

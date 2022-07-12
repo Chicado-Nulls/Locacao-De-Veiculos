@@ -23,7 +23,7 @@ namespace Locadora.Test.Unit.ModuloTaxa
            this.validador = new ValidadorTaxa();
             this.taxa = new ()
             {
-                Id = 1,
+                Id = new Guid(),
                 Descricao = "Ar condicionado",
                 Valor = 100,
                 TipoDeCalculo =TipoDeCalculo.CalculoFixo

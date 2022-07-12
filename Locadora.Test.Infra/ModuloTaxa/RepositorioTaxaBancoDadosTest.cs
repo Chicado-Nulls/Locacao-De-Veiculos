@@ -84,13 +84,13 @@ namespace Locadora.Test.Infra.ModuloTaxa
 
             var novaTaxaDois = new Taxa();
 
-            novaTaxaDois.Id = 2;
+            novaTaxaDois.Id = new Guid();
             novaTaxaDois.Descricao = "aaaaaa";
             novaTaxaDois.Valor = 1000;
             novaTaxaDois.TipoDeCalculo = TipoDeCalculo.CalculoDiario;
 
             var novaTaxaTres =  new Taxa();
-            novaTaxaTres.Id = 3;
+            novaTaxaTres.Id = new Guid();
             novaTaxaTres.Descricao = "ggggg";
             novaTaxaTres.Valor = 2000;
             novaTaxaTres.TipoDeCalculo = TipoDeCalculo.CalculoFixo;

@@ -22,7 +22,7 @@ namespace Locadora.Test.Unit.ModuloGrupoDeVeiculos
             validador = new ValidadorGrupoVeiculo();
             grupoDeVeiculo = new GrupoVeiculo()
             {
-                Id = 1,
+                Id = new Guid(),
                 Nome = "a3434434"
             };
         }
