@@ -29,9 +29,9 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
             return colunas;
         }
 
-        internal int ObtemNumeroRegistroSelecionado()
+        internal Guid ObtemNumeroRegistroSelecionado()
         {
-            return grid.SelecionarId<int>();
+            return grid.SelecionarId<Guid>();
         }
 
         public void AtualizarRegistros(List<Funcionario> funcionarios)

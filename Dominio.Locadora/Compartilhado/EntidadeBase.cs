@@ -1,8 +1,15 @@
-﻿namespace Locadora.Dominio.Compartilhado
+﻿using System;
+
+namespace Locadora.Dominio.Compartilhado
 {
     public abstract class EntidadeBase<T>
     {
-        public int Id { get; set; }
+        protected EntidadeBase()
+        {
+            Id= new Guid();
+        }
+
+        public Guid Id { get; set; }
 
         public abstract void Atualizar(T registro);
     }

@@ -130,7 +130,7 @@ namespace Locadora.Aplicacao.Compartilhado
             return resultado;
         }
 
-        public virtual T SelecionarPorId(int id)
+        public virtual T SelecionarPorId(Guid id)
         {
             return repositorio.SelecionarPorId(id);
         }
