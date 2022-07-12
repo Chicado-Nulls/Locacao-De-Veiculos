@@ -1,4 +1,5 @@
 ﻿using FluentValidation.Results;
+using System;
 using System.Collections.Generic;
 
 namespace Locadora.Dominio.Compartilhado
@@ -13,7 +14,7 @@ namespace Locadora.Dominio.Compartilhado
 
         List<T> SelecionarTodos();
 
-        T SelecionarPorId(int numero);
+        T SelecionarPorId(Guid id);
 
         public bool ExisteRegistroIgual(T registro, string consultaVerificaDuplicidade);
     }

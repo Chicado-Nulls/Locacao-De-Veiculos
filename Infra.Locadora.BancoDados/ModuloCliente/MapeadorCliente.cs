@@ -26,7 +26,7 @@ namespace Locadora.Infra.BancoDados.ModuloCliente
 
         public override Cliente ConverterRegistro(SqlDataReader leitorRegistro)
         {
-            int id = Convert.ToInt32(leitorRegistro["CLIENTE_ID"]);
+            var id = Guid.Parse(leitorRegistro["CLIENTE_ID"].ToString());
             string nome = Convert.ToString(leitorRegistro["CLIENTE_NOME"]);
             string cpf = Convert.ToString(leitorRegistro["CLIENTE_CPF"]);
             string cnpj = Convert.ToString(leitorRegistro["CLIENTE_CNPJ"]);

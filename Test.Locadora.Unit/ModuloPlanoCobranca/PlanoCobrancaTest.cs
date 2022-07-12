@@ -20,7 +20,7 @@ namespace Locadora.Test.Unit.ModuloPlanoCobranca
         {
             grupoVeiculo = new()
             {
-                Id = 1,
+                
                 Nome = "esportivo"
             };
 

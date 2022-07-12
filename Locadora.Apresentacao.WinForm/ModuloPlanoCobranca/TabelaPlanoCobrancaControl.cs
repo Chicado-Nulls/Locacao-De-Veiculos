@@ -40,9 +40,9 @@ namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
             foreach (PlanoCobranca planoCobranca in planoCobrancas)
                 grid.Rows.Add(planoCobranca.Id, planoCobranca.GrupoVeiculo.Nome);
         }
-        internal int ObtemIdPlanoCobrancaSelecionado()
+        public Guid ObtemIdPlanoCobrancaSelecionado()
         {
-            return grid.SelecionarId<int>();
+            return grid.SelecionarId<Guid>();
         }
     }
 }

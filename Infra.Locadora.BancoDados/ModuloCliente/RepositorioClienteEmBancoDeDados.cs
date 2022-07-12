@@ -15,6 +15,7 @@ namespace Locadora.Infra.BancoDados.ModuloCliente
         protected override string sqlInserir =>
             @"INSERT INTO [TBCLIENTE] 
                 (
+                    [ID],
                     [NOME],
                     [CPF],
                     [CNPJ],
@@ -28,6 +29,7 @@ namespace Locadora.Infra.BancoDados.ModuloCliente
 	            )
 	            VALUES
                 (   
+                    @ID,
                     @NOME,
                     @CPF, 
                     @CNPJ,
@@ -38,7 +40,7 @@ namespace Locadora.Infra.BancoDados.ModuloCliente
                     @TIPOCADASTRO
                     
 
-                );SELECT SCOPE_IDENTITY()";
+                );";
 
         protected override string sqlEditar =>
              @" UPDATE [TBCLIENTE]

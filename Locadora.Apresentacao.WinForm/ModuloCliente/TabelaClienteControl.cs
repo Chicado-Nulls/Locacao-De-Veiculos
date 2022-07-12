@@ -45,14 +45,14 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
             grid.Rows.Clear();
 
             foreach (Cliente cliente in clientes)
-            {
+            { 
                 string tipo = cliente.TipoCadastro == true ? "Pessoa Física" : "Pessoa Jurídica"; 
                 grid.Rows.Add(cliente.Id, cliente.Nome, tipo, cliente.Email, cliente.Telefone);
             }
         }
-        internal int ObtemIdClienteSelecionado()
+        public Guid ObtemIdClienteSelecionado()
         {
-            return grid.SelecionarId<int>();
+            return grid.SelecionarId<Guid>();
         }
 
 

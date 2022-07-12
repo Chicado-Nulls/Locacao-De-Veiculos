@@ -32,7 +32,7 @@ namespace Locadora.Infra.BancoDados.ModuloPlanoCobranca
 
         public override PlanoCobranca ConverterRegistro(SqlDataReader leitorRegistro)
         {
-            int id = Convert.ToInt32(leitorRegistro["PLANOCOBRANCA_ID"]);
+            var id = Guid.Parse(leitorRegistro["PLANOCOBRANCA_ID"].ToString());
             var grupoVeiculo = mapeador.ConverterRegistro(leitorRegistro);
             decimal diarioValorDiario = Convert.ToDecimal(leitorRegistro["PLANOCOBRANCA_DIARIO_DIARIA"]);
             decimal diarioValorPorKm = Convert.ToDecimal(leitorRegistro["PLANOCOBRANCA_DIARIOR_POR_KM"]);

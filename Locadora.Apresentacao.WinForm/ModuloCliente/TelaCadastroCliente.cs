@@ -43,7 +43,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
             textEmail.Text = _cliente.Email;
             textTelefone.Text = String.IsNullOrEmpty(_cliente.Telefone)? "" : TextBoxBaseExtension.FormataStringTelefoneOuCelular(_cliente.Telefone);
 
-            if (_cliente.Id != 0)
+            if (_cliente.Id == Guid.Empty)
                 SelecionaTipoCadastro();
         }
         private void SelecionaTipoCadastro()
@@ -106,7 +106,6 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
         }
         private void ConfigurarObjeto()
         {
-            _cliente.Id = textId.Text != "0" ? Convert.ToInt32(textId.Text) : 0;
             _cliente.Nome = textNome.Text;
             _cliente.Cpf = textCPF.Text;
             _cliente.Cnpj = textCNPJ.Text;
