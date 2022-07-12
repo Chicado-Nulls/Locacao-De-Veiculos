@@ -7,8 +7,7 @@
     [Endereco] NVARCHAR(150) NOT NULL, 
     [Email] NVARCHAR(80) NOT NULL, 
     [Telefone] NVARCHAR(16) NOT NULL, 
-    [Cliente_Id] INT NOT NULL,
-    CONSTRAINT [PK_TbCondutor] PRIMARY KEY ([Id])
     [Cliente_Id] UNIQUEIDENTIFIER NOT NULL, 
-    CONSTRAINT [FK_TbCondutor_TbCliente] FOREIGN KEY (Cliente_Id) REFERENCES [TbCliente]([Id])
+    CONSTRAINT [PK_TbCondutor] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_TbCondutor_TbCliente] FOREIGN KEY ([Cliente_Id]) REFERENCES [TbCliente]([Id])
 )
