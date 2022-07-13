@@ -1,10 +1,10 @@
-﻿using System;
+﻿using FluentValidation.Results;
+using Locadora.Apresentacao.WinForm.Compartilhado;
+using Locadora.Dominio.ModuloGrupoDeVeiculo;
+using Locadora.Dominio.ModuloPlanoCobranca;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Locadora.Dominio.ModuloPlanoCobranca;
-using Locadora.Dominio.ModuloGrupoDeVeiculo;
-using FluentValidation.Results;
-using Locadora.Apresentacao.WinForm.Compartilhado;
 
 namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
 {
@@ -113,7 +113,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
             TelaPrincipalForm.Instancia.AtualizarRodape(resultado.Errors[0].ErrorMessage);
             DialogResult = DialogResult.None;
             return;
-            
+
         }
 
         private void ConfigurarObjeto()
@@ -136,7 +136,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
                 string.IsNullOrEmpty(txtBoxDiarioPorKm.Text) ||
                 string.IsNullOrEmpty(txtBoxLivreDiaria.Text) ||
                 comboBoxGrupoVeiculo.SelectedIndex == 0
-                )return true;
+                ) return true;
 
             return false;
         }

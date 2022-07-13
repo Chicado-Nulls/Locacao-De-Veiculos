@@ -1,9 +1,4 @@
 ﻿using Locadora.Dominio.Compartilhado;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Dominio.ModuloTaxa
 {
@@ -23,7 +18,7 @@ namespace Locadora.Dominio.ModuloTaxa
 
         public override void Atualizar(Taxa registro)
         {
-            
+
         }
         public decimal? Valor { get; set; }
 
@@ -35,7 +30,7 @@ namespace Locadora.Dominio.ModuloTaxa
         {
             return obj is Taxa Taxa &&
                    Valor == Taxa.Valor &&
-                   Descricao == Taxa.Descricao &&                   
+                   Descricao == Taxa.Descricao &&
                    TipoDeCalculo == Taxa.TipoDeCalculo;
         }
         public Taxa Clone()

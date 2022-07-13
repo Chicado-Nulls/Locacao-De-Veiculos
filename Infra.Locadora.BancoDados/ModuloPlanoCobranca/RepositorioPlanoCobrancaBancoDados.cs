@@ -1,10 +1,5 @@
 ﻿using Locadora.Dominio.ModuloPlanoCobranca;
 using Locadora.Infra.BancoDados.Compartilhado;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Infra.BancoDados.ModuloPlanoCobranca
 {
@@ -120,7 +115,5 @@ namespace Locadora.Infra.BancoDados.ModuloPlanoCobranca
                 
                 WHERE PLANO.ID <> @ID and PLANO.[GRUPO_VEICULO_ID] = @GRUPO_VEICULO_ID 
                 ";
-
-        public RepositorioPlanoCobrancaBancoDados(bool bancoTeste = false) : base(bancoTeste) { }
     }
 }

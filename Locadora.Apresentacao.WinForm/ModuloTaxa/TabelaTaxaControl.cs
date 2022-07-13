@@ -2,12 +2,6 @@
 using Locadora.Dominio.ModuloTaxa;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Locadora.Apresentacao.WinForm.ModuloTaxa
@@ -46,7 +40,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
 
             foreach (var taxa in taxas)
             {
-                grid.Rows.Add(taxa.Id, taxa.Descricao, taxa.Valor,taxa.TipoDeCalculo);
+                grid.Rows.Add(taxa.Id, taxa.Descricao, taxa.Valor, taxa.TipoDeCalculo);
                 //exemplo
                 //grid.Rows.Add(materia.Numero, materia.Nome, materia.Disciplina.Nome, materia.Serie.GetDescription());
             }

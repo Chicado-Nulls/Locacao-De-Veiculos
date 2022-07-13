@@ -1,9 +1,9 @@
-﻿using Locadora.Dominio.ModuloCondutor;
-using Locadora.Test.Infra.Compartilhado;
-using Locadora.Infra.BancoDados.ModuloCondutor;
-using Locadora.Dominio.ModuloCliente;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Locadora.Dominio.ModuloCliente;
+using Locadora.Dominio.ModuloCondutor;
 using Locadora.Infra.BancoDados.ModuloCliente;
+using Locadora.Infra.BancoDados.ModuloCondutor;
+using Locadora.Test.Infra.Compartilhado;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Locadora.Test.Infra.ModuloCondutor
 {
@@ -41,8 +41,8 @@ namespace Locadora.Test.Infra.ModuloCondutor
                 Cliente = _cliente
             };
 
-            _repositorioCliente = new RepositorioClienteEmBancoDeDados(true);
-            _repositorioCondutor = new RepositorioCondutor(true);
+            _repositorioCliente = new RepositorioClienteEmBancoDeDados();
+            _repositorioCondutor = new RepositorioCondutor();
 
             LimparTabela("TBCLIENTE");
         }
@@ -100,7 +100,7 @@ namespace Locadora.Test.Infra.ModuloCondutor
             //action
             _repositorioCliente.Inserir(_cliente);
             _repositorioCondutor.Inserir(_condutor);
-            
+
             //assert
             var condutorEncontrado = _repositorioCondutor.SelecionarPorId(_condutor.Id);
             Assert.IsNotNull(condutorEncontrado);

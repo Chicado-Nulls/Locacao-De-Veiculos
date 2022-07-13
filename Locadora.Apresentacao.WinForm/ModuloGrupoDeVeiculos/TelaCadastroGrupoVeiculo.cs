@@ -1,14 +1,6 @@
 ﻿using FluentValidation.Results;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
@@ -24,12 +16,12 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
             gravarBtn.Text = label;
         }
 
-        public GrupoVeiculo GrupoDeVeiculo 
+        public GrupoVeiculo GrupoDeVeiculo
         {
             get { return _grupoDeVeiculos; }
-            set 
+            set
             {
-              _grupoDeVeiculos = value;
+                _grupoDeVeiculos = value;
                 ConfigurarTela();
             }
 
@@ -38,7 +30,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
         private void ConfigurarTela()
         {
             txtBoxId.Text = _grupoDeVeiculos.Id != default ? _grupoDeVeiculos.Id.ToString() : "0";
-            TextNomeDoGrupo.Text = string.IsNullOrEmpty(_grupoDeVeiculos.Nome)? "" : _grupoDeVeiculos.Nome;
+            TextNomeDoGrupo.Text = string.IsNullOrEmpty(_grupoDeVeiculos.Nome) ? "" : _grupoDeVeiculos.Nome;
 
         }
 

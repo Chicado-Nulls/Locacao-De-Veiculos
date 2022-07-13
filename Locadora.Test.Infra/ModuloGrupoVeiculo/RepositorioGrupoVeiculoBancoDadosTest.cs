@@ -1,20 +1,14 @@
 ﻿using FluentAssertions;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
-using Locadora.Infra.BancoDados.Compartilhado;
 
 using Locadora.Infra.BancoDados.ModuloGrupoVeiculo;
 using Locadora.Test.Infra.Compartilhado;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Test.Infra.ModuloGrupoDeVeiculo
 {
     [TestClass]
-    public  class RepositorioGrupoVeiculoBancoDadosTest : RepositorioBaseTest
+    public class RepositorioGrupoVeiculoBancoDadosTest : RepositorioBaseTest
     {
         private RepositorioGrupoVeiculo repositorio;
 
@@ -22,14 +16,14 @@ namespace Locadora.Test.Infra.ModuloGrupoDeVeiculo
 
         public RepositorioGrupoVeiculoBancoDadosTest()
         {
-            repositorio = new RepositorioGrupoVeiculo(true);
+            repositorio = new RepositorioGrupoVeiculo();
         }
 
         [TestMethod]
         public void Deve_inserir_novo_GrupoDeVeiculo()
         {
             var grupo = GerandoGrupoDeVeiculo();
-            
+
             repositorio.Inserir(grupo);
 
             var grupoInserido = repositorio.SelecionarPorId(grupo.Id);
@@ -50,7 +44,7 @@ namespace Locadora.Test.Infra.ModuloGrupoDeVeiculo
 
             repositorio.Editar(grupo);
 
-            var grupoEditado  = repositorio.SelecionarPorId(grupo.Id);
+            var grupoEditado = repositorio.SelecionarPorId(grupo.Id);
 
             grupoEditado.Should().NotBeNull();
             grupoEditado.Should().Be(grupo);
@@ -100,13 +94,13 @@ namespace Locadora.Test.Infra.ModuloGrupoDeVeiculo
         //    //arrange
         //    var grupo = GerandoGrupoDeVeiculo();
 
-            
+
         //    //action
         //    repositorio.Inserir(grupo);
 
         //    repositorio.Inserir(grupo);
 
-            
+
         //    //assert
         //    var grupoInserido = repositorio.SelecionarTodos();
 
@@ -132,7 +126,7 @@ namespace Locadora.Test.Infra.ModuloGrupoDeVeiculo
             //Assert.AreEqual(false, resultado.IsValid);
         }
 
-        public GrupoVeiculo  GerandoGrupoDeVeiculo()
+        public GrupoVeiculo GerandoGrupoDeVeiculo()
         {
             var grupo = new GrupoVeiculo("Monoposto");
 

@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Locadora.Dominio.ModuloCliente;
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
 using Locadora.Apresentacao.WinForm.Compartilhado;
+using Locadora.Dominio.ModuloCliente;
+using System;
+using System.Windows.Forms;
 
 namespace Locadora.Apresentacao.WinForm.ModuloCliente
 {
@@ -41,7 +34,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
             textCNH.Text = _cliente.Cnh;
             textEndereco.Text = _cliente.Endereco;
             textEmail.Text = _cliente.Email;
-            textTelefone.Text = String.IsNullOrEmpty(_cliente.Telefone)? "" : TextBoxBaseExtension.FormataStringTelefoneOuCelular(_cliente.Telefone);
+            textTelefone.Text = String.IsNullOrEmpty(_cliente.Telefone) ? "" : TextBoxBaseExtension.FormataStringTelefoneOuCelular(_cliente.Telefone);
 
             if (_cliente.Id == Guid.Empty)
                 SelecionaTipoCadastro();
@@ -91,17 +84,17 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
                 string.IsNullOrEmpty(textEmail.Text) ||
                 string.IsNullOrEmpty(textEndereco.Text))
                 return true;
-            
 
-            if (radioPessoaFisica.Checked && 
+
+            if (radioPessoaFisica.Checked &&
                 (string.IsNullOrEmpty(textCPF.Text) ||
                 string.IsNullOrEmpty(textCNH.Text)))
                 return true;
-            
+
             if (radioPessoaJuridica.Checked &&
                 string.IsNullOrEmpty(textCNPJ.Text))
                 return true;
-            
+
             return false;
         }
         private void ConfigurarObjeto()

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Locadora.Apresentacao.WinForm.Compartilhado
@@ -38,13 +34,13 @@ namespace Locadora.Apresentacao.WinForm.Compartilhado
             e.Handled = true;
 
         }
-        
+
         /// <summary>
         /// Metodo formata decimal para string em formato moeda real
         /// Este método deve ser implementado junto ao contrutor das telas para formatar campo do textBox
         /// </summary>
         /// <param decimal="valor"></param>
-        public static string FormatarStringMoedaReal(decimal ?valor)
+        public static string FormatarStringMoedaReal(decimal? valor)
         {
             return string.Format("{0:#,##0.00}", Double.Parse(valor.ToString()));
         }
@@ -62,7 +58,7 @@ namespace Locadora.Apresentacao.WinForm.Compartilhado
             string[] emailSplit = email.Split(caracteresEspeciaisEmail, 3);
 
             if (emailSplit.Length >= 3 && emailSplit[2].Length > 1)
-                return true;                
+                return true;
 
             return false;
         }

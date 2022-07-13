@@ -1,7 +1,7 @@
-﻿using Locadora.Dominio.ModuloGrupoDeVeiculo;
+﻿using FluentValidation.TestHelper;
+using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using Locadora.Dominio.ModuloPlanoCobranca;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentValidation.TestHelper;
 
 namespace Locadora.Test.Unit.ModuloPlanoCobranca
 {
@@ -14,7 +14,7 @@ namespace Locadora.Test.Unit.ModuloPlanoCobranca
         public ValidadorPlanoCobrancaTest()
         {
             _grupoVeiculo = new GrupoVeiculo("SUV");
-            
+
             _planoCobranca = new()
             {
                 GrupoVeiculo = _grupoVeiculo,

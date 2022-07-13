@@ -4,8 +4,6 @@ using Locadora.Dominio.ModuloCliente;
 using Locadora.Dominio.ModuloCondutor;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Locadora.Apresentacao.WinForm.ModuloCondutor
@@ -20,21 +18,21 @@ namespace Locadora.Apresentacao.WinForm.ModuloCondutor
             Text = titulo;
             btnInserir.Text = label;
         }
-        public Condutor Condutor 
-        { 
-            get { return _condutor; } 
-            set 
-            { 
+        public Condutor Condutor
+        {
+            get { return _condutor; }
+            set
+            {
                 _condutor = value;
                 ConfigurarTela(_condutor);
-            } 
+            }
         }
 
         public List<Cliente> Clientes
         {
             get { return _clientes; }
-            set 
-            { 
+            set
+            {
                 _clientes = value;
                 PopularComboBoxCliente();
             }
@@ -43,11 +41,11 @@ namespace Locadora.Apresentacao.WinForm.ModuloCondutor
         private void ConfigurarTela(Condutor condutor)
         {
             txtBoxId.Text = condutor.Id != default ? condutor.Id.ToString() : "0";
-            txtBoxNome.Text = string.IsNullOrEmpty(condutor.Nome) ? "" :condutor.Nome;
-            maskedTxtBoxCpf.Text = string.IsNullOrEmpty(condutor.Cpf) ? "" :condutor.Cpf;
-            maskedTxtBoxCnh.Text = string.IsNullOrEmpty(condutor.Cnh) ? "" :condutor.Cnh;
-            txtBoxEndereco.Text = string.IsNullOrEmpty(condutor.Endereco) ? "" :condutor.Endereco;
-            txtBoxEmail.Text = string.IsNullOrEmpty(condutor.Email) ? "" :condutor.Email;
+            txtBoxNome.Text = string.IsNullOrEmpty(condutor.Nome) ? "" : condutor.Nome;
+            maskedTxtBoxCpf.Text = string.IsNullOrEmpty(condutor.Cpf) ? "" : condutor.Cpf;
+            maskedTxtBoxCnh.Text = string.IsNullOrEmpty(condutor.Cnh) ? "" : condutor.Cnh;
+            txtBoxEndereco.Text = string.IsNullOrEmpty(condutor.Endereco) ? "" : condutor.Endereco;
+            txtBoxEmail.Text = string.IsNullOrEmpty(condutor.Email) ? "" : condutor.Email;
             txtBoxTelefone.Text = string.IsNullOrEmpty(condutor.Telefone) ? "" : TextBoxBaseExtension.FormataStringTelefoneOuCelular(condutor.Telefone);
 
             if (condutor.Cliente != null)
@@ -91,7 +89,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCondutor
         {
             TelaPrincipalForm.Instancia.AtualizarRodape("");
 
-            if(string.IsNullOrEmpty(txtBoxNome.Text) ||
+            if (string.IsNullOrEmpty(txtBoxNome.Text) ||
                 string.IsNullOrEmpty(maskedTxtBoxCpf.Text) ||
                 string.IsNullOrEmpty(maskedTxtBoxCnh.Text) ||
                 string.IsNullOrEmpty(txtBoxEndereco.Text) ||
@@ -122,7 +120,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCondutor
         {
             if (!checkBoxCliente.Checked)
                 return;
-            
+
             if (cBoxCliente.SelectedIndex == 0)
             {
                 MessageBox.Show("Selecione um cliente primeiro",

@@ -1,14 +1,9 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
 using Locadora.Dominio.Compartilhado;
-using Locadora.Infra.BancoDados.Compartilhado;
+using Serilog;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Serilog;
 
 namespace Locadora.Aplicacao.Compartilhado
 {
@@ -17,12 +12,12 @@ namespace Locadora.Aplicacao.Compartilhado
          where TValidador : AbstractValidator<T>, new()
     {
         IRepositorioBase<T> repositorio;
-        
+
 
         public ServiceBase(IRepositorioBase<T> repositorio)
         {
             this.repositorio = repositorio;
-            
+
         }
 
         public virtual ValidationResult Inserir(T registro)
@@ -53,12 +48,13 @@ namespace Locadora.Aplicacao.Compartilhado
             {
                 repositorio.Inserir(registro);
                 Log.Logger.Warning("Registro {Identificador} inserido com sucesso!", ObterIdentificadorLog(registro));
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Log.Logger.Debug("Registro {Identificador} não inserido, erro na camada Infra!", ObterIdentificadorLog(registro));
                 return GerarErroRepetido("Erro na conexão, registro não inserido!");
             }
-            
+
             return resultado;
         }
 
@@ -126,7 +122,7 @@ namespace Locadora.Aplicacao.Compartilhado
                 Log.Logger.Debug("Registro {identificador} não excluído, (Descriminar o erro)", ObterIdentificadorLog(registro));
                 return GerarErroRepetido("Registro possúi vinculo com outros registro e não pode ser excluído no momento!");
             }
-            
+
             return resultado;
         }
 
@@ -150,6 +146,6 @@ namespace Locadora.Aplicacao.Compartilhado
         }
 
         protected abstract string ObterIdentificadorLog(T registro);
-        
+
     }
 }

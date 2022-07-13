@@ -40,9 +40,9 @@ namespace Locadora.Test.Infra.ModuloPlanoCobranca
                 ControladoLimiteKm = 7
 
             };
-            
-            this.repositorioGrupoVeiculo = new RepositorioGrupoVeiculo(true);
-            this.repositorioPlanoCobranca = new RepositorioPlanoCobrancaBancoDados(true);
+
+            this.repositorioGrupoVeiculo = new RepositorioGrupoVeiculo();
+            this.repositorioPlanoCobranca = new RepositorioPlanoCobrancaBancoDados();
 
         }
 

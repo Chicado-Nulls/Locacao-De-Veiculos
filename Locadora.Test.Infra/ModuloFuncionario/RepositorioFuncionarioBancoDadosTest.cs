@@ -1,21 +1,22 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentAssertions;
-using Locadora.Infra.BancoDados.ModuloFuncionario;
+﻿using FluentAssertions;
 using Locadora.Dominio.ModuloFuncionario;
+using Locadora.Infra.BancoDados.ModuloFuncionario;
+using Locadora.Test.Infra.Compartilhado;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using Locadora.Infra.BancoDados.Compartilhado;
 
 namespace Locadora.Test.Infra.ModuloFuncionario
 {
     [TestClass]
-    public class RepositorioFuncionarioBancoDadosTest
+    public class RepositorioFuncionarioBancoDadosTest : RepositorioBaseTest
     {
         private RepositorioFuncionarioBancoDados repositorio;
+
+        protected override string NomeTabela => "TbFuncionario";
 
         public RepositorioFuncionarioBancoDadosTest()
         {
             repositorio = new RepositorioFuncionarioBancoDados();
-            Db.ExecutarSql("DELETE FROM TBFUNCIONARIO; DBCC CHECKIDENT (TBFUNCIONARIO, RESEED, 0)");
         }
 
         [TestMethod]
@@ -44,7 +45,7 @@ namespace Locadora.Test.Infra.ModuloFuncionario
             fornecedor.Nome = "Joao editado";
             fornecedor.Login = "joaologin";
             fornecedor.Senha = "joaosenha";
-            fornecedor.DataEntrada = new DateTime(2022,03,03);
+            fornecedor.DataEntrada = new DateTime(2022, 03, 03);
 
             //action
             repositorio.Editar(fornecedor);
@@ -92,7 +93,7 @@ namespace Locadora.Test.Infra.ModuloFuncionario
             //arrange
             var f0 = new Funcionario("Usuário master", "Admin1", "Admin1", new DateTime(2022, 01, 01), false, 50.00m);
             var f1 = new Funcionario("Ze da pastelaria", "zezeze", "zezeze", new DateTime(2022, 02, 02), false, 50.00m);
-            var f2 = new Funcionario("Joao da borracharia", "joaobr", "joaobr", new DateTime(2022, 03, 03), false, 50.00m); 
+            var f2 = new Funcionario("Joao da borracharia", "joaobr", "joaobr", new DateTime(2022, 03, 03), false, 50.00m);
 
             repositorio.Inserir(f0);
             repositorio.Inserir(f1);
@@ -108,7 +109,7 @@ namespace Locadora.Test.Infra.ModuloFuncionario
             Assert.AreEqual(f0.Nome, fornecedores[0].Nome);
             Assert.AreEqual(f1.Nome, fornecedores[1].Nome);
             Assert.AreEqual(f2.Nome, fornecedores[2].Nome);
-            Db.ExecutarSql("DELETE FROM TBFUNCIONARIO; DBCC CHECKIDENT (TBFUNCIONARIO, RESEED, 0)");
+            LimparTabela("TBFUNCIONARIO");
         }
 
         //[TestMethod]
@@ -151,7 +152,7 @@ namespace Locadora.Test.Infra.ModuloFuncionario
 
         private Funcionario NovoFuncionario()
         {
-            return new Funcionario("Usuário master", "Admin1", "Admin1", new DateTime(2022,01,01), false, 50.00m);
+            return new Funcionario("Usuário master", "Admin1", "Admin1", new DateTime(2022, 01, 01), false, 50.00m);
         }
     }
 }

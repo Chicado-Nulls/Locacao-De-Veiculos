@@ -1,6 +1,6 @@
-﻿using Locadora.Dominio.ModuloFuncionario;
+﻿using FluentValidation.TestHelper;
+using Locadora.Dominio.ModuloFuncionario;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentValidation.TestHelper;
 using System;
 
 namespace Locadora.Test.Unit.ModuloFuncionario

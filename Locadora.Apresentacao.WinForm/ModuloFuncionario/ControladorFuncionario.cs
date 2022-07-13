@@ -1,11 +1,7 @@
 ﻿using Locadora.Aplicacao.ModuloFuncionario;
 using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloFuncionario;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
@@ -16,7 +12,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
         private ServiceFuncionario serviceFuncionario;
         TabelaFuncionarioControl tabelaFuncionario;
 
-        
+
         public ControladorFuncionario(IRepositorioFuncionario repositorioFuncionario, ServiceFuncionario serviceFuncionario)
         {
             this.serviceFuncionario=serviceFuncionario;
@@ -68,7 +64,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
                 return;
 
             var resultado = serviceFuncionario.Excluir(materiaSelecionada);
-            
+
             if (!resultado.IsValid)
             {
                 TelaPrincipalForm.Instancia.AtualizarRodape(resultado.Errors[0].ErrorMessage);

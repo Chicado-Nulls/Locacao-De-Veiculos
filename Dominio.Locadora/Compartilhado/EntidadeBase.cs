@@ -1,4 +1,5 @@
 ﻿using System;
+using Taikandi;
 
 namespace Locadora.Dominio.Compartilhado
 {
@@ -6,7 +7,7 @@ namespace Locadora.Dominio.Compartilhado
     {
         protected EntidadeBase()
         {
-            Id= new Guid();
+            Id = SequentialGuid.NewGuid();
         }
 
         public Guid Id { get; set; }

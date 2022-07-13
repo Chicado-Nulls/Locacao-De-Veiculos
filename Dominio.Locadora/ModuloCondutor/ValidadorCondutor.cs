@@ -30,7 +30,7 @@ namespace Locadora.Dominio.ModuloCondutor
               .NotEmpty().WithMessage("O campo 'Email' não pode ser vazio!")
               .MinimumLength(8).WithMessage("O campo 'Email' deve conter no mínimo 8 caracteres!")
               .EmailAddress().WithMessage("Formato campo 'Email' inválidpo!");
-            
+
             RuleFor(x => x.Cpf)
               .NotNull().WithMessage("O campo 'Cpf' não pode ser nulo!")
               .NotEmpty().WithMessage("O campo 'Cpf' não pode ser vazio!")

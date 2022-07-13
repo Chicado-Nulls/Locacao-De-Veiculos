@@ -1,10 +1,6 @@
 ﻿using Locadora.Dominio.Compartilhado;
 using Locadora.Dominio.ModuloCarro;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Dominio.ModuloGrupoDeVeiculo
 {
@@ -15,12 +11,12 @@ namespace Locadora.Dominio.ModuloGrupoDeVeiculo
         public GrupoVeiculo() { }
         public GrupoVeiculo(string nome)
         {
-           this.Nome = nome;    
+            this.Nome = nome;
         }
-        
+
         public override void Atualizar(GrupoVeiculo registro)
         {
-               Nome = registro.Nome;
+            Nome = registro.Nome;
         }
 
         public override string ToString()
@@ -29,12 +25,12 @@ namespace Locadora.Dominio.ModuloGrupoDeVeiculo
         }
 
         public string Nome { get; set; }
-        public List<Veiculo> ListaDeVeiculo{ get; set; }
+        public List<Veiculo> ListaDeVeiculo { get; set; }
 
         public override bool Equals(object obj)
         {
             return obj is GrupoVeiculo grupoDeVeiculo &&
-                   Nome == grupoDeVeiculo.Nome;                  
+                   Nome == grupoDeVeiculo.Nome;
         }
     }
 }

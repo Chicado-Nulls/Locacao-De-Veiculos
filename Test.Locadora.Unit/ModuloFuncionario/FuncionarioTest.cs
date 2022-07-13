@@ -25,7 +25,7 @@ namespace Locadora.Test.Unit.ModuloFuncionario
         public void Cria_objeto_funcionario_com_campos_contrutor()
         {
             // arrange - action
-            var FuncionarioCriar = new Funcionario("Usuario teste", "login", "login", new DateTime(2022,01,01), false, 50.00m);
+            var FuncionarioCriar = new Funcionario("Usuario teste", "login", "login", new DateTime(2022, 01, 01), false, 50.00m);
 
             // Asset
             Assert.AreEqual("Usuario teste", FuncionarioCriar.Nome);
@@ -95,7 +95,7 @@ namespace Locadora.Test.Unit.ModuloFuncionario
 
             // Asset
             Assert.AreEqual(funcionario.Administrador, FuncionarioCriar.Administrador);
-            
+
             // Asset
             Assert.AreEqual(funcionario.Salario, FuncionarioCriar.Salario);
 

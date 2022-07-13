@@ -1,9 +1,5 @@
 ﻿using Locadora.Dominio.Compartilhado;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Dominio.ModuloFuncionario
 {
@@ -14,7 +10,7 @@ namespace Locadora.Dominio.ModuloFuncionario
         public string Senha { get; set; }
         public bool Administrador { get; set; }
         public decimal Salario { get; set; }
-        
+
         public DateTime DataEntrada { get; set; }
 
         public Funcionario() { }

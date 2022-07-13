@@ -1,31 +1,27 @@
-﻿using FluentValidation;
-using Locadora.Dominio.Compartilhado;
-using FluentValidation.Results;
+﻿using Locadora.Dominio.Compartilhado;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-
+using System.IO;
 
 namespace Locadora.Infra.BancoDados.Compartilhado
 {
-    public abstract class 
+    public abstract class
         RepositorioBase<T, TMapeador>
         where T : EntidadeBase<T>
-        where TMapeador : MapeadorBase<T>, new ()
+        where TMapeador : MapeadorBase<T>, new()
     {
-        public RepositorioBase(bool bancoTeste = false)
+        public RepositorioBase()
         {
-            enderecoBanco = bancoTeste == true ? enderecoBancoTest : enderecoBanco;
-        }
-        protected string enderecoBanco =
-            @"Data Source=(LOCALDB)\MSSQLLOCALDB;
-              Initial Catalog=LocadoraVeiculosDB;
-              Integrated Security=True";
+            var configuracao = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("ConfiguracaoAplicacao.json")
+                .Build();
 
-        protected string enderecoBancoTest =
-            @"Data Source=(LOCALDB)\MSSQLLOCALDB;
-              Initial Catalog=LocadoraVeiculosDBTest;
-              Integrated Security=True";
+            enderecoBanco = configuracao.GetConnectionString("SqlServer");
+        }
+        protected string enderecoBanco { get; }
 
         protected abstract string sqlInserir { get; }
 
@@ -37,7 +33,7 @@ namespace Locadora.Infra.BancoDados.Compartilhado
 
         protected abstract string sqlSelecionarTodos { get; }
 
-        protected abstract string sqlValidaRegistroDuplicado{ get; }
+        protected abstract string sqlValidaRegistroDuplicado { get; }
 
         public virtual void Inserir(T registro)
         {
@@ -50,7 +46,7 @@ namespace Locadora.Infra.BancoDados.Compartilhado
             mapeador.ConfigurarParametros(registro, comandoInsercao);
 
             conexaoComBanco.Open();
-            
+
             comandoInsercao.ExecuteNonQuery();
 
             conexaoComBanco.Close();
@@ -132,7 +128,7 @@ namespace Locadora.Infra.BancoDados.Compartilhado
 
         public bool ExisteRegistroIgual(T registro, string tipo)
         {
-           SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
             SqlCommand comandoSelecao = new SqlCommand(sqlValidaRegistroDuplicado, conexaoComBanco);
 

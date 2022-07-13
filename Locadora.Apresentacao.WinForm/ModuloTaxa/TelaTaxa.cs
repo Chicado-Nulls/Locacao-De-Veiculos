@@ -2,14 +2,6 @@
 using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloTaxa;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Locadora.Apresentacao.WinForm.ModuloTaxa
@@ -17,7 +9,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
     public partial class TelaTaxa : Form
     {
         private Taxa _taxa;
-        
+
         public TelaTaxa(string titulo, string label)
         {
             InitializeComponent();
@@ -58,14 +50,14 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
             string erro = resultadoValidacao.Errors[0].ErrorMessage;
 
             TelaPrincipalForm.Instancia.AtualizarRodape(erro);
-            
+
             DialogResult = DialogResult.None;
         }
         private bool ExisteCampoVazio()
         {
-            if(string.IsNullOrEmpty(txtBoxDescricao.Text) || string.IsNullOrEmpty(txtBoxValor.Text))
+            if (string.IsNullOrEmpty(txtBoxDescricao.Text) || string.IsNullOrEmpty(txtBoxValor.Text))
                 return true;
-            
+
             return false;
         }
         private void ConfigurarObjeto()
@@ -83,12 +75,12 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
                 return;
             }
 
-            Taxa.TipoDeCalculo=TipoDeCalculo.CalculoDiario;                             
-        }        
+            Taxa.TipoDeCalculo=TipoDeCalculo.CalculoDiario;
+        }
         private void ConfigurarTela()
         {
-            txtBoxId.Text = Taxa.Id == default ? "0" : Taxa.Id.ToString(); 
-            txtBoxDescricao.Text = Taxa.Descricao == null ? "" : Taxa.Descricao; 
+            txtBoxId.Text = Taxa.Id == default ? "0" : Taxa.Id.ToString();
+            txtBoxDescricao.Text = Taxa.Descricao == null ? "" : Taxa.Descricao;
             txtBoxValor.Text = Taxa.Valor == default ? "" : TextBoxBaseExtension.FormatarStringMoedaReal(Taxa.Valor);
             ConfigurarTipoCalculoTela();
         }

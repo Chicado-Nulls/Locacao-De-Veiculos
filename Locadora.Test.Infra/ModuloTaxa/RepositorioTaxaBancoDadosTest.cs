@@ -1,24 +1,21 @@
 ﻿using FluentAssertions;
 using Locadora.Dominio.ModuloTaxa;
-using Locadora.Infra.BancoDados.Compartilhado;
 using Locadora.Infra.BancoDados.ModuloTaxa;
+using Locadora.Test.Infra.Compartilhado;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Test.Infra.ModuloTaxa
 {
     [TestClass]
-    public class RepositorioTaxaBancoDadosTest
+    public class RepositorioTaxaBancoDadosTest : RepositorioBaseTest
     {
         private RepositorioTaxa repositorio;
+
+        protected override string NomeTabela => "TbTaxa";
+
         public RepositorioTaxaBancoDadosTest()
         {
             this.repositorio = new RepositorioTaxa();
-            Db.ExecutarSql("DELETE FROM [TbTaxa]; DBCC CHECKIDENT ([TbTaxa], RESEED, 0)");
         }
 
         [TestMethod]
@@ -30,7 +27,7 @@ namespace Locadora.Test.Infra.ModuloTaxa
 
             var taxaInserida = repositorio.SelecionarPorId(NovaTaxa.Id);
 
-            taxaInserida.Should().NotBeNull();           
+            taxaInserida.Should().NotBeNull();
             taxaInserida.Should().Be(NovaTaxa);
         }
 
@@ -51,15 +48,15 @@ namespace Locadora.Test.Infra.ModuloTaxa
 
             taxaEditada.Should().NotBeNull();
             taxaEditada.Should().Be(novaTaxa);
-           
+
         }
 
         [TestMethod]
         public void Deve_Excluir_Taxa()
         {
-            var novaTaxa =gerarTaxa();
+            var novaTaxa = gerarTaxa();
 
-            repositorio.Inserir(novaTaxa);                      
+            repositorio.Inserir(novaTaxa);
             repositorio.Excluir(novaTaxa);
 
             repositorio.SelecionarPorId(novaTaxa.Id)
@@ -76,7 +73,7 @@ namespace Locadora.Test.Infra.ModuloTaxa
             repositorio.SelecionarPorId(novaTaxa.Id)
                 .Should().NotBeNull();
         }
-        
+
         [TestMethod]
         public void Deve_Selecionar_Todas_Taxas()
         {
@@ -84,13 +81,11 @@ namespace Locadora.Test.Infra.ModuloTaxa
 
             var novaTaxaDois = new Taxa();
 
-            novaTaxaDois.Id = new Guid();
             novaTaxaDois.Descricao = "aaaaaa";
             novaTaxaDois.Valor = 1000;
             novaTaxaDois.TipoDeCalculo = TipoDeCalculo.CalculoDiario;
 
-            var novaTaxaTres =  new Taxa();
-            novaTaxaTres.Id = new Guid();
+            var novaTaxaTres = new Taxa();
             novaTaxaTres.Descricao = "ggggg";
             novaTaxaTres.Valor = 2000;
             novaTaxaTres.TipoDeCalculo = TipoDeCalculo.CalculoFixo;
@@ -104,7 +99,7 @@ namespace Locadora.Test.Infra.ModuloTaxa
             listTaxa[0].Descricao.Should().Be(novaTaxaUm.Descricao);
             listTaxa[1].Descricao.Should().Be(novaTaxaDois.Descricao);
             listTaxa[2].Descricao.Should().Be(novaTaxaTres.Descricao);
-            Db.ExecutarSql("DELETE FROM [TbTaxa]; DBCC CHECKIDENT ([TbTaxa], RESEED, 0)");
+            LimparTabela("TbTaxa");
         }
 
         //[TestMethod]
@@ -145,11 +140,11 @@ namespace Locadora.Test.Infra.ModuloTaxa
 
         private Taxa gerarTaxa()
         {
-           Taxa taxa = new Taxa();
+            Taxa taxa = new Taxa();
 
-           taxa.Descricao = "Ar condicionado Incluso";
-           taxa.TipoDeCalculo = TipoDeCalculo.CalculoFixo;
-           taxa.Valor = 100;
+            taxa.Descricao = "Ar condicionado Incluso";
+            taxa.TipoDeCalculo = TipoDeCalculo.CalculoFixo;
+            taxa.Valor = 100;
 
             return taxa;
         }

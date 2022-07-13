@@ -3,11 +3,7 @@ using Locadora.Dominio.ModuloVeiculo;
 using Locadora.Infra.BancoDados.Compartilhado;
 using Locadora.Infra.BancoDados.ModuloGrupoVeiculo;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Infra.BancoDados.ModuloVeiculo
 {
@@ -23,9 +19,9 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
 
         public override void ConfigurarParametros(Veiculo registro, SqlCommand comando)
         {
-            comando.Parameters.AddWithValue("ID",registro.Id);
+            comando.Parameters.AddWithValue("ID", registro.Id);
             comando.Parameters.AddWithValue("MODELO", registro.Modelo);
-            comando.Parameters.AddWithValue("MARCA",registro.Marca);
+            comando.Parameters.AddWithValue("MARCA", registro.Marca);
             comando.Parameters.AddWithValue("PLACA", registro.Placa);
             comando.Parameters.AddWithValue("COR", registro.Cor);
             comando.Parameters.AddWithValue("KMPERCORRIDO", registro.KmPercorrido);
@@ -55,7 +51,7 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
 
             EnumTipoDeCombustivel tipoDeCombustivel = (EnumTipoDeCombustivel)Convert.ToInt32(leitorRegistro["ENUMTIPODECOMBUSTIVEL"]);
 
-            var grupoVeiculo= mapeadorGrupoDeVeiculo.ConverterRegistro(leitorRegistro);
+            var grupoVeiculo = mapeadorGrupoDeVeiculo.ConverterRegistro(leitorRegistro);
 
             var Veiculo = new Veiculo()
             {

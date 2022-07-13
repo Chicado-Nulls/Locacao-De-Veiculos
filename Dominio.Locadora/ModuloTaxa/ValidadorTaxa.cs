@@ -1,16 +1,10 @@
 ﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Locadora.Dominio.ModuloTaxa
 {
     public class ValidadorTaxa : AbstractValidator<Taxa>
     {
-       public ValidadorTaxa()
+        public ValidadorTaxa()
         {
             RuleFor(x => x.Descricao)
                  .NotNull()
@@ -26,7 +20,7 @@ namespace Locadora.Dominio.ModuloTaxa
                 .NotNull()
                 .GreaterThan(0m)
                 .LessThanOrEqualTo(10000m);
-                
+
         }
     }
 }

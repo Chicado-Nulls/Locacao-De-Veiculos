@@ -1,12 +1,5 @@
-﻿using FluentValidation.Results;
-using Locadora.Dominio.Compartilhado;
-using Locadora.Dominio.ModuloTaxa;
+﻿using Locadora.Dominio.ModuloTaxa;
 using Locadora.Infra.BancoDados.Compartilhado;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Infra.BancoDados.ModuloTaxa
 {
@@ -51,7 +44,5 @@ namespace Locadora.Infra.BancoDados.ModuloTaxa
             @"SELECT * FROM [TbTaxa]
                            WHERE
                            [DESCRICAO] = @DESCRICAO AND [ID] <> @ID";
-
-        public RepositorioTaxa(bool bancoTeste = false) : base(bancoTeste) { }
     }
 }

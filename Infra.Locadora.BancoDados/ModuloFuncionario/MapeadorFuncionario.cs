@@ -1,7 +1,6 @@
 ﻿using Locadora.Dominio.ModuloFuncionario;
 using Locadora.Infra.BancoDados.Compartilhado;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace Locadora.Infra.BancoDados.ModuloFuncionario
@@ -28,7 +27,7 @@ namespace Locadora.Infra.BancoDados.ModuloFuncionario
             DateTime dataEntrada = Convert.ToDateTime(leitorRegistro["FUNCIONARIO_DATAENTRADA"]);
             bool administrador = Convert.ToBoolean(leitorRegistro["FUNCIONARIO_ADMINISTRADOR"]);
             decimal salario = Convert.ToDecimal(leitorRegistro["FUNCIONARIO_SALARIO"]);
-            
+
             var funcionario = new Funcionario
             {
                 Id = id,

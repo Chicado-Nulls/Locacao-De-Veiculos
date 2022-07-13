@@ -1,17 +1,10 @@
-﻿using Locadora.Dominio.Compartilhado;
-using Locadora.Dominio.ModuloGrupoDeVeiculo;
+﻿using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using Locadora.Infra.BancoDados.Compartilhado;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Infra.BancoDados.ModuloGrupoVeiculo
 {
     public class RepositorioGrupoVeiculo : RepositorioBase<GrupoVeiculo, MapeadorGrupoVeiculo>, IRepositorioGrupoVeiculo
     {
-        public RepositorioGrupoVeiculo(bool bancoTeste = false) : base(bancoTeste) { }
         protected override string sqlInserir => @"INSERT INTO [TBGRUPOVEICULO]
                                                     (
                                                      ID,

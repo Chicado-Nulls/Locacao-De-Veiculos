@@ -1,18 +1,12 @@
 ﻿using Locadora.Dominio.Compartilhado;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using Locadora.Dominio.ModuloVeiculo;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Dominio.ModuloCarro
 {
     public class Veiculo : EntidadeBase<Veiculo>
     {
-       
+
 
         public Veiculo(string modelo, string placa, string marca, string cor, decimal? capacidadeTanque, decimal? kmPercorrido, EnumTipoDeCombustivel tipoDeCombustivel)
         {
@@ -32,9 +26,9 @@ namespace Locadora.Dominio.ModuloCarro
         public override void Atualizar(Veiculo registro)
         {
             Modelo=registro.Modelo;
-            Placa=registro.Placa;   
+            Placa=registro.Placa;
             Marca=registro.Marca;
-            Cor=registro.Cor;   
+            Cor=registro.Cor;
             CapacidadeTanque=registro.CapacidadeTanque;
             KmPercorrido=registro.KmPercorrido;
             TipoDeCombustivel=registro.TipoDeCombustivel;
@@ -51,15 +45,15 @@ namespace Locadora.Dominio.ModuloCarro
 
         public decimal? CapacidadeTanque { get; set; }
 
-        public decimal? KmPercorrido{ get; set; }
+        public decimal? KmPercorrido { get; set; }
 
         public EnumTipoDeCombustivel TipoDeCombustivel { get; set; }
 
-        public GrupoVeiculo  GrupoDeVeiculo { get; set; }
+        public GrupoVeiculo GrupoDeVeiculo { get; set; }
 
         public byte[] Foto { get; set; }
-        
-        
+
+
         public override bool Equals(object obj)
         {
             return obj is Veiculo veiculo &&
@@ -71,6 +65,6 @@ namespace Locadora.Dominio.ModuloCarro
                   KmPercorrido == veiculo.KmPercorrido &&
                   TipoDeCombustivel == veiculo.TipoDeCombustivel;
         }
-        
+
     }
 }

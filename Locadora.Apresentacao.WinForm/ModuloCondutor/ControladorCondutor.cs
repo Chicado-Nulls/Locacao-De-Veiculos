@@ -2,11 +2,7 @@
 using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloCliente;
 using Locadora.Dominio.ModuloCondutor;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Locadora.Apresentacao.WinForm.ModuloCondutor
@@ -43,7 +39,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCondutor
             TelaCadastroCondutorForm tela = new TelaCadastroCondutorForm("Editar Condutor", "Editar");
 
             tela.Clientes = _repositorioCliente.SelecionarTodos();
-            
+
             tela.Condutor = clienteSelecionado.Clone();
 
             tela.GravarRegistro = serviceCondutor.Editar;
@@ -84,7 +80,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCondutor
             }
 
             CarregarCondutores();
-            
+
         }
 
         public override void Inserir()

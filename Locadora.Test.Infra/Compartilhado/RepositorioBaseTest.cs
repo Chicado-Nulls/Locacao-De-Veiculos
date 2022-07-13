@@ -1,22 +1,27 @@
-﻿using Locadora.Infra.BancoDados.Compartilhado;
-using System;
-using System.Collections.Generic;
+﻿using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace Locadora.Test.Infra.Compartilhado
 {
     public abstract class RepositorioBaseTest
     {
-        private string enderecoBanco =
-            @"Data Source=(LOCALDB)\MSSQLLOCALDB;
-              Initial Catalog=LocadoraVeiculosDBTest;
-              Integrated Security=True";
+        //private string enderecoBanco =
+        //    @"Data Source=(LOCALDB)\MSSQLLOCALDB;
+        //      Initial Catalog=LocadoraVeiculosDBTest;
+        //      Integrated Security=True";
+
+        private string enderecoBanco;
         protected abstract string NomeTabela { get; }
         public RepositorioBaseTest()
         {
+            var configuracao = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("ConfiguracaoAplicacao.json")
+                .Build();
+
+            enderecoBanco = configuracao.GetConnectionString("SqlServer");
+
             LimparTabela("TBPLANOCOBRANCA");
             LimparTabela("TBVEICULO");
             LimparTabela("TBGRUPOVEICULO");
@@ -30,9 +35,9 @@ namespace Locadora.Test.Infra.Compartilhado
             string sql;
 
             if (tabela == null)
-                sql = @"DELETE FROM "+NomeTabela+" DBCC CHECKIDENT ("+NomeTabela+", RESEED, 0)";
+                sql = @"DELETE FROM "+NomeTabela;
             else
-                sql = $"DELETE FROM [{tabela}] DBCC CHECKIDENT ({tabela}, RESEED, 0)";
+                sql = $"DELETE FROM [{tabela}]";
 
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 

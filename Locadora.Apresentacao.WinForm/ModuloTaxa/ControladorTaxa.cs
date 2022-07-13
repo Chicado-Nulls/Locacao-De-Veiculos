@@ -1,11 +1,7 @@
 ﻿using Locadora.Aplicacao.ModuloTaxa;
 using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloTaxa;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Locadora.Apresentacao.WinForm.ModuloTaxa
@@ -48,7 +44,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
 
         public override void Excluir()
         {
-            var taxa =  SelecionarTaxaPorNumero();
+            var taxa = SelecionarTaxaPorNumero();
 
             if (taxa == null)
             {
@@ -72,7 +68,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
 
         public override void Inserir()
         {
-            TelaTaxa telaTaxa=  new TelaTaxa("Inserir Taxa", "Inserir");
+            TelaTaxa telaTaxa = new TelaTaxa("Inserir Taxa", "Inserir");
 
             telaTaxa.Taxa= new Taxa();
 
@@ -115,7 +111,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
             var numero = tabelaTaxa.ObtemNumeroMateriaSelecionado();
 
             Taxa taxa = RepositorioTaxa.SelecionarPorId(numero);
-            
+
             return taxa;
 
         }

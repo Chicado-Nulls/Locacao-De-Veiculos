@@ -1,10 +1,5 @@
 ﻿using FluentValidation;
 using Locadora.Dominio.ModuloCarro;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Dominio.ModuloVeiculo
 {
@@ -46,10 +41,10 @@ namespace Locadora.Dominio.ModuloVeiculo
                 .MaximumLength(60);
 
             RuleFor(x => x.KmPercorrido)
-               .GreaterThanOrEqualTo(0)             
+               .GreaterThanOrEqualTo(0)
                .NotEmpty()
                .NotNull();
-            RuleFor(x=>x.TipoDeCombustivel)                
+            RuleFor(x => x.TipoDeCombustivel)
                .NotNull();
         }
 

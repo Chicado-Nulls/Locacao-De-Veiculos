@@ -6,19 +6,13 @@ using Locadora.Infra.BancoDados.ModuloGrupoVeiculo;
 using Locadora.Infra.BancoDados.ModuloVeiculo;
 using Locadora.Test.Infra.Compartilhado;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Test.Infra.ModuloVeiculo
 {
     [TestClass]
     public class RepositorioVeiculoBancoDadosTest : RepositorioBaseTest
     {
-        protected override string NomeTabela =>"TbVeiculo";
+        protected override string NomeTabela => "TbVeiculo";
 
         RepositorioVeiculo _repositorio;
         RepositorioGrupoVeiculo _repositorioGrupo;
@@ -26,24 +20,24 @@ namespace Locadora.Test.Infra.ModuloVeiculo
         GrupoVeiculo _grupoVeiculo;
 
         Veiculo _veiculo;
-        
+
         public RepositorioVeiculoBancoDadosTest()
         {
-            this._repositorio = new RepositorioVeiculo(true);
-            this._repositorioGrupo = new RepositorioGrupoVeiculo(true);
+            this._repositorio = new RepositorioVeiculo();
+            this._repositorioGrupo = new RepositorioGrupoVeiculo();
 
             this._grupoVeiculo = new GrupoVeiculo("Turismo");
             this._veiculo = new Veiculo("BMW Z4", "40440-DV", "BMW", "Azul", 30m, 100m, EnumTipoDeCombustivel.Gasolina);
-            this._veiculo.Foto = new byte[] { 1,2,3};
+            this._veiculo.Foto = new byte[] { 1, 2, 3 };
         }
         [TestMethod]
-        
+
         public void Deve_Inserir()
         {
             _repositorioGrupo.Inserir(_grupoVeiculo);
-            
+
             _veiculo.GrupoDeVeiculo = _grupoVeiculo;
-            
+
             _repositorio.Inserir(_veiculo);
 
             var veiculoInserido = _repositorio.SelecionarPorId(_veiculo.Id);
@@ -69,7 +63,7 @@ namespace Locadora.Test.Infra.ModuloVeiculo
 
             var veiculoEncontrado = _repositorio.SelecionarPorId(_veiculo.Id);
 
-            veiculoEncontrado.Should().Be(_veiculo);    
+            veiculoEncontrado.Should().Be(_veiculo);
 
         }
         [TestMethod]
@@ -81,10 +75,10 @@ namespace Locadora.Test.Infra.ModuloVeiculo
 
             _repositorio.Excluir(_veiculo);
 
-            var veiculoExcluido=_repositorio.SelecionarPorId(_veiculo.Id);
+            var veiculoExcluido = _repositorio.SelecionarPorId(_veiculo.Id);
 
             veiculoExcluido.Should().BeNull();
-            
+
         }
         [TestMethod]
 
@@ -100,7 +94,7 @@ namespace Locadora.Test.Infra.ModuloVeiculo
             veiculoDois.Foto = foto;
             Veiculo veiculoTres = new Veiculo("Stock car", "224242-bb", "Toyota", "Vermelho", 20m, 300m, EnumTipoDeCombustivel.Etanol);
             veiculoTres.Foto = foto;
-            
+
             veiculoUm.GrupoDeVeiculo= _grupoVeiculo;
             veiculoDois.GrupoDeVeiculo = _grupoVeiculo;
             veiculoTres.GrupoDeVeiculo = _grupoVeiculo;

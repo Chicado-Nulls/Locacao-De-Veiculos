@@ -2,12 +2,6 @@
 using Locadora.Dominio.ModuloCondutor;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Locadora.Apresentacao.WinForm.ModuloCondutor
@@ -33,7 +27,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCondutor
                 new DataGridViewTextBoxColumn { DataPropertyName = "EMAIL", HeaderText = "Email"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "TELEFONE", HeaderText = "Telefone"},
-                
+
                new DataGridViewTextBoxColumn { DataPropertyName = "Cliente", HeaderText = "Cliente"},
 
            };

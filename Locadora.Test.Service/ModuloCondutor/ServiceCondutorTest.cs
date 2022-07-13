@@ -25,8 +25,8 @@ namespace Locadora.Test.Service.ModuloCondutor
         Cliente _cliente;
         public ServiceCondutorTest()
         {
-            _serviceCondutor= new ServiceCondutor(new RepositorioCondutor(true));
-            _serviceCliente= new ServiceCliente(new RepositorioClienteEmBancoDeDados(true));
+            _serviceCondutor= new ServiceCondutor(new RepositorioCondutor());
+            _serviceCliente= new ServiceCliente(new RepositorioClienteEmBancoDeDados());
             _validadorCondutor= new ValidadorCondutor();
 
             _cliente = new()

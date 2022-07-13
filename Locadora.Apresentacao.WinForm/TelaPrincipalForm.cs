@@ -1,36 +1,35 @@
-﻿using Locadora.Apresentacao.WinForm.Compartilhado;
-using Locadora.Apresentacao.WinForm.ModuloTaxa;
-using Locadora.Dominio.ModuloTaxa;
-using Locadora.Infra.BancoDados.ModuloTaxa;
+﻿using Locadora.Aplicacao.ModuloCliente;
+using Locadora.Aplicacao.ModuloCondutor;
+using Locadora.Aplicacao.ModuloFuncionario;
+using Locadora.Aplicacao.ModuloGrupoDeVeiculos;
+using Locadora.Aplicacao.ModuloPlanoCobranca;
+using Locadora.Aplicacao.ModuloTaxa;
+using Locadora.Aplicacao.ModuloVeiculo;
+using Locadora.Apresentacao.WinForm.Compartilhado;
+using Locadora.Apresentacao.WinForm.ModuloCliente;
+using Locadora.Apresentacao.WinForm.ModuloCondutor;
 using Locadora.Apresentacao.WinForm.ModuloFuncionario;
+using Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos;
+using Locadora.Apresentacao.WinForm.ModuloPlanoCobranca;
+using Locadora.Apresentacao.WinForm.ModuloTaxa;
+using Locadora.Apresentacao.WinForm.ModuloVeiculo;
+using Locadora.Dominio.ModuloCliente;
+using Locadora.Dominio.ModuloCondutor;
 using Locadora.Dominio.ModuloFuncionario;
+using Locadora.Dominio.ModuloGrupoDeVeiculo;
+using Locadora.Dominio.ModuloPlanoCobranca;
+using Locadora.Dominio.ModuloTaxa;
+using Locadora.Dominio.ModuloVeiculo;
+using Locadora.Infra.BancoDados.ModuloCliente;
+using Locadora.Infra.BancoDados.ModuloCondutor;
 using Locadora.Infra.BancoDados.ModuloFuncionario;
+using Locadora.Infra.BancoDados.ModuloGrupoVeiculo;
+using Locadora.Infra.BancoDados.ModuloPlanoCobranca;
+using Locadora.Infra.BancoDados.ModuloTaxa;
+using Locadora.Infra.BancoDados.ModuloVeiculo;
 using System;
 using System.Collections.Generic;
-
 using System.Windows.Forms;
-using Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos;
-using Locadora.Dominio.ModuloCliente;
-using Locadora.Apresentacao.WinForm.ModuloCliente;
-using Locadora.Infra.BancoDados.ModuloCliente;
-using Locadora.Aplicacao.ModuloCliente;
-using Locadora.Aplicacao.ModuloFuncionario;
-using Locadora.Aplicacao.ModuloTaxa;
-using Locadora.Aplicacao.ModuloGrupoDeVeiculos;
-using Locadora.Dominio.ModuloGrupoDeVeiculo;
-using Locadora.Infra.BancoDados.ModuloGrupoVeiculo;
-using Locadora.Dominio.ModuloCondutor;
-using Locadora.Aplicacao.ModuloCondutor;
-using Locadora.Infra.BancoDados.ModuloCondutor;
-using Locadora.Apresentacao.WinForm.ModuloCondutor;
-using Locadora.Aplicacao.ModuloVeiculo;
-using Locadora.Dominio.ModuloVeiculo;
-using Locadora.Infra.BancoDados.ModuloVeiculo;
-using Locadora.Apresentacao.WinForm.ModuloVeiculo;
-using Locadora.Dominio.ModuloPlanoCobranca;
-using Locadora.Aplicacao.ModuloPlanoCobranca;
-using Locadora.Apresentacao.WinForm.ModuloPlanoCobranca;
-using Locadora.Infra.BancoDados.ModuloPlanoCobranca;
 
 namespace Locadora.Apresentacao.WinForm
 {
@@ -38,7 +37,7 @@ namespace Locadora.Apresentacao.WinForm
     {
         private ControladorBase controlador;
         private Dictionary<string, ControladorBase> controladores;
-        
+
         public TelaPrincipalForm()
         {
             InitializeComponent();
@@ -144,12 +143,12 @@ namespace Locadora.Apresentacao.WinForm
 
             IrepositorioVeiculo repositorioVeiculo = new RepositorioVeiculo();
             ServiceVeiculo serviceVeiculo = new ServiceVeiculo(repositorioVeiculo);
-            controladores.Add("Veiculos", new ControladorVeiculo(repositorioVeiculo,serviceGrupoDeVeiculos,serviceVeiculo));
-            
+            controladores.Add("Veiculos", new ControladorVeiculo(repositorioVeiculo, serviceGrupoDeVeiculos, serviceVeiculo));
+
             IRepositorioCondutor repositorioCondutor = new RepositorioCondutor();
             ServiceCondutor servicecondutor = new ServiceCondutor(repositorioCondutor);
             controladores.Add("Condutores", new ControladorCondutor(repositorioCondutor, servicecondutor, repositorioCliente));
-            
+
             IRepositorioPlanoCobranca repositorioPlanoCobranca = new RepositorioPlanoCobrancaBancoDados();
             ServicePlanoCobranca servicePlanoCobranca = new ServicePlanoCobranca(repositorioPlanoCobranca);
             controladores.Add("Plano de Cobranca", new ControladorPlanoCobranca(repositorioPlanoCobranca, servicePlanoCobranca, serviceGrupoDeVeiculos));

@@ -1,8 +1,7 @@
 ﻿using Locadora.Dominio.ModuloCliente;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Locadora.Infra.BancoDados.ModuloCliente;
-using Locadora.Infra.BancoDados.Compartilhado;
 using Locadora.Test.Infra.Compartilhado;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Locadora.Test.Infra.ModuloCliente
 {
@@ -26,7 +25,7 @@ namespace Locadora.Test.Infra.ModuloCliente
             cliente.Telefone = "49999460894";
             cliente.TipoCadastro = true;
 
-            repositorio = new RepositorioClienteEmBancoDeDados(true);
+            repositorio = new RepositorioClienteEmBancoDeDados();
         }
 
 

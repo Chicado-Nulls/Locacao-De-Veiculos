@@ -1,14 +1,9 @@
-﻿using Locadora.Apresentacao.WinForm.Compartilhado;
-using Locadora.Dominio.ModuloPlanoCobranca;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Locadora.Aplicacao.ModuloGrupoDeVeiculos;
 using Locadora.Aplicacao.ModuloPlanoCobranca;
-using Locadora.Aplicacao.ModuloFuncionario;
+using Locadora.Apresentacao.WinForm.Compartilhado;
+using Locadora.Dominio.ModuloPlanoCobranca;
+using System.Collections.Generic;
 using System.Windows.Forms;
-using Locadora.Aplicacao.ModuloGrupoDeVeiculos;
 
 namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
 {

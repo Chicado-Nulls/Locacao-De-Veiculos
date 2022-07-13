@@ -1,10 +1,9 @@
-﻿using FluentValidation.Results;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Locadora.Dominio.Compartilhado
 {
-    public interface IRepositorioBase<T> where T: EntidadeBase<T>
+    public interface IRepositorioBase<T> where T : EntidadeBase<T>
     {
         void Inserir(T novoRegistro);
 

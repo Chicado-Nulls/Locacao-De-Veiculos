@@ -1,12 +1,5 @@
-﻿using FluentValidation.Results;
-using Locadora.Dominio.Compartilhado;
-using Locadora.Dominio.ModuloFuncionario;
+﻿using Locadora.Dominio.ModuloFuncionario;
 using Locadora.Infra.BancoDados.Compartilhado;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Infra.BancoDados.ModuloFuncionario
 {
@@ -90,6 +83,5 @@ namespace Locadora.Infra.BancoDados.ModuloFuncionario
                 FROM TBFUNCIONARIO AS FUNCIONARIO
 
                 WHERE (NOME = @NOME or LOGIN = @LOGIN) AND ID <> @ID";
-        public RepositorioFuncionarioBancoDados(bool bancoTeste = false) : base(bancoTeste) { }
     }
 }

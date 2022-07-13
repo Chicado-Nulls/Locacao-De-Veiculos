@@ -4,11 +4,7 @@ using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloCarro;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using Locadora.Dominio.ModuloVeiculo;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
@@ -19,7 +15,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
         ServiceGrupoVeiculo serviceGrupoVeiculo;
         ServiceVeiculo serviceVeiculo;
         TabelaVeiculoControl tabelaVeiculo;
-        List<GrupoVeiculo> grupoVeiculos; 
+        List<GrupoVeiculo> grupoVeiculos;
 
         public ControladorVeiculo(IrepositorioVeiculo repositorioVeiculo, ServiceGrupoVeiculo serviceGrupoVeiculo, ServiceVeiculo serviceVeiculo)
         {
@@ -53,7 +49,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
 
         public override void Excluir()
         {
-            Veiculo veiculo =SelecionarVeiculoPorNumero();
+            Veiculo veiculo = SelecionarVeiculoPorNumero();
 
             if (veiculo == null)
             {
@@ -84,7 +80,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
               "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            TelaVeiculo telaVeiculo= new TelaVeiculo(serviceGrupoVeiculo.SelecionarTodos(), "Inserir Veículo", "Inserir");
+            TelaVeiculo telaVeiculo = new TelaVeiculo(serviceGrupoVeiculo.SelecionarTodos(), "Inserir Veículo", "Inserir");
 
             telaVeiculo.Veiculo = new Veiculo();
 
@@ -111,7 +107,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
 
         public override ConfigurarToolboxBase ObtemConfiguracaoToolbox()
         {
-           return new ConfigurarToolBoxVeiculo();
+            return new ConfigurarToolBoxVeiculo();
         }
 
         public override UserControl ObtemListagem()
@@ -124,7 +120,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
 
             return tabelaVeiculo;
         }
-       
+
 
         private Veiculo SelecionarVeiculoPorNumero()
         {
@@ -135,6 +131,6 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
             return veiculo;
 
         }
-       
+
     }
 }

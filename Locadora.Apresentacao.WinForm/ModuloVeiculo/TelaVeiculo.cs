@@ -1,19 +1,13 @@
-﻿using Locadora.Dominio.ModuloCarro;
+﻿using FluentValidation.Results;
+using Locadora.Dominio.ModuloCarro;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
-using Locadora.Dominio.ModuloTaxa;
+using Locadora.Dominio.ModuloVeiculo;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using FluentValidation.Results;
-using Locadora.Dominio.ModuloVeiculo;
-using System.Text.RegularExpressions;
 using System.IO;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
 {
@@ -64,8 +58,8 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
             textBoxKmPercorrido.Text = Veiculo.KmPercorrido == null ? "" : string.Format("{0:#,##0.00}", Double.Parse(Veiculo.KmPercorrido.ToString()));
             TextBoxCapacidadeTanque.Text = Veiculo.CapacidadeTanque == null ? "" : string.Format("{0:#,##0.00}", Double.Parse(Veiculo.CapacidadeTanque.ToString()));
 
-            comboBoxGrupoVeiculo.SelectedItem =Veiculo.GrupoDeVeiculo==null ? null: (GrupoVeiculo)Veiculo.GrupoDeVeiculo;
-            comboBoxTipoCombustivel.SelectedItem = Veiculo.TipoDeCombustivel == null ? null: Veiculo.TipoDeCombustivel.ToString();
+            comboBoxGrupoVeiculo.SelectedItem =Veiculo.GrupoDeVeiculo==null ? null : (GrupoVeiculo)Veiculo.GrupoDeVeiculo;
+            comboBoxTipoCombustivel.SelectedItem = Veiculo.TipoDeCombustivel == null ? null : Veiculo.TipoDeCombustivel.ToString();
             carregarFoto();
 
 
@@ -76,13 +70,13 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
             _veiculo.Cor=textBoxCor.Text;
             _veiculo.Placa=textBoxPlaca.Text;
             _veiculo.Modelo=textBoxModelo.Text;
-            _veiculo.Marca=textBoxMarca.Text;   
+            _veiculo.Marca=textBoxMarca.Text;
             _veiculo.GrupoDeVeiculo = (GrupoVeiculo)comboBoxGrupoVeiculo.SelectedItem;
             _veiculo.TipoDeCombustivel=  (EnumTipoDeCombustivel)Enum.Parse(typeof(EnumTipoDeCombustivel), SelecionarEnum());
             _veiculo.CapacidadeTanque=Convert.ToDecimal(TextBoxCapacidadeTanque.Text);
             _veiculo.KmPercorrido = Convert.ToDecimal(textBoxKmPercorrido.Text);
             _veiculo.Foto= converterFoto();
-            
+
 
         }
 
@@ -138,10 +132,10 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
                 comboBoxGrupoVeiculo.Items.Add(Grupo);
             }
         }
-       
+
         private string SelecionarEnum()
         {
-            var enumSelecionado = Enum.Parse(typeof(EnumTipoDeCombustivel),comboBoxTipoCombustivel.SelectedItem.ToString().Replace(" ",""));
+            var enumSelecionado = Enum.Parse(typeof(EnumTipoDeCombustivel), comboBoxTipoCombustivel.SelectedItem.ToString().Replace(" ", ""));
 
             switch (enumSelecionado)
             {
@@ -153,8 +147,8 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
                     break;
                 default: return "Eletrico";
             }
-            return null;     
-        }       
+            return null;
+        }
         private void TextBoxCapacidadeTanque_KeyPress_1(object sender, KeyPressEventArgs e)
         {
             if (char.IsDigit(e.KeyChar) || e.KeyChar.Equals((char)Keys.Back))
@@ -205,23 +199,23 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
             openfile.Filter = "Arquivos de Imagem jpg e png |*.jpg; *.png;";
             openfile.Multiselect = false;
 
-            if(openfile.ShowDialog() == DialogResult.OK)
+            if (openfile.ShowDialog() == DialogResult.OK)
             {
-               caminhoFoto= openfile.FileName;
+                caminhoFoto= openfile.FileName;
             }
             if (caminhoFoto != "" && caminhoFoto !=null)
             {
                 try
                 {
                     pictureBox.Load(caminhoFoto);
-                    
+
                 }
                 catch (Exception ex)
                 {
                     TelaPrincipalForm.Instancia.AtualizarRodape("Erro ao Inserir a imagem selecionada");
                     return;
                 }
-               
+
             }
         }
         private void carregarFoto()
@@ -232,16 +226,16 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
                 {
                     pictureBox.Image = Image.FromStream(foto);
                 }
-            }          
+            }
         }
         private byte[] converterFoto()
         {
             byte[] foto;
 
-            if(caminhoFoto == null && pictureBox.Image != null)
+            if (caminhoFoto == null && pictureBox.Image != null)
             {
                 return _veiculo.Foto;
-            } 
+            }
 
             using (var stream = new FileStream(caminhoFoto, FileMode.Open, FileAccess.Read))
             {

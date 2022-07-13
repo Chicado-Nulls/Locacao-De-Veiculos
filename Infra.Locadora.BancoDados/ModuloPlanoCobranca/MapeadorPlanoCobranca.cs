@@ -2,11 +2,7 @@
 using Locadora.Infra.BancoDados.Compartilhado;
 using Locadora.Infra.BancoDados.ModuloGrupoVeiculo;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Infra.BancoDados.ModuloPlanoCobranca
 {
@@ -52,7 +48,7 @@ namespace Locadora.Infra.BancoDados.ModuloPlanoCobranca
                 ControladoDiaria = controladoValorDiario,
                 ControladoPorKm = controladoValorPorKm,
                 ControladoLimiteKm = controladoLimiteKm
-                
+
 
             };
             return planoCobranca;

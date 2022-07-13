@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentValidation.Results;
-using Locadora.Dominio.ModuloCliente;
+﻿using Locadora.Dominio.ModuloCliente;
 using Locadora.Infra.BancoDados.Compartilhado;
 
 namespace Locadora.Infra.BancoDados.ModuloCliente
@@ -107,10 +101,5 @@ namespace Locadora.Infra.BancoDados.ModuloCliente
 		            [TBCLIENTE]
 		        WHERE
                     [CPF] = @CPF AND [CNPJ] = @CNPJ AND ID <> @ID";
-
-        public RepositorioClienteEmBancoDeDados(bool bancoTeste = false) : base(bancoTeste)
-        {
-
-        }
     }
 }

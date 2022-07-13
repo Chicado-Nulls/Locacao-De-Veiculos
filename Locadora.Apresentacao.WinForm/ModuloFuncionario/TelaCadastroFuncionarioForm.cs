@@ -2,8 +2,6 @@
 using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloFuncionario;
 using System;
-using System.Drawing;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
@@ -31,13 +29,13 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
         private void ConfigurarTela()
         {
             txtBoxID.Text = _funcionario.Id != default ? Convert.ToString(_funcionario.Id) : "0";
-            
+
             txtBoxNome.Text = _funcionario.Nome != null ? _funcionario.Nome : "";
-            
+
             txtBoxLogin.Text = _funcionario.Login != null ? _funcionario.Login : "";
-            
+
             txtBoxSenha.Text = _funcionario.Senha != null ? _funcionario.Senha : "";
-            
+
             rBtnAdministrador.Checked = _funcionario.Administrador;
 
             dtPickerDataEntrada.Text = _funcionario.DataEntrada != default ? Convert.ToString(_funcionario.DataEntrada) : "";
@@ -54,7 +52,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
 
                 return;
             }
-                
+
             ConfigurarObjeto();
 
             var resultadoValidacao = GravarRegistro(Funcionario);
@@ -67,19 +65,19 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
             TelaPrincipalForm.Instancia.AtualizarRodape(erro);
 
             DialogResult = DialogResult.None;
-            
+
         }
         private bool ExisteCompoVazio()
         {
             TelaPrincipalForm.Instancia.AtualizarRodape("");
-            
+
             if (string.IsNullOrEmpty(txtBoxNome.Text) ||
                 string.IsNullOrEmpty(txtBoxLogin.Text) ||
                 string.IsNullOrEmpty(txtBoxSenha.Text) ||
                 string.IsNullOrEmpty(dtPickerDataEntrada.Text) ||
                 string.IsNullOrEmpty(txtBoxSalario.Text))
                 return true;
-            
+
 
             return false;
         }

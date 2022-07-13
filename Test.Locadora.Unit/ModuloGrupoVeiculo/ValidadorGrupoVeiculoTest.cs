@@ -2,10 +2,6 @@
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Test.Unit.ModuloGrupoDeVeiculos
 {
@@ -45,6 +41,6 @@ namespace Locadora.Test.Unit.ModuloGrupoDeVeiculos
             var resultado = validador.TestValidate(grupoDeVeiculo);
 
             resultado.ShouldHaveValidationErrorFor(x => x.Nome);
-        }        
+        }
     }
 }

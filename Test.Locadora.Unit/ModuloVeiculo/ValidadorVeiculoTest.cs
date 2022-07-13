@@ -1,12 +1,7 @@
-﻿using Locadora.Dominio.ModuloCarro;
+﻿using FluentValidation.TestHelper;
+using Locadora.Dominio.ModuloCarro;
 using Locadora.Dominio.ModuloVeiculo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentValidation.TestHelper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Test.Unit.ModuloVeiculo
 {
@@ -24,14 +19,14 @@ namespace Locadora.Test.Unit.ModuloVeiculo
 
         [TestMethod]
         private void Marca_Nao_Pode_Ser_Nulo()
-        {            
+        {
             veiculo.Marca = null;
             var resultado = validador.TestValidate(veiculo);
 
             resultado.ShouldHaveValidationErrorFor(x => x.Marca);
         }
         [TestMethod]
-         private void Cor_Nao_Pode_Ser_Nulo()
+        private void Cor_Nao_Pode_Ser_Nulo()
         {
             veiculo.Cor = null;
             var resultado = validador.TestValidate(veiculo);
@@ -71,7 +66,7 @@ namespace Locadora.Test.Unit.ModuloVeiculo
 
         private void gerandoVeiculo()
         {
-             veiculo = new Veiculo("BMW Z4", "40440-DV", "BMW", "Azul", 30m, 100m, EnumTipoDeCombustivel.Gasolina);
+            veiculo = new Veiculo("BMW Z4", "40440-DV", "BMW", "Azul", 30m, 100m, EnumTipoDeCombustivel.Gasolina);
         }
     }
 }

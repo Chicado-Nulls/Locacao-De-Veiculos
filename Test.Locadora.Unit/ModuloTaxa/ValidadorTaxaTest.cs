@@ -1,14 +1,8 @@
 ﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentAssertions;
-using FluentValidation.Results;
 using FluentValidation.TestHelper;
 using Locadora.Dominio.ModuloTaxa;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace Locadora.Test.Unit.ModuloTaxa
 {
@@ -16,12 +10,12 @@ namespace Locadora.Test.Unit.ModuloTaxa
     public class ValidadorTaxaTest
     {
         private ValidadorTaxa validador;
-        private Taxa taxa; 
+        private Taxa taxa;
 
         public ValidadorTaxaTest()
         {
-           this.validador = new ValidadorTaxa();
-            this.taxa = new ()
+            this.validador = new ValidadorTaxa();
+            this.taxa = new()
             {
                 Id = new Guid(),
                 Descricao = "Ar condicionado",
@@ -34,7 +28,7 @@ namespace Locadora.Test.Unit.ModuloTaxa
         {
             taxa.Descricao = null;
 
-           var resultado =validador.TestValidate(taxa);
+            var resultado = validador.TestValidate(taxa);
 
             resultado.ShouldHaveValidationErrorFor(x => x.Descricao);
         }
@@ -90,5 +84,5 @@ namespace Locadora.Test.Unit.ModuloTaxa
             resultado.ShouldHaveValidationErrorFor(x => x.Valor);
         }
 
-    }                                                
+    }
 }

@@ -1,10 +1,6 @@
 ﻿using Locadora.Dominio.Compartilhado;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
+using System;
 
 namespace Locadora.Dominio.ModuloPlanoCobranca
 {

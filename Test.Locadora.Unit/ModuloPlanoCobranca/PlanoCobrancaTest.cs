@@ -1,11 +1,6 @@
 ﻿using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using Locadora.Dominio.ModuloPlanoCobranca;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Test.Unit.ModuloPlanoCobranca
 {
@@ -20,7 +15,7 @@ namespace Locadora.Test.Unit.ModuloPlanoCobranca
         {
             grupoVeiculo = new()
             {
-                
+
                 Nome = "esportivo"
             };
 
@@ -40,7 +35,7 @@ namespace Locadora.Test.Unit.ModuloPlanoCobranca
         public void Cria_objeto_plano_cobranca_com_campos_contrutor()
         {
             // arrange - action
-            var planoCobranca = new PlanoCobranca(grupoVeiculo, 100, 4, 5, 2, 3, 8 );
+            var planoCobranca = new PlanoCobranca(grupoVeiculo, 100, 4, 5, 2, 3, 8);
 
             // Asset
             Assert.AreEqual(grupoVeiculo, planoCobranca.GrupoVeiculo);

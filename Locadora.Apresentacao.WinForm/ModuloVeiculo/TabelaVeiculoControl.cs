@@ -1,14 +1,7 @@
 ﻿using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloCarro;
-using Locadora.Dominio.ModuloVeiculo;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
@@ -31,7 +24,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
                 new DataGridViewTextBoxColumn { DataPropertyName = "Placa", HeaderText = "Placa", FillWeight=15F },
                 new DataGridViewTextBoxColumn { DataPropertyName = "Km Rodados", HeaderText = "Km Rodados", FillWeight=15F },
                 new DataGridViewTextBoxColumn { DataPropertyName = "Tipo De Combustivel", HeaderText = "Tipo De Combustivel", FillWeight=15F },
-                new DataGridViewTextBoxColumn { DataPropertyName = "Grupo Veiculo", HeaderText = "Grupo Veiculo", FillWeight=15F }  
+                new DataGridViewTextBoxColumn { DataPropertyName = "Grupo Veiculo", HeaderText = "Grupo Veiculo", FillWeight=15F }
 
 
             };
@@ -43,20 +36,20 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
             return grid.SelecionarId<Guid>();
         }
 
-        public void AtualizarRegistros(List<Veiculo > veiculos)
+        public void AtualizarRegistros(List<Veiculo> veiculos)
         {
-            grid.Rows.Clear();                 
+            grid.Rows.Clear();
 
             foreach (var veiculo in veiculos)
             {
-                
 
 
-                grid.Rows.Add(veiculo.Id,veiculo.Modelo,veiculo.Placa,veiculo.KmPercorrido,veiculo.TipoDeCombustivel,veiculo.GrupoDeVeiculo);
+
+                grid.Rows.Add(veiculo.Id, veiculo.Modelo, veiculo.Placa, veiculo.KmPercorrido, veiculo.TipoDeCombustivel, veiculo.GrupoDeVeiculo);
                 //exemplo
                 //grid.Rows.Add(materia.Numero, materia.Nome, materia.Disciplina.Nome, materia.Serie.GetDescription());
             }
         }
-        
+
     }
 }

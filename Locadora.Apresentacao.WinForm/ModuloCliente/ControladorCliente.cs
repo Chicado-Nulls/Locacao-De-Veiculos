@@ -1,12 +1,8 @@
-﻿using Locadora.Apresentacao.WinForm.Compartilhado;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Locadora.Aplicacao.ModuloCliente;
+using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloCliente;
-using Locadora.Aplicacao.ModuloCliente;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Locadora.Apresentacao.WinForm.ModuloCliente
 {
@@ -27,7 +23,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
         {
             var numero = tabelaClientes.ObtemIdClienteSelecionado();
             var clienteSelecionado = repositorioCliente.SelecionarPorId(numero);
-         
+
             if (clienteSelecionado == null)
             {
                 MessageBox.Show("Selecione um cliente primeiro",
@@ -94,7 +90,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
             {
                 CarregarClientes();
             }
-            
+
         }
         private Cliente ObtemClienteSelecionado()
         {
@@ -128,6 +124,6 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
             return tabelaClientes;
         }
 
-        
+
     }
 }

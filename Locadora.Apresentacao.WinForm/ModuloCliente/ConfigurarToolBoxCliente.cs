@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Locadora.Apresentacao.WinForm.Compartilhado;
+﻿using Locadora.Apresentacao.WinForm.Compartilhado;
 
 namespace Locadora.Apresentacao.WinForm.ModuloCliente
 {

@@ -25,7 +25,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
                 new DataGridViewTextBoxColumn { DataPropertyName = "LOGIN", HeaderText = "Login", FillWeight=15F },
                 new DataGridViewTextBoxColumn { DataPropertyName = "DATAENTRADA", HeaderText = "Data Entrada", FillWeight=15F },
             };
-            
+
             return colunas;
         }
 

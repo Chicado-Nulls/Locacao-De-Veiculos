@@ -2,11 +2,7 @@
 using Locadora.Infra.BancoDados.Compartilhado;
 using Locadora.Infra.BancoDados.ModuloCliente;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Infra.BancoDados.ModuloCondutor
 {
@@ -27,7 +23,7 @@ namespace Locadora.Infra.BancoDados.ModuloCondutor
             comando.Parameters.AddWithValue("EMAIL", registro.Email);
             comando.Parameters.AddWithValue("TELEFONE", registro.Telefone);
             comando.Parameters.AddWithValue("CLIENTE_ID", registro.Cliente.Id);
-            
+
         }
 
         public override Condutor ConverterRegistro(SqlDataReader leitorRegistro)

@@ -1,9 +1,4 @@
 ﻿using Locadora.Apresentacao.WinForm.Compartilhado;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Apresentacao.WinForm.ModuloTaxa
 {
@@ -15,6 +10,6 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
 
         public override string TooltipEditar => "Editar Taxa";
 
-        public override string TooltipExcluir =>"Excluir Taxa" ;
+        public override string TooltipExcluir => "Excluir Taxa";
     }
 }

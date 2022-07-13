@@ -1,17 +1,12 @@
 ﻿using Locadora.Dominio.ModuloCondutor;
 using Locadora.Infra.BancoDados.Compartilhado;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Infra.BancoDados.ModuloCondutor
 {
     public class RepositorioCondutor : RepositorioBase<Condutor, MapeadorCondutor>, IRepositorioCondutor
     {
         protected override string sqlInserir =>
-			@"INSERT INTO [TBCONDUTOR] 
+            @"INSERT INTO [TBCONDUTOR] 
                 (
                     [ID],
                     [NOME],
@@ -35,8 +30,8 @@ namespace Locadora.Infra.BancoDados.ModuloCondutor
                     
 				);SELECT SCOPE_IDENTITY()";
 
-		protected override string sqlEditar =>
-			@" UPDATE [TBCONDUTOR]
+        protected override string sqlEditar =>
+            @" UPDATE [TBCONDUTOR]
                     SET 
                         
                         [NOME] = @NOME, 
@@ -49,13 +44,13 @@ namespace Locadora.Infra.BancoDados.ModuloCondutor
 
                     WHERE [ID] = @ID";
 
-		protected override string sqlExcluir =>
-			@"DELETE FROM[TBCONDUTOR]
+        protected override string sqlExcluir =>
+            @"DELETE FROM[TBCONDUTOR]
                 WHERE
                     [ID] = @ID";
 
-		protected override string sqlSelecionarPorId =>
-			@"SELECT
+        protected override string sqlSelecionarPorId =>
+            @"SELECT
 					CONDUTOR.ID AS CONDUTOR_ID,
 					CONDUTOR.NOME AS CONDUTOR_NOME,
 					CONDUTOR.CPF AS CONDUTOR_CPF,
@@ -84,7 +79,7 @@ namespace Locadora.Infra.BancoDados.ModuloCondutor
 
 
         protected override string sqlSelecionarTodos =>
-			@"SELECT
+            @"SELECT
 					CONDUTOR.ID AS CONDUTOR_ID,
 					CONDUTOR.NOME AS CONDUTOR_NOME,
 					CONDUTOR.CPF AS CONDUTOR_CPF,
@@ -110,7 +105,7 @@ namespace Locadora.Infra.BancoDados.ModuloCondutor
 				ON CONDUTOR.CLIENTE_ID = CLIENTE.ID";
 
         protected override string sqlValidaRegistroDuplicado =>
-			@"SELECT
+            @"SELECT
 					CONDUTOR.ID AS CONDUTOR_ID,
 					CONDUTOR.NOME AS CONDUTOR_NOME,
 					CONDUTOR.CPF AS CONDUTOR_CPF,
@@ -136,10 +131,5 @@ namespace Locadora.Infra.BancoDados.ModuloCondutor
 				ON CONDUTOR.CLIENTE_ID = CLIENTE.ID
 
 				WHERE CONDUTOR.CPF = @CPF AND CLIENTE.ID = @CLIENTE_ID AND CONDUTOR.ID <> @ID";
-
-		public RepositorioCondutor(bool BancoTeste = false) : base(BancoTeste)
-        {
-
-        }
     }
 }
