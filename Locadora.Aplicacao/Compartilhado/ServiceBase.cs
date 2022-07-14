@@ -1,9 +1,11 @@
-﻿using FluentValidation;
+﻿using FluentResults;
+using FluentValidation;
 using FluentValidation.Results;
 using Locadora.Dominio.Compartilhado;
 using Serilog;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Locadora.Aplicacao.Compartilhado
 {
@@ -11,7 +13,7 @@ namespace Locadora.Aplicacao.Compartilhado
         where T : EntidadeBase<T>
          where TValidador : AbstractValidator<T>, new()
     {
-        IRepositorioBase<T> repositorio;
+        protected IRepositorioBase<T> repositorio;
 
 
         public ServiceBase(IRepositorioBase<T> repositorio)
@@ -20,120 +22,128 @@ namespace Locadora.Aplicacao.Compartilhado
 
         }
 
-        public virtual ValidationResult Inserir(T registro)
+        public Result<T> Inserir(T registro)
         {
-            Log.Logger.Debug("Tentando inserir {Identificador}", ObterIdentificadorLog(registro));
-            var validador = new TValidador();
+            Log.Logger.Debug("Tentando inserir {registro}... {@f}", registro.GetType().Name, registro.Id);
 
-            var resultado = validador.Validate(registro);
-            if (!resultado.IsValid)
+            Result resultadoValidacao = ValidarRegistro(registro);
+
+            if (resultadoValidacao.IsFailed)
             {
-                foreach (var erro in resultado.Errors)
+                foreach (var erro in resultadoValidacao.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar inserir {Identificador} - {Motivo}",
-                        ObterIdentificadorLog(registro), erro.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar inserir o {ObjetoNome} {RegistroId} - {Motivo}",
+                       registro.GetType().Name, registro.Id, erro.Message);
                 }
-                return resultado;
-            }
 
-            var existeRepetido = repositorio.ExisteRegistroIgual(registro, "Inserir");
-
-            if (existeRepetido)
-            {
-                Log.Logger.Warning("Registro {Identificador} não pode ser inserido, coluna única ja cadastrada no banco!", ObterIdentificadorLog(registro));
-                return GerarErroRepetido("Campos com '*' precisam ser únicos");
+                return Result.Fail(resultadoValidacao.Errors);
             }
 
             try
             {
                 repositorio.Inserir(registro);
-                Log.Logger.Warning("Registro {Identificador} inserido com sucesso!", ObterIdentificadorLog(registro));
+
+                Log.Logger.Information("{ObjetoNome} {FuncionarioId} inserido com sucesso", registro.GetType().Name, registro.Id);
+
+                return Result.Ok(registro);
             }
             catch (Exception ex)
             {
-                Log.Logger.Debug("Registro {Identificador} não inserido, erro na camada Infra!", ObterIdentificadorLog(registro));
-                return GerarErroRepetido("Erro na conexão, registro não inserido!");
-            }
+                string msgErro = "Falha no sistema ao tentar inserir o"+registro.GetType().Name;
 
-            return resultado;
+                Log.Logger.Error(ex, msgErro + "{RegistroId}", registro.Id);
+
+                return Result.Fail(msgErro);
+            }
         }
 
-        public virtual ValidationResult Editar(T registro)
+        public Result<T> Editar(T registro)
         {
-            var validador = new TValidador();
+            Log.Logger.Debug("Tentando editar registro... {@f}", registro);
 
-            var resultado = validador.Validate(registro);
+            Result resultadoValidacao = ValidarRegistro(registro);
 
-            if (!resultado.IsValid)
+            if (resultadoValidacao.IsFailed)
             {
-                foreach (var erro in resultado.Errors)
+                foreach (var erro in resultadoValidacao.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar editar {Identificador} - {Motivo}",
-                        ObterIdentificadorLog(registro), erro.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar editar o registro {RegistroId} - {Motivo}",
+                       registro.Id, erro.Message);
                 }
-                return resultado;
-            }
 
-            var existeRepetido = repositorio.ExisteRegistroIgual(registro, "Editar");
-
-            if (existeRepetido)
-            {
-                Log.Logger.Warning("Registro {Identificador} não pode ser editado, coluna única ja cadastrada no banco!", ObterIdentificadorLog(registro));
-                return GerarErroRepetido("Campos com '*' precisam ser únicos");
+                return Result.Fail(resultadoValidacao.Errors);
             }
 
             try
             {
                 repositorio.Editar(registro);
-                Log.Logger.Warning("Registro {Identificador} editado com sucesso!", ObterIdentificadorLog(registro));
+
+                Log.Logger.Information("Registro {RegistroId} editado com sucesso", registro.Id);
+
+                return Result.Ok(registro);
             }
             catch (Exception ex)
             {
-                Log.Logger.Debug("Registro {Identificador} não editado, erro na camada Infra!", ObterIdentificadorLog(registro));
-                return GerarErroRepetido("Erro na conexão, registro não inserido!");
-            }
+                string msgErro = "Falha no sistema ao tentar editar o registro";
 
-            return resultado;
+                Log.Logger.Error(ex, msgErro + "{RegistroId}", registro.Id);
+
+                return Result.Fail(msgErro);
+            }
         }
 
-        public virtual ValidationResult Excluir(T registro)
+        public Result Excluir(T registro)
         {
-            var validador = new TValidador();
-
-            var resultado = validador.Validate(registro);
-
-            if (!resultado.IsValid)
-            {
-                foreach (var erro in resultado.Errors)
-                {
-                    Log.Logger.Warning("Falha ao tentar editar {Identificador} - {Motivo}",
-                        ObterIdentificadorLog(registro), erro.ErrorMessage);
-                }
-                return resultado;
-            }
+            Log.Logger.Debug("Tentando excluir registro... {@f}", registro);
 
             try
             {
                 repositorio.Excluir(registro);
-                Log.Logger.Warning("Registro {Identificador} excluído com sucesso!", ObterIdentificadorLog(registro));
+
+                Log.Logger.Information("Registro {RegistroId} excluído com sucesso", registro.Id);
+
+                return Result.Ok();
             }
             catch (Exception ex)
             {
-                Log.Logger.Debug("Registro {identificador} não excluído, (Descriminar o erro)", ObterIdentificadorLog(registro));
-                return GerarErroRepetido("Registro possúi vinculo com outros registro e não pode ser excluído no momento!");
+                string msgErro = "Falha no sistema ao tentar excluir o registro";
+
+                Log.Logger.Error(ex, msgErro + "{RegistroId}", registro.Id);
+
+                return Result.Fail(msgErro);
             }
-
-            return resultado;
         }
 
-        public virtual T SelecionarPorId(Guid id)
+        public Result<List<T>> SelecionarTodos()
         {
-            return repositorio.SelecionarPorId(id);
+            try
+            {
+                return Result.Ok(repositorio.SelecionarTodos());
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar selecionar todos os registro";
+
+                Log.Logger.Error(ex, msgErro);
+
+                return Result.Fail(msgErro);
+            }
         }
 
-        public virtual List<T> SelecionarTodos()
+        public Result<T> SelecionarPorId(Guid id)
         {
-            return repositorio.SelecionarTodos();
+            try
+            {
+                return Result.Ok(repositorio.SelecionarPorId(id));
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar selecionar o registro";
+
+                Log.Logger.Error(ex, msgErro + "{RegistroId}", id);
+
+                return Result.Fail(msgErro);
+            }
         }
 
         protected virtual ValidationResult GerarErroRepetido(string mensagem)
@@ -145,7 +155,28 @@ namespace Locadora.Aplicacao.Compartilhado
             return erro;
         }
 
-        protected abstract string ObterIdentificadorLog(T registro);
+        private Result ValidarRegistro(T registro)
+        {
+            var validador = new TValidador();
 
+            var resultado = validador.Validate(registro);
+
+            List<Error> erros = new List<Error>(); //FluentResult
+
+            foreach (ValidationFailure item in resultado.Errors) //FluentValidation            
+                erros.Add(new Error(item.ErrorMessage));
+
+            Result registroDuplicado = ExisteCamposDuplicados(registro);
+
+            foreach (var item in registroDuplicado.Errors) //FluentValidation            
+                erros.Add(new Error(item.Message));
+
+            if (erros.Any())
+                return Result.Fail(erros);
+
+            return Result.Ok();
+        }
+
+        public abstract Result ExisteCamposDuplicados(T registro);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Locadora.Aplicacao.Compartilhado;
+﻿using FluentResults;
+using Locadora.Aplicacao.Compartilhado;
 using Locadora.Dominio.Compartilhado;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
 
@@ -10,9 +11,10 @@ namespace Locadora.Aplicacao.ModuloGrupoDeVeiculos
         {
 
         }
-        protected override string ObterIdentificadorLog(GrupoVeiculo registro)
+
+        public override Result ExisteCamposDuplicados(GrupoVeiculo registro)
         {
-            return $"ID: {registro.Id} | Nome: {registro.Nome}";
+            return Result.Ok();
         }
     }
 }

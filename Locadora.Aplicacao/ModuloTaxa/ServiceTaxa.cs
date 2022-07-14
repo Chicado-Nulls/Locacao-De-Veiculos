@@ -1,4 +1,5 @@
-﻿using Locadora.Aplicacao.Compartilhado;
+﻿using FluentResults;
+using Locadora.Aplicacao.Compartilhado;
 using Locadora.Dominio.Compartilhado;
 using Locadora.Dominio.ModuloTaxa;
 
@@ -10,9 +11,9 @@ namespace Locadora.Aplicacao.ModuloTaxa
         {
         }
 
-        protected override string ObterIdentificadorLog(Taxa registro)
+        public override Result ExisteCamposDuplicados(Taxa registro)
         {
-            return $"ID: {registro.Id} | Nome: {registro.Descricao}";
+            return Result.Ok();
         }
     }
 }

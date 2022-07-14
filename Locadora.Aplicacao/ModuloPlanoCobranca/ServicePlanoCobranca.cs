@@ -1,4 +1,5 @@
-﻿using Locadora.Aplicacao.Compartilhado;
+﻿using FluentResults;
+using Locadora.Aplicacao.Compartilhado;
 using Locadora.Dominio.Compartilhado;
 using Locadora.Dominio.ModuloPlanoCobranca;
 
@@ -11,9 +12,9 @@ namespace Locadora.Aplicacao.ModuloPlanoCobranca
 
         }
 
-        protected override string ObterIdentificadorLog(PlanoCobranca registro)
+        public override Result ExisteCamposDuplicados(PlanoCobranca registro)
         {
-            return $"Plano de cobrança - ID: {registro.Id} | Nome: {registro.GrupoVeiculo.Nome}";
+            return Result.Ok();
         }
     }
 }

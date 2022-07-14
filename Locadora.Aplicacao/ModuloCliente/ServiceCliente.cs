@@ -1,6 +1,8 @@
-﻿using Locadora.Aplicacao.Compartilhado;
+﻿using FluentResults;
+using Locadora.Aplicacao.Compartilhado;
 using Locadora.Dominio.Compartilhado;
 using Locadora.Dominio.ModuloCliente;
+using System.Collections.Generic;
 
 namespace Locadora.Aplicacao.ModuloCliente
 {
@@ -10,9 +12,9 @@ namespace Locadora.Aplicacao.ModuloCliente
         {
         }
 
-        protected override string ObterIdentificadorLog(Cliente registro)
+        public override Result ExisteCamposDuplicados(Cliente registro)
         {
-            return $"ID: {registro.Id} | Nome: {registro.Nome}";
+            return Result.Ok();
         }
     }
 }

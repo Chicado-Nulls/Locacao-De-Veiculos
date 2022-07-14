@@ -1,4 +1,5 @@
-﻿using Locadora.Aplicacao.Compartilhado;
+﻿using FluentResults;
+using Locadora.Aplicacao.Compartilhado;
 using Locadora.Dominio.Compartilhado;
 using Locadora.Dominio.ModuloFuncionario;
 
@@ -10,9 +11,9 @@ namespace Locadora.Aplicacao.ModuloFuncionario
         {
         }
 
-        protected override string ObterIdentificadorLog(Funcionario registro)
+        public override Result ExisteCamposDuplicados(Funcionario registro)
         {
-            return $"ID: {registro.Id} | Nome: {registro.Nome}";
+            return Result.Ok();
         }
     }
 }
