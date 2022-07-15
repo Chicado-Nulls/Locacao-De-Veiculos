@@ -131,7 +131,7 @@ namespace Locadora.Apresentacao.WinForm
 
             IRepositorioFuncionario repositorioFuncionario = new RepositorioFuncionarioBancoDados();
             ServiceFuncionario serviceFuncionario = new ServiceFuncionario(repositorioFuncionario);
-            controladores.Add("Funcionario", new ControladorFuncionario(repositorioFuncionario, serviceFuncionario));
+            controladores.Add("Funcionario", new ControladorFuncionario(serviceFuncionario));
 
             IRepositorioTaxa repositorioTaxa = new RepositorioTaxa();
             ServiceTaxa serviceTaxa = new ServiceTaxa(repositorioTaxa);
