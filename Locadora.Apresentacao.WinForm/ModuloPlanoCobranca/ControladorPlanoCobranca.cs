@@ -4,63 +4,68 @@ using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloPlanoCobranca;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System;
 
 namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
 {
     public class ControladorPlanoCobranca : ControladorBase
     {
-        private readonly IRepositorioPlanoCobranca repositorio;
-        private ServicePlanoCobranca servicePlanoCobranca;
-        private ServiceGrupoVeiculo serviceGrupoVeiculo;
+        private readonly ServicePlanoCobranca servicePlanoCobranca;
+        private readonly ServiceGrupoVeiculo serviceGrupoVeiculo;
         private TabelaPlanoCobrancaControl tabelaPlanoCobranca;
 
-        public ControladorPlanoCobranca(IRepositorioPlanoCobranca repositorioPlanoCobranca, ServicePlanoCobranca servicePlanoCobranca, ServiceGrupoVeiculo serviceGrupoVeiculo)
+        public ControladorPlanoCobranca(ServicePlanoCobranca servicePlanoCobranca, ServiceGrupoVeiculo serviceGrupoVeiculo)
         {
             this.servicePlanoCobranca = servicePlanoCobranca;
-            this.repositorio = repositorioPlanoCobranca;
             this.serviceGrupoVeiculo = serviceGrupoVeiculo;
         }
 
         public override void Inserir()
         {
-            TelaCadastroPlanoCobranca telaCadastro = new TelaCadastroPlanoCobranca("Inserir Plano de Cobrança", "Inserir");
+            TelaCadastroPlanoCobranca tela = new TelaCadastroPlanoCobranca("Inserir Plano de Cobrança", "Inserir");
 
-            telaCadastro.GrupoVeiculos = serviceGrupoVeiculo.SelecionarTodos();
+            tela.PlanoCobranca = new PlanoCobranca();
 
-            telaCadastro.PlanoCobranca = new PlanoCobranca();
+            tela.GravarRegistro = servicePlanoCobranca.Inserir;
 
-            telaCadastro.GravarRegistro = servicePlanoCobranca.Inserir;
-
-            DialogResult resultado = telaCadastro.ShowDialog();
+            DialogResult resultado = tela.ShowDialog();
 
             if (resultado == DialogResult.OK)
+            {
                 CarregarPlanoCobranca();
+            }
         }
 
         public override void Editar()
         {
             var numero = tabelaPlanoCobranca.ObtemIdPlanoCobrancaSelecionado();
 
-            var planoCobrancaSelecionado = repositorio.SelecionarPorId(numero);
 
-            if (planoCobrancaSelecionado == null)
+            if (numero == Guid.Empty)
             {
-                MessageBox.Show("Selecione um Plano de Cobranca primeiro",
+                MessageBox.Show("Selecione um plano primeiro",
                 "Edição de Planos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
+            var resultado = servicePlanoCobranca.SelecionarPorId(numero);
+
+            if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message, "Edição de Planos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var planoSelecionado = resultado.Value;
             TelaCadastroPlanoCobranca tela = new TelaCadastroPlanoCobranca("Editar Plano", "Editar");
 
-            tela.GrupoVeiculos = serviceGrupoVeiculo.SelecionarTodos();
-
-            tela.PlanoCobranca = planoCobrancaSelecionado.Clone();
+            tela.PlanoCobranca = planoSelecionado.Clone();
 
             tela.GravarRegistro = servicePlanoCobranca.Editar;
 
-            DialogResult resultado = tela.ShowDialog();
+            DialogResult resultadoPlano = tela.ShowDialog();
 
-            if (resultado == DialogResult.OK)
+            if (resultadoPlano == DialogResult.OK)
             {
                 CarregarPlanoCobranca();
             }
@@ -71,32 +76,44 @@ namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
         {
             var numero = tabelaPlanoCobranca.ObtemIdPlanoCobrancaSelecionado();
 
-            PlanoCobranca planoCobrancaSelecionado = servicePlanoCobranca.SelecionarPorId(numero);
-
-            if (planoCobrancaSelecionado == null)
+            if (numero == Guid.Empty)
             {
-                MessageBox.Show("Selecione um Plano primeiro",
+                MessageBox.Show("Selecione um plano primeiro",
                 "Exclusão de Plano(s)", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            DialogResult resultado = MessageBox.Show($"Deseja realmente excluir o plano '{planoCobrancaSelecionado.GrupoVeiculo}'?",
-               "Exclusão de Plano(s)", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            var planoSelecionado = servicePlanoCobranca.SelecionarPorId(numero);
 
-            if (resultado == DialogResult.OK)
+            if (MessageBox.Show("Deseja realmente excluir o Plano?", "Exclusão de Plano",
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                repositorio.Excluir(planoCobrancaSelecionado);
-                CarregarPlanoCobranca();
+                var resultadoExclusao = servicePlanoCobranca.Excluir(planoSelecionado.Value);
+
+                if (resultadoExclusao.IsSuccess)
+                    CarregarPlanoCobranca();
+                else
+                    MessageBox.Show(resultadoExclusao.Errors[0].Message,
+                        "Exclusão de Planos", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void CarregarPlanoCobranca()
         {
-            List<PlanoCobranca> planoCobranca = repositorio.SelecionarTodos();
+            var resultado = servicePlanoCobranca.SelecionarTodos();
 
-            tabelaPlanoCobranca.AtualizarRegistros(planoCobranca);
+            if (resultado.IsSuccess)
+            {
+                List<PlanoCobranca> planos = resultado.Value;
 
-            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {planoCobranca.Count} Planos De Cobrança(s)");
+                tabelaPlanoCobranca.AtualizarRegistros(planos);
+
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {planos.Count} plano(s)");
+            }
+            else
+            {
+                MessageBox.Show(resultado.Errors[0].Message, "Listagem de Planos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public override ConfigurarToolboxBase ObtemConfiguracaoToolbox()

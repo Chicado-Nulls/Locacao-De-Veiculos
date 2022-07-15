@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using Locadora.Dominio.ModuloPlanoCobranca;
@@ -41,7 +42,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
             comboBoxGrupoVeiculo.SelectedIndex = 0;
         }
 
-        public Func<PlanoCobranca, ValidationResult> GravarRegistro { get; set; }
+        public Func<PlanoCobranca, Result<PlanoCobranca>> GravarRegistro { get; set; }
 
         public PlanoCobranca PlanoCobranca
         {
@@ -107,12 +108,23 @@ namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
 
             var resultado = GravarRegistro(_planoCobranca);
 
-            if (resultado.IsValid)
-                return;
+            if (resultado.IsFailed)
+            {
+                string erro = resultado.Errors[0].Message;
 
-            TelaPrincipalForm.Instancia.AtualizarRodape(resultado.Errors[0].ErrorMessage);
-            DialogResult = DialogResult.None;
-            return;
+                if (erro.StartsWith("Falha no sistema."))
+                {
+                    MessageBox.Show(erro, "Cadastro Plano De Cobranca", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    TelaPrincipalForm.Instancia.AtualizarRodape(erro);
+
+                    DialogResult = DialogResult.None;
+                }
+
+
+            }
 
         }
 
