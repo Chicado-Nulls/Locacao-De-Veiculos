@@ -32,5 +32,10 @@ namespace Locadora.Dominio.ModuloGrupoDeVeiculo
             return obj is GrupoVeiculo grupoDeVeiculo &&
                    Nome == grupoDeVeiculo.Nome;
         }
+
+        public GrupoVeiculo Clone()
+        {
+            return MemberwiseClone() as GrupoVeiculo;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using System;
 using System.Windows.Forms;
@@ -26,7 +27,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
             }
 
         }
-        public Func<GrupoVeiculo, ValidationResult> GravarRegistro { get; set; }
+        public Func<GrupoVeiculo, Result<GrupoVeiculo>> GravarRegistro { get; set; }
         private void ConfigurarTela()
         {
             txtBoxId.Text = _grupoDeVeiculos.Id != default ? _grupoDeVeiculos.Id.ToString() : "0";
@@ -36,17 +37,48 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
 
         private void gravarBtn_Click(object sender, EventArgs e)
         {
-            ConfigurarObjeto();
-            var resultadoValidacao = GravarRegistro(GrupoDeVeiculo);
 
-            if (resultadoValidacao.IsValid == false)
+            if (ExisteCampoVazio())
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
-
-                TelaPrincipalForm.Instancia.AtualizarRodape(erro);
+                TelaPrincipalForm.Instancia.AtualizarRodape("Preencha todos os campos do formulário");
 
                 DialogResult = DialogResult.None;
+
+                return;
             }
+            ConfigurarObjeto();
+
+            var resultadoValidacao = GravarRegistro(_grupoDeVeiculos);
+
+            if (resultadoValidacao.IsFailed)
+            {
+                string erro = resultadoValidacao.Errors[0].Message;
+
+                if (erro.StartsWith("Falha no sistema."))
+                {
+                    MessageBox.Show(erro, "Cadastro Grupo De Veiculo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    TelaPrincipalForm.Instancia.AtualizarRodape(erro);
+
+                    DialogResult = DialogResult.None;
+                }
+
+
+            }
+        }
+        private bool ExisteCampoVazio()
+        {
+            TelaPrincipalForm.Instancia.AtualizarRodape("");
+
+            if (string.IsNullOrEmpty(TextNomeDoGrupo.Text))
+            {
+                return true;
+            }
+
+            else
+            return false;
         }
 
         private void ConfigurarObjeto()
