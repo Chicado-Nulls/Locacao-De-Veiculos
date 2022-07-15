@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloFuncionario;
 using System;
@@ -25,7 +26,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
                 ConfigurarTela();
             }
         }
-        public Func<Funcionario, ValidationResult> GravarRegistro { get; set; }
+        public Func<Funcionario, Result<Funcionario>> GravarRegistro { get; set; }
         private void ConfigurarTela()
         {
             txtBoxID.Text = _funcionario.Id != default ? Convert.ToString(_funcionario.Id) : "0";
@@ -57,11 +58,11 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
 
             var resultadoValidacao = GravarRegistro(Funcionario);
 
-            if (resultadoValidacao.IsValid)
+            if (resultadoValidacao.IsSuccess)
                 return;
 
-            string erro = resultadoValidacao.Errors[0].ErrorMessage;
-
+            string erro = resultadoValidacao.Errors[0].Message;
+            
             TelaPrincipalForm.Instancia.AtualizarRodape(erro);
 
             DialogResult = DialogResult.None;

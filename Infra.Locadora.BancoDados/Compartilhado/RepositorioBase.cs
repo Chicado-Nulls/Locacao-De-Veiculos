@@ -21,6 +21,7 @@ namespace Locadora.Infra.BancoDados.Compartilhado
 
             enderecoBanco = configuracao.GetConnectionString("SqlServer");
         }
+
         protected string enderecoBanco { get; }
 
         protected abstract string sqlInserir { get; }
@@ -158,6 +159,29 @@ namespace Locadora.Infra.BancoDados.Compartilhado
             conexaoComBanco.Close();
 
             return registroBusca == null ? false : true;
+        }
+
+        public virtual T SelecionarPorParametro(string sqlSelecionarPorParametro, SqlParameter parametro)
+        {
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+
+            SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorParametro, conexaoComBanco);
+
+            comandoSelecao.Parameters.Add(parametro);
+
+            conexaoComBanco.Open();
+            SqlDataReader leitorRegistro = comandoSelecao.ExecuteReader();
+
+            var mapeador = new TMapeador();
+
+            T registro = null;
+
+            if (leitorRegistro.Read())
+                registro = mapeador.ConverterRegistro(leitorRegistro);
+
+            conexaoComBanco.Close();
+
+            return registro;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Locadora.Dominio.ModuloFuncionario;
 using Locadora.Infra.BancoDados.Compartilhado;
+using System.Data.SqlClient;
 
 namespace Locadora.Infra.BancoDados.ModuloFuncionario
 {
@@ -83,5 +84,44 @@ namespace Locadora.Infra.BancoDados.ModuloFuncionario
                 FROM TBFUNCIONARIO AS FUNCIONARIO
 
                 WHERE (NOME = @NOME or LOGIN = @LOGIN) AND ID <> @ID";
+
+        private string sqlSelecionarPorNome =>
+             @"SELECT 
+	                FUNCIONARIO.ID FUNCIONARIO_ID,
+	                FUNCIONARIO.NOME FUNCIONARIO_NOME,
+	                FUNCIONARIO.LOGIN FUNCIONARIO_LOGIN,
+	                FUNCIONARIO.SENHA FUNCIONARIO_SENHA,
+	               FUNCIONARIO.DATAENTRADA FUNCIONARIO_DATAENTRADA,
+                    FUNCIONARIO.ADMINISTRADOR FUNCIONARIO_ADMINISTRADOR,
+                    FUNCIONARIO.SALARIO FUNCIONARIO_SALARIO
+
+                FROM TBFUNCIONARIO AS FUNCIONARIO
+
+                WHERE NOME = @NOME";
+
+        private string sqlSelecionarPorUsuario =>
+             @"SELECT 
+	                FUNCIONARIO.ID FUNCIONARIO_ID,
+	                FUNCIONARIO.NOME FUNCIONARIO_NOME,
+	                FUNCIONARIO.LOGIN FUNCIONARIO_LOGIN,
+	                FUNCIONARIO.SENHA FUNCIONARIO_SENHA,
+	               FUNCIONARIO.DATAENTRADA FUNCIONARIO_DATAENTRADA,
+                    FUNCIONARIO.ADMINISTRADOR FUNCIONARIO_ADMINISTRADOR,
+                    FUNCIONARIO.SALARIO FUNCIONARIO_SALARIO
+
+                FROM TBFUNCIONARIO AS FUNCIONARIO
+
+                WHERE LOGIN = @LOGIN";
+
+
+        public Funcionario SelecionarFuncionarioPorNome(string nome)
+        {
+            return SelecionarPorParametro(sqlSelecionarPorNome, new SqlParameter("NOME", nome));
+        }
+
+        public Funcionario SelecionarFuncionarioPorUsuario(string usuario)
+        {
+            return SelecionarPorParametro(sqlSelecionarPorUsuario, new SqlParameter("NOME", usuario));
+        }
     }
 }

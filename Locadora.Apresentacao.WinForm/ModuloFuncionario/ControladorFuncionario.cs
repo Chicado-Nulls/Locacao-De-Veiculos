@@ -1,6 +1,7 @@
 ﻿using Locadora.Aplicacao.ModuloFuncionario;
 using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloFuncionario;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -8,29 +9,35 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
 {
     public class ControladorFuncionario : ControladorBase
     {
-        IRepositorioFuncionario repositorio;
         private ServiceFuncionario serviceFuncionario;
         TabelaFuncionarioControl tabelaFuncionario;
 
-
-        public ControladorFuncionario(IRepositorioFuncionario repositorioFuncionario, ServiceFuncionario serviceFuncionario)
+        public ControladorFuncionario(ServiceFuncionario serviceFuncionario)
         {
             this.serviceFuncionario=serviceFuncionario;
-            this.repositorio = repositorioFuncionario;
         }
 
         public override void Editar()
         {
-            var numero = tabelaFuncionario.ObtemNumeroRegistroSelecionado();
+            var id = tabelaFuncionario.ObtemNumeroRegistroSelecionado();
 
-            var funcionarioSelecionado = repositorio.SelecionarPorId(numero);
-
-            if (funcionarioSelecionado == null)
+            if (id == Guid.Empty)
             {
                 MessageBox.Show("Selecione um funcionário primeiro",
-                "Edição de funcionário", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "Exclusão de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+
+            var resultadoSelecao = serviceFuncionario.SelecionarPorId(id);
+
+            if (resultadoSelecao.IsFailed)
+            {
+                MessageBox.Show(resultadoSelecao.Errors[0].Message,
+                    "Exclusão de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var funcionarioSelecionado = resultadoSelecao.Value;
 
             var tela = new TelaCadastroFuncionarioForm("Editar Funcionário", "Editar");
 
@@ -41,37 +48,42 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
             DialogResult resultado = tela.ShowDialog();
 
             if (resultado == DialogResult.OK)
-            {
                 CarregarFuncionarios();
-            }
         }
 
         public override void Excluir()
         {
             var numero = tabelaFuncionario.ObtemNumeroRegistroSelecionado();
 
-            Funcionario materiaSelecionada = serviceFuncionario.SelecionarPorId(numero);
-
-            if (materiaSelecionada == null)
+            if (numero == Guid.Empty)
             {
                 MessageBox.Show("Selecione um funcionario primeiro",
                 "Exclusão de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            if (MessageBox.Show($"Deseja realmente excluir o funcionário '{materiaSelecionada.Nome}'?",
-               "Exclusão de Funcionário", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
-                return;
+            var resultadoSelecao  = serviceFuncionario.SelecionarPorId(numero);
 
-            var resultado = serviceFuncionario.Excluir(materiaSelecionada);
-
-            if (!resultado.IsValid)
+            if (resultadoSelecao .IsFailed == null)
             {
-                TelaPrincipalForm.Instancia.AtualizarRodape(resultado.Errors[0].ErrorMessage);
+                MessageBox.Show(resultadoSelecao .Errors[0].Message,
+                    "Exclusão de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            CarregarFuncionarios();
+            var registroSelecionado = resultadoSelecao.Value;
+
+            if (MessageBox.Show($"Deseja realmente excluir o funcionário '{registroSelecionado.Nome}'?",
+               "Exclusão de Funcionário", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
+                return;
+
+            var resultado = serviceFuncionario.Excluir(registroSelecionado);
+
+            if (resultado.IsSuccess)
+                CarregarFuncionarios();
+            else
+                MessageBox.Show(resultado.Errors[0].Message,
+                    "Exclusão de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         public override void Inserir()
@@ -105,11 +117,21 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
 
         private void CarregarFuncionarios()
         {
-            List<Funcionario> funcionarios = repositorio.SelecionarTodos();
+            var resultado = serviceFuncionario.SelecionarTodos();
 
-            tabelaFuncionario.AtualizarRegistros(funcionarios);
+            if (resultado.IsSuccess)
+            {
+                List<Funcionario> funcionarios = resultado.Value;
 
-            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {funcionarios.Count} funcionarios(s)");
+                tabelaFuncionario.AtualizarRegistros(funcionarios);
+
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {funcionarios.Count} funcionário(s)");
+            }
+            else
+            {
+                MessageBox.Show(resultado.Errors[0].Message, "Exclusão de Funcionário",
+                 MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
