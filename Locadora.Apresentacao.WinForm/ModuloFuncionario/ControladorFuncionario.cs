@@ -33,7 +33,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
             if (resultadoSelecao.IsFailed)
             {
                 MessageBox.Show(resultadoSelecao.Errors[0].Message,
-                    "Exclusão de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    "Edição de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -53,16 +53,16 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
 
         public override void Excluir()
         {
-            var numero = tabelaFuncionario.ObtemNumeroRegistroSelecionado();
+            var id = tabelaFuncionario.ObtemNumeroRegistroSelecionado();
 
-            if (numero == Guid.Empty)
+            if (id == Guid.Empty)
             {
                 MessageBox.Show("Selecione um funcionario primeiro",
                 "Exclusão de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            var resultadoSelecao  = serviceFuncionario.SelecionarPorId(numero);
+            var resultadoSelecao  = serviceFuncionario.SelecionarPorId(id);
 
             if (resultadoSelecao .IsFailed == null)
             {
@@ -129,7 +129,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
             }
             else
             {
-                MessageBox.Show(resultado.Errors[0].Message, "Exclusão de Funcionário",
+                MessageBox.Show(resultado.Errors[0].Message, "Seleção de Funcionário",
                  MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

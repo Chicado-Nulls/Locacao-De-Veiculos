@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloCliente;
 using Locadora.Dominio.ModuloCondutor;
@@ -64,7 +65,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCondutor
             cBoxCliente.SelectedItem = "Selecione um cliente";
         }
 
-        public Func<Condutor, ValidationResult> GravarRegistro { get; set; }
+        public Func<Condutor, Result<Condutor>> GravarRegistro { get; set; }
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
@@ -78,10 +79,10 @@ namespace Locadora.Apresentacao.WinForm.ModuloCondutor
 
             var resultado = GravarRegistro(_condutor);
 
-            if (resultado.IsValid)
+            if (resultado.IsSuccess)
                 return;
 
-            TelaPrincipalForm.Instancia.AtualizarRodape(resultado.Errors[0].ErrorMessage);
+            TelaPrincipalForm.Instancia.AtualizarRodape(resultado.Errors[0].Message);
             DialogResult = DialogResult.None;
         }
 
