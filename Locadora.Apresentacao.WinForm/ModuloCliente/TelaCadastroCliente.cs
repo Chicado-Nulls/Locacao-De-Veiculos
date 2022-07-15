@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloCliente;
 using System;
@@ -15,7 +16,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
             btnInserir.Text = label;
         }
         private Cliente _cliente;
-        public Func<Cliente, ValidationResult> GravarRegistro { get; set; }
+        public Func<Cliente, Result<Cliente>> GravarRegistro { get; set; }
         public Cliente Cliente
         {
             get { return _cliente; }
@@ -65,13 +66,21 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
 
             var resultadoValidacao = GravarRegistro(_cliente);
 
-            if (resultadoValidacao.IsValid == false)
+            if (resultadoValidacao.IsFailed)
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                string erro = resultadoValidacao.Errors[0].Message;
 
-                TelaPrincipalForm.Instancia.AtualizarRodape(erro);
+                if (erro.StartsWith("Falha no sistema."))
+                {
+                    MessageBox.Show(erro, "Cadastro Cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    TelaPrincipalForm.Instancia.AtualizarRodape(erro);
 
-                DialogResult = DialogResult.None;
+                    DialogResult = DialogResult.None;
+                }
+
 
             }
         }

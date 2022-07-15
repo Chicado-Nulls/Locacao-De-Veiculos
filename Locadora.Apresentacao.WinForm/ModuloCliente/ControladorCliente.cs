@@ -1,6 +1,7 @@
 ﻿using Locadora.Aplicacao.ModuloCliente;
 using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloCliente;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -8,29 +9,36 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
 {
     public class ControladorCliente : ControladorBase
     {
-        private readonly IRepositorioCliente repositorioCliente;
-        private ServiceCliente serviceCliente;
+        private readonly ServiceCliente serviceCliente;
 
         private TabelaClienteControl tabelaClientes;
 
-        public ControladorCliente(IRepositorioCliente repositorioCliente, ServiceCliente serviceCliente)
+        public ControladorCliente(ServiceCliente serviceCliente)
         {
-            this.repositorioCliente=repositorioCliente;
-            this.serviceCliente=serviceCliente;
+            this.serviceCliente = serviceCliente;
         }
 
         public override void Editar()
         {
             var numero = tabelaClientes.ObtemIdClienteSelecionado();
-            var clienteSelecionado = repositorioCliente.SelecionarPorId(numero);
 
-            if (clienteSelecionado == null)
+
+            if (numero == Guid.Empty)
             {
                 MessageBox.Show("Selecione um cliente primeiro",
                 "Edição de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
+            var resultadoCliente = serviceCliente.SelecionarPorId(numero);
+
+            if (resultadoCliente.IsFailed)
+            {
+                MessageBox.Show(resultadoCliente.Errors[0].Message, "Edição de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var clienteSelecionado = resultadoCliente.Value;
             TelaCadastroCliente tela = new TelaCadastroCliente("Editar Cliente", "Editar");
 
             tela.Cliente = clienteSelecionado.Clone();
@@ -50,30 +58,28 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
         {
             var numero = tabelaClientes.ObtemIdClienteSelecionado();
 
-            Cliente clienteSelecionado = serviceCliente.SelecionarPorId(numero);
-
-            if (clienteSelecionado == null)
+            if (numero == Guid.Empty)
             {
                 MessageBox.Show("Selecione um cliente primeiro",
                 "Exclusão de Cliente(s)", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            DialogResult dialogResult = MessageBox.Show($"Deseja realmente excluir o cliente '{clienteSelecionado.Nome}'?",
-               "Exclusão de Cliente(s)", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            var clienteSelecionado = serviceCliente.SelecionarPorId(numero);
 
-            if (dialogResult != DialogResult.OK)
-                return;
-
-            var resultado = serviceCliente.Excluir(clienteSelecionado);
-
-            if (!resultado.IsValid)
+            if (MessageBox.Show("Deseja realmente excluir o cliente?", "Exclusão de Cliente",
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                TelaPrincipalForm.Instancia.AtualizarRodape(resultado.Errors[0].ErrorMessage);
-                return;
+                var resultadoExclusao = serviceCliente.Excluir(clienteSelecionado.Value);
+
+                if (resultadoExclusao.IsSuccess)
+                    CarregarClientes();
+                else
+                    MessageBox.Show(resultadoExclusao.Errors[0].Message,
+                        "Exclusão de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            CarregarClientes();
+
         }
 
         public override void Inserir()
@@ -90,22 +96,30 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
             {
                 CarregarClientes();
             }
-
         }
         private Cliente ObtemClienteSelecionado()
         {
             var id = tabelaClientes.ObtemIdClienteSelecionado();
 
-            return repositorioCliente.SelecionarPorId(id);
+            return serviceCliente.SelecionarPorId(id).Value;
         }
 
         private void CarregarClientes()
         {
-            List<Cliente> clientes = repositorioCliente.SelecionarTodos();
+            var resultado = serviceCliente.SelecionarTodos();
 
-            tabelaClientes.AtualizarRegistros(clientes);
+            if (resultado.IsSuccess)
+            {
+                List<Cliente> clientes = resultado.Value;
 
-            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {clientes.Count} cliente(s)");
+                tabelaClientes.AtualizarRegistros(clientes);
+
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {clientes.Count} cliente(s)");
+            }
+            else
+            {
+                MessageBox.Show(resultado.Errors[0].Message, "Listagem de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public override ConfigurarToolboxBase ObtemConfiguracaoToolbox()
