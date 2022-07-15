@@ -1,6 +1,7 @@
 ﻿using Locadora.Aplicacao.ModuloTaxa;
 using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloTaxa;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -13,6 +14,8 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
         ServiceTaxa serviceTaxa;
         TabelaTaxaControl tabelaTaxa;
 
+        public string MensagemErro { get; set; }
+
         public ControladorTaxa(IRepositorioTaxa repositorioTaxa, ServiceTaxa serviceTaxa)
         {
             RepositorioTaxa=repositorioTaxa;
@@ -21,11 +24,21 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
 
         public override void Editar()
         {
-            Taxa taxa = SelecionarTaxaPorNumero();
+
+            var id = tabelaTaxa.ObtemNumeroMateriaSelecionado();
+
+            if (id == null)
+            {
+                MessageBox.Show("Selecione uma taxa primeiro",
+                 "Edição de veiculo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            Taxa taxa = SelecionarTaxaPorNumero(id);
 
             if (taxa == null)
             {
-                MessageBox.Show("Selecione uma taxa primeiro",
+                MessageBox.Show(MensagemErro,
                 "Edição de taxa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
@@ -44,12 +57,20 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
 
         public override void Excluir()
         {
-            var taxa = SelecionarTaxaPorNumero();
+            var id = tabelaTaxa.ObtemNumeroMateriaSelecionado();
+
+            if (id == null)
+            {
+                MessageBox.Show("Selecione uma taxa primeiro",
+                 "Edição de veiculo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            Taxa taxa = SelecionarTaxaPorNumero(id);
 
             if (taxa == null)
             {
-                MessageBox.Show("Selecione uma taxa primeiro",
-                "Exclusão de taxa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(MensagemErro,
+                "Exclusão de taxa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             if (MessageBox.Show($"Deseja realmente excluir a taxa '{taxa.Descricao}'?", "Exclusão de taxa", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
@@ -57,13 +78,17 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
 
             var resultado = serviceTaxa.Excluir(taxa);
 
-            if (!resultado.IsValid)
+            if (resultado.IsFailed)
             {
-                TelaPrincipalForm.Instancia.AtualizarRodape(resultado.Errors[0].ErrorMessage);
-                return;
+                MessageBox.Show(resultado.Errors[0].Message,
+                "Exclusao de taxa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                CarregarTaxas();
             }
 
-            CarregarTaxas();
+            
         }
 
         public override void Inserir()
@@ -106,11 +131,19 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
             TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {grupos.Count} Taxa(s)");
         }
 
-        private Taxa SelecionarTaxaPorNumero()
+        private Taxa SelecionarTaxaPorNumero(Guid guid)
         {
-            var numero = tabelaTaxa.ObtemNumeroMateriaSelecionado();
+            var resultado = serviceTaxa.SelecionarPorId(guid);
 
-            Taxa taxa = RepositorioTaxa.SelecionarPorId(numero);
+            Taxa taxa = null;
+
+            if (resultado.IsFailed)
+            {
+                MensagemErro = resultado.Errors[0].Message;
+                return taxa;
+            }
+
+            taxa = resultado.Value;
 
             return taxa;
 

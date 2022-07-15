@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloTaxa;
 using System;
@@ -28,7 +29,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
                 ConfigurarTela();
             }
         }
-        public Func<Taxa, ValidationResult> GravarRegistro { get; set; }
+        public Func<Taxa, Result<Taxa> > GravarRegistro { get; set; }
         private void btnGravar_Click(object sender, EventArgs e)
         {
             if (ExisteCampoVazio())
@@ -44,14 +45,23 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
 
             var resultadoValidacao = GravarRegistro(Taxa);
 
-            if (resultadoValidacao.IsValid)
-                return;
+            if (resultadoValidacao.IsFailed)
+            {
+                string erro = resultadoValidacao.Errors[0].Message;
 
-            string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                if (erro.StartsWith("Falha no Sistema"))
+                {
+                    MessageBox.Show("Falha no Sistema",
+                    "", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            TelaPrincipalForm.Instancia.AtualizarRodape(erro);
+                }
+                else
+                {
+                    TelaPrincipalForm.Instancia.AtualizarRodape(erro);
 
-            DialogResult = DialogResult.None;
+                    DialogResult = DialogResult.None;
+                }
+            }
         }
         private bool ExisteCampoVazio()
         {

@@ -4,6 +4,7 @@ using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloCarro;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using Locadora.Dominio.ModuloVeiculo;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -26,15 +27,34 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
 
         public override void Editar()
         {
-            Veiculo veiculo = SelecionarVeiculoPorNumero();
+            var numero = tabelaVeiculo.ObtemNumeroVeiculoSelecionado();
+
+            if (numero == null)
+            {
+                MessageBox.Show("Selecione um veiculo primeiro",
+                 "Edição de veiculo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            Veiculo veiculo = SelecionarVeiculoPorNumero(numero);
 
             if (veiculo == null)
             {
-                MessageBox.Show("Selecione um veiculo primeiro",
+                MessageBox.Show("Falha no sistema ao selecionar um veiculo",
                 "Edição de veiculo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            TelaVeiculo telaVeiculo = new TelaVeiculo(serviceGrupoVeiculo.SelecionarTodos(), "Editar Veículo", "Editar");
+
+            var resultadoGrupoDeVeiculo = serviceGrupoVeiculo.SelecionarTodos();
+            if (resultadoGrupoDeVeiculo.IsFailed)
+            {
+                MessageBox.Show("Falha no sistema ao selecionar um grupo de Veiculo",
+                 "Edição de veiculo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            TelaVeiculo telaVeiculo = new TelaVeiculo(resultadoGrupoDeVeiculo.Value, "Editar Veículo", "Editar");
+
 
             telaVeiculo.Veiculo = veiculo;
             telaVeiculo.GravarRegistro = serviceVeiculo.Editar;
@@ -49,38 +69,64 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
 
         public override void Excluir()
         {
-            Veiculo veiculo = SelecionarVeiculoPorNumero();
+            var numero = tabelaVeiculo.ObtemNumeroVeiculoSelecionado();
+
+            if (numero == null)
+            {
+                MessageBox.Show("Selecione um veiculo primeiro",
+                 "Exclusão de veiculo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            Veiculo veiculo = SelecionarVeiculoPorNumero(numero);
 
             if (veiculo == null)
             {
-                MessageBox.Show("Selecione um veiculo primeiro",
-                "Exclusão de veiculo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Falha no sistema ao selecionar um veiculo",
+                "Exclusão de veiculo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
-            }
+            }   
             if (MessageBox.Show($"Deseja realmente excluir o veiculo selecionado '{veiculo.Modelo}'?", "Exclusão de veiculo", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
                 return;
 
             var resultado = serviceVeiculo.Excluir(veiculo);
 
-            if (!resultado.IsValid)
+            if (resultado.IsSuccess)
+                CarregarVeiculos();
+            else
             {
-                TelaPrincipalForm.Instancia.AtualizarRodape(resultado.Errors[0].ErrorMessage);
+                MessageBox.Show(resultado.Errors[0].Message,
+                "Exclusão de veiculo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            CarregarVeiculos();
+
 
         }
 
         public override void Inserir()
         {
-            if (serviceGrupoVeiculo.SelecionarTodos().Count == 0)
+            var resultadoGrupoDeVeiculo = serviceGrupoVeiculo.SelecionarTodos();
+
+            if (resultadoGrupoDeVeiculo.IsFailed)
+            {
+                MessageBox.Show("Falha no sistema ao selecionar um grupo de Veiculo",
+                 "Edição de veiculo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+
+
+            if (resultadoGrupoDeVeiculo.Value.Count == 0)
             {
                 MessageBox.Show("Crie um grupo de Veiculo primeiro",
               "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            TelaVeiculo telaVeiculo = new TelaVeiculo(serviceGrupoVeiculo.SelecionarTodos(), "Inserir Veículo", "Inserir");
+
+           
+
+            TelaVeiculo telaVeiculo = new TelaVeiculo(resultadoGrupoDeVeiculo.Value, "Inserir Veículo", "Inserir");
 
             telaVeiculo.Veiculo = new Veiculo();
 
@@ -98,11 +144,22 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
 
         private void CarregarVeiculos()
         {
-            List<Veiculo> veiculos = serviceVeiculo.SelecionarTodos();
+            var resultado = serviceVeiculo.SelecionarTodos();
 
-            tabelaVeiculo.AtualizarRegistros(veiculos);
+            if (resultado.IsSuccess)
+            {
+                List<Veiculo> veiculos = resultado.Value;
 
-            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {veiculos.Count} Veiculos");
+                tabelaVeiculo.AtualizarRegistros(veiculos);
+
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {veiculos.Count} Veiculos");
+
+                return;
+            }
+
+            MessageBox.Show("Falha ao selecionar todos os veiculos",
+            "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
         }
 
         public override ConfigurarToolboxBase ObtemConfiguracaoToolbox()
@@ -122,13 +179,20 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
         }
 
 
-        private Veiculo SelecionarVeiculoPorNumero()
+        private Veiculo SelecionarVeiculoPorNumero(Guid guid)
         {
-            var numero = tabelaVeiculo.ObtemNumeroVeiculoSelecionado();
+            var resultado = serviceVeiculo.SelecionarPorId(guid);
 
-            var veiculo = serviceVeiculo.SelecionarPorId(numero);
+            Veiculo veiculo = null;
 
-            return veiculo;
+            if (resultado.IsFailed)
+            {
+                return veiculo;
+            }
+
+            veiculo = resultado.Value;
+
+            return veiculo; 
 
         }
 
