@@ -15,7 +15,6 @@ namespace Locadora.Aplicacao.Compartilhado
     {
         protected IRepositorioBase<T> repositorio;
 
-
         public ServiceBase(IRepositorioBase<T> repositorio)
         {
             this.repositorio = repositorio;
@@ -122,7 +121,7 @@ namespace Locadora.Aplicacao.Compartilhado
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar selecionar todos os registro";
+                string msgErro = "Falha no sistema ao tentar selecionar todos os registros.";
 
                 Log.Logger.Error(ex, msgErro);
 

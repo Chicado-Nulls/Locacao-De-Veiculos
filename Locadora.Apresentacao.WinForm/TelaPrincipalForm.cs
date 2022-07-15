@@ -127,7 +127,7 @@ namespace Locadora.Apresentacao.WinForm
 
             IRepositorioCliente repositorioCliente = new RepositorioClienteEmBancoDeDados();
             ServiceCliente serviceCliente = new ServiceCliente(repositorioCliente);
-            controladores.Add("Cliente", new ControladorCliente(repositorioCliente, serviceCliente));
+            controladores.Add("Cliente", new ControladorCliente(serviceCliente));
 
             IRepositorioFuncionario repositorioFuncionario = new RepositorioFuncionarioBancoDados();
             ServiceFuncionario serviceFuncionario = new ServiceFuncionario(repositorioFuncionario);
