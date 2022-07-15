@@ -147,7 +147,7 @@ namespace Locadora.Apresentacao.WinForm
 
             IRepositorioCondutor repositorioCondutor = new RepositorioCondutor();
             ServiceCondutor servicecondutor = new ServiceCondutor(repositorioCondutor);
-            controladores.Add("Condutores", new ControladorCondutor(repositorioCondutor, servicecondutor, repositorioCliente));
+            controladores.Add("Condutores", new ControladorCondutor(servicecondutor, serviceCliente));
 
             IRepositorioPlanoCobranca repositorioPlanoCobranca = new RepositorioPlanoCobrancaBancoDados();
             ServicePlanoCobranca servicePlanoCobranca = new ServicePlanoCobranca(repositorioPlanoCobranca);
