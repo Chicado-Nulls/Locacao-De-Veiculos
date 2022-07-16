@@ -139,7 +139,7 @@ namespace Locadora.Apresentacao.WinForm
 
             IRepositorioGrupoVeiculo repositorioGrupoDeVeiculos = new RepositorioGrupoVeiculo();
             ServiceGrupoVeiculo serviceGrupoDeVeiculos = new ServiceGrupoVeiculo(repositorioGrupoDeVeiculos);
-            controladores.Add("Grupo Veiculos", new ControladorGrupoVeiculo(repositorioGrupoDeVeiculos, serviceGrupoDeVeiculos));
+            controladores.Add("Grupo Veiculos", new ControladorGrupoVeiculo(serviceGrupoDeVeiculos));
 
             IrepositorioVeiculo repositorioVeiculo = new RepositorioVeiculo();
             ServiceVeiculo serviceVeiculo = new ServiceVeiculo(repositorioVeiculo);
@@ -151,7 +151,7 @@ namespace Locadora.Apresentacao.WinForm
 
             IRepositorioPlanoCobranca repositorioPlanoCobranca = new RepositorioPlanoCobrancaBancoDados();
             ServicePlanoCobranca servicePlanoCobranca = new ServicePlanoCobranca(repositorioPlanoCobranca);
-            controladores.Add("Plano de Cobranca", new ControladorPlanoCobranca(repositorioPlanoCobranca, servicePlanoCobranca, serviceGrupoDeVeiculos));
+            controladores.Add("Plano de Cobranca", new ControladorPlanoCobranca(servicePlanoCobranca, serviceGrupoDeVeiculos));
 
 
         }
