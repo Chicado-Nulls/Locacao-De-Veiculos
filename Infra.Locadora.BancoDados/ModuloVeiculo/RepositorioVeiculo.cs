@@ -4,7 +4,7 @@ using Locadora.Infra.BancoDados.Compartilhado;
 
 namespace Locadora.Infra.BancoDados.ModuloVeiculo
 {
-    public class RepositorioVeiculo : RepositorioBase<Veiculo, MapeadorVeiculo>, IrepositorioVeiculo
+    public class RepositorioVeiculo : RepositorioBase<Veiculo, MapeadorVeiculo>, IRepositorioVeiculo
     {
         protected override string sqlInserir => @"Insert into [TbVeiculo]
                                                     (

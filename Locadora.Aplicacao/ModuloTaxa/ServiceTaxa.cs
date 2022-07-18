@@ -9,7 +9,7 @@ namespace Locadora.Aplicacao.ModuloTaxa
 {
     public class ServiceTaxa : ServiceBase<Taxa, ValidadorTaxa>
     {
-        public ServiceTaxa(IRepositorioBase<Taxa> repositorio) : base(repositorio)
+        public ServiceTaxa(IRepositorioTaxa repositorio) : base(repositorio)
         {
         }
 

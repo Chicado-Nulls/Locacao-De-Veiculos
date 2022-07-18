@@ -12,13 +12,13 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
 {
     public class ControladorVeiculo : ControladorBase
     {
-        IrepositorioVeiculo RepositorioVeiculo;
+        IRepositorioVeiculo RepositorioVeiculo;
         ServiceGrupoVeiculo serviceGrupoVeiculo;
         ServiceVeiculo serviceVeiculo;
         TabelaVeiculoControl tabelaVeiculo;
         List<GrupoVeiculo> grupoVeiculos;
 
-        public ControladorVeiculo(IrepositorioVeiculo repositorioVeiculo, ServiceGrupoVeiculo serviceGrupoVeiculo, ServiceVeiculo serviceVeiculo)
+        public ControladorVeiculo(IRepositorioVeiculo repositorioVeiculo, ServiceGrupoVeiculo serviceGrupoVeiculo, ServiceVeiculo serviceVeiculo)
         {
             this.RepositorioVeiculo = repositorioVeiculo;
             this.serviceGrupoVeiculo = serviceGrupoVeiculo;

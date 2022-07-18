@@ -9,7 +9,7 @@ namespace Locadora.Aplicacao.ModuloCondutor
 {
     public class ServiceCondutor : ServiceBase<Condutor, ValidadorCondutor>
     {
-        public ServiceCondutor(IRepositorioBase<Condutor> repositorio) : base(repositorio)
+        public ServiceCondutor(IRepositorioCondutor repositorio) : base(repositorio)
         {
         }
 

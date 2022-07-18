@@ -6,6 +6,7 @@ using Locadora.Aplicacao.ModuloPlanoCobranca;
 using Locadora.Aplicacao.ModuloTaxa;
 using Locadora.Aplicacao.ModuloVeiculo;
 using Locadora.Apresentacao.WinForm.Compartilhado;
+using Locadora.Apresentacao.WinForm.Compartilhado.ServiceLocator;
 using Locadora.Apresentacao.WinForm.ModuloCliente;
 using Locadora.Apresentacao.WinForm.ModuloCondutor;
 using Locadora.Apresentacao.WinForm.ModuloFuncionario;
@@ -37,8 +38,9 @@ namespace Locadora.Apresentacao.WinForm
     {
         private ControladorBase controlador;
         private Dictionary<string, ControladorBase> controladores;
+        IServiceLocator serviceLocator;
 
-        public TelaPrincipalForm()
+        public TelaPrincipalForm(IServiceLocator serviceLocator)
         {
             InitializeComponent();
 
@@ -46,7 +48,8 @@ namespace Locadora.Apresentacao.WinForm
 
             labelRodape.Text = string.Empty;
             labelTipoCadastro.Text = string.Empty;
-            InicializarControladores();
+            this.serviceLocator = serviceLocator;
+            //InicializarControladores();
         }
 
         public static TelaPrincipalForm Instancia
@@ -110,87 +113,39 @@ namespace Locadora.Apresentacao.WinForm
             panelRegistros.Controls.Add(listagemControl);
         }
 
-        private void ConfigurarTelaPrincipal(ToolStripMenuItem opcaoSelecionada)
+        private void ConfigurarTelaPrincipal(ControladorBase controlador)
         {
-            var tipo = removerAcentos(opcaoSelecionada.Text);
-
-            controlador = controladores[tipo];
+            this.controlador = controlador;
 
             ConfigurarToolbox();
 
             ConfigurarListagem();
         }
 
-        private void InicializarControladores()
-        {
-            controladores = new Dictionary<string, ControladorBase>();
-
-            IRepositorioCliente repositorioCliente = new RepositorioClienteEmBancoDeDados();
-            ServiceCliente serviceCliente = new ServiceCliente(repositorioCliente);
-            controladores.Add("Cliente", new ControladorCliente(serviceCliente));
-
-            IRepositorioFuncionario repositorioFuncionario = new RepositorioFuncionarioBancoDados();
-            ServiceFuncionario serviceFuncionario = new ServiceFuncionario(repositorioFuncionario);
-            controladores.Add("Funcionario", new ControladorFuncionario(serviceFuncionario));
-
-            IRepositorioTaxa repositorioTaxa = new RepositorioTaxa();
-            ServiceTaxa serviceTaxa = new ServiceTaxa(repositorioTaxa);
-            controladores.Add("Taxa", new ControladorTaxa(repositorioTaxa, serviceTaxa));
-
-            IRepositorioGrupoVeiculo repositorioGrupoDeVeiculos = new RepositorioGrupoVeiculo();
-            ServiceGrupoVeiculo serviceGrupoDeVeiculos = new ServiceGrupoVeiculo(repositorioGrupoDeVeiculos);
-            controladores.Add("Grupo Veiculos", new ControladorGrupoVeiculo(serviceGrupoDeVeiculos));
-
-            IrepositorioVeiculo repositorioVeiculo = new RepositorioVeiculo();
-            ServiceVeiculo serviceVeiculo = new ServiceVeiculo(repositorioVeiculo);
-            controladores.Add("Veiculos", new ControladorVeiculo(repositorioVeiculo, serviceGrupoDeVeiculos, serviceVeiculo));
-
-            IRepositorioCondutor repositorioCondutor = new RepositorioCondutor();
-            ServiceCondutor servicecondutor = new ServiceCondutor(repositorioCondutor);
-            controladores.Add("Condutores", new ControladorCondutor(servicecondutor, serviceCliente));
-
-            IRepositorioPlanoCobranca repositorioPlanoCobranca = new RepositorioPlanoCobrancaBancoDados();
-            ServicePlanoCobranca servicePlanoCobranca = new ServicePlanoCobranca(repositorioPlanoCobranca);
-            controladores.Add("Plano de Cobranca", new ControladorPlanoCobranca(servicePlanoCobranca, serviceGrupoDeVeiculos));
-
-
-        }
-
         private void taxaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorTaxa>());
         }
 
         private void grupoVeiculosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorGrupoVeiculo>());
         }
 
         private void clienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorCliente>());
         }
         private void planoDeCobrançaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorPlanoCobranca>());
         }
 
         private void funcionarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorFuncionario>());
         }
-        public static string removerAcentos(string texto)
-        {
-            string comAcentos = "ÄÅÁÂÀÃäáâàãÉÊËÈéêëèÍÎÏÌíîïìÖÓÔÒÕöóôòõÜÚÛüúûùÇç";
-            string semAcentos = "AAAAAAaaaaaEEEEeeeeIIIIiiiiOOOOOoooooUUUuuuuCc";
-
-            for (int i = 0; i < comAcentos.Length; i++)
-            {
-                texto = texto.Replace(comAcentos[i].ToString(), semAcentos[i].ToString());
-            }
-            return texto;
-        }
-
+        
         private void btnInserir_Click(object sender, EventArgs e)
         {
             controlador.Inserir();
@@ -208,12 +163,12 @@ namespace Locadora.Apresentacao.WinForm
 
         private void condutoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorCondutor>());
         }
 
         private void veículosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorVeiculo>());
         }
     }
 }

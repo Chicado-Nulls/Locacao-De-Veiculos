@@ -1,3 +1,4 @@
+using Locadora.Apresentacao.WinForm.Compartilhado.ServiceLocator;
 using Locadora.Infra.Logging;
 using System;
 using System.Windows.Forms;
@@ -16,7 +17,8 @@ namespace Locadora.Apresentacao.WinForm
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TelaPrincipalForm());
+            var serviceLocatorAutofac = new ServiceLocatorAutofac();
+            Application.Run(new TelaPrincipalForm(serviceLocatorAutofac));
         }
     }
 }
