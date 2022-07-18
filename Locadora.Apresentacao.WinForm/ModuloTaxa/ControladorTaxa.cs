@@ -9,16 +9,13 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
 {
     public class ControladorTaxa : ControladorBase
     {
-
-        IRepositorioTaxa RepositorioTaxa;
         ServiceTaxa serviceTaxa;
         TabelaTaxaControl tabelaTaxa;
 
         public string MensagemErro { get; set; }
 
-        public ControladorTaxa(IRepositorioTaxa repositorioTaxa, ServiceTaxa serviceTaxa)
+        public ControladorTaxa(ServiceTaxa serviceTaxa)
         {
-            RepositorioTaxa=repositorioTaxa;
             this.serviceTaxa=serviceTaxa;
         }
 
@@ -124,11 +121,21 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
 
         private void CarregarTaxas()
         {
-            List<Taxa> grupos = RepositorioTaxa.SelecionarTodos();
+            var resultado = serviceTaxa.SelecionarTodos();
 
-            tabelaTaxa.AtualizarRegistros(grupos);
+            if (resultado.IsSuccess)
+            {
+                List<Taxa> grupos = serviceTaxa.SelecionarTodos().Value;
 
-            TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {grupos.Count} Taxa(s)");
+                tabelaTaxa.AtualizarRegistros(grupos);
+
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {grupos.Count} Taxa(s)");
+            }
+            else
+            {
+                MessageBox.Show(resultado.Errors[0].Message, "Seleção de Taxas",
+                 MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private Taxa SelecionarTaxaPorNumero(Guid guid)
