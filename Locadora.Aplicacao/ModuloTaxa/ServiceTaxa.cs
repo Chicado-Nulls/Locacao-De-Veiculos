@@ -2,6 +2,8 @@
 using Locadora.Aplicacao.Compartilhado;
 using Locadora.Dominio.Compartilhado;
 using Locadora.Dominio.ModuloTaxa;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Locadora.Aplicacao.ModuloTaxa
 {
@@ -13,7 +15,19 @@ namespace Locadora.Aplicacao.ModuloTaxa
 
         public override Result ExisteCamposDuplicados(Taxa registro)
         {
-            return Result.Ok();
+            List<Error> erros = new List<Error>();
+
+            var resultado = repositorio.ExisteRegistroIgual(registro, "aaa");
+
+            if (resultado)
+            {
+                erros.Add(new Error("Descrição Dever ser Diferente"));
+            }
+
+            if (erros.Any())
+                return Result.Fail(erros);
+
+               return Result.Ok();
         }
     }
 }
