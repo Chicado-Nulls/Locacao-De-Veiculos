@@ -25,7 +25,7 @@ namespace Locadora.Test.Unit.ModuloCliente
         }
 
         [TestMethod]
-        public void Cria_objeto_funcionario_com_campos_contrutor()
+        public void Cria_objeto_cliente_com_campos_contrutor()
         {
             // arrange - action
             var ClienteCriar = new Cliente("romulo", "12345", "12345", "12345", "lages", "romulo@gmail.com", "5999444494", true);
