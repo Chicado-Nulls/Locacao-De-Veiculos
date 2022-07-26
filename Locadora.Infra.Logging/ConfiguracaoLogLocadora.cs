@@ -10,7 +10,7 @@ namespace Locadora.Infra.Logging
         {
 
             var configuracao = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
+                 .SetBasePath(Directory.GetCurrentDirectory())
                  .AddJsonFile("ConfiguracaoAplicacao.json")
                  .Build();
 

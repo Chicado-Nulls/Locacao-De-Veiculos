@@ -60,7 +60,7 @@ namespace Locadora.Apresentacao.WinForm.Compartilhado.ServiceLocator
 
             IRepositorioCliente repositorioCliente = new RepositorioClienteEmBancoDeDados();
             ServiceCliente serviceCliente = new ServiceCliente(repositorioCliente, contextoDadosOrm);
-            controladores.Add("Cliente", new ControladorCliente(serviceCliente));
+            controladores.Add("ControladorCliente", new ControladorCliente(serviceCliente));
 
             IRepositorioFuncionario repositorioFuncionario = new RepositorioFuncionario(contextoDadosOrm);
             ServiceFuncionario serviceFuncionario = new ServiceFuncionario(repositorioFuncionario, contextoDadosOrm);
