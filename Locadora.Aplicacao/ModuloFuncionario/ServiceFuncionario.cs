@@ -10,7 +10,7 @@ namespace Locadora.Aplicacao.ModuloFuncionario
 {
     public class ServiceFuncionario : ServiceBase<Funcionario, ValidadorFuncionario>
     {
-        public ServiceFuncionario(IRepositorioFuncionario repositorio) : base(repositorio)
+        public ServiceFuncionario(IRepositorioFuncionario repositorio, IContextoPersistencia contexto) : base(repositorio, contexto)
         {
         }
 

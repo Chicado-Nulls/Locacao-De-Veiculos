@@ -7,7 +7,7 @@ namespace Locadora.Aplicacao.ModuloGrupoDeVeiculos
 {
     public class ServiceGrupoVeiculo : ServiceBase<GrupoVeiculo, ValidadorGrupoVeiculo>
     {
-        public ServiceGrupoVeiculo(IRepositorioGrupoVeiculo repositorio) : base(repositorio)
+        public ServiceGrupoVeiculo(IRepositorioGrupoVeiculo repositorio, IContextoPersistencia contexto) : base(repositorio, contexto)
         {
 
         }

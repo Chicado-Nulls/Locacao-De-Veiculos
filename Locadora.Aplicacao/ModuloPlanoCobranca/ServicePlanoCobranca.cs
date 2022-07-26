@@ -9,7 +9,7 @@ namespace Locadora.Aplicacao.ModuloPlanoCobranca
 {
     public class ServicePlanoCobranca : ServiceBase<PlanoCobranca, ValidadorPlanoCobranca>
     {
-        public ServicePlanoCobranca(IRepositorioPlanoCobranca repositorio) : base(repositorio)
+        public ServicePlanoCobranca(IRepositorioPlanoCobranca repositorio, IContextoPersistencia contexto) : base(repositorio, contexto)
         {
         }
 

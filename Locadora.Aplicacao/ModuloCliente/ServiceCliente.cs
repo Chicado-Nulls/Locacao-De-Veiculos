@@ -9,7 +9,7 @@ namespace Locadora.Aplicacao.ModuloCliente
 {
     public class ServiceCliente : ServiceBase<Cliente, ValidadorCliente>
     {
-        public ServiceCliente(IRepositorioCliente repositorio) : base(repositorio)
+        public ServiceCliente(IRepositorioCliente repositorio, IContextoPersistencia contexto) : base(repositorio, contexto)
         {
         }
 

@@ -15,9 +15,11 @@ namespace Locadora.Aplicacao.Compartilhado
     {
         protected IRepositorioBase<T> repositorio;
 
-        public ServiceBase(IRepositorioBase<T> repositorio)
+        private IContextoPersistencia contextoPersistencia;
+        public ServiceBase(IRepositorioBase<T> repositorio, IContextoPersistencia contexto)
         {
             this.repositorio = repositorio;
+            contextoPersistencia = contexto;
 
         }
 
@@ -41,6 +43,8 @@ namespace Locadora.Aplicacao.Compartilhado
             try
             {
                 repositorio.Inserir(registro);
+
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("{ObjetoNome} {FuncionarioId} inserido com sucesso", registro.GetType().Name, registro.Id);
 
@@ -77,6 +81,8 @@ namespace Locadora.Aplicacao.Compartilhado
             {
                 repositorio.Editar(registro);
 
+                contextoPersistencia.GravarDados();
+
                 Log.Logger.Information("Registro {RegistroId} editado com sucesso", registro.Id);
 
                 return Result.Ok(registro);
@@ -98,6 +104,8 @@ namespace Locadora.Aplicacao.Compartilhado
             try
             {
                 repositorio.Excluir(registro);
+
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Registro {RegistroId} excluído com sucesso", registro.Id);
 
