@@ -37,11 +37,9 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
                 return;
             }
 
-            var funcionarioSelecionado = resultadoSelecao.Value;
-
             var tela = new TelaCadastroFuncionarioForm("Editar Funcionário", "Editar");
 
-            tela.Funcionario = funcionarioSelecionado.Clone();
+            tela.Funcionario =  resultadoSelecao.Value;
 
             tela.GravarRegistro = serviceFuncionario.Editar;
 
