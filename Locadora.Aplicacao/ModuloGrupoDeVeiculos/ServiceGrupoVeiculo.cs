@@ -15,9 +15,9 @@ namespace Locadora.Aplicacao.ModuloGrupoDeVeiculos
         public override Result ExisteCamposDuplicados(GrupoVeiculo registro)
         {
 
-            bool existeRegistroIgual= repositorio.ExisteRegistroIgual(registro, "");
+            bool existeRegistroIgual = repositorio.ExisteRegistroIgual(registro, "");
 
-            if(existeRegistroIgual == true)
+            if (existeRegistroIgual == true)
             {
                 string errorMsg = "Esse grupo de veículo já existe.";
                 return Result.Fail(errorMsg);

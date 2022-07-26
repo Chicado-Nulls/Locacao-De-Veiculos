@@ -1,6 +1,5 @@
 ﻿using Locadora.Aplicacao.ModuloGrupoDeVeiculos;
 using Locadora.Apresentacao.WinForm.Compartilhado;
-using Locadora.Apresentacao.WinForm.ModuloCliente;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using System;
 using System.Collections.Generic;

@@ -2,9 +2,9 @@
 using Locadora.Aplicacao.ModuloPlanoCobranca;
 using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloPlanoCobranca;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using System;
 
 namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
 {

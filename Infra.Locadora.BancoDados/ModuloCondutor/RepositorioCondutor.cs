@@ -135,8 +135,8 @@ namespace Locadora.Infra.BancoDados.ModuloCondutor
 				WHERE CONDUTOR.CPF = @CPF AND CLIENTE.ID = @CLIENTE_ID AND CONDUTOR.ID <> @ID";
 
 
-		private string sqlSelecionarCondutorPorCliente =>
-			@"SELECT
+        private string sqlSelecionarCondutorPorCliente =>
+            @"SELECT
 					CONDUTOR.ID AS CONDUTOR_ID,
 					CONDUTOR.NOME AS CONDUTOR_NOME,
 					CONDUTOR.CPF AS CONDUTOR_CPF,
@@ -163,8 +163,8 @@ namespace Locadora.Infra.BancoDados.ModuloCondutor
 
 				WHERE CLIENTE.ID = @CLIENTE_ID";
 
-		private string sqlSelecionarCondutorPorCpf =>
-			@"SELECT
+        private string sqlSelecionarCondutorPorCpf =>
+            @"SELECT
 					CONDUTOR.ID AS CONDUTOR_ID,
 					CONDUTOR.NOME AS CONDUTOR_NOME,
 					CONDUTOR.CPF AS CONDUTOR_CPF,
@@ -191,14 +191,14 @@ namespace Locadora.Infra.BancoDados.ModuloCondutor
 
 				WHERE CONDUTOR.CPF = @CPF";
 
-		public Condutor SelecionarCondutorPorCliente(Guid ClienteId)
+        public Condutor SelecionarCondutorPorCliente(Guid ClienteId)
         {
-			return SelecionarPorParametro(sqlSelecionarCondutorPorCliente, new SqlParameter("CLIENTE_ID", ClienteId));
-		}
+            return SelecionarPorParametro(sqlSelecionarCondutorPorCliente, new SqlParameter("CLIENTE_ID", ClienteId));
+        }
 
         public Condutor SelecionarCondutorPorCpf(string cpf)
         {
-			return SelecionarPorParametro(sqlSelecionarCondutorPorCpf, new SqlParameter("CPF", cpf));
-		}
+            return SelecionarPorParametro(sqlSelecionarCondutorPorCpf, new SqlParameter("CPF", cpf));
+        }
     }
 }

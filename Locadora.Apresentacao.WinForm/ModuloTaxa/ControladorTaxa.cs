@@ -85,7 +85,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
                 CarregarTaxas();
             }
 
-            
+
         }
 
         public override void Inserir()

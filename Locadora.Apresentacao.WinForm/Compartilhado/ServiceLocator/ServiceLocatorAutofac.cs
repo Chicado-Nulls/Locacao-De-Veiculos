@@ -27,11 +27,6 @@ using Locadora.Infra.BancoDados.ModuloGrupoVeiculo;
 using Locadora.Infra.BancoDados.ModuloPlanoCobranca;
 using Locadora.Infra.BancoDados.ModuloTaxa;
 using Locadora.Infra.BancoDados.ModuloVeiculo;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Apresentacao.WinForm.Compartilhado.ServiceLocator
 {

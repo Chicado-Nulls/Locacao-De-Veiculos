@@ -1,5 +1,4 @@
 ﻿using FluentResults;
-using FluentValidation.Results;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using System;
 using System.Windows.Forms;
@@ -78,7 +77,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
             }
 
             else
-            return false;
+                return false;
         }
 
         private void ConfigurarObjeto()

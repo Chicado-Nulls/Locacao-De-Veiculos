@@ -1,5 +1,4 @@
 ﻿using FluentResults;
-using FluentValidation.Results;
 using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloTaxa;
 using System;
@@ -29,7 +28,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloTaxa
                 ConfigurarTela();
             }
         }
-        public Func<Taxa, Result<Taxa> > GravarRegistro { get; set; }
+        public Func<Taxa, Result<Taxa>> GravarRegistro { get; set; }
         private void btnGravar_Click(object sender, EventArgs e)
         {
             if (ExisteCampoVazio())

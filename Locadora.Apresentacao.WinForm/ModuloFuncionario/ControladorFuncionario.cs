@@ -60,11 +60,11 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
                 return;
             }
 
-            var resultadoSelecao  = serviceFuncionario.SelecionarPorId(id);
+            var resultadoSelecao = serviceFuncionario.SelecionarPorId(id);
 
-            if (resultadoSelecao .IsFailed == null)
+            if (resultadoSelecao.IsFailed == null)
             {
-                MessageBox.Show(resultadoSelecao .Errors[0].Message,
+                MessageBox.Show(resultadoSelecao.Errors[0].Message,
                     "Exclusão de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }

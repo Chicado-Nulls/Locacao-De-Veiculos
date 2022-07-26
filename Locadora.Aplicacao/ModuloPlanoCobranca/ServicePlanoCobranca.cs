@@ -1,9 +1,7 @@
 ﻿using FluentResults;
-using FluentValidation.Results;
 using Locadora.Aplicacao.Compartilhado;
 using Locadora.Dominio.Compartilhado;
 using Locadora.Dominio.ModuloPlanoCobranca;
-using System;
 
 namespace Locadora.Aplicacao.ModuloPlanoCobranca
 {

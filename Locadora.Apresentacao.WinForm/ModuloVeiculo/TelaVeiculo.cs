@@ -1,5 +1,4 @@
 ﻿using FluentResults;
-using FluentValidation.Results;
 using Locadora.Dominio.ModuloCarro;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using Locadora.Dominio.ModuloVeiculo;
@@ -45,7 +44,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
                 ConfigurarTela();
             }
         }
-        public Func<Veiculo, Result<Veiculo> > GravarRegistro { get; set; }
+        public Func<Veiculo, Result<Veiculo>> GravarRegistro { get; set; }
 
         private void ConfigurarTela()
         {
@@ -100,11 +99,11 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
             {
                 string erro = resultadoValidacao.Errors[0].Message;
 
-                if(erro.StartsWith("Falha no Sistema"))
+                if (erro.StartsWith("Falha no Sistema"))
                 {
                     MessageBox.Show("Falha no Sistema",
                     "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    
+
                 }
                 else
                 {

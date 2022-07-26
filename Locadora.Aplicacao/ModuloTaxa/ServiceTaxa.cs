@@ -27,7 +27,7 @@ namespace Locadora.Aplicacao.ModuloTaxa
             if (erros.Any())
                 return Result.Fail(erros);
 
-               return Result.Ok();
+            return Result.Ok();
         }
     }
 }

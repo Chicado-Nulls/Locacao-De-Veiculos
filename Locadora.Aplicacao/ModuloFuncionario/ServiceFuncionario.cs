@@ -2,7 +2,6 @@
 using Locadora.Aplicacao.Compartilhado;
 using Locadora.Dominio.Compartilhado;
 using Locadora.Dominio.ModuloFuncionario;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -22,7 +21,7 @@ namespace Locadora.Aplicacao.ModuloFuncionario
 
             if (existeRegistroPorNome)
                 erros.Add(new Error("Campo 'Nome' duplicado"));
-            
+
             var existeRegistroPorUsuario = SelecionarPorUsuario(registro);
 
             if (existeRegistroPorUsuario)

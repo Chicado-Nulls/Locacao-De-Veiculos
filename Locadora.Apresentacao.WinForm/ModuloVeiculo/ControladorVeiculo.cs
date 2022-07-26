@@ -3,7 +3,6 @@ using Locadora.Aplicacao.ModuloVeiculo;
 using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloCarro;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
-using Locadora.Dominio.ModuloVeiculo;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -83,7 +82,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
                 MessageBox.Show("Falha no sistema ao selecionar um veiculo",
                 "Exclusão de veiculo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
-            }   
+            }
             if (MessageBox.Show($"Deseja realmente excluir o veiculo selecionado '{veiculo.Modelo}'?", "Exclusão de veiculo", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
                 return;
 
@@ -122,7 +121,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
                 return;
             }
 
-           
+
 
             TelaVeiculo telaVeiculo = new TelaVeiculo(resultadoGrupoDeVeiculo.Value, "Inserir Veículo", "Inserir");
 
@@ -190,7 +189,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloVeiculo
 
             veiculo = resultado.Value;
 
-            return veiculo; 
+            return veiculo;
 
         }
 

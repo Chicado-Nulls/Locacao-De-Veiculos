@@ -21,7 +21,7 @@ namespace Locadora.Aplicacao.ModuloVeiculo
         {
             List<Error> erros = new List<Error>();
 
-            var resultado = repositorio.ExisteRegistroIgual(registro,"aaaa");
+            var resultado = repositorio.ExisteRegistroIgual(registro, "aaaa");
 
             if (resultado)
             {

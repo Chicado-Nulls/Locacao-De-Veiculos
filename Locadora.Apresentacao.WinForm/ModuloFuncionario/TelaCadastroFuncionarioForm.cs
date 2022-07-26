@@ -1,5 +1,4 @@
 ﻿using FluentResults;
-using FluentValidation.Results;
 using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Dominio.ModuloFuncionario;
 using System;
@@ -62,7 +61,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloFuncionario
                 return;
 
             string erro = resultadoValidacao.Errors[0].Message;
-            
+
             TelaPrincipalForm.Instancia.AtualizarRodape(erro);
 
             DialogResult = DialogResult.None;

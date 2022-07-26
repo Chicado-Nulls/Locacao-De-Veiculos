@@ -1,11 +1,4 @@
-﻿using Locadora.Aplicacao.ModuloCliente;
-using Locadora.Aplicacao.ModuloCondutor;
-using Locadora.Aplicacao.ModuloFuncionario;
-using Locadora.Aplicacao.ModuloGrupoDeVeiculos;
-using Locadora.Aplicacao.ModuloPlanoCobranca;
-using Locadora.Aplicacao.ModuloTaxa;
-using Locadora.Aplicacao.ModuloVeiculo;
-using Locadora.Apresentacao.WinForm.Compartilhado;
+﻿using Locadora.Apresentacao.WinForm.Compartilhado;
 using Locadora.Apresentacao.WinForm.Compartilhado.ServiceLocator;
 using Locadora.Apresentacao.WinForm.ModuloCliente;
 using Locadora.Apresentacao.WinForm.ModuloCondutor;
@@ -14,20 +7,6 @@ using Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos;
 using Locadora.Apresentacao.WinForm.ModuloPlanoCobranca;
 using Locadora.Apresentacao.WinForm.ModuloTaxa;
 using Locadora.Apresentacao.WinForm.ModuloVeiculo;
-using Locadora.Dominio.ModuloCliente;
-using Locadora.Dominio.ModuloCondutor;
-using Locadora.Dominio.ModuloFuncionario;
-using Locadora.Dominio.ModuloGrupoDeVeiculo;
-using Locadora.Dominio.ModuloPlanoCobranca;
-using Locadora.Dominio.ModuloTaxa;
-using Locadora.Dominio.ModuloVeiculo;
-using Locadora.Infra.BancoDados.ModuloCliente;
-using Locadora.Infra.BancoDados.ModuloCondutor;
-using Locadora.Infra.BancoDados.ModuloFuncionario;
-using Locadora.Infra.BancoDados.ModuloGrupoVeiculo;
-using Locadora.Infra.BancoDados.ModuloPlanoCobranca;
-using Locadora.Infra.BancoDados.ModuloTaxa;
-using Locadora.Infra.BancoDados.ModuloVeiculo;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -145,7 +124,7 @@ namespace Locadora.Apresentacao.WinForm
         {
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorFuncionario>());
         }
-        
+
         private void btnInserir_Click(object sender, EventArgs e)
         {
             controlador.Inserir();

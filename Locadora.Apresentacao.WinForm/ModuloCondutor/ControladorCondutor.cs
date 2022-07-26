@@ -1,7 +1,6 @@
 ﻿using Locadora.Aplicacao.ModuloCliente;
 using Locadora.Aplicacao.ModuloCondutor;
 using Locadora.Apresentacao.WinForm.Compartilhado;
-using Locadora.Dominio.ModuloCliente;
 using Locadora.Dominio.ModuloCondutor;
 using System;
 using System.Collections.Generic;
@@ -26,7 +25,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCondutor
         public override void Editar()
         {
             var id = tabelaCondutor.ObtemIdCondutorSelecionado();
-            
+
             if (id == Guid.Empty)
             {
                 MessageBox.Show("Selecione um condutor primeiro",
@@ -54,7 +53,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCondutor
             else
                 MessageBox.Show(resultadoSelecionarClientes.Errors[0].Message, "Seleção de clientes",
                  MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;            
+            return;
 
             tela.Condutor = condutorSelecionado.Clone();
 
