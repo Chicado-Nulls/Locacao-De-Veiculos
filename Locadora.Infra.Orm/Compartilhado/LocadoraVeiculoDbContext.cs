@@ -1,4 +1,5 @@
 ﻿using Locadora.Dominio.Compartilhado;
+using Locadora.Dominio.ModuloCarro;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Serilog;
@@ -39,6 +40,8 @@ namespace Locadora.Infra.Orm.Compartilhado
             var dllComConfiguracoesOrm = typeof(LocadoraVeiculoDbContext).Assembly;
 
             modelBuilder.ApplyConfigurationsFromAssembly(dllComConfiguracoesOrm);
+
+            modelBuilder.Ignore<Veiculo>();
         }
     }
 }
