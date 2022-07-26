@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using Locadora.Dominio.ModuloFuncionario;
-using Locadora.Infra.Orm.Compartilhado;
 using Locadora.Infra.Orm.ModuloFuncionario;
 using Locadora.Test.Infra.Orm.Compartilhado;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
