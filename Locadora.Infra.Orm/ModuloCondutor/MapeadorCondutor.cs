@@ -16,7 +16,7 @@ namespace Locadora.Infra.Orm.ModuloCondutor
             builder.Property(x => x.Endereco).HasColumnType("varchar(60)").IsRequired();
             builder.Property(x => x.Email).HasColumnType("varchar(60)").IsRequired();
             builder.Property(x => x.Telefone).HasColumnType("varchar(18)").IsRequired();
-            builder.HasOne(x => x.Cliente).WithOne().OnDelete(DeleteBehavior.NoAction);            
+            builder.HasOne(x => x.Cliente).WithMany().OnDelete(DeleteBehavior.NoAction);            
         }
     }
 }

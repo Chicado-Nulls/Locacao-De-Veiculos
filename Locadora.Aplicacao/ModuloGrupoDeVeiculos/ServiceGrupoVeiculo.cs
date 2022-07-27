@@ -2,6 +2,9 @@
 using Locadora.Aplicacao.Compartilhado;
 using Locadora.Dominio.Compartilhado;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Locadora.Aplicacao.ModuloGrupoDeVeiculos
 {
@@ -15,14 +18,28 @@ namespace Locadora.Aplicacao.ModuloGrupoDeVeiculos
         public override Result ExisteCamposDuplicados(GrupoVeiculo registro)
         {
 
-            bool existeRegistroIgual = repositorio.ExisteRegistroIgual(registro, "");
+            List<Error> erros = new List<Error>();
 
-            if (existeRegistroIgual == true)
-            {
-                string errorMsg = "Esse grupo de veículo já existe.";
-                return Result.Fail(errorMsg);
-            }
+            var existeRegistroPorNome = SelecionarPorNome(registro);
+
+            if (existeRegistroPorNome)
+                erros.Add(new Error("Campo 'Descricao' duplicado"));
+
+            if (erros.Any())
+                return Result.Fail(erros);
+
             return Result.Ok();
+        }
+
+        private bool SelecionarPorNome(GrupoVeiculo registro)
+        {
+            IRepositorioGrupoVeiculo repositorioFuncionario = (IRepositorioGrupoVeiculo)repositorio;
+
+            var funcionarioEncontrado = repositorioFuncionario.SelecionarGrupoVeiculoPorNome(registro.Nome);
+
+            return funcionarioEncontrado != null &&
+                   funcionarioEncontrado.Nome == registro.Nome &&
+                   funcionarioEncontrado.Id != registro.Id;
         }
     }
 }

@@ -118,8 +118,14 @@ namespace Locadora.Test.Infra.Orm.ModuloCondutor
 
             //action
             _repositorioCliente.Inserir(cliente);
+            contextoDadosOrm.GravarDados();
+
             _repositorioCondutor.Inserir(condutor1);
+            contextoDadosOrm.GravarDados();
+
             _repositorioCondutor.Inserir(condutor2);
+            contextoDadosOrm.GravarDados();
+
             _repositorioCondutor.Inserir(condutor3);
             contextoDadosOrm.GravarDados();
 

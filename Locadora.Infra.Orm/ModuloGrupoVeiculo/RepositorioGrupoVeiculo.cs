@@ -46,6 +46,11 @@ namespace Locadora.Infra.Orm.ModuloGrupoVeiculo
             return grupoVeiculos.SingleOrDefault(x => x.Id == id);
         }
 
+        public GrupoVeiculo SelecionarGrupoVeiculoPorNome(string nome)
+        {
+            return grupoVeiculos.SingleOrDefault(x => x.Nome == nome);
+        }
+
         public List<GrupoVeiculo> SelecionarTodos()
         {
             return grupoVeiculos.ToList();

@@ -41,7 +41,8 @@ namespace Locadora.Aplicacao.ModuloCliente
             var funcionarioEncontrado = repositorioCliente.SelecionarClientePorCnpj(registro.Cnpj);
 
             return funcionarioEncontrado != null &&
-                   funcionarioEncontrado.Cnpj == registro.Cnpj;
+                   funcionarioEncontrado.Cnpj == registro.Cnpj &&
+                   funcionarioEncontrado.Id != registro.Id;
         }
 
         private bool SelecionarPorCpf(Cliente registro)
@@ -51,7 +52,8 @@ namespace Locadora.Aplicacao.ModuloCliente
             var funcionarioEncontrado = repositorioCliente.SelecionarClientePorCpf(registro.Cpf);
 
             return funcionarioEncontrado != null &&
-                   funcionarioEncontrado.Cpf == registro.Cpf;
+                   funcionarioEncontrado.Cpf == registro.Cpf &&
+                   funcionarioEncontrado.Id != registro.Id;
         }
     }
 }
