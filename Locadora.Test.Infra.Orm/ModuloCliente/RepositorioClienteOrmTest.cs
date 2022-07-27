@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 namespace Locadora.Test.Infra.Orm.ModuloCliente
 {
     [TestClass]
-    public class RepositorioClienteTest : RepositorioBaseOrmTest
+    public class RepositorioClienteOrmTest : RepositorioBaseOrmTest
     {
         private RepositorioCliente repositorioCliente;
         
-        public RepositorioClienteTest()
+        public RepositorioClienteOrmTest()
         {
             repositorioCliente = new RepositorioCliente(contextoDadosOrm);
             LimparTabela("TbCliente");

@@ -46,13 +46,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{F76BEB82-3C1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ORM", "ORM", "{83F8BF13-AB23-4A3A-9DDD-77584FA89119}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Locadora.Infra.Orm", "Locadora.Infra.Orm\Locadora.Infra.Orm.csproj", "{70C19B90-F057-4024-B2C8-7DEE55E784E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Locadora.Infra.Orm", "Locadora.Infra.Orm\Locadora.Infra.Orm.csproj", "{70C19B90-F057-4024-B2C8-7DEE55E784E0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{AA5310A0-474C-4B66-B5CE-28087A54E1A8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ORM EF", "ORM EF", "{70B6D9BB-DF12-42E6-BE78-63115D4B7DB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Locadora.Test.Infra.Orm", "Locadora.Test.Infra.Orm\Locadora.Test.Infra.Orm.csproj", "{1FD781B6-6F40-4FCE-BE18-321F08868AFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Locadora.Test.Infra.Orm", "Locadora.Test.Infra.Orm\Locadora.Test.Infra.Orm.csproj", "{1FD781B6-6F40-4FCE-BE18-321F08868AFC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
