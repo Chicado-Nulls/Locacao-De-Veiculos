@@ -1,6 +1,7 @@
 ﻿using Locadora.Dominio.Compartilhado;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using Locadora.Dominio.ModuloVeiculo;
+using System;
 
 namespace Locadora.Dominio.ModuloCarro
 {
@@ -50,6 +51,10 @@ namespace Locadora.Dominio.ModuloCarro
         public EnumTipoDeCombustivel TipoDeCombustivel { get; set; }
 
         public GrupoVeiculo GrupoDeVeiculo { get; set; }
+
+        public Guid GrupoDeVeiculoId { get; set; }
+
+
 
         public byte[] Foto { get; set; }
 

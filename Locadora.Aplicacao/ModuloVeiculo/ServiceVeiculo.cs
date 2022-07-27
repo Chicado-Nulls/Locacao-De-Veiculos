@@ -21,7 +21,7 @@ namespace Locadora.Aplicacao.ModuloVeiculo
         {
             List<Error> erros = new List<Error>();
 
-            var resultado = repositorio.ExisteRegistroIgual(registro, "aaaa");
+            var resultado = SelecionarPorDescricao(registro);
 
             if (resultado)
             {
@@ -32,6 +32,17 @@ namespace Locadora.Aplicacao.ModuloVeiculo
                 return Result.Fail(erros);
 
             return Result.Ok();
+        }
+
+        private bool SelecionarPorDescricao(Veiculo registro)
+        {
+            IRepositorioVeiculo repositorioFuncionario = (IRepositorioVeiculo)repositorio;
+
+            var funcionarioEncontrado = repositorioFuncionario.SelecionarVeiculoPorPlaca(registro.Placa);
+
+            return funcionarioEncontrado != null &&
+                   funcionarioEncontrado.Placa == registro.Placa &&
+                   funcionarioEncontrado.Id != registro.Id;
         }
     }
 }

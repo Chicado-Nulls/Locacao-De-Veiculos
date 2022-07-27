@@ -15,8 +15,7 @@ using Locadora.Dominio.ModuloCondutor;
 using Locadora.Dominio.ModuloFuncionario;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using Locadora.Dominio.ModuloTaxa;
-using Locadora.Dominio.ModuloVeiculo;
-
+using Locadora.Infra.Orm.ModuloVeiculo;
 using Locadora.Infra.BancoDados.ModuloVeiculo;
 using Locadora.Infra.Orm.Compartilhado;
 using Locadora.Infra.Orm.ModuloCliente;
@@ -27,6 +26,7 @@ using Locadora.Infra.Orm.ModuloTaxa;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.IO;
+using RepositorioVeiculo = Locadora.Infra.Orm.ModuloVeiculo.RepositorioVeiculo;
 
 namespace Locadora.Apresentacao.WinForm.Compartilhado.ServiceLocator
 {
@@ -75,9 +75,9 @@ namespace Locadora.Apresentacao.WinForm.Compartilhado.ServiceLocator
             ServiceGrupoVeiculo serviceGrupoDeVeiculos = new ServiceGrupoVeiculo(repositorioGrupoDeVeiculos, contextoDadosOrm);
             controladores.Add("ControladorGrupoVeiculo", new ControladorGrupoVeiculo(serviceGrupoDeVeiculos));
 
-            IRepositorioVeiculo repositorioVeiculo = new RepositorioVeiculo();
+            RepositorioVeiculo repositorioVeiculo = new RepositorioVeiculo(contextoDadosOrm);
             ServiceVeiculo serviceVeiculo = new ServiceVeiculo(repositorioVeiculo, contextoDadosOrm);
-            controladores.Add("Veiculos", new ControladorVeiculo(serviceGrupoDeVeiculos, serviceVeiculo));
+            controladores.Add("ControladorVeiculo", new ControladorVeiculo(serviceGrupoDeVeiculos, serviceVeiculo));
 
             IRepositorioCondutor repositorioCondutor = new RepositorioCondutor(contextoDadosOrm);
             ServiceCondutor servicecondutor = new ServiceCondutor(repositorioCondutor, contextoDadosOrm);
