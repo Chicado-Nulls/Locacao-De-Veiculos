@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Locadora.Dominio.ModuloTaxa;
+using Locadora.Infra.Orm.Compartilhado;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +9,45 @@ using System.Threading.Tasks;
 
 namespace Locadora.Infra.Orm.ModuloTaxa
 {
-    public class RepositorioTaxa
+    public class RepositorioTaxa : IRepositorioTaxa
     {
+        private DbSet<Taxa> taxas;
+        private LocadoraVeiculoDbContext locadoraVeiculoDbContext;
+
+        public RepositorioTaxa(LocadoraVeiculoDbContext locadoraVeiculoDbContext)
+        {
+            taxas = locadoraVeiculoDbContext.Set<Taxa>();
+            this.locadoraVeiculoDbContext = locadoraVeiculoDbContext;
+        }
+
+        public void Editar(Taxa registro)
+        {
+            taxas.Update(registro);
+        }
+
+        public void Excluir(Taxa registro)
+        {
+            taxas.Remove(registro);
+        }
+
+        public bool ExisteRegistroIgual(Taxa registro, string consultaVerificaDuplicidade)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Inserir(Taxa novoRegistro)
+        {                         
+            taxas.Add(novoRegistro);
+        }
+
+        public Taxa SelecionarPorId(Guid id)
+        {
+            return taxas.SingleOrDefault(x => x.Id == id);
+        }
+
+        public List<Taxa> SelecionarTodos()
+        {
+            return taxas.ToList();
+        }
     }
 }

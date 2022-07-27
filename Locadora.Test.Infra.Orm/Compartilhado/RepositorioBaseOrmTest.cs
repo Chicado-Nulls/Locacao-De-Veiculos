@@ -28,7 +28,7 @@ namespace Locadora.Test.Infra.Orm.Compartilhado
 
             LocadoraVeiculosMigrador.AtualizarBancoDados();
 
-            LimparTabela("TBFUNCIONARIO");
+            
         }
         protected void LimparTabela(string tabela)
         {
