@@ -4,58 +4,22 @@ using Locadora.Infra.Orm.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Locadora.Infra.Orm.Migrations
 {
     [DbContext(typeof(LocadoraVeiculoDbContext))]
-    partial class LocadoraVeiculoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220726184718_AdicionandoTaxas")]
+    partial class AdicionandoTaxas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Locadora.Dominio.ModuloCliente.Cliente", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Cnh")
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("Cnpj")
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("Cpf")
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("Endereco")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("Telefone")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<bool>("TipoCadastro")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TbCliente");
-                });
 
             modelBuilder.Entity("Locadora.Dominio.ModuloFuncionario.Funcionario", b =>
                 {
