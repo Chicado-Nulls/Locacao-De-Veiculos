@@ -26,6 +26,8 @@ using Locadora.Infra.BancoDados.ModuloTaxa;
 using Locadora.Infra.BancoDados.ModuloVeiculo;
 using Locadora.Infra.Orm.Compartilhado;
 using Locadora.Infra.Orm.ModuloFuncionario;
+using Locadora.Infra.Orm.ModuloGrupoVeiculo;
+using Locadora.Infra.Orm.ModuloTaxa;
 using Locadora.Infra.Orm.ModuloPlanoCobranca;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
@@ -71,13 +73,13 @@ namespace Locadora.Apresentacao.WinForm.Compartilhado.ServiceLocator
             ServiceFuncionario serviceFuncionario = new ServiceFuncionario(repositorioFuncionario, contextoDadosOrm);
             controladores.Add("ControladorFuncionario", new ControladorFuncionario(serviceFuncionario));
 
-            IRepositorioTaxa repositorioTaxa = new RepositorioTaxa();
-            ServiceTaxa serviceTaxa = new ServiceTaxa(repositorioTaxa, contextoDadosOrm);
-            controladores.Add("Taxa", new ControladorTaxa(serviceTaxa));
+            IRepositorioTaxa repositorioTaxa = new RepositorioTaxa(contextoDadosOrm);
+            ServiceTaxa serviceTaxa = new ServiceTaxa(repositorioTaxa,contextoDadosOrm);
+            controladores.Add("ControladorTaxa", new ControladorTaxa(serviceTaxa));
 
-            IRepositorioGrupoVeiculo repositorioGrupoDeVeiculos = new RepositorioGrupoVeiculo();
+            IRepositorioGrupoVeiculo repositorioGrupoDeVeiculos = new RepositorioGrupoVeiculo(contextoDadosOrm);
             ServiceGrupoVeiculo serviceGrupoDeVeiculos = new ServiceGrupoVeiculo(repositorioGrupoDeVeiculos, contextoDadosOrm);
-            controladores.Add("Grupo Veiculos", new ControladorGrupoVeiculo(serviceGrupoDeVeiculos));
+            controladores.Add("ControladorGrupoVeiculo", new ControladorGrupoVeiculo(serviceGrupoDeVeiculos));
 
             IRepositorioPlanoCobranca repositorioPlanoCobranca = new RepositorioPlanoCobranca(contextoDadosOrm);
             ServicePlanoCobranca servicePlanoCobranca = new ServicePlanoCobranca(repositorioPlanoCobranca, contextoDadosOrm);
