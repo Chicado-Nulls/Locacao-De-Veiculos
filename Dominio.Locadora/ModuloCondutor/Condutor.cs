@@ -1,5 +1,6 @@
 ﻿using Locadora.Dominio.Compartilhado;
 using Locadora.Dominio.ModuloCliente;
+using System;
 
 namespace Locadora.Dominio.ModuloCondutor
 {
@@ -28,6 +29,8 @@ namespace Locadora.Dominio.ModuloCondutor
         public string Email { get; set; }
         public string Telefone { get; set; }
         public Cliente Cliente { get; set; }
+        public Guid ClienteId { get; set; }
+
         public override void Atualizar(Condutor registro)
         {
             Nome = registro.Nome;

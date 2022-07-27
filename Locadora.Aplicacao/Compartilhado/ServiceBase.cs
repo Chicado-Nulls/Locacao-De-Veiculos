@@ -46,13 +46,13 @@ namespace Locadora.Aplicacao.Compartilhado
 
                 contextoPersistencia.GravarDados();
 
-                Log.Logger.Information("{ObjetoNome} {FuncionarioId} inserido com sucesso", registro.GetType().Name, registro.Id);
+                Log.Logger.Information("{ObjetoNome} {registroId} inserido com sucesso", registro.GetType().Name, registro.Id);
 
                 return Result.Ok(registro);
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar inserir o"+registro.GetType().Name;
+                string msgErro = "Falha no sistema ao tentar inserir o "+registro.GetType().Name;
 
                 Log.Logger.Error(ex, msgErro + "{RegistroId}", registro.Id);
 
