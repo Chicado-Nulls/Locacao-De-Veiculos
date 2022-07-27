@@ -38,10 +38,9 @@ namespace Locadora.Apresentacao.WinForm.ModuloCliente
                 return;
             }
 
-            var clienteSelecionado = resultadoCliente.Value;
             TelaCadastroCliente tela = new TelaCadastroCliente("Editar Cliente", "Editar");
 
-            tela.Cliente = clienteSelecionado.Clone();
+            tela.Cliente = resultadoCliente.Value;
 
             tela.GravarRegistro = serviceCliente.Editar;
 
