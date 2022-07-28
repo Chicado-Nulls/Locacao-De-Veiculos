@@ -27,6 +27,14 @@ namespace Locadora.Test.Infra.Orm.Compartilhado
             contextoDadosOrm = new LocadoraVeiculoDbContext(connectionString);
 
             LocadoraVeiculosMigrador.AtualizarBancoDados();
+
+            //LimparTabela("TBPLANOCOBRANCA");
+            LimparTabela("TBVEICULO");
+            LimparTabela("TBGRUPOVEICULO");
+            LimparTabela("TBFUNCIONARIO");
+            LimparTabela("TBCONDUTOR");
+            LimparTabela("TBCLIENTE");
+            LimparTabela("TBTAXA");
         }
         protected void LimparTabela(string tabela)
         {

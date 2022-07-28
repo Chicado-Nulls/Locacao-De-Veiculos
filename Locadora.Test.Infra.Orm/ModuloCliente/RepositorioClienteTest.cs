@@ -19,7 +19,6 @@ namespace Locadora.Test.Infra.Orm.ModuloCliente
         public RepositorioClienteTest()
         {
             repositorioCliente = new RepositorioCliente(contextoDadosOrm);
-            LimparTabela("TbCliente");
         }
 
         private Cliente NovoCliente()
