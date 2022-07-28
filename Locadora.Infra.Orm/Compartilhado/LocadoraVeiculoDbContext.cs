@@ -41,7 +41,7 @@ namespace Locadora.Infra.Orm.Compartilhado
 
             modelBuilder.ApplyConfigurationsFromAssembly(dllComConfiguracoesOrm);
 
-            modelBuilder.Ignore<Veiculo>();
+            
         }
     }
 }

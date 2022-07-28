@@ -4,14 +4,16 @@ using Locadora.Infra.Orm.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Locadora.Infra.Orm.Migrations
 {
     [DbContext(typeof(LocadoraVeiculoDbContext))]
-    partial class LocadoraVeiculoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220727221402_ArrumandoTbVeiculobehavior")]
+    partial class ArrumandoTbVeiculobehavior
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -212,7 +214,7 @@ namespace Locadora.Infra.Orm.Migrations
                     b.HasOne("Locadora.Dominio.ModuloGrupoDeVeiculo.GrupoVeiculo", "GrupoDeVeiculo")
                         .WithMany()
                         .HasForeignKey("GrupoDeVeiculoId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("GrupoDeVeiculo");
                 });
