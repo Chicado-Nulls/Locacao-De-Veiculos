@@ -24,6 +24,17 @@ namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
         {
             TelaCadastroPlanoCobranca tela = new TelaCadastroPlanoCobranca("Inserir Plano de Cobrança", "Inserir");
 
+            var resultadoGrupoVeiculos = serviceGrupoVeiculo.SelecionarTodos();
+
+            if (resultadoGrupoVeiculos.Value.Count == 0)
+            {
+                MessageBox.Show("Nenhum Grupo de Veículos cadastrado",
+               "Inserir Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            tela.GrupoVeiculos = resultadoGrupoVeiculos.Value;
+
             tela.PlanoCobranca = new PlanoCobranca();
 
             tela.GravarRegistro = servicePlanoCobranca.Inserir;
@@ -56,10 +67,20 @@ namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
                 return;
             }
 
-            var planoSelecionado = resultado.Value;
+            var resultadoGrupoVeiculos = serviceGrupoVeiculo.SelecionarTodos();
+
+            if (resultadoGrupoVeiculos.Value.Count == 0)
+            {
+                MessageBox.Show("Nenhum Grupo de Veículos cadastrado",
+               "Inserir Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             TelaCadastroPlanoCobranca tela = new TelaCadastroPlanoCobranca("Editar Plano", "Editar");
 
-            tela.PlanoCobranca = planoSelecionado.Clone();
+            tela.GrupoVeiculos = resultadoGrupoVeiculos.Value;
+
+            tela.PlanoCobranca = resultado.Value;
 
             tela.GravarRegistro = servicePlanoCobranca.Editar;
 

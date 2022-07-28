@@ -4,8 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Infra.Orm.ModuloTaxa
 {
@@ -30,13 +28,8 @@ namespace Locadora.Infra.Orm.ModuloTaxa
             taxas.Remove(registro);
         }
 
-        public bool ExisteRegistroIgual(Taxa registro, string consultaVerificaDuplicidade)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Inserir(Taxa novoRegistro)
-        {                         
+        {
             taxas.Add(novoRegistro);
         }
 

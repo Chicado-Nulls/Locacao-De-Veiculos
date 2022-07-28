@@ -35,7 +35,7 @@ namespace Locadora.Infra.Orm.Migrations
                     b.Property<byte[]>("Foto")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<Guid?>("GrupoDeVeiculoId")
+                    b.Property<Guid>("GrupoDeVeiculoId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal?>("KmPercorrido")
@@ -186,6 +186,40 @@ namespace Locadora.Infra.Orm.Migrations
                     b.ToTable("TBGrupoVeiculo");
                 });
 
+            modelBuilder.Entity("Locadora.Dominio.ModuloPlanoCobranca.PlanoCobranca", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("ControladoDiaria")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ControladoLimiteKm")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ControladoPorKm")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("DiarioDiaria")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("DiarioPorKm")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("GrupoVeiculoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("LivreDiaria")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GrupoVeiculoId")
+                        .IsUnique();
+
+                    b.ToTable("TbPlanoCobranca");
+                });
+
             modelBuilder.Entity("Locadora.Dominio.ModuloTaxa.Taxa", b =>
                 {
                     b.Property<Guid>("Id")
@@ -212,7 +246,8 @@ namespace Locadora.Infra.Orm.Migrations
                     b.HasOne("Locadora.Dominio.ModuloGrupoDeVeiculo.GrupoVeiculo", "GrupoDeVeiculo")
                         .WithMany()
                         .HasForeignKey("GrupoDeVeiculoId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.Navigation("GrupoDeVeiculo");
                 });
@@ -226,6 +261,17 @@ namespace Locadora.Infra.Orm.Migrations
                         .IsRequired();
 
                     b.Navigation("Cliente");
+                });
+
+            modelBuilder.Entity("Locadora.Dominio.ModuloPlanoCobranca.PlanoCobranca", b =>
+                {
+                    b.HasOne("Locadora.Dominio.ModuloGrupoDeVeiculo.GrupoVeiculo", "GrupoVeiculo")
+                        .WithOne()
+                        .HasForeignKey("Locadora.Dominio.ModuloPlanoCobranca.PlanoCobranca", "GrupoVeiculoId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("GrupoVeiculo");
                 });
 #pragma warning restore 612, 618
         }

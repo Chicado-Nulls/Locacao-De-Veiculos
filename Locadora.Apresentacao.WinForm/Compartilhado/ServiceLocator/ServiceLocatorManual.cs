@@ -2,31 +2,34 @@
 using Locadora.Aplicacao.ModuloCondutor;
 using Locadora.Aplicacao.ModuloFuncionario;
 using Locadora.Aplicacao.ModuloGrupoDeVeiculos;
+using Locadora.Aplicacao.ModuloPlanoCobranca;
 using Locadora.Aplicacao.ModuloTaxa;
 using Locadora.Aplicacao.ModuloVeiculo;
 using Locadora.Apresentacao.WinForm.ModuloCliente;
 using Locadora.Apresentacao.WinForm.ModuloCondutor;
 using Locadora.Apresentacao.WinForm.ModuloFuncionario;
 using Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos;
+using Locadora.Apresentacao.WinForm.ModuloPlanoCobranca;
 using Locadora.Apresentacao.WinForm.ModuloTaxa;
 using Locadora.Apresentacao.WinForm.ModuloVeiculo;
 using Locadora.Dominio.ModuloCliente;
 using Locadora.Dominio.ModuloCondutor;
 using Locadora.Dominio.ModuloFuncionario;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
+using Locadora.Dominio.ModuloPlanoCobranca;
 using Locadora.Dominio.ModuloTaxa;
-using Locadora.Infra.Orm.ModuloVeiculo;
-using Locadora.Infra.BancoDados.ModuloVeiculo;
+using Locadora.Dominio.ModuloVeiculo;
 using Locadora.Infra.Orm.Compartilhado;
 using Locadora.Infra.Orm.ModuloCliente;
 using Locadora.Infra.Orm.ModuloCondutor;
 using Locadora.Infra.Orm.ModuloFuncionario;
 using Locadora.Infra.Orm.ModuloGrupoVeiculo;
+using Locadora.Infra.Orm.ModuloPlanoCobranca;
 using Locadora.Infra.Orm.ModuloTaxa;
+using Locadora.Infra.Orm.ModuloVeiculo;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.IO;
-using RepositorioVeiculo = Locadora.Infra.Orm.ModuloVeiculo.RepositorioVeiculo;
 
 namespace Locadora.Apresentacao.WinForm.Compartilhado.ServiceLocator
 {
@@ -63,19 +66,24 @@ namespace Locadora.Apresentacao.WinForm.Compartilhado.ServiceLocator
             ServiceCliente serviceCliente = new ServiceCliente(repositorioCliente, contextoDadosOrm);
             controladores.Add("ControladorCliente", new ControladorCliente(serviceCliente));
 
+
             IRepositorioFuncionario repositorioFuncionario = new RepositorioFuncionario(contextoDadosOrm);
             ServiceFuncionario serviceFuncionario = new ServiceFuncionario(repositorioFuncionario, contextoDadosOrm);
             controladores.Add("ControladorFuncionario", new ControladorFuncionario(serviceFuncionario));
 
             IRepositorioTaxa repositorioTaxa = new RepositorioTaxa(contextoDadosOrm);
-            ServiceTaxa serviceTaxa = new ServiceTaxa(repositorioTaxa,contextoDadosOrm);
+            ServiceTaxa serviceTaxa = new ServiceTaxa(repositorioTaxa, contextoDadosOrm);
             controladores.Add("ControladorTaxa", new ControladorTaxa(serviceTaxa));
 
             IRepositorioGrupoVeiculo repositorioGrupoDeVeiculos = new RepositorioGrupoVeiculo(contextoDadosOrm);
             ServiceGrupoVeiculo serviceGrupoDeVeiculos = new ServiceGrupoVeiculo(repositorioGrupoDeVeiculos, contextoDadosOrm);
             controladores.Add("ControladorGrupoVeiculo", new ControladorGrupoVeiculo(serviceGrupoDeVeiculos));
 
-            RepositorioVeiculo repositorioVeiculo = new RepositorioVeiculo(contextoDadosOrm);
+            IRepositorioPlanoCobranca repositorioPlanoCobranca = new RepositorioPlanoCobranca(contextoDadosOrm);
+            ServicePlanoCobranca servicePlanoCobranca = new ServicePlanoCobranca(repositorioPlanoCobranca, contextoDadosOrm);
+            controladores.Add("ControladorPlanoCobranca", new ControladorPlanoCobranca(servicePlanoCobranca, serviceGrupoDeVeiculos));
+
+            IRepositorioVeiculo repositorioVeiculo = new RepositorioVeiculo(contextoDadosOrm);
             ServiceVeiculo serviceVeiculo = new ServiceVeiculo(repositorioVeiculo, contextoDadosOrm);
             controladores.Add("ControladorVeiculo", new ControladorVeiculo(serviceGrupoDeVeiculos, serviceVeiculo));
 

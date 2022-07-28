@@ -4,11 +4,6 @@ using Locadora.Infra.Orm.ModuloCliente;
 using Locadora.Infra.Orm.ModuloCondutor;
 using Locadora.Test.Infra.Orm.Compartilhado;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Test.Infra.Orm.ModuloCondutor
 {
@@ -143,7 +138,7 @@ namespace Locadora.Test.Infra.Orm.ModuloCondutor
 
         private Condutor NovoCondutor()
         {
-            return  new Condutor
+            return new Condutor
             {
                 Nome = "Joao condutor",
                 Cpf = "12345678930",

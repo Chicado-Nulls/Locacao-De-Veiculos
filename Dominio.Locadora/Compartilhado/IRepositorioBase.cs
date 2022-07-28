@@ -14,7 +14,5 @@ namespace Locadora.Dominio.Compartilhado
         List<T> SelecionarTodos();
 
         T SelecionarPorId(Guid id);
-
-        public bool ExisteRegistroIgual(T registro, string consultaVerificaDuplicidade);
     }
 }

@@ -7,6 +7,7 @@ namespace Locadora.Dominio.ModuloPlanoCobranca
     public class PlanoCobranca : EntidadeBase<PlanoCobranca>
     {
         public GrupoVeiculo GrupoVeiculo { get; set; }
+        public Guid GrupoVeiculoId { get; set; }
         public decimal DiarioDiaria { get; set; }
         public decimal DiarioPorKm { get; set; }
         public decimal LivreDiaria { get; set; }

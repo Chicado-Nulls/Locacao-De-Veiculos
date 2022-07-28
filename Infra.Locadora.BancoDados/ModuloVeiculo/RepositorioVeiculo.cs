@@ -1,6 +1,7 @@
 ﻿using Locadora.Dominio.ModuloCarro;
 using Locadora.Dominio.ModuloVeiculo;
 using Locadora.Infra.BancoDados.Compartilhado;
+using System.Data.SqlClient;
 
 namespace Locadora.Infra.BancoDados.ModuloVeiculo
 {
@@ -103,7 +104,7 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
 
 
 
-        protected override string sqlValidaRegistroDuplicado =>
+        protected string sqlSelecionarPorPlaca =>
             @"   Select 
                 V.ID AS VEICULO_ID,                                                         
                 V.MODELO,                                                        
@@ -121,11 +122,11 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
                   [TbVeiculo] AS V
                   INNER JOIN TBGRUPOVEICULO AS R ON V.GrupoVeiculo_Id=R.Id
                 WHERE 
-                  V.PLACA=@PLACA AND V.ID <> @ID";
+                  V.PLACA=@PLACA";
 
         public Veiculo SelecionarVeiculoPorPlaca(string placa)
         {
-            throw new System.NotImplementedException();
+            return SelecionarPorParametro(sqlSelecionarPorPlaca, new SqlParameter("PLACA", placa));
         }
     }
 }

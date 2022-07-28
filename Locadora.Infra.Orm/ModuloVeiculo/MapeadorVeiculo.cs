@@ -1,11 +1,6 @@
 ﻿using Locadora.Dominio.ModuloCarro;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Infra.Orm.ModuloVeiculo
 {
@@ -22,7 +17,7 @@ namespace Locadora.Infra.Orm.ModuloVeiculo
             builder.Property(x => x.CapacidadeTanque).HasColumnType("decimal(18,2)").IsRequired();
             builder.Property(x => x.KmPercorrido).HasColumnType("decimal(18,2)").IsRequired();
             builder.Property(x => x.CapacidadeTanque).HasColumnType("varbinary(MAX)").IsRequired();
-            builder.HasOne(x => x.GrupoDeVeiculo).WithMany().OnDelete(DeleteBehavior.Cascade); 
+            builder.HasOne(x => x.GrupoDeVeiculo).WithMany().OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

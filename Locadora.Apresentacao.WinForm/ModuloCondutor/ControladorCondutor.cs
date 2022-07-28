@@ -54,7 +54,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCondutor
                  MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-                
+
 
             tela.Condutor = resultadoSelecao.Value;
 
@@ -112,7 +112,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCondutor
 
             var resultadoSelecionarClientes = _serviceCliente.SelecionarTodos();
 
-            if (resultadoSelecionarClientes.IsFailed)
+            if (resultadoSelecionarClientes.Value.Count == 0)
             {
                 MessageBox.Show("Nenhum cliente cadastrado. O cadastro de condutor necessita de um cliente cadastrado!",
                 "Inserir Condutor(s)", MessageBoxButtons.OK, MessageBoxIcon.Warning);

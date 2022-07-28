@@ -1,6 +1,4 @@
 ﻿using Locadora.Dominio.Compartilhado;
-using Locadora.Dominio.ModuloCarro;
-using System.Collections.Generic;
 
 namespace Locadora.Dominio.ModuloGrupoDeVeiculo
 {
@@ -25,7 +23,7 @@ namespace Locadora.Dominio.ModuloGrupoDeVeiculo
         }
 
         public string Nome { get; set; }
-       // public List<Veiculo> ListaDeVeiculo { get; set; }
+        // public List<Veiculo> ListaDeVeiculo { get; set; }
 
         public override bool Equals(object obj)
         {

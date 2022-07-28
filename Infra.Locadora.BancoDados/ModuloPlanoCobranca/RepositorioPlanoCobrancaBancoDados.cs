@@ -1,5 +1,7 @@
-﻿using Locadora.Dominio.ModuloPlanoCobranca;
+﻿using Locadora.Dominio.ModuloGrupoDeVeiculo;
+using Locadora.Dominio.ModuloPlanoCobranca;
 using Locadora.Infra.BancoDados.Compartilhado;
+using System.Data.SqlClient;
 
 namespace Locadora.Infra.BancoDados.ModuloPlanoCobranca
 {
@@ -94,7 +96,7 @@ namespace Locadora.Infra.BancoDados.ModuloPlanoCobranca
 
 
 
-        protected override string sqlValidaRegistroDuplicado =>
+        protected string sqlSelecionarPlanoCobrancaPorGrupoVeiculo =>
             @"SELECT 
                     PLANO.[ID] AS PLANOCOBRANCA_ID,
                     PLANO.[GRUPO_VEICULO_ID] AS PLANO_GRUPO_VEICULO_ID,
@@ -113,7 +115,12 @@ namespace Locadora.Infra.BancoDados.ModuloPlanoCobranca
                 
                 ON PLANO.GRUPO_VEICULO_ID = GRUPO.ID
                 
-                WHERE PLANO.ID <> @ID and PLANO.[GRUPO_VEICULO_ID] = @GRUPO_VEICULO_ID 
+                WHERE PLANO.[GRUPO_VEICULO_ID] = @GRUPO_VEICULO_ID 
                 ";
+
+        public PlanoCobranca SelecionarPlanoCobrancaPorGrupoVeiculo(GrupoVeiculo grupoVeiculo)
+        {
+            return SelecionarPorParametro(sqlSelecionarPlanoCobrancaPorGrupoVeiculo, new SqlParameter("GRUPO_VEICULO_ID", grupoVeiculo.Id));
+        }
     }
 }

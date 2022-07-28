@@ -34,8 +34,6 @@ namespace Locadora.Infra.BancoDados.Compartilhado
 
         protected abstract string sqlSelecionarTodos { get; }
 
-        protected abstract string sqlValidaRegistroDuplicado { get; }
-
         public virtual void Inserir(T registro)
         {
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
@@ -135,30 +133,6 @@ namespace Locadora.Infra.BancoDados.Compartilhado
             conexaoComBanco.Close();
 
             return registros;
-        }
-
-        public bool ExisteRegistroIgual(T registro, string tipo)
-        {
-            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
-
-            SqlCommand comandoSelecao = new SqlCommand(sqlValidaRegistroDuplicado, conexaoComBanco);
-
-            var mapeador = new TMapeador();
-
-            mapeador.ConfigurarParametros(registro, comandoSelecao);
-
-            conexaoComBanco.Open();
-
-            SqlDataReader leitorRegistro = comandoSelecao.ExecuteReader();
-
-            T registroBusca = null;
-
-            if (leitorRegistro.Read())
-                registroBusca = mapeador.ConverterRegistro(leitorRegistro);
-
-            conexaoComBanco.Close();
-
-            return registroBusca == null ? false : true;
         }
 
         public virtual T SelecionarPorParametro(string sqlSelecionarPorParametro, SqlParameter parametro)

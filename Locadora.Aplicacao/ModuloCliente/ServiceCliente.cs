@@ -2,7 +2,6 @@
 using Locadora.Aplicacao.Compartilhado;
 using Locadora.Dominio.Compartilhado;
 using Locadora.Dominio.ModuloCliente;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
