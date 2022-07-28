@@ -21,8 +21,6 @@ using Locadora.Dominio.ModuloTaxa;
 using Locadora.Dominio.ModuloVeiculo;
 using Locadora.Infra.BancoDados.ModuloCliente;
 using Locadora.Infra.BancoDados.ModuloCondutor;
-using Locadora.Infra.BancoDados.ModuloGrupoVeiculo;
-using Locadora.Infra.BancoDados.ModuloTaxa;
 using Locadora.Infra.BancoDados.ModuloVeiculo;
 using Locadora.Infra.Orm.Compartilhado;
 using Locadora.Infra.Orm.ModuloFuncionario;
