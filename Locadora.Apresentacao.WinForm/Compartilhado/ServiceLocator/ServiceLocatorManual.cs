@@ -18,11 +18,14 @@ using Locadora.Dominio.ModuloFuncionario;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using Locadora.Dominio.ModuloPlanoCobranca;
 using Locadora.Dominio.ModuloTaxa;
+using Locadora.Infra.Orm.ModuloVeiculo;
 using Locadora.Dominio.ModuloVeiculo;
 using Locadora.Infra.BancoDados.ModuloCliente;
 using Locadora.Infra.BancoDados.ModuloCondutor;
 using Locadora.Infra.BancoDados.ModuloVeiculo;
 using Locadora.Infra.Orm.Compartilhado;
+using Locadora.Infra.Orm.ModuloCliente;
+using Locadora.Infra.Orm.ModuloCondutor;
 using Locadora.Infra.Orm.ModuloFuncionario;
 using Locadora.Infra.Orm.ModuloGrupoVeiculo;
 using Locadora.Infra.Orm.ModuloTaxa;
@@ -30,6 +33,7 @@ using Locadora.Infra.Orm.ModuloPlanoCobranca;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.IO;
+using RepositorioVeiculo = Locadora.Infra.Orm.ModuloVeiculo.RepositorioVeiculo;
 
 namespace Locadora.Apresentacao.WinForm.Compartilhado.ServiceLocator
 {
@@ -62,7 +66,7 @@ namespace Locadora.Apresentacao.WinForm.Compartilhado.ServiceLocator
 
             var contextoDadosOrm = new LocadoraVeiculoDbContext(connectionString);
 
-            IRepositorioCliente repositorioCliente = new RepositorioClienteEmBancoDeDados();
+            IRepositorioCliente repositorioCliente = new RepositorioCliente(contextoDadosOrm);
             ServiceCliente serviceCliente = new ServiceCliente(repositorioCliente, contextoDadosOrm);
             controladores.Add("ControladorCliente", new ControladorCliente(serviceCliente));
 
@@ -85,11 +89,11 @@ namespace Locadora.Apresentacao.WinForm.Compartilhado.ServiceLocator
 
             IRepositorioVeiculo repositorioVeiculo = new RepositorioVeiculo();
             ServiceVeiculo serviceVeiculo = new ServiceVeiculo(repositorioVeiculo, contextoDadosOrm);
-            controladores.Add("Veiculos", new ControladorVeiculo(serviceGrupoDeVeiculos, serviceVeiculo));
+            controladores.Add("ControladorVeiculo", new ControladorVeiculo(serviceGrupoDeVeiculos, serviceVeiculo));
 
-            IRepositorioCondutor repositorioCondutor = new RepositorioCondutor();
+            IRepositorioCondutor repositorioCondutor = new RepositorioCondutor(contextoDadosOrm);
             ServiceCondutor servicecondutor = new ServiceCondutor(repositorioCondutor, contextoDadosOrm);
-            controladores.Add("Condutores", new ControladorCondutor(servicecondutor, serviceCliente));
+            controladores.Add("ControladorCondutor", new ControladorCondutor(servicecondutor, serviceCliente));
         }
     }
 }

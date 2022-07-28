@@ -2,6 +2,7 @@
 using Locadora.Aplicacao.Compartilhado;
 using Locadora.Dominio.Compartilhado;
 using Locadora.Dominio.ModuloTaxa;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,17 +18,27 @@ namespace Locadora.Aplicacao.ModuloTaxa
         {
             List<Error> erros = new List<Error>();
 
-            var resultado = repositorio.ExisteRegistroIgual(registro, "aaa");
+            var existeRegistroPorNome = SelecionarPorDescricao(registro);
 
-            if (resultado)
-            {
-                erros.Add(new Error("Descrição Dever ser Diferente"));
-            }
+            if (existeRegistroPorNome)
+                erros.Add(new Error("Campo 'Descricao' duplicado"));
+
 
             if (erros.Any())
                 return Result.Fail(erros);
 
             return Result.Ok();
+        }
+
+        private bool SelecionarPorDescricao(Taxa registro)
+        {
+            IRepositorioTaxa repositorioFuncionario = (IRepositorioTaxa)repositorio;
+
+            var funcionarioEncontrado = repositorioFuncionario.SelecionarTaxaPorDescricao(registro.Descricao);
+
+            return funcionarioEncontrado != null &&
+                   funcionarioEncontrado.Descricao == registro.Descricao &&
+                   funcionarioEncontrado.Id != registro.Id;
         }
     }
 }

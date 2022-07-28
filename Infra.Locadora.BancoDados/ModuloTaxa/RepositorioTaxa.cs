@@ -1,5 +1,6 @@
 ﻿using Locadora.Dominio.ModuloTaxa;
 using Locadora.Infra.BancoDados.Compartilhado;
+using System.Data.SqlClient;
 
 namespace Locadora.Infra.BancoDados.ModuloTaxa
 {
@@ -44,5 +45,15 @@ namespace Locadora.Infra.BancoDados.ModuloTaxa
             @"SELECT * FROM [TbTaxa]
                            WHERE
                            [DESCRICAO] = @DESCRICAO AND [ID] <> @ID";
+
+        protected string sqlSelecionarPorDescricao =>
+            @"SELECT * FROM [TbTaxa]
+                           WHERE
+                           [DESCRICAO] = @DESCRICAO";
+
+        public Taxa SelecionarTaxaPorDescricao(string descricao)
+        {
+            return SelecionarPorParametro(sqlSelecionarPorDescricao, new SqlParameter("DESCRICAO", descricao));
+        }
     }
 }

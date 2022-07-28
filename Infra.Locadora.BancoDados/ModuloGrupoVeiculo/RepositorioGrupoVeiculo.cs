@@ -1,5 +1,6 @@
 ﻿using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using Locadora.Infra.BancoDados.Compartilhado;
+using System.Data.SqlClient;
 
 namespace Locadora.Infra.BancoDados.ModuloGrupoVeiculo
 {
@@ -45,5 +46,14 @@ namespace Locadora.Infra.BancoDados.ModuloGrupoVeiculo
                    WHERE
                        [NOME]=@NOME AND [ID] <> @ID";
 
+        protected string sqlSelecionarPorNome =>
+            @"SELECT * FROM [TBGRUPOVEICULO]
+                   WHERE
+                       [NOME]=@NOME";
+
+        public GrupoVeiculo SelecionarGrupoVeiculoPorNome(string nome)
+        {
+            return SelecionarPorParametro(sqlSelecionarPorNome, new SqlParameter("NOME", nome));
+        }
     }
 }
