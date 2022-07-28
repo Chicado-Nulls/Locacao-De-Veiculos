@@ -121,10 +121,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
 
                     DialogResult = DialogResult.None;
                 }
-
-
             }
-
         }
 
         private void ConfigurarObjeto()

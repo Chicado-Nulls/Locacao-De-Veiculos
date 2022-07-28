@@ -67,10 +67,20 @@ namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
                 return;
             }
 
-            var planoSelecionado = resultado.Value;
+            var resultadoGrupoVeiculos = serviceGrupoVeiculo.SelecionarTodos();
+
+            if (!resultadoGrupoVeiculos.IsSuccess)
+            {
+                MessageBox.Show("Nenhum Grupo de Veículos cadastrado",
+               "Inserir Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             TelaCadastroPlanoCobranca tela = new TelaCadastroPlanoCobranca("Editar Plano", "Editar");
 
-            tela.PlanoCobranca = planoSelecionado.Clone();
+            tela.GrupoVeiculos = resultadoGrupoVeiculos.Value;
+
+            tela.PlanoCobranca = resultado.Value;
 
             tela.GravarRegistro = servicePlanoCobranca.Editar;
 

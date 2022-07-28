@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Locadora.Infra.Orm.Migrations
 {
     [DbContext(typeof(LocadoraVeiculoDbContext))]
-    [Migration("20220728165556_Correcao_plano_cobranca")]
-    partial class Correcao_plano_cobranca
+    [Migration("20220728174253_millestone_dois")]
+    partial class millestone_dois
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,51 @@ namespace Locadora.Infra.Orm.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Locadora.Dominio.ModuloCarro.Veiculo", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte[]>("CapacidadeTanque")
+                        .IsRequired()
+                        .HasColumnType("varbinary(MAX)");
+
+                    b.Property<string>("Cor")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<byte[]>("Foto")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<Guid>("GrupoDeVeiculoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal?>("KmPercorrido")
+                        .IsRequired()
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Marca")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Modelo")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Placa")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<int>("TipoDeCombustivel")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GrupoDeVeiculoId");
+
+                    b.ToTable("TbVeiculo");
+                });
 
             modelBuilder.Entity("Locadora.Dominio.ModuloCliente.Cliente", b =>
                 {
@@ -57,6 +102,45 @@ namespace Locadora.Infra.Orm.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TbCliente");
+                });
+
+            modelBuilder.Entity("Locadora.Dominio.ModuloCondutor.Condutor", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ClienteId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Cnh")
+                        .IsRequired()
+                        .HasColumnType("varchar(11)");
+
+                    b.Property<string>("Cpf")
+                        .IsRequired()
+                        .HasColumnType("varchar(14)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("varchar(60)");
+
+                    b.Property<string>("Endereco")
+                        .IsRequired()
+                        .HasColumnType("varchar(60)");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Telefone")
+                        .IsRequired()
+                        .HasColumnType("varchar(18)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClienteId");
+
+                    b.ToTable("TBCondutor");
                 });
 
             modelBuilder.Entity("Locadora.Dominio.ModuloFuncionario.Funcionario", b =>
@@ -124,7 +208,7 @@ namespace Locadora.Infra.Orm.Migrations
                     b.Property<decimal>("DiarioPorKm")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<Guid>("GrupoveiculoId")
+                    b.Property<Guid>("GrupoVeiculoId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("LivreDiaria")
@@ -132,7 +216,7 @@ namespace Locadora.Infra.Orm.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GrupoveiculoId")
+                    b.HasIndex("GrupoVeiculoId")
                         .IsUnique();
 
                     b.ToTable("TbPlanoCobranca");
@@ -159,11 +243,33 @@ namespace Locadora.Infra.Orm.Migrations
                     b.ToTable("TBTaxa");
                 });
 
+            modelBuilder.Entity("Locadora.Dominio.ModuloCarro.Veiculo", b =>
+                {
+                    b.HasOne("Locadora.Dominio.ModuloGrupoDeVeiculo.GrupoVeiculo", "GrupoDeVeiculo")
+                        .WithMany()
+                        .HasForeignKey("GrupoDeVeiculoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("GrupoDeVeiculo");
+                });
+
+            modelBuilder.Entity("Locadora.Dominio.ModuloCondutor.Condutor", b =>
+                {
+                    b.HasOne("Locadora.Dominio.ModuloCliente.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+                });
+
             modelBuilder.Entity("Locadora.Dominio.ModuloPlanoCobranca.PlanoCobranca", b =>
                 {
                     b.HasOne("Locadora.Dominio.ModuloGrupoDeVeiculo.GrupoVeiculo", "GrupoVeiculo")
                         .WithOne()
-                        .HasForeignKey("Locadora.Dominio.ModuloPlanoCobranca.PlanoCobranca", "GrupoveiculoId")
+                        .HasForeignKey("Locadora.Dominio.ModuloPlanoCobranca.PlanoCobranca", "GrupoVeiculoId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 

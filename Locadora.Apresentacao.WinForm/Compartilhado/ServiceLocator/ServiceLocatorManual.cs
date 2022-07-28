@@ -20,11 +20,6 @@ using Locadora.Dominio.ModuloPlanoCobranca;
 using Locadora.Dominio.ModuloTaxa;
 using Locadora.Infra.Orm.ModuloVeiculo;
 using Locadora.Dominio.ModuloVeiculo;
-using Locadora.Infra.BancoDados.ModuloCliente;
-using Locadora.Infra.BancoDados.ModuloCondutor;
-using Locadora.Infra.BancoDados.ModuloGrupoVeiculo;
-using Locadora.Infra.BancoDados.ModuloTaxa;
-using Locadora.Infra.BancoDados.ModuloVeiculo;
 using Locadora.Infra.Orm.Compartilhado;
 using Locadora.Infra.Orm.ModuloCliente;
 using Locadora.Infra.Orm.ModuloCondutor;
@@ -88,7 +83,7 @@ namespace Locadora.Apresentacao.WinForm.Compartilhado.ServiceLocator
             ServicePlanoCobranca servicePlanoCobranca = new ServicePlanoCobranca(repositorioPlanoCobranca, contextoDadosOrm);
             controladores.Add("ControladorPlanoCobranca", new ControladorPlanoCobranca(servicePlanoCobranca, serviceGrupoDeVeiculos));
 
-            IRepositorioVeiculo repositorioVeiculo = new RepositorioVeiculo();
+            IRepositorioVeiculo repositorioVeiculo = new RepositorioVeiculo(contextoDadosOrm);
             ServiceVeiculo serviceVeiculo = new ServiceVeiculo(repositorioVeiculo, contextoDadosOrm);
             controladores.Add("ControladorVeiculo", new ControladorVeiculo(serviceGrupoDeVeiculos, serviceVeiculo));
 
