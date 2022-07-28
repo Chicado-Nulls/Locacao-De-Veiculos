@@ -39,11 +39,9 @@ namespace Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos
                 return;
             }
 
-            var grupoSelecionado = resultadoGrupo.Value;
-
             TelaCadastroGrupoDeVeiculos tela = new TelaCadastroGrupoDeVeiculos("Editar Grupo", "Editar");
 
-            tela.GrupoDeVeiculo = grupoSelecionado.Clone();
+            tela.GrupoDeVeiculo = resultadoGrupo.Value;
 
             tela.GravarRegistro = serviceGrupoDeVeiculos.Editar;
 

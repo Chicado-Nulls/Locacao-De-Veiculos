@@ -42,8 +42,6 @@ namespace Locadora.Apresentacao.WinForm.ModuloCondutor
                 return;
             }
 
-            var condutorSelecionado = resultadoSelecao.Value;
-
             TelaCadastroCondutorForm tela = new TelaCadastroCondutorForm("Editar Condutor", "Editar");
 
             var resultadoSelecionarClientes = _serviceCliente.SelecionarTodos();
@@ -51,11 +49,14 @@ namespace Locadora.Apresentacao.WinForm.ModuloCondutor
             if (resultadoSelecionarClientes.IsSuccess)
                 tela.Clientes = resultadoSelecionarClientes.Value;
             else
+            {
                 MessageBox.Show(resultadoSelecionarClientes.Errors[0].Message, "Seleção de clientes",
                  MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return;
+                return;
+            }
+                
 
-            tela.Condutor = condutorSelecionado.Clone();
+            tela.Condutor = resultadoSelecao.Value;
 
             tela.GravarRegistro = _serviceCondutor.Editar;
 

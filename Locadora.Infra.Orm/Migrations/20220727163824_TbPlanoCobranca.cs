@@ -24,8 +24,7 @@ namespace Locadora.Infra.Orm.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    GrupoVeiculoId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    GrupveiculoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    GrupoVeiculoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DiarioDiaria = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DiarioPorKm = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     LivreDiaria = table.Column<decimal>(type: "decimal(18,2)", nullable: false),

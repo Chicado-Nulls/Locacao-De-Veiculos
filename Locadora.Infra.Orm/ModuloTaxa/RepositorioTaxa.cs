@@ -45,6 +45,11 @@ namespace Locadora.Infra.Orm.ModuloTaxa
             return taxas.SingleOrDefault(x => x.Id == id);
         }
 
+        public Taxa SelecionarTaxaPorDescricao(string descricao)
+        {
+            return taxas.SingleOrDefault(x => x.Descricao == descricao);
+        }
+
         public List<Taxa> SelecionarTodos()
         {
             return taxas.ToList();

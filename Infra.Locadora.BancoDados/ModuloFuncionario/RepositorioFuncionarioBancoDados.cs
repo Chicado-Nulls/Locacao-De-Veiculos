@@ -121,7 +121,7 @@ namespace Locadora.Infra.BancoDados.ModuloFuncionario
 
         public Funcionario SelecionarFuncionarioPorUsuario(string usuario)
         {
-            return SelecionarPorParametro(sqlSelecionarPorUsuario, new SqlParameter("NOME", usuario));
+            return SelecionarPorParametro(sqlSelecionarPorUsuario, new SqlParameter("LOGIN", usuario));
         }
     }
 }

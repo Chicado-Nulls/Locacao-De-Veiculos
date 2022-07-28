@@ -40,6 +40,16 @@ namespace Locadora.Infra.Orm.ModuloCliente
             cliente.Add(novoRegistro);
         }
 
+        public Cliente SelecionarClientePorCnpj(string cnpj)
+        {
+            return cliente.SingleOrDefault(x => x.Cnpj == cnpj);
+        }
+
+        public Cliente SelecionarClientePorCpf(string cpf)
+        {
+            return cliente.SingleOrDefault(x => x.Cpf == cpf);
+        }
+
         public Cliente SelecionarPorId(Guid id)
         {
             return cliente.SingleOrDefault(x => x.Id == id);

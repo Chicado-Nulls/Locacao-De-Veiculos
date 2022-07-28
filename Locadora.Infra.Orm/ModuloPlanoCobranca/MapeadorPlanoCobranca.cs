@@ -1,4 +1,5 @@
-﻿using Locadora.Dominio.ModuloPlanoCobranca;
+﻿using Locadora.Dominio.ModuloCarro;
+using Locadora.Dominio.ModuloPlanoCobranca;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -22,6 +23,9 @@ namespace Locadora.Infra.Orm.ModuloPlanoCobranca
             builder.Property(x => x.ControladoDiaria).HasColumnType("decimal(18,2)").IsRequired();
             builder.Property(x => x.ControladoPorKm).HasColumnType("decimal(18,2)").IsRequired();
             builder.Property(x => x.ControladoLimiteKm).HasColumnType("decimal(18,2)").IsRequired();
+            
         }
+
+       
     }
 }

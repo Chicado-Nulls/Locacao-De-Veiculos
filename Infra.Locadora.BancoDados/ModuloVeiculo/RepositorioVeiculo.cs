@@ -123,6 +123,9 @@ namespace Locadora.Infra.BancoDados.ModuloVeiculo
                 WHERE 
                   V.PLACA=@PLACA AND V.ID <> @ID";
 
-
+        public Veiculo SelecionarVeiculoPorPlaca(string placa)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
