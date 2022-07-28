@@ -3,11 +3,6 @@ using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using Locadora.Infra.Orm.ModuloGrupoVeiculo;
 using Locadora.Test.Infra.Orm.Compartilhado;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Test.Infra.Orm.ModuloGrupoVeiculo
 {
@@ -39,12 +34,12 @@ namespace Locadora.Test.Infra.Orm.ModuloGrupoVeiculo
         [TestMethod]
         public void DeveEditarGrupoVeiculo()
         {
-            var novoGrupo= GerandoGrupoVeiculo();
+            var novoGrupo = GerandoGrupoVeiculo();
 
             repositorio.Inserir(novoGrupo);
 
             contextoDadosOrm.GravarDados();
-           
+
             novoGrupo.Nome = "carro";
 
             repositorio.Editar(novoGrupo);
@@ -91,7 +86,7 @@ namespace Locadora.Test.Infra.Orm.ModuloGrupoVeiculo
 
         }
 
-        private GrupoVeiculo  GerandoGrupoVeiculo()
+        private GrupoVeiculo GerandoGrupoVeiculo()
         {
             return new GrupoVeiculo("Suv");
         }

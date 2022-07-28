@@ -246,7 +246,7 @@ namespace Locadora.Infra.Orm.Migrations
                     b.HasOne("Locadora.Dominio.ModuloGrupoDeVeiculo.GrupoVeiculo", "GrupoDeVeiculo")
                         .WithMany()
                         .HasForeignKey("GrupoDeVeiculoId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("GrupoDeVeiculo");

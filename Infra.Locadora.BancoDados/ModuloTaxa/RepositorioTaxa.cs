@@ -41,11 +41,6 @@ namespace Locadora.Infra.BancoDados.ModuloTaxa
 
         protected override string sqlSelecionarTodos => @"SELECT * FROM [TbTaxa]";
 
-        protected override string sqlValidaRegistroDuplicado =>
-            @"SELECT * FROM [TbTaxa]
-                           WHERE
-                           [DESCRICAO] = @DESCRICAO AND [ID] <> @ID";
-
         protected string sqlSelecionarPorDescricao =>
             @"SELECT * FROM [TbTaxa]
                            WHERE

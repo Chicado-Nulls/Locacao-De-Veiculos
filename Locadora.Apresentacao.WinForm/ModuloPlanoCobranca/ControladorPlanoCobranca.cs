@@ -26,7 +26,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
 
             var resultadoGrupoVeiculos = serviceGrupoVeiculo.SelecionarTodos();
 
-            if (!resultadoGrupoVeiculos.IsSuccess)
+            if (resultadoGrupoVeiculos.Value.Count == 0)
             {
                 MessageBox.Show("Nenhum Grupo de Veículos cadastrado",
                "Inserir Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -69,7 +69,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
 
             var resultadoGrupoVeiculos = serviceGrupoVeiculo.SelecionarTodos();
 
-            if (!resultadoGrupoVeiculos.IsSuccess)
+            if (resultadoGrupoVeiculos.Value.Count == 0)
             {
                 MessageBox.Show("Nenhum Grupo de Veículos cadastrado",
                "Inserir Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Information);

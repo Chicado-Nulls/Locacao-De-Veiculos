@@ -18,15 +18,15 @@ using Locadora.Dominio.ModuloFuncionario;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using Locadora.Dominio.ModuloPlanoCobranca;
 using Locadora.Dominio.ModuloTaxa;
-using Locadora.Infra.Orm.ModuloVeiculo;
 using Locadora.Dominio.ModuloVeiculo;
 using Locadora.Infra.Orm.Compartilhado;
 using Locadora.Infra.Orm.ModuloCliente;
 using Locadora.Infra.Orm.ModuloCondutor;
 using Locadora.Infra.Orm.ModuloFuncionario;
 using Locadora.Infra.Orm.ModuloGrupoVeiculo;
-using Locadora.Infra.Orm.ModuloTaxa;
 using Locadora.Infra.Orm.ModuloPlanoCobranca;
+using Locadora.Infra.Orm.ModuloTaxa;
+using Locadora.Infra.Orm.ModuloVeiculo;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.IO;
@@ -72,7 +72,7 @@ namespace Locadora.Apresentacao.WinForm.Compartilhado.ServiceLocator
             controladores.Add("ControladorFuncionario", new ControladorFuncionario(serviceFuncionario));
 
             IRepositorioTaxa repositorioTaxa = new RepositorioTaxa(contextoDadosOrm);
-            ServiceTaxa serviceTaxa = new ServiceTaxa(repositorioTaxa,contextoDadosOrm);
+            ServiceTaxa serviceTaxa = new ServiceTaxa(repositorioTaxa, contextoDadosOrm);
             controladores.Add("ControladorTaxa", new ControladorTaxa(serviceTaxa));
 
             IRepositorioGrupoVeiculo repositorioGrupoDeVeiculos = new RepositorioGrupoVeiculo(contextoDadosOrm);

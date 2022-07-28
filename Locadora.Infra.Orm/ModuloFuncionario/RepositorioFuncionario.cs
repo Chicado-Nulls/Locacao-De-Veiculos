@@ -28,11 +28,6 @@ namespace Locadora.Infra.Orm.ModuloFuncionario
             funcionarios.Remove(registro);
         }
 
-        public bool ExisteRegistroIgual(Funcionario registro, string consultaVerificaDuplicidade)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Inserir(Funcionario novoRegistro)
         {
             funcionarios.Add(novoRegistro);

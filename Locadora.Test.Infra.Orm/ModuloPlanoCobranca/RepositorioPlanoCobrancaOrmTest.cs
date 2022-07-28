@@ -5,11 +5,6 @@ using Locadora.Infra.Orm.ModuloGrupoVeiculo;
 using Locadora.Infra.Orm.ModuloPlanoCobranca;
 using Locadora.Test.Infra.Orm.Compartilhado;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Test.Infra.Orm.ModuloPlanoCobranca
 {
@@ -18,7 +13,7 @@ namespace Locadora.Test.Infra.Orm.ModuloPlanoCobranca
     {
         private RepositorioPlanoCobranca repositorioPlanoCobranca;
         private RepositorioGrupoVeiculo repositorioGrupoVeiculo;
-        
+
         public RepositorioPlanoCobrancaOrmTest()
         {
             repositorioGrupoVeiculo = new RepositorioGrupoVeiculo(contextoDadosOrm);
@@ -39,14 +34,14 @@ namespace Locadora.Test.Infra.Orm.ModuloPlanoCobranca
         private PlanoCobranca GerarPlanoCobranca()
         {
             PlanoCobranca novoPlanoCobranca = new PlanoCobranca();
-            
+
             novoPlanoCobranca.DiarioDiaria = 2;
             novoPlanoCobranca.DiarioPorKm = 3;
             novoPlanoCobranca.LivreDiaria = 4;
             novoPlanoCobranca.ControladoDiaria = 5;
             novoPlanoCobranca.ControladoPorKm = 6;
             novoPlanoCobranca.ControladoLimiteKm = 7;
-            
+
             return novoPlanoCobranca;
         }
 

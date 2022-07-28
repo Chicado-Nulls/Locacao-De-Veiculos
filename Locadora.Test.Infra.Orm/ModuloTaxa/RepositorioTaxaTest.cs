@@ -3,11 +3,6 @@ using Locadora.Dominio.ModuloTaxa;
 using Locadora.Infra.Orm.ModuloTaxa;
 using Locadora.Test.Infra.Orm.Compartilhado;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Test.Infra.Orm.ModuloTaxa
 {
@@ -101,7 +96,7 @@ namespace Locadora.Test.Infra.Orm.ModuloTaxa
             listTaxa[0].Descricao.Should().Be(novaTaxaUm.Descricao);
             listTaxa[1].Descricao.Should().Be(novaTaxaDois.Descricao);
             listTaxa[2].Descricao.Should().Be(novaTaxaTres.Descricao);
-            
+
         }
 
         private Taxa gerarTaxa()

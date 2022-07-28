@@ -4,8 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Infra.Orm.ModuloGrupoVeiculo
 {
@@ -23,17 +21,12 @@ namespace Locadora.Infra.Orm.ModuloGrupoVeiculo
 
         public void Editar(GrupoVeiculo registro)
         {
-           grupoVeiculos.Update(registro);  
+            grupoVeiculos.Update(registro);
         }
 
         public void Excluir(GrupoVeiculo registro)
         {
             grupoVeiculos.Remove(registro);
-        }
-
-        public bool ExisteRegistroIgual(GrupoVeiculo registro, string consultaVerificaDuplicidade)
-        {
-            throw new NotImplementedException();
         }
 
         public void Inserir(GrupoVeiculo novoRegistro)

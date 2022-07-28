@@ -1,6 +1,4 @@
 ﻿using Locadora.Dominio.Compartilhado;
-using Locadora.Dominio.ModuloCarro;
-using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Serilog;
@@ -42,7 +40,7 @@ namespace Locadora.Infra.Orm.Compartilhado
 
             modelBuilder.ApplyConfigurationsFromAssembly(dllComConfiguracoesOrm);
 
-            
+
         }
     }
 }

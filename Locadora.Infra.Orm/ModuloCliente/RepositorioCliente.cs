@@ -4,8 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Infra.Orm.ModuloCliente
 {
@@ -28,11 +26,6 @@ namespace Locadora.Infra.Orm.ModuloCliente
         public void Excluir(Cliente registro)
         {
             cliente.Remove(registro);
-        }
-
-        public bool ExisteRegistroIgual(Cliente registro, string consultaVerificaDuplicidade)
-        {
-            throw new NotImplementedException();
         }
 
         public void Inserir(Cliente novoRegistro)

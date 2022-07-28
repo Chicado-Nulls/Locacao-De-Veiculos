@@ -6,11 +6,6 @@ using Locadora.Infra.Orm.ModuloGrupoVeiculo;
 using Locadora.Infra.Orm.ModuloVeiculo;
 using Locadora.Test.Infra.Orm.Compartilhado;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Test.Infra.Orm.ModuloVeiculo
 {
@@ -47,7 +42,7 @@ namespace Locadora.Test.Infra.Orm.ModuloVeiculo
 
             contextoDadosOrm.GravarDados();
 
-            var veiculoInserido =  repositorio.SelecionarPorId(veiculo.Id);
+            var veiculoInserido = repositorio.SelecionarPorId(veiculo.Id);
 
             veiculoInserido.Should().NotBeNull();
             veiculoInserido.Should().Be(veiculo);
@@ -69,7 +64,7 @@ namespace Locadora.Test.Infra.Orm.ModuloVeiculo
 
             contextoDadosOrm.GravarDados();
 
-            veiculo.Marca = "aaaaaaaa";            
+            veiculo.Marca = "aaaaaaaa";
 
             repositorio.Editar(veiculo);
 
@@ -136,13 +131,13 @@ namespace Locadora.Test.Infra.Orm.ModuloVeiculo
             listaVeiculos[2].Should().Be(veiculoTres);
         }
 
-        private Veiculo  GerandoVeiculo()
+        private Veiculo GerandoVeiculo()
         {
             var veiculo = new Veiculo("BMW Z4", "40440 - DV", "BMW", "Azul", 30m, 100m, EnumTipoDeCombustivel.Gasolina);
 
             veiculo.Foto = new byte[] { 1, 2, 3 };
 
-            return veiculo; 
+            return veiculo;
         }
         private GrupoVeiculo GerandoGrupoVeiculo()
         {

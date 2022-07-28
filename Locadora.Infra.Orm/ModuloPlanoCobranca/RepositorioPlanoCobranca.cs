@@ -5,8 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Infra.Orm.ModuloPlanoCobranca
 {
@@ -30,11 +28,6 @@ namespace Locadora.Infra.Orm.ModuloPlanoCobranca
         public void Excluir(PlanoCobranca registro)
         {
             planoCobranca.Remove(registro);
-        }
-
-        public bool ExisteRegistroIgual(PlanoCobranca registro, string consultaVerificaDuplicidade)
-        {
-            throw new NotImplementedException();
         }
 
         public void Inserir(PlanoCobranca novoRegistro)

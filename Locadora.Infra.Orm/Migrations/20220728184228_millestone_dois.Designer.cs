@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Locadora.Infra.Orm.Migrations
 {
     [DbContext(typeof(LocadoraVeiculoDbContext))]
-    [Migration("20220728174253_millestone_dois")]
+    [Migration("20220728184228_millestone_dois")]
     partial class millestone_dois
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -248,7 +248,7 @@ namespace Locadora.Infra.Orm.Migrations
                     b.HasOne("Locadora.Dominio.ModuloGrupoDeVeiculo.GrupoVeiculo", "GrupoDeVeiculo")
                         .WithMany()
                         .HasForeignKey("GrupoDeVeiculoId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("GrupoDeVeiculo");

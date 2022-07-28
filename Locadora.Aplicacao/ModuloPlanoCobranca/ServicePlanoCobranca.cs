@@ -2,7 +2,6 @@
 using Locadora.Aplicacao.Compartilhado;
 using Locadora.Dominio.Compartilhado;
 using Locadora.Dominio.ModuloPlanoCobranca;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 

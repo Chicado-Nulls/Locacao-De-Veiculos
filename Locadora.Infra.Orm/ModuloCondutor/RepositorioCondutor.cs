@@ -4,8 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Infra.Orm.ModuloCondutor
 {
@@ -33,11 +31,6 @@ namespace Locadora.Infra.Orm.ModuloCondutor
         public void Excluir(Condutor registro)
         {
             condutores.Remove(registro);
-        }
-
-        public bool ExisteRegistroIgual(Condutor registro, string consultaVerificaDuplicidade)
-        {
-            throw new NotImplementedException();
         }
 
         public Condutor SelecionarCondutorPorCliente(Guid ClienteId)

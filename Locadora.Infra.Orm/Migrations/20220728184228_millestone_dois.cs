@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
 namespace Locadora.Infra.Orm.Migrations
 {
@@ -137,8 +137,7 @@ namespace Locadora.Infra.Orm.Migrations
                         name: "FK_TbVeiculo_TBGrupoVeiculo_GrupoDeVeiculoId",
                         column: x => x.GrupoDeVeiculoId,
                         principalTable: "TBGrupoVeiculo",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(

@@ -3,11 +3,6 @@ using Locadora.Dominio.ModuloCliente;
 using Locadora.Infra.Orm.ModuloCliente;
 using Locadora.Test.Infra.Orm.Compartilhado;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Test.Infra.Orm.ModuloCliente
 {
@@ -15,7 +10,7 @@ namespace Locadora.Test.Infra.Orm.ModuloCliente
     public class RepositorioClienteOrmTest : RepositorioBaseOrmTest
     {
         private RepositorioCliente repositorioCliente;
-        
+
         public RepositorioClienteOrmTest()
         {
             repositorioCliente = new RepositorioCliente(contextoDadosOrm);
