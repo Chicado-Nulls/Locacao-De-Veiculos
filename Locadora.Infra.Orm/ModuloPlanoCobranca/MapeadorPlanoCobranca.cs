@@ -15,7 +15,7 @@ namespace Locadora.Infra.Orm.ModuloPlanoCobranca
         {
             builder.ToTable("TbPlanoCobranca");
             builder.Property(x => x.Id).ValueGeneratedNever();
-            builder.HasOne(x => x.GrupoVeiculo);
+            builder.HasOne(x => x.GrupoVeiculo).WithOne().OnDelete(DeleteBehavior.NoAction);
             builder.Property(x => x.DiarioDiaria).HasColumnType("decimal(18,2)").IsRequired();
             builder.Property(x => x.DiarioPorKm).HasColumnType("decimal(18,2)").IsRequired();
             builder.Property(x => x.LivreDiaria).HasColumnType("decimal(18,2)").IsRequired();

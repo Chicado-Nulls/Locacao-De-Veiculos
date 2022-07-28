@@ -24,6 +24,17 @@ namespace Locadora.Apresentacao.WinForm.ModuloPlanoCobranca
         {
             TelaCadastroPlanoCobranca tela = new TelaCadastroPlanoCobranca("Inserir Plano de Cobrança", "Inserir");
 
+            var resultadoGrupoVeiculos = serviceGrupoVeiculo.SelecionarTodos();
+
+            if (!resultadoGrupoVeiculos.IsSuccess)
+            {
+                MessageBox.Show("Nenhum Grupo de Veículos cadastrado",
+               "Inserir Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            tela.GrupoVeiculos = resultadoGrupoVeiculos.Value;
+
             tela.PlanoCobranca = new PlanoCobranca();
 
             tela.GravarRegistro = servicePlanoCobranca.Inserir;

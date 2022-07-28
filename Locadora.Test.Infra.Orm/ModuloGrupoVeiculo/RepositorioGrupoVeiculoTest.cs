@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 namespace Locadora.Test.Infra.Orm.ModuloGrupoVeiculo
 {
     [TestClass]
-    public class RepositorioGrupoVeiucloTest : RepositorioBaseOrmTest
+    public class RepositorioGrupoVeiculoTest : RepositorioBaseOrmTest
     {
         private RepositorioGrupoVeiculo repositorio;
 
-        public RepositorioGrupoVeiucloTest()
+        public RepositorioGrupoVeiculoTest()
         {
             repositorio = new RepositorioGrupoVeiculo(contextoDadosOrm);
             LimparTabela("TBGrupoVeiculo");

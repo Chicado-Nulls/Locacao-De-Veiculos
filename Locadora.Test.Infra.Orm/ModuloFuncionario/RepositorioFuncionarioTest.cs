@@ -15,6 +15,7 @@ namespace Locadora.Test.Infra.Orm.ModuloFuncionario
         public RepositorioFuncionarioTest()
         {
             repositorio= new RepositorioFuncionario(contextoDadosOrm);
+            LimparTabela("TBFUNCIONARIO");
         }
 
         [TestMethod]

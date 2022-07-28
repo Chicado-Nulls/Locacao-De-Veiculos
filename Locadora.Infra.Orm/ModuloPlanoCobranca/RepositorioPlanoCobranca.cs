@@ -1,4 +1,5 @@
-﻿using Locadora.Dominio.ModuloPlanoCobranca;
+﻿using Locadora.Dominio.ModuloGrupoDeVeiculo;
+using Locadora.Dominio.ModuloPlanoCobranca;
 using Locadora.Infra.Orm.Compartilhado;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -39,6 +40,11 @@ namespace Locadora.Infra.Orm.ModuloPlanoCobranca
         public void Inserir(PlanoCobranca novoRegistro)
         {
             planoCobranca.Add(novoRegistro);
+        }
+
+        public PlanoCobranca SelecionarPlanoCobrancaPorGrupoVeiculo(GrupoVeiculo grupoVeiculo)
+        {
+            return planoCobranca.SingleOrDefault(x => x.GrupoVeiculo.Id == grupoVeiculo.Id);
         }
 
         public PlanoCobranca SelecionarPorId(Guid id)
