@@ -21,7 +21,7 @@ namespace Locadora.Dominio.ModuloCarro
         }
         public Veiculo()
         {
-
+            GrupoDeVeiculo = new GrupoVeiculo();
         }
 
         public override void Atualizar(Veiculo registro)
@@ -33,7 +33,13 @@ namespace Locadora.Dominio.ModuloCarro
             CapacidadeTanque=registro.CapacidadeTanque;
             KmPercorrido=registro.KmPercorrido;
             TipoDeCombustivel=registro.TipoDeCombustivel;
+            AtualizarGrupoVeiculo(registro);
+        }
+
+        private void AtualizarGrupoVeiculo(Veiculo registro)
+        {
             GrupoDeVeiculo=registro.GrupoDeVeiculo;
+            GrupoDeVeiculo.Id = registro.GrupoDeVeiculo.Id;
         }
 
         public string Modelo { get; set; }

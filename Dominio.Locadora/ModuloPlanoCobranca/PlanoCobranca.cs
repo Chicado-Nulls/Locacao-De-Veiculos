@@ -16,9 +16,10 @@ namespace Locadora.Dominio.ModuloPlanoCobranca
         public decimal ControladoLimiteKm { get; set; }
 
 
-
-
-        public PlanoCobranca() { }
+        public PlanoCobranca() 
+        {
+            GrupoVeiculo = new GrupoVeiculo();
+        }
 
         public PlanoCobranca(GrupoVeiculo grupoVeiculo, decimal diarioDiaria, decimal diarioPorKm, decimal livreDiaria, decimal controladoDiaria, decimal controladoPorKm, decimal controladoLimiteKm)
         {
@@ -29,19 +30,17 @@ namespace Locadora.Dominio.ModuloPlanoCobranca
             ControladoDiaria = controladoDiaria;
             ControladoPorKm = controladoPorKm;
             ControladoLimiteKm = controladoLimiteKm;
-
         }
 
         public override void Atualizar(PlanoCobranca registro)
         {
-            GrupoVeiculo= registro.GrupoVeiculo;
             DiarioDiaria = registro.DiarioDiaria;
             DiarioPorKm = registro.DiarioPorKm;
             LivreDiaria = registro.LivreDiaria;
             ControladoDiaria = registro.ControladoDiaria;
             ControladoPorKm = registro.ControladoPorKm;
             ControladoLimiteKm = registro.ControladoLimiteKm;
-
+            AtualizarGrupoVeiculo(registro);
         }
 
         public PlanoCobranca Clone()
@@ -65,5 +64,12 @@ namespace Locadora.Dominio.ModuloPlanoCobranca
         {
             return HashCode.Combine(Id, GrupoVeiculo, DiarioDiaria, DiarioPorKm, LivreDiaria, ControladoDiaria, ControladoPorKm, ControladoLimiteKm);
         }
+        #region métodos privados
+        private void AtualizarGrupoVeiculo(PlanoCobranca registro)
+        {
+            GrupoVeiculo.Atualizar(registro.GrupoVeiculo);
+            GrupoVeiculo.Id = registro.GrupoVeiculo.Id;
+        }
+        #endregion
     }
 }

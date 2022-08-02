@@ -1,13 +1,12 @@
 ﻿using Locadora.Dominio.Compartilhado;
+using Locadora.Dominio.ModuloLocacao;
+using System.Collections.Generic;
 
 namespace Locadora.Dominio.ModuloTaxa
 {
     public class Taxa : EntidadeBase<Taxa>
     {
-        public Taxa()
-        {
-
-        }
+        public Taxa(){}
 
         public Taxa(decimal? valor, string descricao, TipoDeCalculo? tipoDeCalculo)
         {
@@ -18,13 +17,17 @@ namespace Locadora.Dominio.ModuloTaxa
 
         public override void Atualizar(Taxa registro)
         {
-
+            Valor = registro.Valor;
+            Descricao = registro.Descricao;
+            TipoDeCalculo = registro.TipoDeCalculo;
         }
         public decimal? Valor { get; set; }
 
         public string Descricao { get; set; }
 
         public TipoDeCalculo? TipoDeCalculo { get; set; }
+
+        public List<Locacao> Locacoes { get; set; }
 
         public override bool Equals(object obj)
         {

@@ -39,9 +39,15 @@ namespace Locadora.Dominio.ModuloCondutor
             Endereco = registro.Endereco;
             Email = registro.Email;
             Telefone = registro.Telefone;
-            Cliente = Cliente == null ? new Cliente() : Cliente;
-            Cliente.Atualizar(registro.Cliente);
+            AtualizarCliente(registro);
         }
+
+        private void AtualizarCliente(Condutor registro)
+        {
+            Cliente.Atualizar(registro.Cliente);
+            Cliente.Id = registro.Cliente.Id;
+        }
+
         public override bool Equals(object obj)
         {
             return obj is Condutor condutor &&

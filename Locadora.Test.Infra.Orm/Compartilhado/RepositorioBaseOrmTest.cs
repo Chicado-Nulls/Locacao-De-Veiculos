@@ -23,6 +23,8 @@ namespace Locadora.Test.Infra.Orm.Compartilhado
 
             LocadoraVeiculosMigrador.AtualizarBancoDados();
 
+            LimparTabela("TBLOCACAOTAXA");
+            LimparTabela("TBLOCACAO");
             LimparTabela("TBPLANOCOBRANCA");
             LimparTabela("TBVEICULO");
             LimparTabela("TBGRUPOVEICULO");

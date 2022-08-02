@@ -29,8 +29,6 @@ namespace Locadora.Dominio.ModuloCliente
             Email = email;
             Telefone = telefone;
             TipoCadastro = tipoCadastro;
-
-
         }
 
         public override void Atualizar(Cliente registro)

@@ -4,8 +4,6 @@ namespace Locadora.Dominio.ModuloGrupoDeVeiculo
 {
     public class GrupoVeiculo : EntidadeBase<GrupoVeiculo>
     {
-
-
         public GrupoVeiculo() { }
         public GrupoVeiculo(string nome)
         {
@@ -23,8 +21,7 @@ namespace Locadora.Dominio.ModuloGrupoDeVeiculo
         }
 
         public string Nome { get; set; }
-        // public List<Veiculo> ListaDeVeiculo { get; set; }
-
+        
         public override bool Equals(object obj)
         {
             return obj is GrupoVeiculo grupoDeVeiculo &&

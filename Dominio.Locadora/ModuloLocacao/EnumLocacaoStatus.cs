@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Locadora.Dominio.ModuloLocacao
 {
-    enum EnumLocacaoStatus
+    public enum EnumLocacaoStatus
     {
         Aberta,
-        Encerrada,
+        Finalizada,
         Cancelada
     }
 }
