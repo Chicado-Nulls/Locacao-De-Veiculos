@@ -63,5 +63,10 @@ namespace Locadora.Dominio.ModuloCondutor
         {
             return MemberwiseClone() as Condutor;
         }
+
+        public override string ToString()
+        {
+            return Nome;
+        }
     }
 }

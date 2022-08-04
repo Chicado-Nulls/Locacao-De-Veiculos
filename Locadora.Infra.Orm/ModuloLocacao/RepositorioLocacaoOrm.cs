@@ -1,4 +1,5 @@
 ﻿
+using Locadora.Dominio.ModuloCondutor;
 using Locadora.Dominio.ModuloLocacao;
 using Locadora.Infra.Orm.Compartilhado;
 using Microsoft.EntityFrameworkCore;
@@ -32,6 +33,11 @@ namespace Locadora.Infra.Orm.ModuloLocacao
             locacao.Add(novoRegistro);
         }
 
+        public Locacao SelecionarPorCondutor(Condutor condutor)
+        {
+            return null;
+        }
+
         public Locacao SelecionarPorId(Guid id)
         {
             return locacao.SingleOrDefault(x => x.Id == id);
@@ -39,6 +45,17 @@ namespace Locadora.Infra.Orm.ModuloLocacao
 
         public List<Locacao> SelecionarTodos()
         {
+            return locacao.ToList();
+        }
+
+        public List<Locacao> SelecionarTodos(bool incluirClienteEhVeiculo = false)
+        {
+            if(incluirClienteEhVeiculo == true)
+                return locacao
+                    .Include(x => x.Cliente)
+                    .Include(x => x.Veiculo)
+                    .ToList();
+
             return locacao.ToList();
         }
     }

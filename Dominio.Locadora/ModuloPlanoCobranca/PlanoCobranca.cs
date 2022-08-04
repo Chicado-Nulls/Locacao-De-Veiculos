@@ -60,6 +60,11 @@ namespace Locadora.Dominio.ModuloPlanoCobranca
                    ControladoLimiteKm == cobranca.ControladoLimiteKm;
         }
 
+        public override string ToString()
+        {
+            return "Taxa "+GrupoVeiculo.Nome;
+        }
+
         public override int GetHashCode()
         {
             return HashCode.Combine(Id, GrupoVeiculo, DiarioDiaria, DiarioPorKm, LivreDiaria, ControladoDiaria, ControladoPorKm, ControladoLimiteKm);

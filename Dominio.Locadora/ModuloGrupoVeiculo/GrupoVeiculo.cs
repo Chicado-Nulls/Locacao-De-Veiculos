@@ -17,7 +17,7 @@ namespace Locadora.Dominio.ModuloGrupoDeVeiculo
 
         public override string ToString()
         {
-            return $"ID: {Id} | Nome: {Nome}";
+            return Nome;
         }
 
         public string Nome { get; set; }

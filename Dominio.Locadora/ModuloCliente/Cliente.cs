@@ -62,7 +62,7 @@ namespace Locadora.Dominio.ModuloCliente
         public override string ToString()
         {
             string tipo = TipoCadastro == true ? "P. Física" : "P. Jurídica";
-            return $"ID: {Id} | Nome: {Nome} | Tipo: {tipo}";
+            return Nome;
         }
     }
 }

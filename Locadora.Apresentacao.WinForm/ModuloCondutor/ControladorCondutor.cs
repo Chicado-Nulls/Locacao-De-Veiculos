@@ -15,7 +15,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloCondutor
         private ServiceCliente _serviceCliente;
 
         private TabelaCondutorControl tabelaCondutor;
-
+        
         public ControladorCondutor(ServiceCondutor serviceCondutor, ServiceCliente serviceCliente)
         {
             this._serviceCondutor=serviceCondutor;

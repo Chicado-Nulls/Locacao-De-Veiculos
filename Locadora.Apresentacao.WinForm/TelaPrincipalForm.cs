@@ -4,6 +4,7 @@ using Locadora.Apresentacao.WinForm.ModuloCliente;
 using Locadora.Apresentacao.WinForm.ModuloCondutor;
 using Locadora.Apresentacao.WinForm.ModuloFuncionario;
 using Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos;
+using Locadora.Apresentacao.WinForm.ModuloLocacao;
 using Locadora.Apresentacao.WinForm.ModuloPlanoCobranca;
 using Locadora.Apresentacao.WinForm.ModuloTaxa;
 using Locadora.Apresentacao.WinForm.ModuloVeiculo;
@@ -148,6 +149,26 @@ namespace Locadora.Apresentacao.WinForm
         private void veículosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorVeiculo>());
+        }
+
+        private void locaçãoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorLocacao>());
+        }
+
+        private void btnVisualizar_Click(object sender, EventArgs e)
+        {
+            controlador.Visualizar();
+        }
+
+        private void btnGerarPdf_Click(object sender, EventArgs e)
+        {
+            controlador.GerarPdf();
+        }
+
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            controlador.Filtrar();
         }
     }
 }

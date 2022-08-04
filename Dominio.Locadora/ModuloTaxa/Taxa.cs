@@ -36,6 +36,10 @@ namespace Locadora.Dominio.ModuloTaxa
                    Descricao == Taxa.Descricao &&
                    TipoDeCalculo == Taxa.TipoDeCalculo;
         }
+        public override string ToString()
+        {
+            return Descricao;
+        }
         public Taxa Clone()
         {
             return MemberwiseClone() as Taxa;

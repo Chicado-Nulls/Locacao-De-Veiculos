@@ -121,7 +121,7 @@ namespace Locadora.Aplicacao.Compartilhado
             }
         }
 
-        public Result<List<T>> SelecionarTodos()
+        public virtual Result<List<T>> SelecionarTodos()
         {
             try
             {

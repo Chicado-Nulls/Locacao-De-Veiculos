@@ -2,6 +2,7 @@
 using Locadora.Aplicacao.ModuloCondutor;
 using Locadora.Aplicacao.ModuloFuncionario;
 using Locadora.Aplicacao.ModuloGrupoDeVeiculos;
+using Locadora.Aplicacao.ModuloLocacao;
 using Locadora.Aplicacao.ModuloPlanoCobranca;
 using Locadora.Aplicacao.ModuloTaxa;
 using Locadora.Aplicacao.ModuloVeiculo;
@@ -9,6 +10,7 @@ using Locadora.Apresentacao.WinForm.ModuloCliente;
 using Locadora.Apresentacao.WinForm.ModuloCondutor;
 using Locadora.Apresentacao.WinForm.ModuloFuncionario;
 using Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos;
+using Locadora.Apresentacao.WinForm.ModuloLocacao;
 using Locadora.Apresentacao.WinForm.ModuloPlanoCobranca;
 using Locadora.Apresentacao.WinForm.ModuloTaxa;
 using Locadora.Apresentacao.WinForm.ModuloVeiculo;
@@ -16,6 +18,7 @@ using Locadora.Dominio.ModuloCliente;
 using Locadora.Dominio.ModuloCondutor;
 using Locadora.Dominio.ModuloFuncionario;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
+using Locadora.Dominio.ModuloLocacao;
 using Locadora.Dominio.ModuloPlanoCobranca;
 using Locadora.Dominio.ModuloTaxa;
 using Locadora.Dominio.ModuloVeiculo;
@@ -24,6 +27,7 @@ using Locadora.Infra.Orm.ModuloCliente;
 using Locadora.Infra.Orm.ModuloCondutor;
 using Locadora.Infra.Orm.ModuloFuncionario;
 using Locadora.Infra.Orm.ModuloGrupoVeiculo;
+using Locadora.Infra.Orm.ModuloLocacao;
 using Locadora.Infra.Orm.ModuloPlanoCobranca;
 using Locadora.Infra.Orm.ModuloTaxa;
 using Locadora.Infra.Orm.ModuloVeiculo;
@@ -90,6 +94,18 @@ namespace Locadora.Apresentacao.WinForm.Compartilhado.ServiceLocator
             IRepositorioCondutor repositorioCondutor = new RepositorioCondutor(contextoDadosOrm);
             ServiceCondutor servicecondutor = new ServiceCondutor(repositorioCondutor, contextoDadosOrm);
             controladores.Add("ControladorCondutor", new ControladorCondutor(servicecondutor, serviceCliente));
+
+            IRepositorioLocacao repositorioLocacao = new RepositorioLocacaoOrm(contextoDadosOrm);
+            ServiceLocacao serviceLocacao = new ServiceLocacao(repositorioLocacao, contextoDadosOrm);
+            controladores.Add("ControladorLocacao", new ControladorLocacao(
+                serviceLocacao, 
+                serviceCliente, 
+                servicecondutor, 
+                serviceFuncionario, 
+                serviceGrupoDeVeiculos, 
+                servicePlanoCobranca, 
+                serviceVeiculo, 
+                serviceTaxa));
         }
     }
 }

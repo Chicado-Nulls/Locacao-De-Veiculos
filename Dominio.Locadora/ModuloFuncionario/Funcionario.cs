@@ -46,6 +46,10 @@ namespace Locadora.Dominio.ModuloFuncionario
                    DataEntrada == Funcionario.DataEntrada;
         }
 
+        public override string ToString()
+        {
+            return Nome;
+        }
         public Funcionario Clone()
         {
             return MemberwiseClone() as Funcionario;

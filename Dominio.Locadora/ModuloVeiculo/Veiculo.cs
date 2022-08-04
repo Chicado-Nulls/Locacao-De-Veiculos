@@ -64,7 +64,10 @@ namespace Locadora.Dominio.ModuloCarro
 
         public byte[] Foto { get; set; }
 
-
+        public override string ToString()
+        {
+            return Modelo;
+        }
         public override bool Equals(object obj)
         {
             return obj is Veiculo veiculo &&
