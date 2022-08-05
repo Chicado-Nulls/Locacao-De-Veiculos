@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Locadora.Infra.Orm.Migrations
 {
     [DbContext(typeof(LocadoraVeiculoDbContext))]
-    [Migration("20220803190527_Locacao tipo cobranca")]
-    partial class Locacaotipocobranca
+    [Migration("20220805124325_Locacoes")]
+    partial class Locacoes
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -228,7 +228,8 @@ namespace Locadora.Infra.Orm.Migrations
                         .HasComment("0 == 'Aberta' \n 1 == 'Fechada' \n 2 == 'Cancelada'");
 
                     b.Property<int>("TipoPlanoCobranca")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("0 == 'Diaria' \n 1 == 'Livre' \n 2 == 'Controlada'");
 
                     b.Property<Guid>("VeiculoId")
                         .HasColumnType("uniqueidentifier");

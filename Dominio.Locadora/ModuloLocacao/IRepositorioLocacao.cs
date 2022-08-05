@@ -12,5 +12,6 @@ namespace Locadora.Dominio.ModuloLocacao
     {
         Locacao SelecionarPorCondutor(Condutor condutor);
         List<Locacao> SelecionarTodos(bool incluirClienteEhVeiculo = false);
+        List<Locacao> SelecionarPorStatus(EnumLocacaoStatus statusLocacao);
     }
 }

@@ -80,6 +80,7 @@ namespace Locadora.Apresentacao.WinForm.ModuloLocacao
             if (telaCadastroLocacao.ShowDialog() == DialogResult.Cancel)
                 return;
 
+            CarregarLocacoes();
         }
 
         public override void Editar()
@@ -118,6 +119,31 @@ namespace Locadora.Apresentacao.WinForm.ModuloLocacao
                 CarregarLocacoes();
             else
                 MessageBox.Show(resultado.Errors[0].Message,"Exclusão de Locações", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public override void Filtrar()
+        {
+            TelaFiltroLocacaoForm telaFiltroLocacao = new TelaFiltroLocacaoForm();
+                
+            var resultadoFiltro = telaFiltroLocacao.ShowDialog();
+
+            if (resultadoFiltro == DialogResult.Cancel)
+                return;
+
+            var locacoesFiltradas = serviceLocacao.SelecionarPorStatus(telaFiltroLocacao.statusLocacaoFiltro);
+
+            if (locacoesFiltradas.IsSuccess) 
+            { 
+                tabelaLocacao.AtualizarRegistros(locacoesFiltradas.Value);
+
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Visualizando {locacoesFiltradas.Value.Count} Locação(s)");
+                return;
+            }
+            else
+            {
+                MessageBox.Show(locacoesFiltradas.Errors[0].Message, "Filtrar de Locações",
+                 MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public override ConfigurarToolboxBase ObtemConfiguracaoToolbox()

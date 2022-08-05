@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Locadora.Infra.Orm.Migrations
 {
-    public partial class Locacao : Migration
+    public partial class Locacoes : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -23,7 +23,8 @@ namespace Locadora.Infra.Orm.Migrations
                     DataInicialLocacao = table.Column<DateTime>(type: "date", nullable: false),
                     DataPrevistaDevolucao = table.Column<DateTime>(type: "date", nullable: false),
                     DataDevolucaoRealizada = table.Column<DateTime>(type: "date", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false, comment: "0 == 'Aberta' \n 1 == 'Fechada' \n 2 == 'Cancelada'")
+                    Status = table.Column<int>(type: "int", nullable: false, comment: "0 == 'Aberta' \n 1 == 'Fechada' \n 2 == 'Cancelada'"),
+                    TipoPlanoCobranca = table.Column<int>(type: "int", nullable: false, comment: "0 == 'Diaria' \n 1 == 'Livre' \n 2 == 'Controlada'")
                 },
                 constraints: table =>
                 {

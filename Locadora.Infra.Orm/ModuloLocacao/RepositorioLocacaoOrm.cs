@@ -43,6 +43,11 @@ namespace Locadora.Infra.Orm.ModuloLocacao
             return locacao.SingleOrDefault(x => x.Id == id);
         }
 
+        public List<Locacao> SelecionarPorStatus(EnumLocacaoStatus statusLocacao)
+        {
+            return locacao.ToList().FindAll(x => x.Status == statusLocacao);
+        }
+
         public List<Locacao> SelecionarTodos()
         {
             return locacao.ToList();

@@ -34,6 +34,23 @@ namespace Locadora.Aplicacao.ModuloLocacao
             }
         }
 
+        public Result<List<Locacao>> SelecionarPorStatus(EnumLocacaoStatus statusLocacao)
+        {
+            try
+            {
+                var repositorioLocacao = (IRepositorioLocacao)repositorio;
+                return Result.Ok(repositorioLocacao.SelecionarPorStatus(statusLocacao));
+            }
+            catch (Exception ex)
+            {
+                string msgErro = $"Falha no sistema ao tentar selecionar os registros pelo status {statusLocacao}.";
+
+                Log.Logger.Error(ex, msgErro);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
         public override Result ExisteCamposDuplicados(Locacao registro)
         {
             List<Error> erros = new List<Error>();

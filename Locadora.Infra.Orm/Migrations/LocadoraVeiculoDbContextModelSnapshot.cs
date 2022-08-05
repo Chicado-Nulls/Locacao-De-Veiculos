@@ -226,7 +226,8 @@ namespace Locadora.Infra.Orm.Migrations
                         .HasComment("0 == 'Aberta' \n 1 == 'Fechada' \n 2 == 'Cancelada'");
 
                     b.Property<int>("TipoPlanoCobranca")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasComment("0 == 'Diaria' \n 1 == 'Livre' \n 2 == 'Controlada'");
 
                     b.Property<Guid>("VeiculoId")
                         .HasColumnType("uniqueidentifier");

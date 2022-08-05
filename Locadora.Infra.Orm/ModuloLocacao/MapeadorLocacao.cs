@@ -29,6 +29,8 @@ namespace Locadora.Infra.Orm.ModuloLocacao
             builder.Property(a => a.DataDevolucaoRealizada).HasColumnType("date");
             builder.Property(a => a.Status).HasColumnType("int").IsRequired()
                 .HasComment("0 == 'Aberta' \n 1 == 'Fechada' \n 2 == 'Cancelada'");
+            builder.Property(a => a.TipoPlanoCobranca).HasColumnType("int").IsRequired()
+                .HasComment("0 == 'Diaria' \n 1 == 'Livre' \n 2 == 'Controlada'");
             builder.HasMany(x => x.Taxas)
                 .WithMany(x => x.Locacoes)
                 .UsingEntity<Dictionary<string, object>>(
