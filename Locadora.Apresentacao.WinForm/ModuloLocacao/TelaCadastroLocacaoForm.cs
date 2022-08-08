@@ -194,7 +194,9 @@ namespace Locadora.Apresentacao.WinForm.ModuloLocacao
             if (Locacao == null)
                 return;
 
-            decimal valor = Locacao.CalcularValor();
+            DateTime dataSelecionada = dateTimePickerDevolucao.Value;
+            
+            decimal valor = Locacao.CalcularValor(dataSelecionada, 0);
 
             labelValorPrevisto.Text = valor.ToString();
         }
@@ -272,8 +274,9 @@ namespace Locadora.Apresentacao.WinForm.ModuloLocacao
             foreach(var item in checkedBoxTaxas.CheckedItems)
                 taxasSelecionadas.Add((Taxa)item);
 
-            if (taxasSelecionadas.Count > 0)
-                Locacao.Taxas.AddRange(taxasSelecionadas);
+            Locacao.Taxas.Clear();
+
+            Locacao.Taxas.AddRange(taxasSelecionadas);
 
             CalcularValorPrevisto();
         }

@@ -92,13 +92,13 @@ namespace Locadora.Dominio.ModuloLocacao
             switch (TipoPlanoCobranca)
             {
                 case EnumTipoPlanoCobranca.Livre:
-                    return CalcularCobranca(quantidadeDias, quilometragemPercorrida);
+                    return CalcularCobranca(quantidadeDias, PlanoCobranca.LivreDiaria);
 
                 case EnumTipoPlanoCobranca.Diaria:
-                    return CalcularCobranca(quantidadeDias, quilometragemPercorrida, PlanoCobranca.DiarioDiaria, PlanoCobranca.DiarioPorKm);
+                    return CalcularCobranca(quantidadeDias, PlanoCobranca.DiarioDiaria, quilometragemPercorrida, PlanoCobranca.DiarioPorKm);
 
                 case EnumTipoPlanoCobranca.Controlado:
-                    return CalcularCobranca(quantidadeDias, quilometragemPercorrida, PlanoCobranca.ControladoDiaria, PlanoCobranca.ControladoPorKm);
+                    return CalcularCobranca(quantidadeDias, PlanoCobranca.ControladoDiaria, quilometragemPercorrida, PlanoCobranca.ControladoPorKm);
             }
 
             return 0m;
@@ -106,8 +106,11 @@ namespace Locadora.Dominio.ModuloLocacao
 
         private decimal ObterQuilometragemPercorrida(decimal quilometragemFinal)
         {
-            return quilometragemFinal - QuilometragemInicial;
-        }
+            if (quilometragemFinal > QuilometragemInicial)
+                return quilometragemFinal - QuilometragemInicial;
+            else
+                return 0;
+        }   
 
         private int ObterQuantidadeDias(DateTime dataDevolucao = default)
         {
@@ -125,10 +128,10 @@ namespace Locadora.Dominio.ModuloLocacao
             return (decimal)Taxas.Sum(x => x.Valor);
         }
 
-        private decimal CalcularCobranca(int quantidadeDias, decimal quilometragemPercorrida, decimal planoCobranca = default, decimal planoCobrancaQuilometro = default)
+        private decimal CalcularCobranca(int quantidadeDias, decimal planoCobranca, decimal quilometragemPercorrida = default, decimal planoCobrancaQuilometro = default)
         {
-            if (planoCobrancaQuilometro == default && quilometragemPercorrida == default)
-                return planoCobranca * quilometragemPercorrida;
+            if (quilometragemPercorrida == default && planoCobrancaQuilometro == default)
+                return planoCobranca * quantidadeDias;
 
             return (planoCobranca * quantidadeDias) + (planoCobrancaQuilometro * quilometragemPercorrida);
         }
