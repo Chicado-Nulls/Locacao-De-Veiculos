@@ -1,5 +1,6 @@
 ﻿using Locadora.Aplicacao.ModuloCliente;
 using Locadora.Aplicacao.ModuloCondutor;
+using Locadora.Aplicacao.ModuloDevolucao;
 using Locadora.Aplicacao.ModuloFuncionario;
 using Locadora.Aplicacao.ModuloGrupoDeVeiculos;
 using Locadora.Aplicacao.ModuloLocacao;
@@ -8,6 +9,7 @@ using Locadora.Aplicacao.ModuloTaxa;
 using Locadora.Aplicacao.ModuloVeiculo;
 using Locadora.Apresentacao.WinForm.ModuloCliente;
 using Locadora.Apresentacao.WinForm.ModuloCondutor;
+using Locadora.Apresentacao.WinForm.ModuloDevolucao;
 using Locadora.Apresentacao.WinForm.ModuloFuncionario;
 using Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos;
 using Locadora.Apresentacao.WinForm.ModuloLocacao;
@@ -16,6 +18,7 @@ using Locadora.Apresentacao.WinForm.ModuloTaxa;
 using Locadora.Apresentacao.WinForm.ModuloVeiculo;
 using Locadora.Dominio.ModuloCliente;
 using Locadora.Dominio.ModuloCondutor;
+using Locadora.Dominio.ModuloDevolucao;
 using Locadora.Dominio.ModuloFuncionario;
 using Locadora.Dominio.ModuloGrupoDeVeiculo;
 using Locadora.Dominio.ModuloLocacao;
@@ -25,6 +28,7 @@ using Locadora.Dominio.ModuloVeiculo;
 using Locadora.Infra.Orm.Compartilhado;
 using Locadora.Infra.Orm.ModuloCliente;
 using Locadora.Infra.Orm.ModuloCondutor;
+using Locadora.Infra.Orm.ModuloDevolucao;
 using Locadora.Infra.Orm.ModuloFuncionario;
 using Locadora.Infra.Orm.ModuloGrupoVeiculo;
 using Locadora.Infra.Orm.ModuloLocacao;
@@ -106,6 +110,10 @@ namespace Locadora.Apresentacao.WinForm.Compartilhado.ServiceLocator
                 servicePlanoCobranca, 
                 serviceVeiculo, 
                 serviceTaxa));
+
+            IRepositorioDevolucao repositorioDevolucao = new RepositorioDevolucao(contextoDadosOrm);
+            ServiceDevolucao serviceDevolucao = new ServiceDevolucao(repositorioDevolucao, contextoDadosOrm);
+            controladores.Add("ControladorDevolucao", new ControladorDevolucao(serviceDevolucao, serviceLocacao));
         }
     }
 }

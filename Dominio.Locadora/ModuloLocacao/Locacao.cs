@@ -9,8 +9,6 @@ using Locadora.Dominio.ModuloTaxa;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Locadora.Dominio.ModuloLocacao
 {
@@ -29,10 +27,8 @@ namespace Locadora.Dominio.ModuloLocacao
         public Guid PlanoCobrancaId { get; set; }
         public PlanoCobranca PlanoCobranca { get; private set; }
         public decimal QuilometragemInicial { get; set; }
-        public decimal QuilometragemFinal{ get; set; }
         public DateTime DataInicialLocacao { get; set; }
         public DateTime DataPrevistaDevolucao { get; set; }
-        public DateTime DataDevolucaoRealizada { get; set; }
         public EnumLocacaoStatus Status { get; set; }
         public EnumTipoPlanoCobranca TipoPlanoCobranca { get; set; }
         public List<Taxa> Taxas { get; set; }
@@ -81,67 +77,44 @@ namespace Locadora.Dominio.ModuloLocacao
             Taxas.Add(taxa);
         }
 
-        public decimal CalcularValor()
+        public decimal CalcularValor(DateTime dataFinal = default, decimal quilometragemFinal = 0)
         {
             return  CalcularTotalTaxas() + 
-                    CalcularTotalPlanoCobranca();
+                    CalcularTotalPlanoCobranca(ObterQuantidadeDias(dataFinal), ObterQuilometragemPercorrida(quilometragemFinal));
         }
 
         #region Métodos privados
-        private decimal CalcularTotalPlanoCobranca()
+        private decimal CalcularTotalPlanoCobranca(int quantidadeDias = default, decimal quilometragemPercorrida = default)
         {
             if (PlanoCobranca == null)
                 return 0m;
 
             switch (TipoPlanoCobranca)
             {
-                case EnumTipoPlanoCobranca.Diaria:
-                    return CalcularCobrancaDiaria();
-
                 case EnumTipoPlanoCobranca.Livre:
-                    return CalcularCobrancaLivre();
+                    return CalcularCobranca(quantidadeDias, quilometragemPercorrida);
+
+                case EnumTipoPlanoCobranca.Diaria:
+                    return CalcularCobranca(quantidadeDias, quilometragemPercorrida, PlanoCobranca.DiarioDiaria, PlanoCobranca.DiarioPorKm);
 
                 case EnumTipoPlanoCobranca.Controlado:
-                    return CalcularCobrancaControlado();
+                    return CalcularCobranca(quantidadeDias, quilometragemPercorrida, PlanoCobranca.ControladoDiaria, PlanoCobranca.ControladoPorKm);
             }
+
             return 0m;
         }
 
-        private decimal CalcularCobrancaControlado()
+        private decimal ObterQuilometragemPercorrida(decimal quilometragemFinal)
         {
-            decimal valorTotalDiarias = PlanoCobranca.ControladoDiaria * ObterQuantidadeDias();
-            decimal valorTotalKmRodado = PlanoCobranca.ControladoPorKm * ObterQuilometragemRodada();
-
-            return valorTotalDiarias + valorTotalKmRodado;
+            return quilometragemFinal - QuilometragemInicial;
         }
 
-        private decimal CalcularCobrancaLivre()
+        private int ObterQuantidadeDias(DateTime dataDevolucao = default)
         {
-            return PlanoCobranca.LivreDiaria * ObterQuantidadeDias();
-        }
-
-        private decimal CalcularCobrancaDiaria()
-        {
-            decimal valorTotalDiarias = PlanoCobranca.DiarioDiaria * ObterQuantidadeDias();
-            decimal valorTotalKmRodado = PlanoCobranca.DiarioPorKm * ObterQuilometragemRodada();
-
-            return valorTotalDiarias + valorTotalKmRodado;
-        }
-
-        private decimal ObterQuilometragemRodada()
-        {
-            if (QuilometragemFinal != default || QuilometragemFinal == 0)
-                return 0m;
-
-            return QuilometragemFinal - QuilometragemInicial;
-        }
-
-        private int ObterQuantidadeDias()
-        {
-            if (DataDevolucaoRealizada == default)
+            if (dataDevolucao == default)
                 return (DataPrevistaDevolucao - DataInicialLocacao).Days;
             else
-                return (DataDevolucaoRealizada - DataInicialLocacao).Days;
+                return (dataDevolucao - DataInicialLocacao).Days;
         }
 
         private decimal CalcularTotalTaxas()
@@ -152,6 +125,13 @@ namespace Locadora.Dominio.ModuloLocacao
             return (decimal)Taxas.Sum(x => x.Valor);
         }
 
+        private decimal CalcularCobranca(int quantidadeDias, decimal quilometragemPercorrida, decimal planoCobranca = default, decimal planoCobrancaQuilometro = default)
+        {
+            if (planoCobrancaQuilometro == default && quilometragemPercorrida == default)
+                return planoCobranca * quilometragemPercorrida;
+
+            return (planoCobranca * quantidadeDias) + (planoCobrancaQuilometro * quilometragemPercorrida);
+        }
         #endregion
     }
 }

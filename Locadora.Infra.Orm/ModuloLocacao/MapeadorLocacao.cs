@@ -23,10 +23,8 @@ namespace Locadora.Infra.Orm.ModuloLocacao
             builder.HasOne(a => a.Veiculo).WithMany().OnDelete(DeleteBehavior.NoAction);
             builder.HasOne(a => a.PlanoCobranca).WithMany().OnDelete(DeleteBehavior.NoAction);
             builder.Property(a => a.QuilometragemInicial).HasColumnType("decimal(10,2)").IsRequired();
-            builder.Property(a => a.QuilometragemFinal).HasColumnType("decimal(10,2)");
             builder.Property(a => a.DataInicialLocacao).HasColumnType("date").IsRequired();
             builder.Property(a => a.DataPrevistaDevolucao).HasColumnType("date").IsRequired();
-            builder.Property(a => a.DataDevolucaoRealizada).HasColumnType("date");
             builder.Property(a => a.Status).HasColumnType("int").IsRequired()
                 .HasComment("0 == 'Aberta' \n 1 == 'Fechada' \n 2 == 'Cancelada'");
             builder.Property(a => a.TipoPlanoCobranca).HasColumnType("int").IsRequired()

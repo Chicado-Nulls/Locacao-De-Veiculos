@@ -34,6 +34,11 @@ namespace Locadora.Infra.Orm.ModuloDevolucao
             devolucoes.Add(novoRegistro);
         }
 
+        public Devolucao SelecionarPorDevolucao(Devolucao devolucao)
+        {
+            return devolucoes.SingleOrDefault(x => x.LocacaoId == devolucao.LocacaoId);
+        }
+
         public Devolucao SelecionarPorId(Guid id)
         {
             return devolucoes.SingleOrDefault(x => x.Id == id);

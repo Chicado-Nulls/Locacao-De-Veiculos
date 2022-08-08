@@ -2,6 +2,7 @@
 using Locadora.Apresentacao.WinForm.Compartilhado.ServiceLocator;
 using Locadora.Apresentacao.WinForm.ModuloCliente;
 using Locadora.Apresentacao.WinForm.ModuloCondutor;
+using Locadora.Apresentacao.WinForm.ModuloDevolucao;
 using Locadora.Apresentacao.WinForm.ModuloFuncionario;
 using Locadora.Apresentacao.WinForm.ModuloGrupoDeVeiculos;
 using Locadora.Apresentacao.WinForm.ModuloLocacao;
@@ -126,6 +127,11 @@ namespace Locadora.Apresentacao.WinForm
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorFuncionario>());
         }
 
+        private void devoluçãoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorDevolucao>());
+        }
+
         private void btnInserir_Click(object sender, EventArgs e)
         {
             controlador.Inserir();
@@ -170,5 +176,6 @@ namespace Locadora.Apresentacao.WinForm
         {
             controlador.Filtrar();
         }
+
     }
 }

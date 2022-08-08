@@ -9,5 +9,6 @@ namespace Locadora.Dominio.ModuloDevolucao
 {
     public interface IRepositorioDevolucao : IRepositorioBase<Devolucao>
     {
+        Devolucao SelecionarPorDevolucao(Devolucao devolucao);
     }
 }

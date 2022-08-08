@@ -53,6 +53,7 @@
             this.panelRegistros = new System.Windows.Forms.Panel();
             this.statusStripMensagem = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
+            this.devoluçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastrosToolStripMenuItem.SuspendLayout();
             this.toolbox.SuspendLayout();
             this.statusStripMensagem.SuspendLayout();
@@ -78,7 +79,8 @@
             this.condutoresToolStripMenuItem,
             this.planoDeCobrançaToolStripMenuItem,
             this.veículosToolStripMenuItem,
-            this.locaçãoToolStripMenuItem});
+            this.locaçãoToolStripMenuItem,
+            this.devoluçãoToolStripMenuItem});
             this.taxaToolStripMenuItem.Name = "taxaToolStripMenuItem";
             this.taxaToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.taxaToolStripMenuItem.Text = "Cadastro";
@@ -289,6 +291,13 @@
             this.labelRodape.Size = new System.Drawing.Size(52, 17);
             this.labelRodape.Text = "[rodapé]";
             // 
+            // devoluçãoToolStripMenuItem
+            // 
+            this.devoluçãoToolStripMenuItem.Name = "devoluçãoToolStripMenuItem";
+            this.devoluçãoToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.devoluçãoToolStripMenuItem.Text = "Devolução";
+            this.devoluçãoToolStripMenuItem.Click += new System.EventHandler(this.devoluçãoToolStripMenuItem_Click);
+            // 
             // TelaPrincipalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -338,5 +347,6 @@
         private System.Windows.Forms.ToolStripMenuItem planoDeCobrançaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem veículosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem locaçãoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem devoluçãoToolStripMenuItem;
     }
 }

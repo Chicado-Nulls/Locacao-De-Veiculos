@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Locadora.Infra.Orm.Migrations
 {
     [DbContext(typeof(LocadoraVeiculoDbContext))]
-    [Migration("20220805124325_Locacoes")]
-    partial class Locacoes
+    [Migration("20220808175234_Locacoes e Devolucoes")]
+    partial class LocacoeseDevolucoes
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -143,6 +143,30 @@ namespace Locadora.Infra.Orm.Migrations
                     b.ToTable("TBCondutor");
                 });
 
+            modelBuilder.Entity("Locadora.Dominio.ModuloDevolucao.Devolucao", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DataDevolucao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("LocacaoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("QuilometragemFinal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ValorTotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LocacaoId");
+
+                    b.ToTable("TbDevolucao");
+                });
+
             modelBuilder.Entity("Locadora.Dominio.ModuloFuncionario.Funcionario", b =>
                 {
                     b.Property<Guid>("Id")
@@ -199,9 +223,6 @@ namespace Locadora.Infra.Orm.Migrations
                     b.Property<Guid>("CondutorId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("DataDevolucaoRealizada")
-                        .HasColumnType("date");
-
                     b.Property<DateTime>("DataInicialLocacao")
                         .HasColumnType("date");
 
@@ -216,9 +237,6 @@ namespace Locadora.Infra.Orm.Migrations
 
                     b.Property<Guid>("PlanoCobrancaId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("QuilometragemFinal")
-                        .HasColumnType("decimal(10,2)");
 
                     b.Property<decimal>("QuilometragemInicial")
                         .HasColumnType("decimal(10,2)");
@@ -341,6 +359,17 @@ namespace Locadora.Infra.Orm.Migrations
                         .IsRequired();
 
                     b.Navigation("Cliente");
+                });
+
+            modelBuilder.Entity("Locadora.Dominio.ModuloDevolucao.Devolucao", b =>
+                {
+                    b.HasOne("Locadora.Dominio.ModuloLocacao.Locacao", "Locacao")
+                        .WithMany()
+                        .HasForeignKey("LocacaoId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Locacao");
                 });
 
             modelBuilder.Entity("Locadora.Dominio.ModuloLocacao.Locacao", b =>

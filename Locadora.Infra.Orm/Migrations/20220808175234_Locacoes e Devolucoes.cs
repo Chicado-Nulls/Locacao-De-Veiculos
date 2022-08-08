@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Locadora.Infra.Orm.Migrations
 {
-    public partial class Locacoes : Migration
+    public partial class LocacoeseDevolucoes : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,10 +19,8 @@ namespace Locadora.Infra.Orm.Migrations
                     VeiculoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PlanoCobrancaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     QuilometragemInicial = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
-                    QuilometragemFinal = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
                     DataInicialLocacao = table.Column<DateTime>(type: "date", nullable: false),
                     DataPrevistaDevolucao = table.Column<DateTime>(type: "date", nullable: false),
-                    DataDevolucaoRealizada = table.Column<DateTime>(type: "date", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false, comment: "0 == 'Aberta' \n 1 == 'Fechada' \n 2 == 'Cancelada'"),
                     TipoPlanoCobranca = table.Column<int>(type: "int", nullable: false, comment: "0 == 'Diaria' \n 1 == 'Livre' \n 2 == 'Controlada'")
                 },
@@ -62,6 +60,26 @@ namespace Locadora.Infra.Orm.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TbDevolucao",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LocacaoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ValorTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    DataDevolucao = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    QuilometragemFinal = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TbDevolucao", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TbDevolucao_TBLocacao_LocacaoId",
+                        column: x => x.LocacaoId,
+                        principalTable: "TBLocacao",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TBLocacaoTaxa",
                 columns: table => new
                 {
@@ -83,6 +101,11 @@ namespace Locadora.Infra.Orm.Migrations
                         principalTable: "TBTaxa",
                         principalColumn: "Id");
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TbDevolucao_LocacaoId",
+                table: "TbDevolucao",
+                column: "LocacaoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TBLocacao_ClienteId",
@@ -122,6 +145,9 @@ namespace Locadora.Infra.Orm.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "TbDevolucao");
+
             migrationBuilder.DropTable(
                 name: "TBLocacaoTaxa");
 

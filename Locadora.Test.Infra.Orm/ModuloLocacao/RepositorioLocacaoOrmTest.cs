@@ -78,8 +78,6 @@ namespace Locadora.Test.Infra.Orm.ModuloLocacao
             contextoDadosOrm.GravarDados();
 
             //action
-            locacoes[0].QuilometragemFinal = 500.00m;
-            locacoes[0].DataDevolucaoRealizada = DateTime.Now.Date.AddDays(6);
             locacoes[0].Status = EnumLocacaoStatus.Finalizada;
 
 
@@ -87,8 +85,6 @@ namespace Locadora.Test.Infra.Orm.ModuloLocacao
             var locacaoEncontrada = repositorioLocacao.SelecionarPorId(locacoes[0].Id);
 
             locacaoEncontrada.Should().NotBeNull();
-            Assert.AreEqual(locacoes[0].QuilometragemFinal, locacaoEncontrada.QuilometragemFinal);
-            Assert.AreEqual(locacoes[0].DataDevolucaoRealizada, locacaoEncontrada.DataDevolucaoRealizada);
             Assert.AreEqual(locacoes[0].Status, locacaoEncontrada.Status);
         }
 
